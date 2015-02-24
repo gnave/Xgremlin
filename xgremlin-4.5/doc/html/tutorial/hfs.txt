@@ -1,0 +1,151 @@
+From j.pickering@ic.ac.ukThu Jul 13 09:52:02 1995
+Date: Thu, 13 Jul 1995 14:45:53 +0100
+From: "Juliet C. Pickering" <j.pickering@ic.ac.uk>
+To: Gillian Nave <gnave@aeldata.phy.nist.gov>
+Subject: Re: gremhfs.hlp
+
+
+I am sending a set of files which are listed below and some notes
+on running the hfs analysis program in gremlin.  I suggest that
+you try the example session before reading in detail the notes
+since things become clearer on trying the program out.
+If you have questions please email me.
+
+This letter refers to files placed on ferrum in directory juliet:
+
+gremlin.ini
+p29276
+rn23.hdr
+rn23.spe              this is a binary file
+subcolsq.for
+extwo
+exfive
+exsix
+
+CONTENTS
+
+1.  Description of subroutine of gremlin  called colsq.for  based
+    on anneal in Numerical Recipes
+2.  input parameter file description
+3.  anneal and brief notes on active\non active parameters
+4.  example session
+
+---------------------------------------------------------------------
+1.
+
+SUBROUTINE  COLSQ
+ANNEAL version from Numerical Recipes
+
+ Gremlin contains the following options:
+
+option hfs <parameter filename>
+option hfs <parameter filename> anneal
+option hfs <parameter filename> show
+option hfs <parameter filename> multiplet
+
+
+The option hfs is used with selected spectral
+lines to determine values of hyperfine structure splitting
+factors A and B of the levels involved in a transition.
+I give below a typical parameter input file of
+standard format called m006c01.
+This is the parameter file required for the anneal (or default)
+option.
+
+
+The default is anneal.
+SHOW - If show is selected the pattern is merely displayed that would have
+       been produced by the numbers in the parameter file - no fitting is
+       carried out at all.
+MULTIPLET - multiplet is a routine which can be used to simplify the making
+       of the parameter input file if a multiplet is analysed.  This will be
+       discussed in further detail later.
+
+2.  input file m006c01
+------------------------------------------------------
+
+
+
+
+
+ M006c01   z4D^-a4F from rn23
+    3    4    1    8
+   1         1        1       0        1       0        1       0       0
+ 23.63 29294.4568   105.46    2.00    24.90    3.00    15.02    4.64     .00
+  10.0,  4,  0.4
+
+-------------------------------------------------------
+
+Description of input file example m006c01
+
+line 1 : a label containing the multiplet number (m006), a description
+of the transition and the name of the spectrum (rn23).
+line 2: Four integers
+-    J value of upper energy level
+-    J value of lower energy level
+-    ion label   eg 1 for neutral Co
+     ion = 1 Co I, = 2 Co II, = 3 Co III, = 4 Co IV
+
+-    cutoff -  This is obtained by reading in 32, 64 etc points
+    of the line in gremlin and then running the fourtran program
+    and plotting the result.  The transform should fall to 0 at
+    a certain value of points (press  t  when in plot mode for
+    display in points).  The number of points at the zero intensity
+    is the value you enter for cutoff.  In this example it is 8 points.
+    The calculated hfs pattern is sharp-cutoff filtered to this
+    frequency.
+
+line 3:  9 integers 0 or 1
+         The is a command line which sets the program parameters to
+         be active or inactive.  A zero means the value is fixed
+         and 1 means that the parameter is to be varied.
+         These correspond to the line of values in line 4.
+
+line 4: 9 floating point numbers
+-       area - (sum of points) found using 'area' subroutine
+-       COG wavenumber  - wavenumber of COG of line (^ctrl G)
+-       Gaussian (mK)
+-       Lorentzian (mK)
+-       A upper level mK
+-       B upper level mK
+-       A lower level mK
+-       B lower level mK
+-       saturation parameter  (optional).  Set to zero but is
+        only important for the resonance lines.  If anneal tries
+        to make it negative, make it inactive by setting a zero in
+        the command line 3.
+
+line 5:  anneal parameters T, niter, Tredfac
+         T - is an analogue of temperature, but is of order 1 - 100
+         niter - is the number of iterations at a given T ( 6-10)
+         Tredfac - is the factor by which T is reduced before the
+         next cycle (small factors .3 - .5 see to work best).
+
+-------------------------------------------------------------------
+3.
+
+ANNEAL
+For a description of "anneal" mode see Numerical Recipes, Sec. 10.9
+It is important to start with the best possible values of wavenumber and
+area ( using the cursor commands) and the line widths (scaled from
+other regions if necessary) otherwise the minima are washed out and
+harder to find.
+
+Brief general notes on running ANNEAL  (example session later)
+
+I usually start with
+0 0 1 0 1 0 1 0 0  (if neither level is known)
+10.0, 4, 0.4
+
+and then when the plot has the right general shape switch to
+1 1 1 1 1 1 1 1 0
+1.0, 4, 0.4
+At this stage, you can try pulling the solution by pushing the starting
+parameters in the desired direction, but that may not change anything
+if there is a strong minimum.
+
+The final run, to see if there is any small improvement left, is done
+by setting the starting parameters quite close to the best so far, and
+using
+1 1 1 1 1 1 1 1 0
+0.4, 4, 0.4

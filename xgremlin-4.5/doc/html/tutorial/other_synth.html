@@ -1,0 +1,41 @@
+<HEAD>
+<TITLE> Synthetic Spectra</TITLE>
+<!-- Changed by: Gillian Nave, 26-Mar-1996 -->
+</HEAD>
+<BODY bgcolor="#ffffff"><P>
+
+<B> Next:</B> <A HREF="other_noise.html"> Finding noise in the interferogram </A>
+<B>Up:</B> <A  HREF="other.html"> Other Commands and </A>
+<B> Previous:</B> <A 9 HREF="other_filter.html"> Filtering</A>
+<HR> <P>
+<H2> Synthetic Spectra</A></H2>
+<P>
+Xgremlin has various commands for creating synthetic spectra. This can be
+useful if you wish to match a known spectrum with one you have
+recorded, and has been used successfully by Jon Murray to match the
+hyperfine structure of the Hg 253.6 nm line to his observations and
+provide a wavenumber calibration of his spectra.
+<P>
+The basic command is the <b>voigt</b> command, which has the form:
+<ul>
+<li><A HREF="../commands/voigt.html"><b>voigt</b></A> <em>wl wg nop</em>
+<li><A HREF="../commands/voigt.html"><b>voigt</b></A> <em>w nop ncenter</em>
+<li><A HREF="../commands/voigt.html"><b>voigt</b></A> <em>w nop</em>
+</ul>
+The first creates a Voigt profile of Gaussian width <em>wg</em> and Lorentzian
+width <em>wl</em>, setting the number of points to <em>nop</em>. The second
+form creates a Lorentzian in <em>nop</em> points, centred around
+<em>ncenter</em>. The third form does the same as the second, but
+centres the Lorentzian at <em>nop</em>/2.
+<P>
+You can investigate the effect of noise on your spectra with the command <br>
+<A HREF="../commands/noise.html"> <b>noise</b></a> <em>nop</em>. This
+creates a noise record in <em>nop</em> points, which can be added to a
+synthetic spectra placed in <em>tr</em> using 
+<A HREF="../commands/combine.html"><b>combine</b></a>. There are
+various other options in the <b>noise</b> command, mainly concerned
+with the method of generating the noise record - see the help file for
+further details.
+<P>
+
+</BODY>

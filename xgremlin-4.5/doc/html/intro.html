@@ -1,0 +1,215 @@
+<head>
+<title>Introduction to Xgremlin</title>
+</head>
+
+<body bgcolor="#ffffff">
+<h1>A Short Introduction to Xgremlin</h1>
+	
+<h2>General</h2> 
+
+Xgremlin is a hardware and operating system independent version of the
+data analysis program <b>Gremlin</b> for Fourier transform spectrometry.
+Xgremlin runs on PCs and workstations that use the <b>X11 window
+system</b>.  In Xgremlin few things have changed from Gremlin and
+someone familiar with Gremlin should immediately be able to work with
+Xgremlin.<p>
+
+Gremlin has two main input modes, an <b>edit mode</b> where commands
+are entered at a command prompt and a graphical <b>plot mode</b> with
+a different set of commands.  Xgremlin emulates these two input modes
+by splitting the application main window into an upper pane which is
+used for plotting and a lower pane used for command editing and
+program output. Both windows remain visible all the time. After
+startup Xgremlin is in edit mode and commands may be typed in at the
+command prompt. To change over to plot mode either the button labeled
+<b>Plotmode</b> or the <b>Tab</b> key must be pressed. Pressing either
+of these again returns Xgremlin to 'edit' mode. The Xgremlin commands
+in plot and edit mode are identical to those of Gremlin ( with a few
+exceptions - the use of the Tab key being one of them ).<p>
+
+<h2>Xgremlin startup</h2>
+One area where Xgremlin differs from Gremlin significantly is
+initialization.  When Xgremlin is started it first reads a system wide
+initialization file <b>xgremlin.conf</b>. The system wide initialization
+file is used to establish defaults that are applicable to any user on
+a system such as the printer that is to be used for screen
+dumps. Xgremlin then processes the personal initialization file
+<b>.xgremlinrc</b> in the home directory.  The personal initialization file
+can be used to taylor Xgremlin to the liking of each individual user
+e.g. to associate certain commands with buttons or to modify the colors
+used in the plotting window.<p>
+
+<h2>GUI elements</h2> 
+In Xgremlin, frequently used commands can be accessed conveniently
+through simple mouse clicks on buttons. All important plot mode
+commands for moving around in a plot are accessible through the row of
+buttons on top of the plotting window. Whereas the functions of the
+top row of buttons are fixed, Xgremlin has also a row of buttons
+between the plot and the edit window which may be programmed by the
+user with the <b>button</b> command. This provides a convenient
+shortcut for frequently used plot or edit commands. A online help
+system can be called up by selecting the menu entry <i>Help</i> in the
+<i>Gremlins</i> menu. The menu entry <i>Phase/Tranform</i> pops up an
+interface to phase correction and Fourier transforms. This is
+explained in greater detail in the Xgremlin tutorial.
+<p>
+
+<h2>Command line editing</h2>
+Xgremlin has a simple command line editor for the text window. 
+The editor commands are reminiscent of those used in the much loved and
+hated Unix editor Emacs:
+
+<dl>
+<dt> <b>Left arrow key</b>
+<dd> Move cursor to the left
+<dt> <b>Right arrow key</b>
+<dd> Move cursor to the right
+<dt> <b>Page Up key</b>
+<dd> Scroll text in edit window back by one page
+<dt> <b>Page down key</b>
+<dd> Scroll text in edit window forward by one page
+<dt> <b>Up arrow key</b>
+<dd> Recall previous command or commands
+<dt> <b>Conrol key + 'a' key</b>
+<dd> Move cursor to beginning of the command line (Anfang)
+<dt> <b>Control key + 'e' key</b>
+<dd> Move cursor to end of the command line (Ende)
+<dt> <b>Control key + 'k' key</b>
+<dd> Delete everything from cursor position to end of line
+<dt> <b>Backspace key</b>
+<dd> Remove character to left of cursor
+</dl>
+
+<h2>Line lists</h2>
+Binary line list (.lin) files are supported by Xgremlin independent of
+the computer type Xgremlin is running on. A line list file written on
+a PC with an Intel processor is readable on a Sun workstation and vice 
+versa. In more technical terms: the byte order of data in .lin files
+is always identical to the byte order of data in .lin files produced
+by the original Gremlin program (i.e. <b>little endian</b> byte order).<p>
+	
+<h2>New commands in Xgremlin</h2>
+Xgremlin has acquired a number of new commands and capabilities.
+These commands are listed below. Click on the
+commands names for more information.
+
+<dl>
+<dt> <a href = "commands/alloc.html">alloc </a>
+<dd> Dynamically (re-)size the internal buffers for spectra and spectral
+     line data used by Xgremlin
+
+<dt> <a href = "commands/background.html">background</a>
+<dd> Determine and subtract a background continuum.
+
+<dt> <a href = "commands/bubbles.html">bubbles</a>
+<dd> Turn on or off bubble help for buttons.
+
+<dt> <a href = "commands/printer.html"> printer</a>
+<dd> Set printer to be used for screen dumps
+
+<dt> <a href="commands/plotsize.html">plotsize</a>
+<dd> Set size of screen dump
+
+<dt> <a href = "commands/pwd.html">pwd</a>
+<dd> Print out working directory
+
+<dt> <a href = "commands/cd.html"> cd </a>
+<dd> Change working directory
+
+<dt> <a href="commands/ls.html">ls</a>
+<dd> List contents of current directory
+
+<dt> <a href="commands/break.html">break</a>
+<dd> Synonymous to <i>keyboard</i> command
+
+<dt> <a href="commands/button.html">button</a>
+<dd> Assign edit or plot commands to configurable buttons
+
+<dt> <a href="commands/color.html">colour (or color)</a>
+<dd> Change various colours in the plotting window
+
+<dt> <a href="commands/echo.html">echo</a>
+<dd> Write a string to the text window from a batch file
+
+<dt> <a href="commands/goto.html">goto</a>
+<dd> Center plot around specified wavenumber
+
+<dt> <a href="commands/hfs.html">hfs</a>
+<dd> New set of commands for fitting hyperfine structure
+
+<dt> <a href="commands/wplot.html">wplot</a>
+<dd> Plot part of a spectrum specified in wavenumbers
+
+<dt> <a href="commands/plot.html">plot all</a>
+<dd> Plot the entire contents of the r array
+
+<dt> <a href="commands/info.html">info size</a>
+<dd> Print out the internal buffer sizes of the running Xgremlin
+
+<dt> <a href="commands/info.html">info pid</a>
+<dd> Print out the process id of the running Xgremlin
+
+<dt> <a href="commands/info.html">info vacuum</a>
+<dd> Switch between vacuum and air wavelengths
+
+<dt> <a href="commands/integrate.html">integrate</a>
+<dd> Fit and integrate one or more line profiles interactively
+
+<dt> <a href="commands/moments.html">moments</a>
+<dd> Calculate central moments of a line
+
+<dt> <a href="commands/profile.html">profile</a>
+<dd> Specify a line profile type for <i>integrate</i> command
+
+<dt> <a href="commands/readasc.html">readasc</a>
+<dd> Read data from a file in multi column ascii format
+
+<dt> <a href="commands/writeasc.html">writeasc</a>
+<dd> Write out data from the r array in ascii format 
+     ( together with a command file for the GLE plotting program if requested )
+
+<dt> <a href="commands/stom.html">stom</a>
+<dd> Store a set of mouse markers (red or blue)
+
+<dt> <a href="commands/recm.html">recm</a>
+<dd> Recall a set of mouse markers (red or blue)
+
+<dt> <a href="commands/fitpoly.html">fitpoly</a>
+<dd> Fit a Chebychev polynomial to data
+
+<dt> <a href="commands/subpoly.html">subpoly</a>
+<dd> Fit a Chebychev polynomial to data and subtract the polynomial from the data
+
+<dt> <a href="commands/response.html">response</a>
+<dd> Calculate optical response curves for intensity calibration of spectra
+
+<dt> <a href="commands/dump.html">dump</a>
+<dd> Write the contents of the r-array to a file
+</dl>
+
+ 
+<h2>Gremlin commands not available in Xgremlin</h2>
+A few commands that are found in Gremlin were eliminated in Xgremlin:
+
+<dl>
+<dt> <b>sys</b>
+<dd> Creates a child process in Gremlin. This is obsolete in Xgremlin; if you 
+     need a shell prompt just open another window.
+<dt> <b>miniarc</b>
+<dd> Superseded by the <a href="commands/response.html">response</a> command
+<dt> <b>optronics</b>
+<dd> Superseded by the <a href="commands/response.html">response</a> command
+<dt> <b>greg</b>
+<dd> Seems obsolete and no one knows what it was used for.
+<dt> <b>headeredit</b>
+<dd> Unclear how and what it was used for.
+<dt> <b>print</b>
+<dd> Mostly duplicated by <a href="commands/info.html">info</a>.
+<dt> <b>extended</b>
+<dd> Some but not all subfunctions of the <i>extended</i> command set were
+     removed because they are obsolete. <i>extended worm</i> is gone too because
+     is not documented and apparently must be rewritten anyway because it does
+     not work.
+<dl>
+
+</body>

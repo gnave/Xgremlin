@@ -1,0 +1,87 @@
+<head>
+<title> background </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>background</h2>
+<p>
+
+
+<b>Syntax: </b>background <kbd>&lt;nbin &gt; &lt;threshold &gt;
+           ["subtract" | "onlysubtract"] ["median" | "average"]</kbd>
+<p>
+
+This command is used to subtract a background continuum from a
+spectrum in the <b>r-array</b>. The program uses the following
+algorithm to determine the background. First, the spectrum is binned
+into a specified number of bins (<b>nbin</b>). In every bin the
+minimum and maximum of the spectrum is calculated. If minumum and
+maximum differ by less than <b>threshold</b> it is assumed that the
+bin contains no spectral lines. If spectral lines are found in the bin
+it is divided into smaller and smaller bins until a bin is found which
+only contains the background spectrum or a minimal binsize of is
+reached. Note that the number of bins is <b>not</b> increased in the
+process.  If the background does not seem smooth, the background
+calculation must be repeated with a larger number of bins.  The median
+or the average of the spectrum in the bin is used to represent the
+value of the background in the bin. After background bins have been
+found inside each initial bin a spline is fitted to the background
+data and (if desired) the background is subtracted from the data in
+the <b>r-array</b>. Once the background has been calculated the option
+<b>onlysubtract</b> can be used to subtract the background from the
+spectrum without re-calculation of the background.
+<b>onlysubtract</b> <b>MUST</b> be used <b>AFTER</b> a normal
+background command.
+
+<p>
+A typical sequence to determine and subtract the background in a spectrum 
+may look as follows:
+<pre>
+     open datain my_grotty               (open and read spectrum)
+     alloc r 2M                          (make room in r array)
+     read
+     plot
+     background  400  1.e-4              (determine background)
+     background onlysubtract             (subtract background)
+     dump my_beauty                      (create new data file)
+</pre>
+<p><br>
+
+The <b>background</b> command is most useful for infrared spectra
+which can have significant thermal backgrounds. The background must be
+removed before finding and fitting lines. It can also be used to remove
+the background from digitized photographic plate spectra to prepare
+them for line finding.  Xgremlin's line finding commands work well
+with plate spectra after background subtraction.  <p><br>
+
+<b>Note:</b> Plotting of the background is turned off with a <b>plot data</b> command.
+<p><br>
+
+<h3>Examples:</h3>
+<dl>
+<dt> <b>background 400 1.0e-4</b>
+<dd> calculates the background in 400 bins with a threshold of
+     1.e-4 and plots it on top of the spectrum.<br><br>
+
+<dt> <b>background 400 1.0e-4 subtract</b>
+<dd> calculates the background and then subtracts it from the spectrum
+     in the <b>r</b> array.<br><br>
+</dl>
+
+<p>
+<h3>Related commands:</h3>
+<menu>
+<li><a href="alloc.html"> alloc </a>
+<li><a href="dump.html"> dump </a>
+<li><a href="findlines.html"> findlines </a>
+<li><a href="lsqfit.html"> lsqfit </a>
+<li><a href="plot.html"> plot </a>
+</menu>
+ 
+</body>
+

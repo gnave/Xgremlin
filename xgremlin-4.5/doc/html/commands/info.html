@@ -1,0 +1,182 @@
+<head>
+<title> info </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>info</h2><p>
+
+<b>Syntax:</b> <kbd>info</kbd> <i> &lt variable name &gt [ &lt new value &gt ]</i><p>
+
+Xgremlin uses a number of control variables whose current value can be
+displayed and (optionally) modified with the <b>info</b> command.  The
+<b>info</b> command typed in without parameters alone prints the
+entire information block.  Some control variables such as <b>delw</b>
+will be reset every time a new data file is opened with a <a
+href="read.html">read</a> command.<p>
+
+<b>Note:</b><br>
+Some of the functionality of the <b>info</b> command is duplicated in other
+commands. See the section <b>related commands</b>.<p>
+
+The meanings of the control variables are:
+
+<dl>
+<dt> <b>bocode</b>   
+<dd> byte order code. 0=little endian; 1=big endian
+
+<dt> <b>clkcnt</b>   
+<dd> <i> unknown </i>
+
+<dt> <b>day</b>      
+<dd> date data taken.
+
+<dt> <b>delw</b>     
+<dd> dispersion (number of wavenumbers per point)
+
+<dt> <b>fboffs</b>   
+<dd> file byte offset - number of bytes to skip at beginning.
+
+<dt> <b>ftsmode</b>  
+<dd> <i> unknown </i>
+
+<dt> <b>fzeeman</b>  
+<dd> <i> unknown </i>
+
+<dt> <b>id</b>       
+<dd> identification of file (at top of header file)
+
+<dt> <b>inftype</b>  
+<dd> type of header file (newest is type 6)
+
+<dt> <b>natod</b>    
+<dd> <i> unknown </i>
+
+<dt> <b>neoa</b>     
+<dd> neoa=1 for emission, 0 for absorption spectra
+
+<dt> <b>nint</b>     
+<dd> <i> unknown </i>
+
+<dt> <b>nk</b>       
+<dd> divisions/fringe
+
+<dt> <b>nm</b>       
+<dd> divisions/sample
+
+<dt> <b>noiselev</b> 
+<dd> noise level (where is this used?)
+
+<dt> <b>nop</b>      
+<dd> number of points used in current buffer
+
+<dt> <b>noptex</b>   
+<dd> <i> unknown </i>
+
+<dt> <b>npo</b>      
+<dd> total number of points in file (??)
+
+<dt> <b>ns</b>       
+<dd> carriage travel parameter
+
+<dt> <b>nwos</b>     
+<dd> =-1 for wavenumbers; =1 for wavelengths
+
+<dt> <b>nwpp</b>     
+<dd> nwpp=1 for real spectra, 2 for complex spectra
+
+<dt> <b>pid</b>      
+<dd> print process id of running Xgremlin
+
+<dt> <b>pspect</b>   
+<dd> spectrometer pressure in torr.
+
+<dt> <b>refwavno</b> 
+<dd> wavenumber of reference wavenumber (15798.0025 for HeNe)
+
+<dt> <b>rdsclfct</b> 
+<dd> real scale factor (data multiplied by rdsclfct on read).
+
+<dt> <b>resolutn</b> 
+<dd> resolution
+
+<dt> <b>sample</b>   
+<dd> sample
+
+<dt> <b>user</b>     
+<dd> user
+
+<dt> <b>uvar0</b>    
+<dd> user variable 0 (e.g. for standards)
+
+<dt> <b>uvar1</b>    
+<dd> user variable 1 (e.g. for standards)
+
+<dt> <b>wavcorr</b>  
+<dd> wavenumber correction factor (used in 
+<a href="writelines.html"> writelines </a>).
+
+<dt> <b>wstart</b>   
+<dd> first wavenumber of file
+
+<dt> <b>wstop</b>    
+<dd> last wavenumber of file
+
+<dt> <b>wref</b>     
+<dd> first wavenumber or reference wavenumber in current buffer
+
+<dt> <b>size</b>     
+<dd> size of available data buffers in Xgremlin (cannot be changed)
+
+<dt> <b>vacuum</b>      
+<dd> if True use vacuum wavelengths, if False use air wavelengths
+for <a href="writelines.html"> writelines </a>.
+
+<dt> <b>margin</b>   
+<dd> size of top/bottom margin of plotter window in % (an integer value)
+
+<dt> <b>stol</b>
+<dd> Controls the spline phase fit. Must be between 0 and 1. If stol = 0, 
+the spline is an interpolating spline (goes through the points). Values of stol 
+larger than 0 describe how closely the approximating spline approaches the 
+data points. 
+
+<dt> <b>sten</b>
+<dd> Controls the spline phase fit. The tension factor must be positive.
+If sten = 0, the spline is a normal cubic spline.
+
+<dt> <b>smof</b>
+<dd> Controls the spline phase fit. The larger this factor, the larger
+the degree of smoothing.
+
+</dl>
+<p><br>
+
+<h3>Examples:</h3>
+<dl>
+<dt> <kbd>info nwpp 2</kbd>
+<dd> tells Xgremlin to treat data in the <b>r</b> array as complex. 
+<p>
+<dt> <kbd>info delw 1.0</kbd>
+<dd> set the dispersion to 1.0 wavenumbers / point
+<p>
+<dt> <kbd>info vacuum true</kbd>
+<dd> uses vacuum wavelengths instead of air wavelengths in 
+<a href="writelines.html"> writelines </a>.
+</dl>
+<p><br>
+
+<h3>Related commands:</h3>
+<menu>
+<li><a href="ident.html"> ident </a>
+<li><a href="set.html"> set </a>
+<li><a href="whats.html"> whats </a>
+</menu>
+
+
+</body>
+

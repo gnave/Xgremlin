@@ -1,0 +1,64 @@
+<head>
+<title> Using Xgremlin to Analyse a Spectrum </title>
+<!-- Changed by: , 24-Mar-1996 -->
+<!-- Changed by: Gillian Nave, 25-Mar-1996 -->
+</head>
+
+<body bgcolor="#ffffff">
+<B> Next:</B> <A HREF="analyse_real.html"> Check phase and take real part</A>
+<B>Up:</B> <A HREF="analyse.html"> Using Xgremlin to Analyse </A>
+<HR> <P>
+<H2> General Procedure</H2>
+
+This section describes the processes involved in converting a spectrum
+from the FTS into a linelist. Most of the commands will only work on a
+spectrum containing only the real part, but it may be advisable to
+check the file containing the complex spectrum as well, just to ensure
+the phase correction has been performed correctly.
+
+The general procedure is as follows:
+<dl>
+
+<a href="analyse_real.html">
+<dt>Check phase and create a real spectrum </a>
+<dd> You may already have done this after performing the transform,
+but if not, you should do it now
+
+<a href="analyse_initial.html">
+<dt>Subtract Continuum </a>
+<dd> If you have a continuum on your spectrum, the next thing to do is
+subtract it. If you do not, you will get the wrong intensities for the
+lines, as the routines attempt to make the residual intensity zero
+across the line profile. Here is
+<a href="analyse_contin.html"> an example</a>
+
+<a href="analyse_find.html">
+<dt>Search for lines  </a>
+<dd> Xgremlin can automatically searches for lines, but often has a
+slightly different idea about what constitutes a line to your idea. So
+it is necessary to go through the spectrum and check what it has done,
+correcting it where necessary.
+
+<a href="analyse_fit.html">
+<dt>Fit  lines </a>
+<dd> For most purposes, this can also be done automatically, but if
+there is an area of the spectrum that you are particularly interested
+in that has many blended lines, it might be worth doing this by hand.
+
+<a href="analyse_cal.html>
+<dt> Calibrate Wavenumbers </a>
+<dd> The final linelist output from gremlin can be wavenumber
+corrected and can also be corrected for the refractive index of air if
+you have had to run your spectrometer in air (NOT
+recommended!). 
+
+
+<a href="analyse_inten.html>
+<dt> Calibrate Intensites </a>
+<dd> Intensity calibration can also be performed using a
+low-resolution response function extracted from e.g. a tungsten or
+deuterium lamp spectrum.
+
+</dl>
+
+</body>

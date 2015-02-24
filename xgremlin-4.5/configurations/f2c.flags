@@ -1,0 +1,5 @@
+#
+# compiler flags for the f2c FORTRAN compiler
+#
+FF = f2c
+F77FLAGS = -A -Nc40 -Nn802

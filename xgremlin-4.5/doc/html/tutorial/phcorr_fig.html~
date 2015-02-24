@@ -1,0 +1,181 @@
+<head>
+<title> The Phase correction window in Xgremlin </title>
+</head>
+<body bgcolor="#ffffff">
+<h1> The phase correction window in Xgremlin </h1>
+<img src="../tutorial/phcorr_fig.gif">
+<p>
+
+<h2> Explanation of the fields </h2>
+
+The phase correction window is really a 'front end' for various
+commands in Xgremlin to make it easy to phase correct and transform
+files. For more information on any of those commands, select the links
+in brackets after the title. 
+
+The phase correction window has two sections: the 'black part', which
+tells Xgremlin what parameters to use for the phase correction, and
+the 'blue part', which specifies parameters used for the transform and
+to save the data. Once you have filled in the field, click on the
+'Phase curve' button to calculate and display the phase polynomial
+
+<a name="fill_in"><h2> The phase correction fields</h2> </a>
+
+<dl>
+<dt><b>Interferogram file: </b>
+(<a href="../commands/open.html">(open rawin)</a>
+<dd> The name of the file you wish to open, without any
+extension. Automatically filled in by the 'Fill in' button
+
+<dt><b>Symmetry: </b>
+<a href="../commands/onesided.html">(onesided</a>
+<a href="../commands/twosided.html"> twosided)</a>
+<dd> Toggles the symmetry as twosided or unbalanced, depending on how
+the interferogram was sampled. If the interferogram has
+<em>significantly</em> more points on one side of the centre burst
+than the other (4 - 5 times as many), then the symmetry should be set
+to unbalanced. In this case, the phase is calculated from the symmetric
+portion of the interferogram alone, but the full interferogram is used
+for the main transform, after multiplying it with an 
+<a href="../glossary.html">amertizing</a> fuction to correct
+for the asymmetry.
+
+<dt><b>Interferogram center:</b>
+<a href="../commands/ncenter.html">(ncenter)</a>
+<dd> Sets the value of the central point, about which the transform is
+performed. This is filled in automatically by the <b>fill in</b>
+button if you have marked the position of the central point with a
+marker in the plot window. If you have only read in a section of the
+interferogram it may be incorrect, so you should check it. 
+If the resulting phase plot has a large slope, or if it has a 2*pi
+phase flip, you should try a different central point. The value can be
+easily changed up or down with the arrow keys.
+
+<dt><b> Invert interferogram: </b>
+<a href="../commands/input.html">(input inverted)</a>
+<dd> If this is set to 'yes', then the interferogram will be
+multiplied by -1, causing a shift of pi in the phase. This can be
+useful to avoid problems with a 
+<a href="../tutorial/raw_phase.html">2*pi flip</a> in the phase
+
+<dt><b>Spectrum type: </b>
+<a href="../commands/phcorr.html">(phcorr smooth)</a>
+<dd> Can be set to 'line spectrum' or 'continuum spectrum' and affects
+the type of phase correction that is performed. If set to 'line
+spectrum', then Xgremlin will calculate the phase points and fit a
+polynomial through them. However if it is set to 'continuum spectrum',
+a much simpler phase correction procedure is used -- Xgremlin finds
+the phase based on a small number of points and automatically fits a
+smooth curve through them; this is then used to correct the whole
+spectrum. 
+
+
+<dt><b>Number of terms: / Number of points</b>
+<a href="../commands/phcorr.html">(phcorr)</a>. 
+<dd> If the spectrum type is a line spectrum, then this specifies the
+number of terms in the polynomial used to fit the phase. Initially
+this should be set to zero, in which case Xgremlin does not fit any
+polynomial, but simply calculates the phase points and displays
+them (alternatively select the 'no fit' button). You can then check 
+for <a href="../tutorial/raw_phase.html"> ghosts and phase flips</a> 
+and correct the points as necessary. When you are satisfied that
+Xgremlin will use the correct data to calculate the polynomial, you
+can set the number of terms to some reasonable number (2-3 if the
+phase is reasonably flat, but you may need as many as 8 terms from
+interferograms where the phase is affected by e.g. analogue filters or
+optical properties of the interferometer. 
+
+<p>
+If the spectrum type is a continuum spectrum, then this specifies the
+number of points used to calculate the phase. This should be a factor
+of 2, and is typically 512 or 1024 points.
+
+<dt><b>Discriminator</b>
+<a href="../commands/phcorr.html">(phcorr)</a>. 
+<dd>(only for line spectra) This  the discriminator above which lines
+are selected for the phase fitting, expressed as a fraction of the
+maximum in the spectrum (initially 0.05). 
+
+<p> <a name="discrim">When the phase is calculated</a>, the 
+<a href="phcorr_stat.html"> statistics</a> for the points used
+are displayed in the edit window.  The alias is divided into 8
+sections, each of which is intially allotted 64 (=512/8) points.  If
+any section is unfilled (because there are not enough points above the
+discriminator in that region) the extra points are allocated in order
+of amplitude to the other sections.  If the total number of points
+used is significantly below 512 you should probably lower the
+discriminator and start again.
+
+<dt><b>Signal / noise:</b>
+<a href="../commands/phcorr.html">(phcorr)</a>. 
+<dd>     `fracnoise' is the noise relative to a spectral maximum of 1.0 
+(initially 0.001). It is used to calculate (chi)&#178; for the fit.
+
+The information on the screen before you plot the phase tells you
+the polynomial coefficients and the chi-square for the fit.
+If the latter is significantly greater than one, you may want to
+try more terms in the polynomial (by simply repeating the above with
+a new value for the number of terms) or go back to look for more
+bad points.  BUT a high value for chi-square can have a different cause: 
+the discriminator has probably picked several points from each very strong
+line, and if the central section of the interferogram is not fully 
+symmetric (due to, e.g., source intensity variation during the scan)
+the imaginary part of the line profile may have a dispersive
+shape so that the phase actually varies across the line (detectable by
+expanding a cluster of points of large scatter).  If this is the case, an
+unflattering value for chi-square should not lead to significant errors
+if the interferogram is two-sided (See a paper on phase correction by 
+<a href="../tutorial/references.html#phcorr">Learner et al.</a>).
+
+</dl>
+
+<h2>The transform fields</h2>
+
+These assume that you have just calculated phase information to be
+applied during the transform. When the fields are complete, click on
+the 'Fourier transform' button to perform the transform and save the file.
+
+<dl>
+<dt><b>Skip</b>
+<a href="../commands/skip.html">(skip)</a>. 
+<dd> Specifies the number of points, if any, to be skipped at the
+start of an interferogram. You may wish to do this if, for example,
+you have a glitch right at the start that you wish to get rid of, or
+if you have header information at the start that you have to skip
+over. Can be left blank.
+
+<dt><b>Points</b>
+<a href="../commands/input.html">(input)</a>. 
+<dd> Specifies the number of points to be used in the transform. The
+default value is the total number of points in the interferogram. Can
+be left blank.
+
+<dt><b>Apodize</b>
+<a href="../commands/apodize.html">(apodize)</a>. 
+<dd> Specifies the width in points of the cosine bell applied to the
+ends of the interferogram to avoid <a href="../glossary.html">ringing</a>
+in the spectrum caused by the jump to zero at the end of the
+interferogram. This can be left blank, and the default is 5&#37; of
+the longest side of the interferogram.
+
+<dt><b>Range</b>
+<a href="../commands/wavelimits.html">(wavelimits)</a>. 
+<dd> Specifies the wavenumber range for the output file. The default
+values are the first and last wavenumbers determined by the alias and
+free spectral range. Can be left blank.
+
+<dt><b>Output</b> 
+<a href="../commands/complex.html">(complex</a>. 
+<a href="../commands/real.html"> real)</a>. 
+<dd> Both real and complex spectra can be produced. However it is
+recommended that you first produce a complex spectrum to check that
+the imaginary part is small everywhere. You can also either output a
+real spectrum directly, or produce a real spectrum from the complex
+one using <a href="../commands/copy.html"><b>copy real</b></a>. This field
+must be present, and a file name is automatically suggested by
+Xgremlin when you click on the 'fill in' button.
+
+</dl>
+<p>
+<a href="../tutorial/transform.html#gremlins">Back to transforming</a>
+</body>

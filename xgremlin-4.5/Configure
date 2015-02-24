@@ -1,0 +1,213 @@
+#!/bin/sh
+#
+# configuration script for Xgremlin
+#
+
+# zap old user configuration file if one exists and start a new one
+echo "# user configurable part of Xgremlin make files" >config.user
+echo "CONFIG_USER := yes" >config.user
+
+echo
+echo "                      ------------------------"
+echo "                       Xgremlin configuration"
+echo "                      ------------------------"
+echo
+
+# FORTRAN issues
+rm -f f.flags f.make f.libs
+echo
+echo "   ---------------------- FORTRAN ----------------------------"
+echo
+echo "   Pick your FORTRAN compiler:"
+echo
+echo "            1  :  gfortran (GNU FORTRAN 95)"
+echo "            2  :  Absoft FORTRAN 77 for Linux/i386 (untested)"
+echo "            3  :  Lahey/Fujitsu Fortran 95 for Linux/i386 (untested)"
+echo "            4  :  Intel Fortran Compiler for Linxu/i386 or Mac OS X/i386"
+echo
+echo -n "   Pick one by typing in the menu number :  "
+read compiler
+
+if [ $compiler = "1" ]
+then
+    echo "GNU gfortran (g95)" > ./Csrc/ff-version
+    ln -s ./configurations/gfortran.flags f.flags
+    ln -s ./configurations/gfortran.make f.make
+    ln -s ./configurations/gfortran.libs f.libs
+    cd mpar;ln -s Makefile.gfortran Makefile;cd ..
+fi
+
+if [ $compiler = "2" ]
+then
+    echo "Absoft FORTRAN 77" > ./Csrc/ff-version
+    ln -s ./configurations/absoft_f77_linux_i386.flags f.flags
+    ln -s ./configurations/absoft_f77.make f.make
+    ln -s ./configurations/absoft_f77_linux_i386.libs f.libs
+    cd mpar;ln -s Makefile.absoft_f77 Makefile;cd ..
+fi
+
+if [ $compiler = "3" ]
+then
+    echo "Lahey/Fujitsu Fortran 95" > ./Csrc/ff-version
+    ln -s ./configurations/lahey_f95_linux_i386.flags f.flags
+    ln -s ./configurations/lahey_f95.make f.make
+    ln -s ./configurations/lahey_f95_linux_i386.libs f.libs
+    cd mpar;ln -s Makefile.lahey_f95 Makefile;cd ..
+fi
+
+if [ $compiler = "4" ]
+then
+    echo "Intel Fortran Compiler" > ./Csrc/ff-version
+    ln -s ./configurations/ifort.flags f.flags
+    ln -s ./configurations/ifort.make f.make
+    ln -s ./configurations/ifort.libs f.libs
+    cd mpar;ln -s Makefile.ifort Makefile;cd ..
+fi
+
+# X libraries
+echo
+echo
+echo "   ----------------------------- X11 --------------------------------"
+echo
+echo "   during compilation the C compiler must be able to locate the include"
+echo "   files for the X11 libraries and the loader must be able to find the"
+echo "   libraries themselves. The following directories are searched by default:"
+echo
+echo "   X11 include path :  /usr/X11R6/include"
+echo "   X11 library path :  /usr/X11R6/lib"
+echo
+echo -n "   Change X11 paths ? [y/N] :  "
+read yesno
+if [ $yesno = "y" ]
+then
+   echo
+   echo -n "   New include path for X11 header files :  "
+   read xincloc   
+   echo -n "   New library path for X11 libraries    :  "
+   read xlibloc
+   echo "XINCLOC = $xincloc" >>config.user
+   echo "XLIBLOC = $xlibloc" >>config.user
+else
+   echo "XINCLOC = /usr/X11R6/include" >>config.user
+   echo "XLIBLOC = /usr/X11R6/lib" >>config.user
+fi
+
+# Extra libraries
+echo
+echo "    Are there any other directories that need to be searched for libraries ?"
+echo "    (e.g. Fortran, C libraries ...) "
+echo     
+echo -n "     Extra directories ? [y/N] : "
+read yesno
+if [ $yesno = "y" ]
+then
+  echo
+  echo -n "   Library paths for extra directories (one per line) : "
+  read extralib
+     extralib=" -L "${extralib}
+  echo -n "   Another library path ? [y/N] :"
+  read yesno  
+  while [ $yesno = "y" ] ; do
+     echo
+     echo -n "   Library paths for extra directories (one per line) : "
+     read newlib
+     extralib=${extralib}" -L "${newlib}
+     echo -n "   Another library path ? [y/N] :"
+     read yesno  ;
+  done
+  echo "EXTRALIBS = $extralib" >> config.user
+fi
+
+
+# Athena Widgets
+
+echo
+echo "   By default, Xgremlin is linked against the Athena 2d widget library"
+echo "   but may also be linked against the 3d Athena widgets."
+echo
+echo -n "   Use 3d Athena widgets ? [Y/n] : "
+read yesno
+echo
+if [ $yesno = "y" ]
+then
+   echo "   Athena 3d widgets will be used."
+   echo "XAWLIB = -lXaw3d" >>config.user	
+else
+   echo "   Standard Athena widgets will be used."
+   echo "XAWLIB = -lXaw" >>config.user
+fi
+
+# man page location
+echo
+echo
+echo "   ----------------------------- MANPAGE -----------------------------"
+echo
+echo "   The manual page for Xgremlin will be installed in  /usr/local/man/man1"
+echo
+echo -n "   Change installation directory of manual page ? [y/N] :  "
+read yesno
+if [ $yesno = "y" ]
+then
+   echo
+   echo -n "   New manual directory :  "
+   read manloc
+   echo "MANLOC = $manloc" >>config.user
+else
+   echo "MANLOC = /usr/local/man/man1" >>config.user
+fi
+
+# various tools
+echo
+echo
+echo "   --------------------- LINE LIST TOOLS  ------------------------"
+echo
+echo "   The following two utilities for line list (.lin) files can be"
+echo "   comiled:"
+echo
+echo "   dumplin :   a program to check the consistency of a .lin file,"
+echo "               for displaying the file header and for dumping the"
+echo "               file in ASCII text."
+echo
+echo "   mergelin :  a utility to merge two line list files into a"
+echo "               single line list file. Useful for combining the"
+echo "               output of two or more 'linelist' commands."
+echo
+echo -n "   Compile line list tools ? [y/N] : "
+read yesno
+if [ $yesno = "y" ]
+then
+   echo "LLTOOLS := yes" >>config.user
+fi
+
+# compile atlas plotting program
+echo
+echo
+echo "   ------------------------- PSPLOT  ------------------------"
+echo
+echo "   Xgremlin comes with a modified version of the program"
+echo "   psplot   which may be used to plot spectral atlasses."
+echo "   Select  y   below if you wish to compile the atlas"
+echo "   plotting program."
+echo
+echo -n "   Compile psplot ? [y/N] :  "
+read yesno
+if [ $yesno = "y" ]
+then
+   echo "PSPLOT := yes" >>config.user
+fi
+
+# now tell user what she should do next
+echo
+echo
+echo "   ------------------------- WHAT NEXT ? ------------------------"
+echo
+echo "   Xgremlin is now configured. Use one of the following commands"
+echo "   to compile Xgremlin for your machine:"
+echo
+echo "   make sunos4-sparc   ( SunOS 4.x on Sparc processors )"
+echo "   make solaris2-sparc ( Solaris 2.x on Sparc processors )"
+echo "   make aix3-rs6000    ( AIX 3.x on IBM Power processors )"
+echo "   make linux-i386     ( Linux on x86 processors )"
+echo "   make macosx         ( Mac OS X on PPC or Intel processors )"
+echo "   make cygwin         ( Cygwin for windows )"
+echo

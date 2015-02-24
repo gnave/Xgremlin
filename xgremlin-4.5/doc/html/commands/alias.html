@@ -1,0 +1,52 @@
+<head>
+<title> alias </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>alias</h2>
+<p>
+
+<b>Syntax: </b>alias <i>[ &lt newname &gt &lt string &gt ]</i>
+<p>
+
+An unfortunately-named command that has nothing to do with
+aliasing in FT spectra, but is a way to execute a set of
+several other commands by means of a single word; similar to
+the <b>alias</b> command in various Unix shells.<p>
+
+The string <i>newname</i> will become the new command; it will be
+expanded to <i>string</i> in the command line at execution time, but
+need not be the last command on the line.  If no new name is
+given, this command will simply list the existing aliases.<p>
+
+The string may include several commands separated by semicolons,
+but only the last one will have access to further parameters in
+the original command line.  An alias may use another alias.<p>
+
+<b>Currently no more than 50 aliases are allowed,</b> 
+no erasure is possible once aliases are defined.
+<i>newname</i> is limited to 12 characters, <i>string</i> 
+may be up to 80 chars,
+but the final expansion for all aliases in the line is limited
+to 256 characters.<p><br>
+
+<h3>Examples</h3>
+<dl>
+<dt> <b>alias sc "sinc 20. 400;plot"</b>
+<dd> makes <b>sc</b> an alias for <b>sinc 20. 400;plot</b>
+<dt> <b>alias wu "whats up"</b>
+<dd> try it out
+</dl>
+<p><br>
+
+<h3>Note:</h3>
+Strings containing blank spaces must be enclosed in "quotes" to ensure
+that Xgremlin interprets them as one single string.
+
+</body>
+

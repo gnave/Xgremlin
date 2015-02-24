@@ -1,0 +1,74 @@
+<head>
+<title>
+Filtering data vs filtered lsqfit
+</title>
+<!-- Changed by: Gillian Nave, 25-Mar-1996 -->
+</head>
+
+<body bgcolor="#ffffff">
+
+<h1>Filtering data vs filtered lsqfit</h1>
+<B>Up:</B> <A HREF="analyse_ring.html"> Dealing with Ringing </A>
+<HR> <P>
+
+
+<img src="original.gif"><br>
+
+This shows a Gaussian line profile of width 3 points (fairly typical
+for <a href="../glossary.html">
+optimally-sampled FT spectra </a>), together with it's (single-sided) 
+Fourier transform. It represents a typical line that has been
+fully-resolved, and the Fourier transform of it is near zero at the
+end of the data. Now imagine that we have not fully-resolved the line,
+and have only sampled 120 points, instead of the 256 points started
+out with. This can be imitated by setting all points in the transform 
+above 60 to zero with 
+<b><a href="../commands/data.html">
+data</a> 60 256 0.</b>.
+ 
+<p>
+<img src="truncated.gif"><br>
+This shows the result. We have effectively observed the inteferogram
+represented on the right, and the line is
+<a href="../glossary.html">
+ringing </a>, as can be seen on the left. One common way of dealing
+with this is to <a href="/usr/local/xgremlin/html/commands/filter.html">
+filter </a> the data -- i.e. multiply the interferogram with a
+Gaussian or similar function to make sure that it is near zero at the
+ends. This is the result of the command <b> filter 4 60 4 </b>
+on the under-resolved line:<p>
+<img src="filtered.gif">
+<br>
+
+The transform goes down to zero at the ends and the line is no longer
+ringing. However the line is now broader, and the peak height is
+lower. If we fit this line with 
+<a href="../commands/lsqfit.html"><b>lsqfit</b> </a>,
+we will get a larger width than the original. A better way is to use a
+<em>filtered</em> <b>lsqfit </b> instead. To do this, you must first
+set the shape of the filter with:
+<a href="../commands/lsqfit.html">
+<b>lsqfit filter</b></a> <em>nrise ncut</em>, where ncut is the cutoff
+frequency of the interferogram and nrise is the width of a cosine bell
+used to <a href="/usr/local/xgremlin/html/commands/mask.html">
+<b>mask</b> </a>the ends of the data to avoid extra ringing. A value
+of <em>nop</em>/10 is suggested for a first attempt. The
+parameter <em>ncut</em> can be omitted, and if it is Xgremlin will
+determine it from parameters in the header file. 
+<p>
+
+<img src="fitted.gif"><br>
+This shows the difference between filtering the data and then fitting
+it with <b> lsqfit</b>, and fitting the data with <b>lsqfit filter</b>
+The black curve is the original line. The yellow one is the
+under-resolved line, and the blue line is a fit to this using lsqfit
+filter. The red curve is a profile fitted to the line after it has
+been filtered.
+<p>
+
+Of course the best way around the problem is to fully resolve the data
+when you take the original interferogram!
+
+
+</body>  
+

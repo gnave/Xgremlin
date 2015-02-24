@@ -1,0 +1,159 @@
+.\"-*-nroff-*-
+.\\
+.\\ man page for the Xgremlin program
+.\\
+.TH Xgremlin 1 "June 1995"
+.SH NAME
+Xgremlin \- FTS spectrum analysis program.
+
+.SH SYNOPSIS
+.B xgremlin [-mono]
+
+.SH DESCRIPTION
+.B Xgremlin
+is used for the analysis of interferograms and spectra measured with Fourier 
+transform spectrometers. Recent additions allow the analysis of spectra obtained 
+with grating spectrographs. 
+.B Xgremlin
+is a port to the UNIX / X window environment of the FTS decomposition program
+.B Gremlin
+for PCs running MS\-DOG written by Jim Brault (NOAA). 
+A comprehensive
+manual
+is distributed together with the source code of
+.B Xgremlin.
+
+.SH OPTIONS
+The
+.B mono
+option may be useful if 
+.B Xgremlin
+is run on a monochrome display. With this option dashed lines are used for
+imaginary data and the phase confidence interval to make them distinguishable
+from other plotted data.
+It is usually most convenient to start xgremlin as a background
+process as follows:
+
+.B xgremlin &
+
+.SH FILES
+.B Xgremlin
+requires a number of data and configuration files which must be installed 
+before the program can be used. When 
+.B Xgremlin 
+is started the program first reads and executes a system wide initialization file and 
+then a user specific startup file. The system wide configuration file is:
+
+.B /usr/local/xgremlin/xgremlin.conf
+
+This file contains default settings that apply to all users on a particular system. 
+Each user can configure 
+.B Xgremlin 
+individually by putting 
+.B Xgremlin 
+commands in a local startup file
+
+.B \.xgremlinrc
+
+which lives in the users' home directories. The data files for the help system are
+all in HTML format and live in the directory
+
+.B /usr/local/xgremlin/html
+
+.B Xgremlin
+is capable of rendering the content of its plotting window as a color Postscript
+file. The Postscript file is written to the home directory and is given the 
+name
+
+.B xgremlin\-<number>.ps
+
+where 
+.B <number>
+is the process id of the 
+.B Xgremlin
+program that creates the file (e.g. 
+.B xgremelin-356.ps
+).Once the Postscript file is written,
+.B lpr
+is started as a a background process and carries out the task of actually printing 
+the 'screen dump'.
+.B xgremlin_print
+is a shell script that can be adapted easily to the local printer
+setup. If a Postscript printer is available it will simply copy the screen dump
+to the printer, otherwise it might e.g. call the Postscript interpreter 
+.B Ghostscript
+to print the screen dump on (almost) any printer. Every session of 
+.B Xgremlin
+creates a log file in the user'ss home directory. Session logs have file names
+such as
+
+.B xgremlin-12Jun95-22:30.log
+
+where the time is the startup time of the program. Finally, 
+.B Xgremlin 
+creates a directory (by default
+
+.B xgremlin-scratch
+
+in the home directory) to keep scratch files for temporary data storage.
+
+.SH X RESOURCES
+Like most programs written for the X Window system 
+.B Xgremlin
+requires a database with application resources. 
+All program specific
+resource definitions are contained the application resource database
+.B Xgremlin
+(like the program itself but with uppercase X).
+This file must be installed in the directory
+
+.B /usr/lib/X11/app-defaults.
+
+.SH ENVIRONMENT VARIABLES
+The location of some files may be changed from the default 
+directory
+.B /usr/local/xgremlin
+by setting the following environment variables:
+
+.B XGREMLIN_CONF_PATH :
+directory where the system wide configuration file is located
+
+.B XGREMLIN_LOG_PATH :
+location of the session log files
+
+.B XGREMLIN_SCRATCH_PATH :
+where the scratch file is created
+
+.B XGREMLIN_PRINT_COMMAND :
+by default
+.B Xgremlin
+uses the 'lpr -P' command for printing the screen dump Postscript files. 
+The name of the printer following the -P option is filled in by 
+.B Xgremlin
+( may be set with 'printer' command ). If the machine 
+.B Xgremlin 
+is running on has a different print command (as is e.g. the
+case with AIX) it can be set in this environment variable.
+
+.SH KUDOS
+.B Xgremlin
+is based on the FTS analysis program
+.B Gremlin
+by Jim Brault and much of the code is taken verbatim from 
+.B Gremlin.
+The manual for 
+.B Gremlin
+and 
+.B Xgremlin
+was contributed by G. Nave, NIST and A. Thorne, Imperial College, London.
+
+.SH BUGS
+.B Xgremlin 
+is probably rather similar to its predecessor
+.B Gremlin
+in that respect.
+Bug reports should be sent to:
+
+.CD
+Gillian Nave, NIST ( gnave@nist.gov )
+.DE

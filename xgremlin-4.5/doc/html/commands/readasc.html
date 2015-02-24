@@ -1,0 +1,84 @@
+<head>
+<title> readasc </title>
+<!-- Changed by: LION,  3-May-1996 -->
+</head>
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>readasc</h2>
+<h3>Syntax:</h3>
+readasc <em> &lt;filename&gt; [&lt;x-column&gt; &lt;y-column&gt;
+&lt;z-column&gt;] ['add'] </em> 
+<p>
+this command is used to load data files in multi column ASCII format
+into the r array. <b>The data must be evenly spaced</b> on the
+wavenumber or wavelength scale. Lines beginning with the characters
+<b>#</b>, <b>;</b> or <b>!</b> are comment lines. When the option
+'add' is present the data in the file will be added to the contents of
+the 'r' array. Default is to overwrite the contents of the 'r'
+array. <b>In order for data adding to work the wavenumber / wavelength
+grid must be the same in all added files.</b>
+<p>
+
+<b>Note:</b><br>
+The variable 'nwos' can be assigned a value in a comment. 
+If nwos is set to 1 then the x axis is assumed to be in  wavelengths; 
+if nwos is set to -1 the x axis is assumed to be in wavenumbers. The 
+default is nwos = 1 that is a wavelength scale. 
+
+
+
+<h3>Examples: </h3>
+A typical data file may look as follows:
+<pre>
+# This is a sample data file loadable into Xgremlin
+# using the 'readasc' command
+# nwos 1
+1.5	10.0	1.0
+3.0	20.0	4.0
+4.5	30.0	9.0
+; this line is a comment too
+6.0	40.0	16.0
+</pre>
+This file can be read in with the following commands:
+
+<DL>
+<DT> <b>readasc test.dat</b>
+<DD> will read the first 2 columns of the file 'test.dat' 
+assuming the first column contains wavenumbers (or wavelengths)
+and the second column intensity data.<p>
+
+<dt> <b>readasc test.dat 2 1</b>
+<dd>will read the first 2 columns of the file 'test.dat'
+assuming that the 2nd column contains wavenumbers.<p>
+
+<dt> <b>readasc test.dat 1 3</b>
+<dd>will read the numbers in the third column of 'test.dat'
+as intensity data.<p>
+
+<dt> <b>readasc test.dat 1 3 2</b>
+<dd>read data in file 'test.dat' as complex data.<p>
+
+<dt> <b>readasc test.dat 1</b>
+<dd>will read a single column from 'test.dat' only. This command
+must also be used if the file contains no more than a single
+column of data.<p>
+
+<dt> <b>readasc test.dat <br>
+readasc test2.dat add</b>
+<dd>the first command will read the first two colunms of data 
+in the file 'test.dat' and store them in the 'r' array.
+The second command will add the data in file 'test2.dat' 
+to the data of 'test.dat' in the 'r' array.<p>
+</dl>
+
+<h3>Related commands:</h3>
+<ul>
+<li><A HREF="writeasc.html">writeasc</A>
+<li><A HREF="writefile.html">writefile</A>
+<li><A HREF="readdata.html">readdata</A>
+</ul>
+

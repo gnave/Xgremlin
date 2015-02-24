@@ -1,0 +1,58 @@
+<head>
+<title> printer </title>
+<!-- Changed by: LION, 12-May-1996 -->
+</head>
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>printer</h2>
+<h3>Syntax:</h3>
+printer <em>&lt;name&gt;</em>
+<p>
+sets the name of the printer which is to be used for screen dumps.
+The printer name can be the name of any local or remote printer defined 
+in the printer database  /etc/printcap. If the printer name is set to 
+'none' only the screen dump in Postscript format will be written to
+disk but it will not be sent to the printer.
+
+<h4>NOTE 1:</h4>
+Xgremlin screen dumps are in colour Postscript format. They will print
+on a 'normal' Postscript printer. If no Postscript printer is available
+the free Postscript interpreter 'Ghostscript' can be used to print
+the screen dump on any printer. See the file  <A HREF="../install.html">
+HOWTO-INSTALL'</A> which is part of the Xgremlin source distribution for 
+information about obtaining and installing 'Ghostscript'.
+
+<h4>NOTE 2:</h4>
+The name of the Postscript files written to disk by Xgremlin during 
+a screen dump is:
+<CITE>
+     xgremlin-&lt;pid&gt;.ps
+</CITE>
+where &lt;pid&gt; is the process id of the running Xgremlin. The pid is used
+in the file name to make screen dump files unique to prevent overwriting
+of screen dumps in case several instances of Xgremlin are running.
+
+<h3>Examples:</h3>
+<pre>
+printer stylus-ps
+</pre>
+screen dumps will be printed to a printer named 'stylus-ps'
+in the printer database /etc/printcap
+<pre>
+printer none
+</pre>
+suppresses screen dumps. The plot is still recorded in the file 
+xgremlin-&lt;pid&gt;.ps, and can be viewed or sent to the printer 
+separately.
+
+<h3>Related topics:</h3>
+<ul>
+<li><A HREF="../tutorial/gremlins.html">Print plot window</A>
+<li><A HREF="../tutorial/plotting.html">Plotting in xgremlin</A>
+<li><A HREF="plotsize.html">plotsize</A>
+</ul>
+

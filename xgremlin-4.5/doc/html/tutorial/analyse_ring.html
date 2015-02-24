@@ -1,0 +1,56 @@
+<HEAD>
+<TITLE> Dealing with Ringing</TITLE>
+<!-- Changed by: Gillian Nave, 25-Mar-1996 -->
+</HEAD>
+<BODY bgcolor="#ffffff"><P>
+<B> Next:</B> <A  HREF="absorb.html"> Absorption spectra</A>
+<B>Up:</B> <A HREF="analyse.html"> Using Xgremlin to Analyse </A>
+<B> Previous:</B> <A HREF="analyse_inten.html"> Intensity Calibration</A>
+<HR> <P>
+<H2> Dealing with Ringing</H2>
+<P>
+Xgremlin is able to make allowances for lines that are ringing due to
+under-resolution of the lines. However, since the commands that enable
+this to be done change the data significantly, they need careful study 
+to understand how they work, and why they apparantly fit the line
+rather badly!
+<P>
+To prevent findlines or linelist picking up the ringing on lines, a
+filtered version exists which convolves the lines with a 2 or 4 point
+Gaussian filter before finding the lines. To use this in linelist, type
+<p>
+<A HREF="../commands/linelist.html">
+<b>linelist</b></A>  <em>wstart wstop</em> <b>10</b>
+<p>
+for a 2 point filter. 20 should be used instead of 10 for a 4 point
+filter.
+<P>
+After making the lines active, they can be fitted with a
+filtered version of lsqfit. This works best if you have the ringing
+lines in the centre of the r array. First, set the filter using
+<A HREF="../commands/lsqfit.html"><b>lsqfit filter</b></A> <em>nrise ncut</em>
+<em>ncut</em> should be set to correspond to half the cutoff point
+of the interferogram. The best way of determining this is to do a low
+resolution transform of the data, using
+<A HREF="../commands/fourtran.html">
+ <b>fourtran</b></A>
+plot it, and find the point number where the transform drops to near
+zero. <em>nrise</em>, also in points, is included to drop the data
+gradually to zero without sharp edges.
+A value of <EM>ncut/2</EM> is suggested for a first
+attempt. <A HREF="../commands/lsqfit.html"><b>lsqfit</b></A>
+will then only fit the line over the range <em>ncut</em>, and hence
+the data should be a closer representation of the actual line profile.
+However it may not match so well the data you see on the plot.
+<P>
+An common way of dealing with ringing is to 
+<A HREF="../commands/filter.html"> filter</A> the actual data
+before doing any fitting. This is a good way of handling data that has
+to be used in atlas, or in a similar situation where it is important
+to see the main features without being distracted by ringing. However
+it has the disadvantage of broadening the profile with the smoothing
+function applied. A much better way of fitting the lines is to use a 
+<a href="filtering.html">filtered lsqfit</a>.
+<P>
+
+</BODY>

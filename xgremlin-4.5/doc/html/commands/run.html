@@ -1,0 +1,44 @@
+<head>
+<title> run </title>
+<!-- Changed by: , 30-Mar-1996 -->
+</head>
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<H2>run</H2>
+<H3>Syntax:</H3>
+run [ <em>&lt;filename&gt; </em>]
+<p>
+	If a filename is given, unit "com" is closed (if necessary) and
+	re-connected to filename; further command input will come from
+	this file.  If no name is given, it is assumed that a file has 
+	already been previously connected to "com", and the next command
+	will come from the current position of that file.
+<p>
+	NOTE:
+	This command directs that input should be taken from the
+	previously connected file instead of from the keyboard;
+	it must therefore be the last command on a line.
+
+<H3>Example:</H3>
+<pre>
+run plotsinc
+</pre>
+where the file 'plotsinc' contains the commands:
+<pre>
+sinc 10. 1024
+plot
+</pre>
+will open the file 'plotsinc' as the 'com' unit and run all the commands in it: i.e. make
+a sinc function and plot it
+
+<H3>Related commands:</H3>
+<UL>
+<LI> <A HREF="open.html">open</A>
+<LI> <A HREF="close.html">close</A>
+<LI> <A HREF="keyboard.html">keyboard</A>
+<LI> <A HREF="break.html">break</A>
+</UL>

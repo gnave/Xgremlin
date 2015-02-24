@@ -1,0 +1,55 @@
+<head>
+<title> hold </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>hold</h2><p>
+
+<b>Syntax:</b> <kbd>hold</kbd>  <i> [ &lt list of line numbers &gt ] [ "c" ] [&lt con &gt] </i><p>
+
+<b>Parameters:</b><br>
+<dl>
+<dt> <b>list</b>
+<dd> list is of the form l1,l2,l3,...,
+where elements l are either a line number or a range of line numbers, 
+written as   <b>nl1  -nl2</b> i.e. the first line number is positive and the second
+line number is negative. No list implies all lines in the internal buffer.<p>
+
+<dt> <b>c</b>
+<dd>any single character, except blank
+</dl>
+
+<dt> <b>con</b>
+<dd>a negtive real number. 
+</dl>
+
+All parameters of lines in <b>list</b> are to be held at current values;
+<a href="lsqfit.html">lsqfit</a> will ignore these lines.  The optional character argument
+is a tag for narrowing the list of lines to be held to only those
+lines in the list which are tagged with the specified character.
+If the parameter <b>con</b> &lt 0, the effect of <b>hold</b> is undone and
+all parameters are fitted. 
+<a href="active.html">active</a> no longer undoes the effects of <b>hold</b>. 
+<p><br>
+
+<h3>Related commands:</h3>
+<menu>
+<li><a href="holdx.html"> holdamp </a>
+<li><a href="holdx.html"> holdsigma </a>
+<li><a href="holdx.html"> holddamping </a>
+<li><a href="holdx.html"> holdwidth </a>
+<li><a href="active.html"> active </a>
+<li><a href="drop.html"> drop </a>
+<li><a href="lsqfit.html"> lsqfit </a>
+<li><a href="change.html"> change </a>
+<li><a href="dispar.html"> dispar </a>
+<li><a href="getlines.html"> getlines </a>
+<li><a href="putlines.html"> putlines </a>
+<li><a href="findlines.html"> findlines </a>
+</menu>
+</body>

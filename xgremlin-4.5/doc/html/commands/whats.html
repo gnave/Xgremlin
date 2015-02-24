@@ -1,0 +1,70 @@
+<head>
+<title> whats </title>
+<!-- Changed by: Gillian Nave, 27-Mar-1996 -->
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2> whats</h2>
+<h3> Syntax: <br></h3>
+<ul>
+<li> whats <i>arrayname ilo ihi </i>
+<li> whats <i>variable name</i>
+<li> whats saved 
+<li> whats up
+</ul>
+
+</h3>
+This command is used to query the status of the various Xgremlin data
+arrays and to print out the current values of the requested
+points in the specified array or variable.
+<p>     
+<b>whats saved</b> lists the contents of the scratch files.<br>
+<b>whats up</b> will tell you what's up
+<p>
+
+Array names currently understood are:	
+<ul>
+<li> <b>r</b>
+<li> <b>tr</b>
+<li> <b>ffta</b>
+<li> <b>phz</b>
+<li> <b>ilo</b> -  starting subscript of dump
+<li> <b>ihi</b> -  ending subscript of dump
+</ul>
+	Variable names currently understood are: 
+<ul>	
+<li> <b>nol</b>
+<li> <b>linum	
+<li> <b>ntop	
+<li> <b>npo	
+<li> <b>ncentr	
+<li> <b>disp
+<li> <b>uvar	
+<li> <b>intregs	
+<li> <b>realregs
+</ul>
+
+<h3> Example:</h3>
+<pre>
+whats r 1 10
+</pre>
+prints out the values of the first 10 elements of the r array.
+
+<pre>
+whats nop
+</pre>
+Prints out the number of points in the current buffer.
+
+
+<h3>Related commands:</h3>
+<UL>
+<LI> <A HREF="info.html">info</A>
+<LI> <A HREF="set.html">set</A>
+</UL>
+</body>
+

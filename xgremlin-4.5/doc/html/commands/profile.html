@@ -1,0 +1,122 @@
+<head>
+<title> profile </title>
+<!-- Changed by: LION, 10-May-1996 -->
+</head>
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>profile</h2>
+<h3>Syntax:</h3>
+<ul>
+<li>profile <em>[&lt;profile-type&gt;] [&lt;spline-tension-factor&gt;] </em>
+<li>profile <em>hold [&lt;parameter list&gt;] [?]</em>
+<li>profile free <em>[&lt;parameter list&gt;]</em>
+<li>profile set <em>&lt;parameter list&gt;</em>
+</ul>
+
+(The keywords 'hold' and 'free' may be abbreviated to 'h' and 'f'.)
+<p>
+The <A HREF="integrate.html">integrate</A> command needs to know what 
+profile to use when integrating or fitting a line. The profile is 
+defined with the 'profile' command:
+<p>
+If no parameter is given for the 'profile' command the currently
+active profile type will be printed out in the edit window.
+<dl>
+<dt> <b>profile none</b>
+<dd> No profile is assumed. The <A HREF="integrate.html">integrate</A>
+    command simply sums up
+    everything within the range of integration. The range of 
+    integration must be defined with two mouse markers
+    (left mouse button).<p>
+
+<dt> <b>profile spline 10.0</b>
+<dd> This is for activating an integrating method based on a tensioned 
+    spline without assumption of a specific line shape. The results 
+    are more accurate than simple summation.
+    The tension factor is optional. A tension factor of 0 (default) 
+    means that a cubic spline is fitted to the data. Increasing the 
+    tension factor gradually stretches the spline segments out to 
+    straight lines. The highest allowed tension factor is 85.
+    The range of integration must be defined with two mouse
+    markers (left mouse button).<p>
+
+<dt> <b>profile gauss</b>
+<dd> One or more Gauss functions will be fitted to experimental
+    data. Look up the 'integrate' command to find out how to
+    define initial conditions for the fit. If the fit was 
+    completed successfully the parameters of the fitted 
+    Gauss profiles are printed out. Note that the <b>Background
+    must be subtracted before the fit.</b>
+</dl>
+<p><br>
+
+<h3>Refining parameters</h3>
+
+When a Gauss, Voigt or Lorentz profile is fitted to data the first 
+estimates for parameters are obtained interactively in the way 
+described in <A HREF="integrate.html">integrate</A>.  
+After the first fit, further
+refinement of parameters can be achieved with the 'profile hold'
+'profile free' and 'profile set' commands.
+<p>
+The command 
+<pre>
+profile ?        
+</pre>
+will cause a list of parameters to be displayed and will display
+the hold/free status for every parameter. Only free parameters 
+are varied during a LSQ fit (integration). 
+Usually, initial values for fit parameters must be provided 
+interactively as described in the 'integrate' help topic. 
+Following the command
+<pre>
+profile hold <parameter numbers>
+</pre>
+an <A HREF="integrate.html">integrate</A> command will use the 
+existing parameter set (which may be the result of a previous fit) 
+for initial values. This allows to modify inidividual parameters 
+e.g. with a 'profile set' command (see below) before further 
+refining a fit.
+<p>
+Individual parameters may be held with the command
+<pre>
+profile hold <parameter numbers>
+</pre>
+e.g.
+<pre>
+profile hold 1 4
+</pre>
+The fit can then be repeated with an 'integrate' command. Note that
+after a 'profile hold' command Xgremlin will refine the parameters 
+of a previous fit. You will not have to specify new initial conditions
+interactively.
+<p>
+The 'profile free' command frees any parameters fixed with a 
+'profile hold' command. E.g.:
+<pre>
+profile free 4         (or:  profile f 4)
+</pre>
+will free the previously fixed parameter number 4. A 'profile free'
+command without any parameter numbers on the command line will
+free all parameters AND initial values must be provided with mouse
+clicks for subsequent fits.
+<p>
+The values of individual parameters may be altered using the 
+'parameter set' command:
+<pre>
+    parameter set 1 319.238  2 321.375
+</pre>
+will set the value of parameter 1 to 319.238 and the value of 
+parameter 2 to 321.375. <p><br>
+	
+
+<h3>Related commands</h3>
+<ul>
+<li><A HREF="integrate.html">integrate</A>
+</ul>
+
+</body>

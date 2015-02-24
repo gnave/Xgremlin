@@ -1,0 +1,134 @@
+<head>
+<title> linelist </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>linelist</h2><p>
+
+<b>Syntax:</b><br>
+<ul>
+<li> <kbd>linelist smin wstart wstop</kbd>
+<li> <kbd>linelist smin wstart wstop mode iprint wcorr "info"</kbd><p>
+
+<li> <kbd>linelist "nointcorr"</kbd>
+<li> <kbd>linelist "intcorr"</kbd><p>
+
+<li> <kbd>linelist "sethold" ihold  (1 = dmp, 2 = width, 3 = both)</kbd>
+<li> <kbd>linelist "setdamping" damping  (0-1.0)</kbd>
+<li> <kbd>linelist "setwidth" width  (mK)</kbd>
+</ul>
+
+<b>Warning:</b><br>
+Unlike in Gremlin there is no scaling parameter for the <b>linelist</b>
+command. The data will <b>always</b> be scaled with the scaling factor
+in the header file.<p>
+
+The last three forms may be used to specify that the width,
+damping, or both may be fixed at the specified values. These
+will not then be changed by <a href="lsqfit.html">lsqfit</a>.<p>
+
+The <b>linelist</b> command is used to automatically find spectral
+lines (peaks) in a specified range of the spectrum. For each line a
+data record is written to a binary line list (.lin)
+file. <b>linelist</b> can operate on a complete spectrum whereas the
+<a href="findlines.html">findlines</a> command can only be used with
+the data currently in the <b>r</b> array.<p>
+
+<b>Parameters:</b><br>
+<dl>
+<dt> <b>required parameters:</b> 
+<dd> smin, wstart, wstop
+<dt> <b>optional parameters:</b> 
+<dd> mode, iprint, wcorr and "info" 
+</dl>
+
+<dl>
+<dt> <b>smin</b>
+<dd> minimum strength (peak height) of lines to be included.<p>
+<dt> <b>wstart</b>
+<dd> the wavenumber of the first point.<p>
+<dt> <b>wstop</b>
+<dd> the wavenumber of the last point<p>
+
+<dt> <b>mode</b>
+<dd> specifies method used to determine wavelength(number).
+	<ul>
+	<li> <b>0:</b>  (default) average of peak(minimum) and second derivative
+	<li> <b>1:</b>  peak(minimum) position
+	<li> <b>2:</b>  second derivative
+	<li> <b>10,11,12:</b> as 0,1,2 but preceded by a 2-point gaussian filter
+	<li> <b>20,21,22:</b> as 0,1,2 but preceded by a 4-point gaussian filter
+	</ul><p>
+
+<dt> <b>iprint</b>
+<dd> a non-zero value will produce an ASCII file of the linelist;
+     outfile must be opened first.  Default is 0 (no ASCII
+     file). If you wish to specify this, then the mode must
+     also be specified.<p>
+
+<dt> <b>wcorr</b>
+<dd> the geometrical correction factor, applied to the output
+     of <b>linelist</b>. Note that for ordinary wavenumber
+     correction of a linelist, it is probably best to do
+     this at the end, by specifiying a wavenumber
+     correction factor with <a href="info.html">info wavcorr</a> and then writing
+     the lines out with <a href="writelines.html">writelines</a>.<p>
+
+<dt> <b>info</b>
+<dd> if present an info block is printed at the front of the
+     linelist (any alpha character will do).
+</dl>
+
+<b>Note:</b><br>
+The outfile unit is used for a card image copy of the line list 
+(a la <a href="findlines.html">findlines</a>) if iprint = 1. This must be opened using
+<a href="open.html">open outfile &lt filename&gt</a> before <b>linelist</b> is run.<p>
+
+If intensity calibration is wanted ("intcorr"), a low resolution <a
+href="response.html">response</a> function is expected in the <b>r</b>
+array before linelist is executed.  Default is no correction
+("nointcorr"). However, the preferred method of intensity calibration
+is to leave both the original file and the linelist alone until the
+final output is ready, and then correct the intensities using <a
+href="writelines.html">writelines &lt filename &gt intcorr</a> and the
+<a href="response.html">response</a> command.<p>
+
+Compilation of the list may be terminated by klicking on the
+<b>Stop</b> button.<p><br>
+
+<h3>Examples:</h3>
+The commands:
+<pre>
+    open datain spectrum
+    linelist 10. 25000. 30000.
+</pre>
+find all lines between 25000 and 30000 cm-1 in the file
+'spectrum' with an intensity of greater than 10. The output 
+file is called 'spectrum.lin'.<p>
+
+The commands:
+<pre>
+    open datain spectrum
+    open outfile spectrum.lst
+    linelist 10. 25000. 30000. 20 1
+</pre>
+work similarly to the previous example, but use a 2-point
+gaussian filter to prevent linelist from picking up the
+ringing points in the wings of strong lines. The output is
+saved on the file 'spectrum.lst' in text format.
+<p><br>
+
+<h3>Related commands:</h3>
+<menu>
+<li><a href="findlines.html"> findlines </a>
+<li><a href="response.html"> response </a>
+</menu>
+
+</body>
+
+

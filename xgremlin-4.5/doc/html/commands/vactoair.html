@@ -1,0 +1,44 @@
+<head>
+<title> vactoair </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>vactoair</h2>
+<p>
+
+<b>Syntax:</b> vactoair <i>&lt;wavenumber&gt;</b> [P] [T] [P(water)]
+<p>
+
+where
+<ul>
+<li> <b>P</b>: the air pressure in <b>Torr</b> inside the spectrometer tank.
+<li> <b>T</b>: the air temperature in <b>degrees Celsius</b> inside
+the spectrometer tank.
+<li> <b>P(water)</b>: the partial pressure of water in <b>Torr</b> inside
+the spectrometer tank.
+</ul>
+
+For a given vacuum - <b>wavenumber</b> the air wavelength is
+computed. Pressure and temperature of the air can be specified
+optionally. An air pressure of <b>760 Torr</b> and a temperature of
+<b>20 deg C</b> are assumed by default. The air wavelength and the
+refractive index of air are printed out. Uses the forumulae of Birch
+and Downs for the refractive index of air.  
+<p> 
+<h3>Example:</h3>
+	<kbd>vactoair 30000. 760. 24.</kbd><p>
+calculates the air wavelength corresponding to 30000.0/cm at a
+pressure of 760 Torr and 24 degrees C. No water vapor.
+<p>
+
+<h3>Related commands:</h3>
+<ul>
+<li><a href="writelines.html">writelines</a>
+</ul>
+
+</body>

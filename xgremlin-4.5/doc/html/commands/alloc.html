@@ -1,0 +1,53 @@
+<head>
+<title> alloc </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>alloc</h2>
+<p>
+
+
+<b>Syntax: </b>alloc <i>[&lt array &gt &lt size &gt]</i>
+<p>
+
+used to resize the <b>r, tr, fft</b> and <b>line list arrays</b>
+dynamically. The <b>r</b> and <b>tr</b> arrays are always resized
+together. Since the <b>fft</b> arrays is used solely for Fourier
+transforms the size is always rounded up to the <b>nearest power
+of 2</b>. When the program is started up the size of the fft
+arrays is only 256k points to reduce the memory consumption
+of the program.<p>
+
+It is also possible to use the shorthand notation <b>k</b> for
+1024 and <b>m</b> for 1024*1024 e.g. <b>256k</b> may be 
+typed instead of 262144.<p>
+
+When the <b>alloc</b> command is typed without parameters the current
+size of the arrays is printed out.  The <b>info size</b> command can
+also be used to print out the current size of the internal buffers in
+Xgremlin.<p> <br>
+
+<h3>Examples:</h3>
+<dl>
+<dt> <b>alloc r 500000</b>
+<dd> creates <b>r</b> and <b>tr</b> arrays for 1/2 million points.<br><br>
+
+<dt> <b>alloc fft 1000000</b>
+<dd> creates a Fourier transform array for 1048576 
+points.<br><br>
+
+<dt> <b>alloc lines 2000</b>
+<dd> creates an internal line list that can hold
+data of 2000 spectral lines.<br><br>
+
+<dt> <b>alloc r 256k</b>
+<dd> creates <b>r</b> and <b>tr</b> arrays for 256*1024 points
+</dl>
+
+</body>
+

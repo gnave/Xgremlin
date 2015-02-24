@@ -1,0 +1,81 @@
+<head>
+<title> writeparams </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>writeparams</h2>
+
+<h3>Syntax:</h3>
+<ul>
+<li>writeparams <em> &lt;dw&gt;</em>
+<li>writeparams <em>&lt;dw&gt; &lt;scal&gt;</em>
+</ul>
+where
+<ul>
+<li>dw - a delta wavenumber/length shift
+<li>scal -  an intensity scaling constant
+</ul>
+
+Write an ASCII file of the current parameter list to 'outfile'.
+This command writes a readparams command at the front of the list
+and a keyboard command at the end.  The current scheme for retrieving 
+written lists is to use the "run" command to switch input to the file 
+with the line images; at the end of the list, control is returned to 
+the keyboard.
+<p>
+<h3>Example:</h3>
+<pre>
+open outfile <filename>
+writeparams
+close outfile
+</pre>
+This puts output similar to the following into the file <em><filename></em>:
+<pre>
+readparams
+96/03/26 00:00:03
+53246.54863   7.4038  270.59 0.0000 -6  0   L  2132.55
+53256.20304   4.7331  214.55 1.0000 -6  0   L  1595.12
+53400.42592  23.9398  270.11 0.0000 -4  0   L  6883.25
+53460.60134   5.0540  286.48 0.0000 -6  0   L  1541.21
+53488.61790  50.7037  263.09 0.0563 -4  0   L 14528.75
+end-of-params: keyboard  
+</pre>
+<p>
+The columns are:
+<ol>
+<li> The wavenumber(wavelength)
+<li> The peak intensity
+<li> The full width at half maximum
+<li> The damping parameter
+<li> The number of times the line has been fitted
+<li> A code for the <em>hold</em> parameters
+<li> The origin of the line:
+    	<ul>
+    	<li>F: Line was found with <a href="findlines.html>findlines</a>
+    		or <a href="linelist.html>linelist</a>
+    	<li>L: Line has been fitted with 
+    		<a href="lsqfit.html>lsqfit</a>
+    	<li>I: Line was input from the plot
+    	<li>G: Line position is a centre of gravity.
+	<li>R: Line has been fitted with 
+    		<a href="lsqfit.html>filtered lsqfit</a>
+    	</ul>
+<li> Integrated intensity
+</ol>
+
+The data can be read back into Xgremlin using the command
+<a href="run.html">run</a> <em>filename</em>
+
+<h3>Related commands</h3>
+<ul>
+<li><a href="open.html">open outfile</a>
+<li><a href="readparams.html">readparams</a>
+<li><a href="run.html">run</a>
+<li><a href="writelines.html">writelines</a>
+</ul>
+

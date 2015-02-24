@@ -1,0 +1,88 @@
+<head>
+<title> atlas </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>atlas</h2>
+<p>
+
+<b>Syntax:</b>
+<ul>
+<li>atlas "rewind"
+<li>atlas "local"
+<li>atlas scale [ylo yhi]  OR
+<li>atlas scale epsilon ["stretched"]
+<li>atlas label "up to 50 characters of label"
+<li>atlas name "name of output file"
+<li>atlas  wstart wstop dispersion ["noquantize"]  OR
+<li>atlas  wstart wstop ndat
+</ul>
+<br>
+The command parameters have the following meaning:
+
+<dl>
+<dt> <b>rewind</b>
+<dd> rewinds the plot file without leaving Xgremlin
+<dt> <b>local</b>
+<dd> specifies data already in memory, NOT on a file
+<dt> <b>ylo, yhi</b>
+<dd> the y plot limits for a linear plot.  Default 0.,1.
+<dt> <b>epsilon</b>
+<dd> the noise level for loglin; if absent, plot is linear
+<dt> <b>stretched</b>
+<dd> halves the log-linear scale to a maximum of 1000
+<dt> <b>label</b>
+<dd> up to 50 characters of plot label
+<dt> <b>name</b>
+<dd> name of the output file which is the input file
+     for 'psplot'. The default name is 'atlas'.
+<dt> <b>wstart</b>
+<dd> starting wavenumber
+<dt> <b>wstop</b>
+<dd> ending wavenumber
+<dt> <b>dispersion</b>
+<dd> (real number) linear dispersion on plot, in
+     <i>wavenumbers/cm</i>  OR
+<dt> <b>noquantize</b>
+<dd> if present, top panel begins exactly at wstart
+<dt> <b>ndat</b>
+<dd> (integer) number of points plotted (easier for use
+     with the program PLOT)
+</dl>
+<p>
+
+Write a special data file (unit=PLOT, filename="atlas.data") for the
+program <b>psplot</b>.  For linear plots, <b>set nonorm [val]</b>
+should be typed prior to using atlas to ensure the whole atlas is on a
+consistent scale (otherwise each block of 4096 points will be
+normalized to 1!). It is recommended that <i>val</i> should be the
+reciprocal of the noise level, which is the rms deviation from the
+mean determined when the 
+<a href = "area.html"> area </a>
+command is executed on a portion of the spectrum that is free from lines.<p>
+
+Three calls are <b>required</b> to create an atlas plot with the first 
+two preceding the third:
+
+<ol>
+<li> atlas scale   [ylow yhigh] OR epsi
+<li> atlas label "LABEL NAME"<br>
+     (atlas name "name of output file"    is optional) 
+<li> atlas wstart wstop  dispersion OR ndat
+</ol>
+
+If a mistake is made in typing these commands, the output file
+can be overwritten by typing <b>atlas rewind</b> and then re-entering
+the commands in order.<p>
+
+The program <b>psplot</b> creates a Postscript file from the output
+created during the atlas commands which may then be printed.
+Type <b>man psplot</b> at a shell prompt for more information on
+<b>psplot</b>.
+ 
+</body>

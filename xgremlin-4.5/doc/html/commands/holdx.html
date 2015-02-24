@@ -1,0 +1,60 @@
+<head>
+<title> holdamp, holdwidth, holddamping, holdsigma </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>holdamp, holdwidth, holddamping, holdsigma</h2><p>
+
+<b>Syntax:</b><br>
+<ul>
+<li> <kbd>holdamp</kbd> <i> [ &lt list of lines &gt ] [ &lt con &gt ]</i>
+<li> <kbd>holdwidth</kbd> <i> [ &lt list of lines &gt ] [ &lt con &gt ]</i>
+<li> <kbd>holddamping</kbd> <i> [ &lt list of lines &gt ] [ &lt con &gt ]</i>
+<li> <kbd>holdsigma</kbd> <i> [ &lt list of lines &gt ] [ &lt con &gt ]</i>
+</ul>
+<p><br>
+
+<b>Parameters:</b><br>
+<dl>
+<dt> <b>list</b>
+<dd> list is of the form l1,l2,l3,...,
+where elements l are either a line number or a range of line numbers, 
+written as   <b>nl1  -nl2</b>. No list implies all lines in the internal buffer.
+<p>
+
+<dt> <b>con</b>
+<dd> a numeric control parameter:
+   <ul>
+   <li> con &gt 0: lock amplitude/width/damping/sigma of all lines in list at <b>con</b>
+   <li> con = 0:   lock all lines in list at current value
+   <li> con &lt 0: unlock all lines in list
+   </ul>
+</dl>
+
+The intensities, widths, damping parameters or wavenumber of all the
+lines in the list will not be refined by <a
+href="lsqfit.html">lsqfit</a>, and will be either held at the current
+value or set to the value <b>con</b>. All other parameters will be
+fitted.  <b>holdx</b> is not affected by <a
+href="active.html">active</a>.
+<p><br>
+
+<h3>Related commands:</h3>
+<menu>
+<li><a href="hold.html"> hold </a>
+<li><a href="active.html"> active </a>
+<li><a href="drop.html"> drop </a>
+<li><a href="lsqfit.html"> lsqfit </a>
+<li><a href="change.html"> change </a>
+<li><a href="dispar.html"> dispar </a>
+<li><a href="getlines.html"> getlines </a>
+<li><a href="putlines.html"> putlines </a>
+<li><a href="findlines.html"> findlines </a>
+</menu>
+
+</body>

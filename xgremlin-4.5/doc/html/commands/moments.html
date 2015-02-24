@@ -1,0 +1,41 @@
+<head>
+<title> moments </title>
+</head>
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>moments</h2><p>
+
+<b>Syntax:</b> <kbd>moments [n]</kbd><p>
+
+calculate the first <b>n</b> discrete central moments of a line (default n=3).
+The definition of moments used by the program is:
+<pre>          
+            k=C+I
+            ____
+            \                         n-1 
+   E(n)  =   >     ( delw* ( k - C ) )     r(k)
+            /	
+            ----
+            k=C-I
+
+   C    : center of the line
+   I    : half of the range of integration
+   delw : wave-number/length dispersion
+   r    : data in the r array
+</pre>
+
+E(1) is simply the area of the line as calculated by the <a
+href="area.html">area</a> command.  The higher moments (particularly
+the 2nd and 3rd) provide a very sensitive measure of the asymmetry of
+a line. For a symmetric line E(2) = 0. An asymmetry that is hard to
+discern on a plot of the data may produce a 2nd moment with 1/10 of
+the magnitude of the 1st moment.  The <b>moments</b> command requires 2
+markers to be set before it can be entered. The first marks the center
+of the line, the second marks how far out the integration should be
+carried out. The moments are printed together with moments scaled such
+that E(1) = 1 (that latter often being more useful).
+</body>

@@ -1,0 +1,46 @@
+<head>
+<title> area </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>area</h2>
+<p>
+
+<b>Syntax:</b> area <i> [ &lt n_start &gt &lt n_stop &gt ]</i>
+<p>
+
+Where 
+<ul>
+<li> <i>n_start</i>: starting point number (default 1)
+<li> <i>n_stop</i>: starting point number (default nop)
+</ul>
+
+Find the <b>sum, mean, RMS deviation from the mean</b> and the
+<b>center of gravity</b> of the data in the <b>r-array</b> between the
+points <b>n_start</b> and <b>n_stop</b>. The mean is also saved in
+xreg(9) for later use if desired.  If <b>n_start</b> and <b>n_stop</b> are 
+omitted all points in the current buffer are used.<p>
+
+This command can also be executed whilst within the plot window
+by moving the cursor to the initial position (n_start) and
+pressing the left mouse button which sets a marker for the starting
+point number, then mark the stopping point number with a second
+mouse marker (left button again) and press 
+<a href="../glossary.html">Meta+a </a>.
+<p>
+
+<h3>Example:</h3>
+<dl>
+<dt> <b>area 2385 2512</b>
+<dd> calculate sum, mean, etc of data points 2385 to 2512 in the <b>r-array</b>
+</dl>
+
+</body>
+	
+
+

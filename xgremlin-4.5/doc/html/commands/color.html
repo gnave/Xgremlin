@@ -1,0 +1,81 @@
+<head>
+<title> color </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>color (or colour)</h2>
+<p>
+
+<b>Syntax:</b> <kbd>color</kbd> <i> &lt object &gt &lt color-name &gt </i>
+<p>
+
+Set (most of the) colors used in the plotting window. This may
+be useful for people who are (still) using grayscale displays
+and have problems with the default colors or for those who just
+cannot bear the default set of colors. The set of available colors
+depends on the X server and is listed in the RGB color database
+<b>rgb.txt</b>. Currently the following objects can be assigned a new
+color (with the default colors in brackets).<p>
+
+<dl>
+<dt> <b>plotter-window</b> (white)
+<dd> The plotting area <p>
+
+<dt> <b>plotter-frame</b> (thistle)
+<dd> Space for labels, line numbers, line info  etc.<p>
+
+<dt> <b>text</b> (black)
+<dd> Standard text color<p>
+
+<dt> <b>line-marker</b>	(goldenrod1)
+<dd> marked lines<p>
+
+<dt> <b>active-marker</b> (PaleVioletRed2)
+<dd> activated lines<p>
+
+<dt> <b>aux-marker</b> (green3)
+<dd> auxiliary line marker e.g. for newly marked lines<p>
+
+<dt> <b>button-1</b> (red3)
+<dd> mouse button 1 markers (usually the left mouse button)<p>
+
+<dt> <b>button-2</b> (blue3)
+<dd> mouse button 2 markers (usually the middle mouse button)<p>
+
+<dt> <b>phase</b> (red3)
+<dd> phase data and phase axis<p>
+
+<dt> <b>phase-bad</b> (bisque3)
+<dd> bad phase points after they have been marked invalid<p>
+
+<dt> <b>phase-fit</b> (blue3)
+<dd> phase correction polynomial<p>
+
+<dt> <b>phase-std</b> (SkyBlue1)
+<dd> phase fit 66% confidence interval<p>
+
+<dt> <b>real-data</b> (black)
+<dd> real part of data in the <b>r</b> array<p>
+
+<dt> <b>imag-data</b> (blue3)
+<dd> imaginary part of data in the <b>r</b> array<p>
+
+<dt> <b>buffer-meter</b> (goldenrod1)
+<dd> indicator of how much of the <b>r</b> array is visible in the plot
+
+</dl>
+
+
+<h3>Examples:</h3>
+<p>
+<kbd>color line-marker RoyalBlue</kbd><br>
+will set the color used for marking lines to <i>RoyalBlue</b>.
+<p>
+<kbd>color plotter-frame Lavender</kbd><br>
+will set the frame of the plotter window to <i>Lavender</i>
+</body>

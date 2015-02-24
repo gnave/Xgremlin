@@ -1,0 +1,33 @@
+<head>
+<title> Spline fitting the phase in Xgremlin </title>
+</head>
+<body bgcolor="#ffffff">
+<h1> Spline fits in Xgremlin </h1>
+
+The phase of the interferogram sometimes cannot be adequately fitted using a polynomial. This is often the case for high signal-to-noise ratio spectra from the NIST 2-m FTS, where a kink in the phase around 9000 cm-1 is often observed. In this case, the phase must be fitted with a spline.
+<p>
+Fitting of the phase with a spline is sometimes tricky and it may be necessary 
+to play around with the parameters controlling the spline to achieve good 
+results. Ensure that all of the points lie on a smooth curve before attempting a spline fit. Points off the curve will cause the spline fit to fail and sometimes freeze. If this happens, the spline fitting can be terminated with the <b> stop </b> button in the main Xgremlin window.
+<p>
+The parameters controlling the spline phase fit are set by <a 
+href="../commands/info.html">info</a>) and are as follows:
+
+<dt> stol <dd> (default is 1.0) tolerance for the fit. Must be between 0 and 1. 
+If stol = 0, the spline is an interpolating spline (goes through the points). 
+Values of stol larger than 0 describe how closely the approximating spline 
+approaches the data 
+points.
+
+<dt> sten <dd> (default is 0.) tension factor for the fit. The tension factor 
+must be positive. If sten = 0, the spline is a normal cubic spline.
+
+<dt> smof <dd> (default is 0.) smoothing factor. The larger this factor, the 
+larger the degree of smoothing.
+
+<dt> swid <dd> (default is 6) Set this above zero to ensure that only one point 
+is picked up per line. Default is 6.  Use only the phase from the largest 
+amplitude point within swid points.
+<ul>
+
+

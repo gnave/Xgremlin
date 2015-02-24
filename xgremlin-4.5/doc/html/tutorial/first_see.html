@@ -1,0 +1,190 @@
+<head>
+<title> First introduction to Xgremlin </title>
+<!-- Changed by: Gillian Nave, 26-Mar-1996 -->
+</head>
+<body bgcolor="#ffffff">
+<B> Next:</B> <A HREF="quick_look.html"> A quick look at your spectrum</A>
+<B>Up:</B> <A HREF="contents.html"> Table of contents </A>
+<B> Previous:</B> <A HREF="Notation.html"> 
+                  Notation </A>
+<hr><P>
+<h1>First Introduction to Xgremlin</h1>
+
+<h2>Example Session of Xgremlin 's Capabilities</h2>
+
+The file <em>demo.cds</em> on your disk contains an example of how to
+analyse a spectrum using Xgremlin. To use it, first check the files <em>
+demo.cds, demo.dat,</em> and <em>demo.hdr</em> are in your directory. Then 
+run Xgremlin by typing <b>xgremlin &</b> (usually Xgremlin is run as a 
+background process).
+At the Xgremlin prompt, type
+<b><a href="../commands/run.html">run</a> demo.cds</b>
+The example reads the test data into an internal buffer, finds all
+the lines above a cutoff, and plots the results. 
+To continue the demonstration, type <b> run</b>.
+Xgremlin then refines the fit of the lines found and plots the
+residuals. By typing 
+<b> run </b> 
+again, the fit will be displayed, and
+the line parameters listed. 
+An extensive set of <a href="../plotmode.html">plot mode commands</a>
+can be used to plot the data.
+
+<h2>General Construction</h2>
+
+To use Xgremlin, simply type <b> xgremlin</b>. The program opens the main
+<a href="../tutorial/gremlin_figure.html">gremlin window</a> 
+and opens several files:
+<ul>
+<li>  The help files listed above
+<li>  A log file of the form <em> xgremlin.&lt;date&gt;.log</em>. This
+      resides in your home directory
+<li>  A scratch directory <em> xgremlin-scratch</em> for storage of
+      temporary data.
+<li>  The initialization file, called 
+      <em><a href="../tutorial/startup_xgr.html">.xgremlinrc</a></em>. 
+      This is a file where you can put
+      aliases and commands that you frequently use when starting 
+               Xgremlin.
+</ul>
+The log file can be re-opened under another name. This can be
+useful for keeping a record of a session for later referance.
+<p>
+Xgremlin then runs the commands in the initialization file, and returns
+control to the keyboard leaving  the Xgremlin prompt. Commands can then be
+typed in after this prompt. To get a list of the commands, 
+click on the <b> help</b> button and select the list of 
+commands sorted either 
+<a href="../commands/alphalist.html">alphabetically</a> or by 
+<a href="../commands/categorylist.html"> category</a>.
+<p>
+In order to perform data analysis, a file must be opened and the data
+read in. In addition to the data file, Xgremlin requires a header file. There
+are now several formats for header files in existence of various origin
+and antiquity. The latest header version is
+'type 6' and this header file is a Fortran `namelist' command. This
+gives it additional flexibility over previous headers as extra
+information can easily be added  or deleted.
+The latest version of Xgremlin should be able to cope with all header files
+but problems may occur with old headers. The only solution is to check
+the header file with an editor and try to make it to conform to one
+that works. The most important things to look for in broken header
+files are that the first and last wavenumbers are correct, the
+dispersion is correct, and the number of points declared in the header
+corresponds to that in the file. Also check that things that are
+supposed to be integers are integers and similarly with floats, and
+that there are no number fields filled with asterisks, indicating a
+FORTRAN number overflow. It is
+possible to add any information you want to the end of a header file,
+and it can be particularly useful to append, for example, the log file
+of the run that performed the transform or details of how the source 
+was behaving during acquisition of the interferogram. 
+<p>
+Interferogram files have the extension <em> .int</em>, and spectra
+<em> .dat</em>. Other filenames are used for card
+input (e.g. the initialization file) or the input of ASCII data
+(via the <b><a href="../commands/readdata.html">readdata</a></b>
+command).
+<p>
+To open a spectrum file, type
+<b><a href="../commands/open.html">open </a> datain</b><em> filename</em>
+(with no extension to the filename). To open an interferogram file, type
+<b><a href="../commands/open.html">
+     open </a> datain</b><em> filename</em> <b>int</b>
+The name <em> datain</em> is the
+name Xgremlin then associates with the file from then on, and is called
+the unit name of the file. Other examples of unit names are <em>
+rawin, dataout, outfile, scratch</em>.
+Gremlin then tells you if it has been successful in opening the file and
+if so,  the number of points in the file and the wavenumber range. 
+If it fails, check that you have typed the command correctly and that  
+the files exist in the current directory. There are, as mentioned, 
+occasional problems with old headers.
+<p>
+Data can then be read in. Xgremlin uses three main arrays for data: 
+an <em> r</em> array, a <em> tr</em> array, and an <em> ffta</em> array. The
+<em> ffta</em> array is used to hold interferogram data for
+transforming. Spectrum data from the <em> datain</em> unit 
+is read into the <em> r</em> array by default, and the
+<em> tr</em> array is used for scratch space and the storage of temporary
+data.  It can usually be ignored. Data can be swapped between them with
+<a href="../commands/exchange.html">exchange</a> and 
+<a href="../commands/move.html">move</a> and 
+In addition, there is the <em> phase</em> array, which is used during
+the main Fourier transform for phase correction.
+<p>
+
+To read in data, type
+<b><a href="../commands/read.html">read</a></b><em> f1 n2</em>
+where <em> f1</em> is the initial wavenumber and <em> n2</em> is the number of
+points to read in. Both these parameters are optional, in which case
+it will read in as many points as possible, starting at the first
+wavenumber in the file. If you have opened an interferogram, <em>f1</em>  
+should be
+the initial point number of the region you wish to read in. <em> n2</em>
+has a maximum value ranging from 262144 to 2 million depending on the
+size of the r array -- this can be changed with the 
+<a href="../commands/alloc.html"><b>alloc</b></a> command.
+The default is the maximum value
+or the number of points between <em> f1</em> and the end of the file,
+whichever is the smaller. If you wish to read a section centred on a
+particular wavenumber, type
+<b><a href="../commands/set.html">set</a> centerread</b>
+first. There is also the command 
+<b><a href="../commands/set.html">set </a>firstread</b>
+which specifies that subsequent reads should start at the wavenumber
+<em> f1</em>. The data can then be plotted by typing
+<b><a href="../commands/plot.html"> plot</a></b>
+<p>
+
+Other commands in Xgremlin can be split into two types: global commands that
+work on the whole file or extended sections of it and buffer commands
+which work on the contents of the <em> r</em> array - the current
+buffer. The most important of these are the commands associated with
+line finding and line fitting. The two commands for finding lines in a
+spectrum are
+<b><a href="../commands/linelist.html">linelist</a></b> and 
+<b><a href="../commands/findlines.html">findlines</a></b>. 
+<b><a href="../commands/findlines.html">Findlines</a></b>
+works in a buffer and the list of lines found is destroyed by a new read
+unless it has been saved in some way. 
+<b><a href="../commands/linelist.html">linelist</a></b>  
+finds lines in
+the whole file and saves the list in a file named <em>
+&lt;file&gt;.lin</em>, where <em> &lt;file&gt;</em> is the name of the file you
+opened. It is a permanant file and will not be deleted when you leave Xgremlin.
+A backup of the <em> .lin</em> file is made when you make the first change 
+to it in each run of Xgremlin. If you wish to create another 
+<em>&lt;file&gt;.lin</em> file, you can close it by typing
+<b><a href="../commands/close.html">close</a></b> <b>lineio</b>,
+re-name the <em>.lin</em> file outside Xgremlin, and run
+<b><a href="../commands/linelist.html">linelist</a></b> 
+again. The previous <em>.lin</em> file can be re-opened 
+by closing the newly-created <em>.lin</em> file and then opening the old 
+file using <b><a href="../commands/open.html">
+     open</a></b> <b>lineio</b> <em>filename</em>.
+<p>
+In addition to these commands there are a few others which are
+regularly used, but which do not easily fit into other sections of the
+tutorial. The command 
+<b><a href="../commands/alias.html">alias</a></b>
+is similar to alias commands in UNIX, and is used to abbreviate a set
+of commands with a single, easy to type word. The 
+<b><a href="../commands/info.html">info</a></b>
+command tells you the values of various variables in Xgremlin and lets
+you set them. The
+<b><a href="../commands/set.html">set</a></b>
+command is similar, but also lets you set values of various
+<b><a href="../glossary.html">registers</a></b> 
+which can be useful in running batch scripts. A
+third way of finding the values of variables is the
+<b><a href="../commands/whats.html">whats</a></b>
+command, which also lets you find out the contents of the various
+arrays in Xgremlin. Finally, the
+<b><a href="../commands/save.html">save</a></b>
+and <b><a href="../commands/recall.html">recall</a></b> 
+commands let you put data into the 
+<b><a href="../glossary.html">scratch directory</a></b> 
+and retrieve them.
+</body>  
+

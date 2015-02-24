@@ -1,0 +1,53 @@
+<head>
+<title>Xgremlin TODO list</title>
+</head>
+
+<body>
+
+<h2>A list of things that are still left to do (as of version 2.48)</h2>
+<hr>
+<p>
+
+<ul>
+<li>base the line fitting package on MINPACK because the current line fitting
+  suffers from 'simplex disease'.<p>
+
+<li>Develop a way to analyse complex spectra (with e.g. hyperfine structure )
+  efficiently maybe by using a neural network simulator for line finding.<p>
+
+<li>Phase correction needs cleaning up.<p>
+
+<li>change over to Hui et al. 's method of calculation fo the Voigt function
+  because it has higher accuracy (at some performance penalty). Since it is
+  in many cases sufficient to fit Gauss profiles allow to explicitely fit
+  Gauss profiles. This is again more accurate and also faster than 
+  evaluating the Voigt function. Another advantage is that with
+  Hui's approximation one can make use of the analytic properties of the 
+  Voigt function to speed up least squares fitting.<p>
+
+<li>(Maybe) rewrite the command interpreter in Xgremlin in such a way that 
+  it provides a minimal language with allows some form of flow control and
+  a better way of defining new commmands.(Probably impossible)<p>
+
+</ul>
+<br>
+<b>Things to be done some time:</b>
+
+<ul>
+<li>use GNU autoconf for configuration which should make installation a lot
+  more flexible. This would resolve some of the nagging configuration
+  problems under Unix.<p>
+
+<li>write a program ('idlin') which allows to insert id strings from programs 
+  such as 'strans' into line list databases.<p>
+
+<li>rewrite 'gboss.f' so it becomes understandable and more flexible.
+  (Make it possible to use aliases with parameter substitution which
+   shouldn't be too difficult.)<p>
+
+<li> Use Motif instead of the Athena widgets. This would be nice
+but is a lot of work for not much more than good looks.<p>
+
+</ul>
+
+</body>

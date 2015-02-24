@@ -1,0 +1,42 @@
+<head>
+<title> byte </title>
+</head>
+<body>
+byte order
+byte order (not a command)
+
+	'Byte order' refers to the way the bytes which make up an integer or
+	real number are arranged in memory. There is no standard byte order. 
+	Different computers use different conventions for storage of data that 
+	require more than one storage unit (byte) and consequently there can
+	be when  problems reading files on computers other than the computer
+	that took the data.
+
+        The byte order is recorded with the variable 'bocode', which can 
+	also be set by either 'info bocode' or 'read brev'. This should only
+        be necessary if the data have an old header file, which does not
+        record the format of the data. The possible values are:
+
+            bocode = 0 least significant byte first (little endian)
+	               (e.g. Intel x86, DEC Alpha, MIPS ...)
+
+            bocode = 1 most significant byte first (big endian)
+	               (e.g. Motorola 680x00, Sparc, MIPS ...)
+
+	    bocode = 2 indicates the byte disorder that is (was?) used on 
+                       old VAX computers. WARNING: There is currently
+                       no support for this byte order in Xgremlin.
+
+        In Xgremlin, the byte order in the header is compared to the
+        byte order of the machine Xgremlin is running on, and the
+        data are byte reversed automatically if required. 
+
+	IMPORTANT:
+	Data in line list files are ALWAYS stored in little endian (Intel) 
+	format. Thus, a line list file that was e.g. prepared on a Sun can 
+	be read in on a PC and vice versa.
+
+	NOTE: 
+	A proper description of the terms 'little endian' and 'big endian' 
+	can be found in:  Jonathan Swift, Gulliver's Travels.
+

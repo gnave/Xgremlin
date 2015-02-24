@@ -1,0 +1,52 @@
+<head>
+<title>The Xgremlin documentation</title>
+</head>
+
+<body bgcolor="#ffffff"> 
+
+<h1>Xgremlin Documentation</h1>
+<b>( Version of February 20, 2015 )</b>
+<hr><p>
+
+<a href="commands/alphalist.html">
+<b>Alphabetical list of Xgremlin commands</b> </a><p>
+
+<a href="commands/categorylist.html">
+<b>Xgremlin commands grouped into categories</b> </a><p>
+
+<a href="plotmode.html">
+<b>Xgremlin plot mode commands</b> </a><br><br><br>
+
+<a href="intro.html"> <b>A Short Introduction to
+Xgremlin</b> </a><p>
+
+<a href="tutorial/contents.html"> <b>Xgremlin
+tutorial</b> </a><p>
+
+<a href="commands/hfs.html"> <b>HFS analysis</b> </a><p>
+
+<a href="techref/techref.html"> <b>Xgremlin
+technical reference manual</b> </a><p>
+
+<a href="tools.html"> <b>Tools for line list
+binary files and data files in FITS format</b> </a><br><br><br>
+
+<a href="bugs.html"> <b>Bugs</b>
+</a><p>
+
+<a href="glossary.html"> <b>Glossary</b>
+</a><br><br><hr><p>
+
+<a href="copyright.html"> <b>Appendix A:
+Copyright</b> </a><p>
+
+<a href="credits.html"> <b>Appendix B:
+Credits</b> </a><p>
+
+<a href="downloading.html"> <b>Appendix C:
+Downloading new versions of Xgremlin, Tools and Libraries</b> </a><p>
+
+<a href="Howto-Install.html"> <b>Appendix D:
+Installing Xgremlin on Unix machines</b> </a>
+
+</body>

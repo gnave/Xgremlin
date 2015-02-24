@@ -1,0 +1,30 @@
+<head>
+<title> The cards file 'phscds' </title>
+</head>
+<body bgcolor="#ffffff">
+
+<h1>The cards file `phscds'</h1>
+
+<pre>
+open logfile gnome.log                # Open the log file 'gnome.log' 
+open rawin gnome                      # Open the interferogram 'gnome'
+twosided                              # Specify a balanced interferogram
+ncenter 123456                        # Specify the centre of the interferogram
+phcorr fit      0     0.050   0.0010  # Set parameters  for the phase 
+#input inverted                       # Multiply interferogram by -1 if needed
+input center                          # Input centre and calculate phase
+keyboard                              # Return control to edit window 
+
+input                                 # Input whole of interferogram
+apodize                               # apodize it
+transform                             # transform it
+wavelimits                            # Set wavenumber limits for output file
+real gnomer                           # Output the real file gnomer
+#complex gnomec                       # Output the complex file gnomec
+</pre>
+
+<p>
+<a href="../tutorial/transform.html#phscds">
+Back to transforming</a>
+</body>  
+

@@ -1,0 +1,32 @@
+<head>
+<title> copy </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>copy</h2><p>
+
+<b>Syntax:</b> <kbd>copy</kbd> <em> [ &lt wstart &gt &lt wstop &gt ]
+[ &lt nstart &gt &lt nstop &gt ]</em>
+<p>
+
+Copy copies a contiguous block of data specified either by wavenumbers
+<em>wstart</em> and <em>wstop</em> or point numbers <em>nstart</em>
+and <em>nstop</em>, from the datain unit to the dataout unit.  The
+default is to copy the entire file.
+<p>
+
+<b>Note:</b><br>
+A <a href="create.html"> create </a> command is necessary before the
+copy command if nothing is connected to <b>dataout</b>.
+<p>
+
+Byte reversal is performed if the data in the input file are in a
+different format to the standard format on the machine on which
+Xgremlin is running. The output file is always in machine byte order.
+
+</body>

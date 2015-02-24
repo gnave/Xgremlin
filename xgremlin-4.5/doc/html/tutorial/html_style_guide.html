@@ -1,0 +1,1952 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Composing Good HTML (Version 2.0)</TITLE>
+<LINK REV="made" HREF="mailto:tilt@cs.cmu.edu">
+
+</HEAD>
+
+<BODY>
+
+<H1>Composing Good HTML</H1>
+
+<P> This document attempts to address stylistic points of HTML composition,
+both at the document and the web level.
+
+<HR>
+
+<P> <STRONG>New:</STRONG> This is version 2.0; <A HREF="old/">version
+1 is still available</A> for those who are interested. Now that
+<CITE><A HREF="http://www.aw.com/devpress/titles/48959.html">Web
+Weaving</A></CITE> is on shelves near you, it seems appropriate for me
+to get off my duff and feed all of the changes back into this
+document. See "Some History," below, for more information on what the
+heck I'm talking about.
+
+<HR>
+
+<P> This document is divided into two main sections. The first section
+discusses the document -- it should be recognizable as the revised
+version of the original CGH. It discusses good practices to follow
+in creating your documents, common errors and things to avoid
+when composing HTML, and finally, a brief treatment style sheets,
+which provide a mechanism for greater control over how a document
+is rendered. The second section is brand new -- it discusses style
+issues regarding your Web as a whole. How it is divided and organized,
+how it is interlinked and intertwined; these are the issues under
+consideration here.
+
+<P>This is not a beginner's guide; check the <A
+HREF="#for_more_info">"For More Information"</A> section for pointers
+to more basic works, as well as for more advanced references and
+tutorials. It is designed for HTML author who has learned the basics,
+and is ready to start thinking about the more advanced aspects of Web
+document design.
+
+<P> <STRONG>Note:</STRONG> I'm not finished spiffing up this new
+version yet, but it's good enough to be presentable, and I'd rather
+have the information available, rather than have it languish for lack
+of final polishing. At the very least, I still need to:
+
+<UL>
+<LI>Make some of the larger figures into a more manageable size
+<LI>Provide rendered versions of the HTML examples
+<LI>Add in some more useful links to other resources (suggestions
+appreciated!)
+<LI>Break this into single and multipart versions by preparing
+<A HREF="multiview/">multiview</A> source documents
+</UL>
+
+<P> Unfortunately, the life of grad student is not all cheese and wine
+(very little of it, in fact), so these will have to come at a later
+date. Besides, the imminent publication of <CITE>Web Weaving</CITE>
+(see the History section below for background) seems an appropriate
+time to also re-update this document, so I won't let a little thing
+like a busy schedule stand in my way.
+
+<H2><A NAME="some_history">Some History</A></H2>
+
+<P> I wrote the first version of "Composing Good HTML" in January of
+1994. At this point, the Web was just starting to explode, and Mosaic
+was the browser on the tip of everyone's mouse. Being one of the
+strange few who used <A
+HREF="http://www.ukans.edu/about_lynx/about_lynx.html">Lynx</A> as
+well as <A
+HREF="http://www.ncsa.uiuc.edu/SDG/Software/Mosaic/NCSAMosaicHome.html">Mosaic</A>
+(as well as <A
+HREF="http://www.cs.indiana.edu/elisp/w3/docs.html">Emacs-W3</A>, when
+I was feeling cocky), I noticed that different browsers dealt with
+incorrect usage of HTML with varying degrees of success.  When I
+pointed this out, the solution suggested to me was to write a "lint"
+for HTML that would point out common errors in documents. In
+preparation for this, I started making a list of common errors, and
+turned that list into a human-readable document.  That document became
+"Composing Good HTML."
+
+<P> About that time the semester started, so I made the document
+publicly available, and asked for comments and criticism. I got both,
+in spades! I corrected errors (including a plethora of spelling and
+grammatical errors), added some new sections, and revised pieces of
+existing sections. But, all in all, CGH didn't really change much,
+even though things like <A
+HREF="http://home.netscape.com/">Netscape</A> and <A
+HREF="http://www.w3.org/pub/WWW/MarkUp/html3/CoverPage.html">HTML
+3.0</A> (let alone <A HREF="http://java.sun.com/faq2.html">Java</A>
+and <A HREF="http://vrml.wired.com/">VRML</A>) have snuck up in the
+meantime.
+
+<P> In January of 1995, Carl Steadman, Tyler Jones, and I got together
+with the idea of writing a book about the Web (this was before the
+current explosion of the market, so you'll pardon our naivete).
+Rather than writing a book about HTML, we decided to write a book
+about creating and maintaining an entire site -- including the
+stylistic points in CGH as a starting point. The book is called
+<CITE>Web Weaving</CITE>, and it will be coming out from
+Addison-Wesley on December 18th.
+
+<P> The side effect of all of this is that it gave me a reason to
+revise CGH to reflect current practices for inclusion in <CITE>Web
+Weaving</CITE>. And now that we've finally finished our book, this
+also means that the changes in CGH are getting fed right back into the
+online version. Which, I'm proud to say, is still freely available
+(and better than ever, I'd like to think). What you see here is, by
+and large, Chapters 11 and 12 from <CITE>Web Weaving</CITE>, edited it
+so that they stand alone better. While I'd certainly recommend you
+read <CITE>Web Weaving</CITE> for a full treatment on all the issues
+involved in building and maintaining your Web site (and because every
+author hopes that his words will be read), Composing Good HTML remains
+(I hope!) a useful resource for HTML authors (and now Web designers)
+who want a slightly more sophisticated treatment of the stylistic
+issues involved in, well, weaving your web.
+
+<P> I never did get around to writing that "lint" program, though.
+
+<H1><A NAME="document_style_considerations">Document Style Considerations</A></H1>
+
+
+<P> The World Wide Web has been a wildly successful experiment. It has
+filled a need for both information users and for information
+providers: a tool which allows information to be deployed to a wide
+variety of people over wide geographic distances, regardless of what
+kind of computer they may be running. All that is required to publish
+information is any one of a number of Web servers, and all that is
+required to view that information is any one of a number of Web
+clients. This is both an opportunity and a challenge.  This document
+discusses the ways in which you construct your markup so that it is
+readable and usable for a wide range of browsers.
+
+<P> HTML provides a device-independent way of describing information.
+The elements of HTML describe <EM>what</EM> your information is, not
+<EM>how</EM> it should be displayed. This is a subtle point,
+and perhaps the most important one presented here. HTML will let you
+describe this piece of information as a header, or that piece of
+information as an address. It will not let you describe this text as
+being in 24-point Helvetica, right justified. Your challenge is to
+provide professional page layout and design <EM>without</EM> using the
+traditional tools of professional page layout and design.  Sound like
+a paradox? Not really. All it involves is a bit of trust.
+
+<P> The trust you must have can be summarized by the following rule:
+
+<UL>
+<LI><EM>if</EM> you mark up a document so that your information
+is labeled as what it is instead of as how it should be displayed,
+<LI><EM>then</EM> browsers will render it in a way that is appropriate
+and professional-looking.
+</UL>
+
+<P> With the current diversity of clients for the Web (and we can only
+expect to see more), it has become important to write HTML that will
+look good on any client, and not just on the specific client which the
+author may have access to. You must trust your markup. There is no way
+to anticipate how every browser will (differently) render your
+HTML. If you follow this rule you will get the best possible rendering
+with all browsers, instead of for just one browser.
+
+<P> To this end, there are a few solutions. One approach is software
+based -- a "lint"-like program for catching semantic errors in HTML,
+and perhaps even correcting them. Two good examples of this are <A
+HREF="http://www.webtechs.com/html-val-svc/">WebTech's HTML Validation
+Service</A> and <A
+HREF="http://www.khoros.unm.edu/staff/neilb/weblint.html">WebLint</A>.
+Another approach is the one taken by this document -- a style guide
+which points out common errors one might make in the composition of
+HTML, and recommending good practices to follow.
+
+<P> Bear in mind when following these guidelines that your document
+may not end up looking the best it possibly can on a particular
+browser. However, it also will not look ugly on any browser, which is
+the risk you take by disregarding these recommendations and tweaking
+your markup code for, say, <A
+HREF="http://home.netscape.com/">Netscape</A>.  Unfortunately,
+Netscape may render things differently from <A
+HREF="http://www.ukans.edu/about_lynx/about_lynx.html">Lynx</A> which
+may render things differently from <A
+HREF="http://www.ncsa.uiuc.edu/SDG/Software/Mosaic/NCSAMosaicHome.html">Mosaic</A>,
+and so on and so forth -- and even within a particular browser, a user
+may have chosen font or style preferences different from the ones
+which you might assume. What these guidelines should do, if followed,
+is make for a better presentation for the most browsers (instead of
+the best presentation for only one) -- and ensure that your documents
+reach the widest audience possible.
+
+<H2><A NAME="good_practices">Good Practices</A></H2>
+
+<P> Things contained in this section are good practices for the
+generation of any HTML document. Specifically, this would include
+anything which should routinely be done in the creation of documents
+for the benefit of both reader and author.
+
+<H3><A NAME="using_non_standard_html">How to Use Non-Standard
+HTML</A></H3>
+
+<P> There are at least three major flavors of HTML currently in
+practice as this is being written: <A
+HREF="http://www.w3.org/pub/WWW/MarkUp/html-spec/">HTML 2.0</A>, <A
+HREF="http://www.w3.org/pub/WWW/MarkUp/html3/CoverPage.html">HTML
+3.0</A>, and the <A
+HREF="http://home.netscape.com/assist/net_sites/html_extensions.html">Netscape
+extensions to HTML 2.0</A>.  HTML 2.0 is the closest thing to current
+practice that is available, and can be assumed to be "safe" for all
+browsers.
+
+<P> On the other hand, the HTML 3.0 and the Netscape extensions are
+not widely implemented, let alone standardized. Under most circumstances,
+this would be a good reason not to use them until they were more
+widely available, but there is the mitigating circumstance that
+all of the Netscape extensions (and some of HTML 3.0, most notably
+tables) are supported by one of the most popular Web browsers
+. . . Netscape!
+
+<P> What should be done about this? Many Web authors take the approach
+that, since most people use Netscape, it's acceptable to use the
+Netscape elements, even if it is to the detriment of people using
+other browsers. Others take the approach that nothing more than
+HTML 2.0 should ever be used, which means that any benefit which
+might be derived from these enhancements is lost.
+
+<P> The best road is a middle approach. Two good rules of thumb are:
+
+<UL>
+
+<LI>If two or more popular browsers support the extension, it's
+probably fine to use. For instance, both <A
+HREF="http://home.netscape.com/">Netscape</A> and <A
+HREF="http://www.ncsa.uiuc.edu/SDG/Software/Mosaic/NCSAMosaicHome.html">Mosaic</A>
+(and <A HREF="http://www.w3.org/pub/WWW/Arena/">Arena</A>) now support
+tables, so any tables you use will be available to most of your
+audience.
+
+<LI>If the extension is not widely supported, but it will not
+adversely affect your document if it is missing, it's probably
+fine to use. For instance, the <CODE>FONT</CODE> element changes
+the font size of text in the Netscape Navigator, but not in any
+other client. However, other clients will simply <I>ignore</I>
+tags they do not understand-so the text in the <CODE>FONT</CODE>
+element will still be readable. On the other hand, if the <CODE>MATH</CODE>
+element is ignored by a browser, the browser will display gibberish.
+
+</UL>
+
+
+<P> In general, try to think about the effect that the non-standard
+elements will have if they are not recognized. These elements
+can be used intelligently, and on browsers that recognize them,
+can dramatically enhance the presentation of your page. If it
+is not possible to use the elements in such a way that rendering
+is still good on all clients, think about providing multiple copies
+of the document (for instance, providing a version of the table
+using the <CODE>PRE</CODE> element), and possibly using content-negotiation
+on the server to provide the reader with the correct version of
+the document.
+
+<P> A final thought on the subject: try to avoid banners in your document
+that claim that your document is "Enhanced for Netscape"
+or "Enhanced for HTML 3.0" (or the rapidly more prevalent
+"Enhanced for Microsoft's Internet Explorer." Ugh.)
+Rather, try to build your document so that if a reader reads it
+in (for example) Netscape, it will be obvious that it uses the
+new elements to good effect . . . and if a reader reads it in
+another browser, they can remain blissfully unaware of what they
+cannot see, and still be impressed by what they do see.
+
+<P> (<STRONG>Opinion Alert:</STRONG> a general comment, that may or
+may not place me on Bill Gates' hit list -- while I have a healthy
+disregard for the cavalier attitude in which most "extensions" are
+made de facto by overwhelming will of places like Netscape, I still
+have a healthy respect for those extensions which attempt to solve an
+important problem in a useful way. Many of the Netscape extensions,
+especially those involving tables, fit this bill, and while they did
+also provide many duds as well, they have also supported the valid
+HTML 3.0 alternatives that mirror their extensions.  However, in my
+opinion, every single one of the <A
+HREF="http://www.microsoft.com/windows/ie/iexplorer.htm">"Microsoft
+extensions"</A> is of dubious merit, and of certain incompatibility
+with any evolving HTML 3.0 specification. Given the well developed
+state of HTML 3.0, introducing new and incompatible methods of doing
+the same thing is irresponsible at the least. I highly recommend
+simply disregarding the extensions introduced with Internet Explorer.
+Please note that I have the highest respect for many of Microsoft's
+products; I even used Word and Internet Assistant to compose this
+edition of this document [although I edited the HTML afterward].  And,
+dear reader, this paragraph in particular is highly opinion-ridden, so
+you must take it with a grain of salt as you see fit. On with the
+useful stuff:)
+
+<H3><A NAME="signing_and_timestamping_docs">Signing and time-stamping
+documents</A></H3>
+
+<P> One problem which faces anyone trying to find information using
+the Internet is the question of "authoritativeness."  The relative
+ease with which WWW servers can be set up and populated with
+information means that the traditional checks of the publishing
+process can not act to filter out information which is inaccurate or
+misleading. In addition, it can often be hard to tell how current
+information found online is, or how actively it is maintained and
+updated.
+
+<P> One thing which you can do to assist Web users is to sign and
+date all documents in your infostructure, so that people viewing
+the documents can form some impression of the authority of the
+document (i.e., how recent it is, and how reliable the information
+provider is). This is not a complete solution, but it is a large
+step forward.
+
+<P> For example:
+
+<PRE>
+&lt;HR&gt;
+Last modified: March 6, 1995
+&lt;ADDRESS&gt;
+&lt;A HREF="http://cs.cmu.edu/~tilt/"&gt;James Eric Tilton&lt;/A&gt;&lt;BR&gt;
+&lt;A HREF="mailto:tilt@cs.cmu.edu"&gt;tilt@cs.cmu.edu&lt;/A&gt;
+&lt;/ADDRESS&gt;
+</PRE>
+
+<P> Some notes about this example:
+
+<UL>
+<LI>The date is given in an unambiguous format: "March 6,
+1995". Why is this better than the more economical "3/6/95"?
+One reason is that for some of your audience, especially those
+from Europe, this means "June 3, 1995".
+
+<LI>A link to a home page is provided. If a reader is interested, she
+can follow it to find more information by this author.  This provides
+a consistent centering function which helps keep a reader from
+becoming disoriented (See <CITE><A HREF="#scenic_path">Main Roads and
+Scenic Paths</A></CITE>, below).
+
+<LI>A <CODE>mailto:</CODE> link anchors the document to the mail
+address of its creator. The <CODE>mailto:</CODE> URL specifies
+an e-mail address. Most browsers support this, allowing the reader
+to send e-mail to the address specified. This can be a useful
+way to get feedback. In addition, the <CODE>mailto:</CODE> link
+is separated from the link to the home page by a <CODE>&lt;BR&gt;</CODE>,
+so that the two links can be easily distinguished.
+</UL>
+
+
+<P> Another option for signing a document is to encode information
+about the author in the document's header information. You can do this
+by including a <A
+HREF="http://www.w3.org/pub/WWW/MarkUp/html-spec/html-spec_5.html#SEC5.2.4">LINK</A>
+element of type <CODE>made</CODE> in your <A
+HREF="http://www.w3.org/hypertext/WWW/MarkUp/Elements/HEAD.html">HEAD</A>
+element. For example:
+
+<PRE>
+&lt;HEAD&gt;
+&lt;TITLE&gt;This is my Title&lt;/TITLE&gt;
+&lt;LINK REV="made" HREF="mailto:author@some.site.org"&gt;
+&lt;/HEAD&gt;
+</PRE>
+
+<P> This example uses the <CODE>LINK</CODE> element, which may be
+unfamiliar to you. This element is equivalent to the <CODE>A</CODE>
+element; that is, it provides a link to some other object. However,
+since it is part of the <CODE>HEAD</CODE> information (which is
+information <EM>about</EM> the document, rather than part of the
+document  itself), this is a link from the <STRONG>entire</STRONG>
+document to another object. (Anchors, on the other hand, are links
+from some small subset of the document, like a word or a phrase,
+to another document). This link, like most other <CODE>HEAD</CODE>
+information, is typically not displayed by a browser,  or followable
+by a reader.
+
+<P> The fact that it is not displayed does not make it useless,
+however.  Many browsers, such as <A
+HREF="http://www.ukans.edu/about_lynx/about_lynx.html">Lynx</A>,
+supply a "reply to author" function. The information about who the
+author is comes from using the <CODE>LINK</CODE> as above. Other
+applications which can make use of the information include Web spiders
+and other maintenance tools, which can benefit from having authority
+information in machine readable format.
+
+<P> The format of the <CODE>LINK</CODE> element is the same as that
+of the <CODE>A</CODE> element. Notice the use of the <CODE>REV</CODE>
+attribute, which describes this relationship as a <CODE>REV</CODE>erse
+relationship of the type <CODE>made</CODE>. This means that this
+document was made by the object at the other end of the anchor.
+
+<H3><A NAME="device_independence">Device independence through
+better printing</A></H3>
+
+<P> One promise of the wide-spread availability of personal computers
+has been the lessening of our reliance on paper. In some ways,
+this promise has been realized; many trees (and municipal landfills)
+are no doubt grateful that many of us are now committing our words
+to e-mail instead of to a handwritten or typewritten letter or
+memo. On the other hand, until video display technology produces
+results indistinguishable from paper, we will no doubt continue
+to print out things. It's hard to curl up with a notebook
+at night, especially if it has a coaxial cable jutting out the
+back of it. Because of this, many people will want to print out
+the documents which you have provided electronically. In effect,
+they will want to take the document you have woven into a part
+of a web, and make it into a standalone document.
+
+<P> Fortunately, HTML is well-suited to this. A document in HTML can
+theoretically be rendered in many more formats besides simply
+on a screen. Print is one obvious alternative, although speech
+and Braille are also possible and desirable. We bring this up
+because it is important to consider ways other than on-screen
+that a reader may encounter your documents. Given that, thinking
+about your document as something that might be printed can be
+a very useful tool for creating documents that aren't tied
+to the specific requirements of a browser or display hardware.
+
+<H3><A NAME="using_prose">Taking advantage of prose</A></H3>
+
+<P> One of the advantages of the World Wide Web over similar infosystems,
+like Gopher, is that the Web makes no distinction between what
+is a menu and what is a document. For instance, in Gopher, a document
+is "dead" -- it can't lead anywhere, and, in
+order to continue exploration, a reader must return one step back
+to a menu. In the same vein, a Gopher menu provides only limited
+information about where links to lead to: often a menu item must
+be retrieved and explored before any sense can be made of whether
+it is appropriate to what a reader seeks.
+
+<P> On the other hand, a Web document is "live" -- there's
+no clear dividing line between a menu container and its contents.
+This is a liberating distinction, as a document can now be as
+verbose as necessary in providing context for links. Consider
+the difference between these two documents in Figures 1 and
+2.
+
+<HR>
+
+<P ALIGN="center"> <A HREF="figures/fig1.html">[Figure 1: A menu list
+without context (Lynx)]</A>
+
+<P ALIGN="center"> <A HREF="figures/fig2.html">[Figure 2: A prose
+description of resources (Lynx)]</A>
+
+<HR>
+
+<P> The second example is much more satisfying, because it is more
+than simply a list of pointers. Instead, an effort has been made
+to integrate the list into prose that is (presumably) better tied
+into the subject of the document as a whole.
+
+<P> This is not to say that it is always preferable to force what
+is more naturally a menu into prose for the sake of prose. If
+you are creating a document that serves as an jumping-off point
+to other resources, your readers might not want to get into the
+thick of text to find the resource they're searching for.
+In this case, a definition list may be more appropriate, as shown
+in Figure 3. This is a nice compromise, giving context without
+becoming buried in a forest of words.
+
+<HR>
+
+<P ALIGN="center"> <A HREF="figures/fig3.html">[Figure 3: A menu using
+a definition list (Lynx)]</A>
+
+<HR>
+
+<H3><A NAME="meaningless_link_text">Meaningless link text</A></H3>
+
+<P> When creating documents, make sure that your links are meaningful
+-- that is, that they avoid online-specific references, and that they
+don't detract from readability. The text of your links should flow
+well in the context of the rest of your text , and your text should
+also be able to stand alone as a printable document . You should at
+all costs avoid the "<A
+HREF="http://www.w3.org/hypertext/WWW/Provider/Style/ReadableText.html">Click
+Here</A>" syndrome, as shown in Figure 4.
+
+<HR>
+
+<P ALIGN="center"> 
+<A HREF="figures/fig4.html">[Figure 4, The "Click Here" Syndrome (Arena)]</A>
+
+<HR>
+
+<P> Figure 4 is also bad because it refers to "clicking",
+which assumes that everyone is using a mouse with their browser,
+which is not always the case. A much better alternative is demonstrated
+in figure 5.
+
+<HR>
+
+<P ALIGN="center"> 
+<A HREF="figures/fig5.html">[Figure 5, Meaningful Link Text (Arena)]</A>
+
+<HR>
+
+<P> Another point to consider about the choice of words selected for
+link text ("information about cows", in this example),
+is that often this link text may be what is used as information
+for a reader's bookmark or hotlist entry. When the word "here"
+is used as link text, the hotlist may become cluttered with entries
+that read only, "here", instead with information about
+what the link is actually about.
+
+<H3><A NAME="using_outlining">Organization through outlining</A></H3>
+
+<P> Headers provide a useful way to provide an outline for your document.
+Headers of level 1 (<CODE>H1</CODE>) indicate major points, while
+headers of level 2 (<CODE>H2</CODE>) provide sub-topics to those
+points, and so on and so forth. It is important to remember that
+the purpose of these headers is not to provide specific kinds
+of fonts or layout, but rather to organize a document into section.
+To that end, here are some recommendations about heading usage:
+
+<UL>
+<LI>A heading should not be more then one level below the heading
+which preceded it. That is, an <CODE>H3</CODE> element should
+not follow an <CODE>H1</CODE> element directly.
+<LI>Also, one version of the HTML specification declares that
+"a heading element implies all the font changes, paragraph
+breaks before and after, and white space (for example) necessary
+to render the heading". Extra highlighting elements are discouraged
+within the header, like <CODE>EM</CODE> or <CODE>B</CODE>.
+<LI>Do not markup text as <CODE>H2</CODE> or <CODE>H3</CODE>,
+simply because it provides the correct size and bolding of fonts
+on the browsers used by local readers. On another browser, that
+same text may be incredibly grotesque and large, not providing
+the desired effect at all. Figures 6 and 7 demonstrate this
+effect.
+</UL>
+
+<HR>
+
+<P ALIGN="center"> 
+<A HREF="figures/fig6.html">[Figure 6: Expected headline rendering (Arena)]</A>
+
+<P ALIGN="center"> <A HREF="figures/fig7.html">[Figure 7: Unexpected
+headline rendering (Netscape)]</A>
+
+<HR>
+
+<H3><A NAME="physical_vs_logical">Physical versus logical character
+emphasis</A></H3>
+
+<P> Since HTML (and also SGML) is designed to be a device independent
+language for describing the content of documents, most of the elements
+within it aren't intended to give direct control to the author over
+how the final page layout will look. The major exceptions to this are
+in the character highlighting elements.
+
+<P> There are two types of <A
+HREF="http://www.w3.org/pub/WWW/MarkUp/html-spec/html-spec_5.html#SEC5.7">character
+highlighting</A> elements -- physical and logical. The physical styles
+involve things like "italic font", and "boldface"; while the logical
+styles are things like "emphasis", "citation", and "strong." It is
+strongly recommended that you employ the logical styles rather than
+the physical styles in your documents. Using the <CODE>I</CODE>
+element to render text in italics will only be effective on those
+browsers which are capable of displaying italics -- which all browsers
+are not guaranteed to be able to do. It is far better to encode
+semantic content -- to describe things in terms of logical styles --
+and then allow the browser to display that semantic structure as best
+it can, given its display capabilities.
+
+<P> So, instead of
+
+<PRE>
+&lt;I&gt;italics&lt;/I&gt;
+</PRE>
+
+<P> you might use
+
+<PRE>
+&lt;EM&gt;emphasized&lt;/EM&gt;
+</PRE>
+
+<P> or a
+
+<PRE>
+&lt;CITE&gt;citation&lt;/CITE&gt;
+</PRE>
+
+<P> and instead of
+
+<PRE>
+&lt;B&gt;bold&lt;/B&gt;
+</PRE>
+
+<P> you might use
+
+<PRE>
+&lt;STRONG&gt;strong&lt;/STRONG&gt;
+</PRE>
+
+<P> This also leaves the possibilities open in the future for more
+sophisticated uses of these semantic encoding, which have much
+more inherent meaning than font styles like bold or italic. For
+example, the <A HREF="http://www.lycos.com/">Lycos indexing system</A>
+can take advantage of semantic encoding to create abstracts of
+documents.
+
+<P> <STRONG>Note:</STRONG> Before you stop using <CODE>B</CODE> and
+<CODE>I</CODE> altogether, here's another viewpoint to consider.
+One argument against logical character styles is that it turns
+out to be a bottomless pit, a fruitless attempt to define logical
+styles for every possibility. Physical styles, combined with the
+context of the text in which they are placed, seem to provide
+a much richer set without a huge number of tags. Consider the
+large space of context that can be implied with only the typographical
+conventions of <B>bold</B> or <I>italic</I>. The only problem
+is that that contextual space needs to have a human being to interpret
+it, which would make some kinds of computer-based rendering difficult,
+if not impossible (e.g. speech synthesis).
+
+<H3><A NAME="using_pictures">A picture is worth a thousand words
+(which is why it takes a thousand times longer to load...)</A>
+</H3>
+
+<P> The title of this section is somewhat facetious, but only somewhat.
+It's more and more obvious from current Web development efforts
+that the main attraction of the Web is not hypertext, and it's
+not an easy interface; the main attraction is the flashy graphics
+and the alluring promise of multimedia. We shall heroically refrain
+from commenting on whether this is a good or a bad thing, for
+the fact remains that online multimedia is here to stay. What
+we <EM>will</EM> comment on is on the issues that must be considered
+to use multimedia for best effect.
+
+<P> The first set of issues revolves about the faux sense of page
+design one can get by using inline images. An early example of
+this was one of the early commercial forays into the Web, a graphic
+design house which advertised professional layout services for
+online brochures. They spent quite a bit of time designing graphics
+images of the proper width so that they could achieve page-layout
+effects like right justification and centering, and created a
+page which was fairly well-designed. However, they got bitten
+because this design relied on a browser's window being the default
+width for <A HREF="http://www.ncsa.uiuc.edu/SDG/Software/Mosaic/NCSAMosaicHome.html">X Mosaic</A>.
+With a wider window, the carefully aligned logo in the upper right
+corner was immediately followed by the image that should have
+been on left justified on the following line.
+
+<P> Current browsers implement some better forms of layout control
+for images. For example, an author can specify the way in which
+text will flow around an image with an <CODE>ALIGN</CODE> element.
+Figures 8 and 9 exemplify this; the former has no text-flow
+information, and the latter does. This is not perfect, as using
+the <CODE>ALIGN</CODE> tag can cause strange stair-stepping effects
+if there is not enough text separating two images, as figure 10
+illustrates. If the desired effect is of images with captions,
+a table is probably the best approach for layout purposes (Figure
+11).
+
+<HR>
+
+<P ALIGN="center"> <A HREF="figures/fig8.html">[Figure 8: IMG without
+the ALIGN element (Netscape)]</A>
+
+<P ALIGN="center"> <A HREF="figures/fig9.html">[Figure 9: IMG with the
+ALIGN element (Netscape)]</A>
+
+<P ALIGN="center"> <A HREF="figures/fig10.html">[Figure 10:
+Stair-stepping due to ALIGN (Netscape)]</A>
+
+<P ALIGN="center"> <A HREF="figures/fig11.html">[Figure 11: Using
+TABLE for layout (Netscape)]</A>
+
+<HR>
+
+<P> Another consideration is the reduplication of effort. Many authors
+swear by colored bullets and colorful horizontal rules, implementing
+both effects by using inlined images rather than the structural
+markup. Doing this can leave the portion of your audience which
+is unable (or unwilling) to view inlined images out of the loop,
+and can also negate some of the benefits provided by structural
+markup. There is also an unexpected side effect to using many
+small images: the current way in which Web clients retrieve documents
+requires that a separate connection to a Web server be initiated
+for each image. The time involved in negotiating this connection
+may actually be larger than the time involved in retrieving the
+image itself. Consider whether the effect achieved by the "enhanced"
+layout justifies the cost.
+
+<P> Another concern is the size of images. With the increasing home
+popularity of the Internet, more and more users are purchasing
+dial-up connections of one sort or another. This may be of the
+strict "shell-account" variety, which means that your
+readers will not see images at all, or they may be of the SLIP/PPP
+variety, which means that your readers will have an average of
+only 14,400 bits of information per second sent to them. This
+is not a large number, and huge images can take minutes to load.
+Bear this in mind when selecting images; will the image take so
+long to load that your reader will go somewhere else rather than
+wait?
+
+<P> The image size issue can be alleviated in several ways. First, the
+increasing popularity of the <A
+HREF="http://www.cis.ohio-state.edu/hypertext/faq/usenet/jpeg-faq/top.html">JPEG
+format</A> means that images can be compressed to much smaller sizes,
+which provides dramatic speed-up in image load time. Even better
+results can be achieved by using less colors (gray scale, rather than
+full 24-bit color, for example). Another approach is to use a small
+set of navigational icons which appear on every page in your Web. Most
+browsers now cache documents and images; using the same icons (and
+using the <I>same</I> URL to refer to them with, perhaps by
+maintaining an <CODE>/icons</CODE> directory on your Web server) means
+that the reader will only incur the cost of downloading once.
+
+<P> Also, when using the <CODE>IMG</CODE> element, be aware of the
+<CODE>ALT</CODE> attribute. The <CODE>ALT</CODE> attribute allows
+alternate text to be specified for an inlined image. This is especially
+useful for images that have specific meaning (and provide a link
+to other documents), as that meaning can be lost on those who
+do not have images loaded. For example:
+
+<PRE>
+&lt;IMG SRC="http://www.miskatonic.edu/icons/next.gif"&gt;
+</PRE>
+
+<P> can be better represented with the addition of the following ALT
+attribute:
+
+<PRE>
+&lt;IMG SRC="http://www.miskatonic.edu/icons/next.gif" ALT="[Next Page]"&gt;
+</PRE>
+
+<P> as shown in figures 12 through 16.
+
+<HR>
+
+<P ALIGN="center"> <A HREF="figures/fig12.html">[Figure 12: The
+Document As Expected (Netscape)]</A>
+
+<P ALIGN="center"> <A HREF="figures/fig13.html">[Figure 13: Inlined
+Images Off/No ALT Tag (Netscape)]</A>
+
+<P ALIGN="center"> <A HREF="figures/fig14.html">[Figure 14: Text
+Browser/No ALT Tag (Lynx)]</A>
+
+<P ALIGN="center"> <A HREF="figures/fig15.html">[Figure 15: Inlined
+Images Off/ALT Tag Supplied (Netscape)]</A>
+
+<P ALIGN="center"> <A HREF="figures/fig16.html">[Figure 16: Text
+Browser/ALT Tag Supplied (Lynx)]</A>
+
+<HR>
+
+<P> Finally, don't rely entirely on image maps and graphic logos to
+build your site. There are a few sites which have almost no textual
+content whatsoever; when visited by readers who do not (or cannot)
+load images, there is no information available. This is not to
+say that image maps must be avoided altogether. Instead, provide
+alternate means of navigation which supplement the image map,
+such as explanatory text which follows your map.
+
+<H2><A NAME="common_errors">Common Errors</A></H2>
+
+<P> This section details common errors in HTML composition, that may
+lead to documents which are not fully device-independent. The
+behaviors of these errors are undefined, so certain browsers may
+render them as intended but not all browsers are guaranteed of
+doing so. Therefore, these mistakes should be avoided, even if
+your browser of choice renders your documents correctly.
+
+<P> These errors are, for the most part, artifacts of "raw"
+HTML authoring. Web development has suffered from a lack of good
+authoring tools, a situation which is only now beginning to be
+rectified. Many of these errors involve typos or simple mistakes,
+although others deal with more fundamental conceptual problems.
+
+<H3><A NAME="paragraph_element_errors">Paragraph element errors</A></H3>
+
+<P> The use of the paragraph element (<A
+HREF="http://www.w3.org/pub/WWW/MarkUp/html-spec/html-spec_5.html#SEC5.5.1">P</A>)
+can be confusing. When HTML was first introduced,
+<CODE>&lt;P&gt;</CODE> served as a paragraph separator, not as an
+end-of-paragraph; a confusion which originally prompted this
+doucment. However, more recent version of the <A
+HREF="http://www.w3.org/pub/WWW/MarkUp/">HTML 2.0 and later
+specifications</A> have changed this behaviour.
+
+<P> The current recommended use of the P element is to be placed at
+the <EM>beginning</EM> of paragraphs; for example: 
+
+<PRE>
+&lt;P&gt; In this paragraph, our hero discovers that he really likes
+baloney sandwiches. He also listens to some disco, and has a
+lovely beverage. Ah, if only all paragraphs were this exciting!
+</PRE>
+
+<P> This is in contrast to previous usage, where the <CODE>&lt;P&gt;</CODE>
+was usually placed at the end of the paragraph. 
+
+<P> Still, in certain contexts, use of <CODE>&lt;P&gt;</CODE> should
+be avoided, such as directly before any other element which already
+implies a paragraph break.
+
+<P> To wit, the <CODE>&lt;P&gt;</CODE> element should not be placed
+before the <A
+HREF="http://www.w3.org/pub/WWW/MarkUp/html-spec/html-spec_5.html#SEC5.4">headings</A>,
+<A HREF="http://www.w3.org/pub/WWW/MarkUp/html-spec/html-spec_5.html#SEC5.9">HR</A>,
+<A HREF="http://www.w3.org/pub/WWW/MarkUp/html-spec/html-spec_5.html#SEC5.5.3">ADDRESS</A>,
+<A HREF="http://www.w3.org/pub/WWW/MarkUp/html-spec/html-spec_5.html#SEC5.5.4">BLOCKQUOTE</A>,
+or <A HREF="http://www.w3.org/pub/WWW/MarkUp/html-spec/html-spec_5.html#SEC5.5.2">PRE</A>.
+
+<P> It should also not be placed immediately before a <A
+HREF="http://www.w3.org/pub/WWW/MarkUp/html-spec/html-spec_5.html#SEC5.6">list
+element</A> of any stripe. That is, a &lt;P&gt; should not be used to
+mark the end-of-text for <CODE>&lt;LI&gt;</CODE>,
+<CODE>&lt;DT&gt;</CODE> or <CODE>&lt;DD&gt;</CODE>. These elements
+already imply paragraph breaks.
+
+<H4><A NAME="paragraph_errors">Caveats</A></H4>
+
+<P> Some clarifications on the above might be in order. One is the
+difficulties of rendering appropriate white space by a browser.  While
+it is true that all of the entities mentioned above imply a paragraph
+break, this only occasionally means that they also imply white space
+between sections -- this depends on the browser.  So, while you might
+feel inclined to add a <CODE>&lt;P&gt;</CODE> in order to fix white
+space problems, please think twice and avoid it if you can.
+
+<P> Also, when using the glossary list (<A
+HREF="http://www.w3.org/pub/WWW/MarkUp/html-spec/html-spec_5.html#SEC5.6.5">DL</A>),
+please try to avoid using multiple DDs (definitions of terms) in order
+to provide multiple entries for a term (DT). Instead, use a
+<CODE>&lt;P&gt;</CODE> tag between paragraphs in a definition.
+
+<P> All clear now?
+
+<H3><A NAME="reference_errors">Character and entity reference
+errors</A></H3>
+
+<P> Simply put, a <A
+HREF="http://www.w3.org/pub/WWW/MarkUp/html-spec/html-spec_3.html#SEC3.2.1">character
+reference and an entity reference</A> are ways to represent
+information that might otherwise be interpreted as a markup tag. For
+example, consider the rendered HTML document in figure 17.
+
+<HR>
+
+<P ALIGN="center"> <A HREF="figures/fig17.html">[Figure 17: Properly
+escaping character entities (Arena)]</A>
+
+<HR>
+
+<P> The source which produces this document, which uses entities,
+looks like:
+
+<PRE>
+In order to represent the &amp;quot;&amp;lt;P&amp;gt;&amp;quot; in this text, I had to use &amp;amp;lt;P&amp;amp;gt; in my raw HTML.
+</PRE>
+
+<P> In this example, the <CODE>&amp;lt;</CODE> becomes "&lt;", the
+<CODE>&amp;gt;</CODE> becomes "&gt;", the <CODE>&amp;quot;</CODE>
+becomes a quotation mark, and the <CODE>&amp;amp;</CODE> becomes
+"&amp;" (which is needed in order to represent the text
+<CODE>&amp;lt;</CODE> in the document without the text being turned
+into "&lt;"). There are currently <A
+HREF="http://www.w3.org/pub/WWW/MarkUp/html-spec/html-spec_9.html#SEC9.7.1">four
+entities for this purpose in HTML</A>, as well as several entities
+which allow encoding of the <A
+HREF="http://www.w3.org/pub/WWW/MarkUp/html-spec/html-spec_9.html#SEC9.7.2">ISO
+Latin-1 Character Set</A>.
+
+<P> The most common error in the use of entities is to leave off the
+trailing semicolon. Also, no additional spaces are needed before or
+after the entity/character reference. Here are some examples of
+incorrect usage:
+
+<PRE>
+Doug &amp;amp Chris went out for a walk.
+A paragraph break can be represented with
+&amp;quote; &amp;gt; P &amp;lt; &amp;quote;
+</PRE>
+
+<P> Can you spot the errors in the above examples? They are:
+
+<UL>
+<LI>In the first line, "<CODE>&amp;amp</CODE>" needs
+have a semicolon after it.
+<LI>In the third line, "<CODE>&amp;quote;</CODE>" should
+be <CODE>&amp;quot;</CODE> (this is subtle and annoying, much
+like the Unix system call, <CODE>creat()</CODE>)
+<LI>There should be no spaces in the third line, which should
+read: <CODE>&amp;quot;&amp;gt;P&amp;lt;&amp;quot;</CODE>.
+</UL>
+
+<H3><A NAME="url_errors">URL errors</A></H3>
+
+<P> Another misunderstood aspect of Web document composition is in the
+<A HREF="http://www.ncsa.uiuc.edu/demoweb/url-primer.html">creation of
+URLs</A>.
+
+<H4><A NAME="directory_errors">Directory reference errors</A>
+</H4>
+
+<P> One grey area involves references to directories. It is possible
+to request an index of a directory from an HTTP server. The typical
+response from the server is to either return a pre-generated index
+document (which is often the document "index.html" in
+the referenced directory), or to construct an HTML document on
+the fly which contains a listing of all files in the directory.
+However, when making such a directory reference, it is important
+to make sure to have a trailing slash on the URL. That is, if
+you were to request the index of Willamette University's directory
+of HTML documentation, you would want to refer to it as <A HREF="http://www.willamette.edu/html-composition/">http://www.willamette.edu/html-composition/</A>,
+not as <A HREF="http://www.willamette.edu/html-composition">http://www.willamette.edu/html-composition</A>.
+
+<P> Many servers are able to catch these errors, and provide redirection
+to the proper URL, but it's best to get the URL right in the first
+place -- notably because not all browsers support transparent
+redirection. Also, getting this correct the first time means it
+will take less time for the page to be loaded; your readers won't have
+to wait through the time needed to open two (or more) HTTP connections.
+
+<H4><A NAME="fqdn_errors">Not using fully qualified domain names</A></H4>
+
+<P> Problems can arise when the hostnames in URLs aren't fully
+qualified. Within a local network, a machine can often be simply
+referred to by its host name. For example, the domain
+<CODE>miskatonic.edu</CODE> might have in it a WWW server with the
+host name <CODE>www</CODE>.  Readers within that domain can refer to
+the machine by this name.  However, the server's fully qualified
+domain name is <CODE>www.miskatonic.edu</CODE>.  This fully qualified
+domain name provides enough information that any host, anywhere on the
+Internet, can find this particular machine.
+
+<P> What happens is that an HTML author might construct a link that
+looks like this:
+
+<PRE>
+&lt;A HREF="http://www/~tilt/metanoia/"&gt;Metanoia -- A Change In Spirit&lt;/A&gt;
+</PRE>
+
+
+<P> which produces a link to "<A
+HREF="http://www/~tilt/metanoia/">Metanoia-A Change In Spirit</A>"
+that will only work for people in the local network which that machine
+is on. A correct link would look like this, instead:
+
+<PRE> &lt;A HREF="http://www.cs.cmu.edu/~tilt/metanoia/"&gt;Metanoia -- A Change In Spirit&lt;/A&gt; </PRE>
+
+<P> which would allow all of the readers who are interested in <A HREF="http://www.cs.cmu.edu/~tilt/metanoia/">Metanoia</A> -- even
+those living in <A HREF="http://www.freedonia.com/">Freedonia</A> -- to
+actually follow the link.
+
+<P> Along those same lines, be careful in using URLs of the scheme
+"<CODE>file:</CODE>". It's possible to have a reference
+to <CODE>file://localhost/some/file/pathname</CODE>. What this
+does is references the file described on the local host of whoever
+is browsing the document. Which is why a reference to <CODE>&lt;A
+HREF="file://localhost/etc/motd"&gt;the message of the
+day&lt;/A&gt;</CODE> will display the message of the day on your
+machine, not the message of the day on my machine. However, this
+makes several assumptions about your reader's local machine
+and network which you probably shouldn't be making. Unless
+you know what you are doing (and probably even then), references
+of this type will really mess up your Web.
+
+<H3><A NAME="missing_quote_errors">Missing quotes in start tags</A></H3>
+
+<P> One common error, especially with the current lack of widely
+available and useful authoring tools, is to leave off a quote in the
+attributes of tags. For example, this reference to the <A
+HREF="/~tilt/euphonium/">euphonium, king of instruments</A>, should
+look like:
+
+<PRE>
+&lt;A HREF="http://www.cs.cmu.edu/~tilt/euphonium/"&gt; 
+</PRE>
+
+<P> but people composing "raw" HTML from a text editor will often
+instead type
+
+<PRE>
+&lt;A HREF="http://www.cs.cmu.edu/~tilt/euphonium/&gt; 
+</PRE>
+
+<P> It's likely that by the end of that huge URL, the author
+had forgotten it was supposed to be quoted. The behavior of browsers
+upon encountering this varies -- some display a proper link,
+but you can't follow it, while others actually eat up huge portions
+of the following text, thinking everything up until the next quotation
+mark to be part of the URL.
+
+<H3><A NAME="missed_end_tag_errors">Missed end tags</A></H3>
+
+<P> Many of the HTML elements  contain information within them. For
+example, <CODE>&lt;EM&gt;emphasized text&lt;/EM&gt;</CODE> would
+be rendered as emphasized text. There is a start tag (<CODE>&lt;EM&gt;</CODE>),
+some content (which may include text, and in some cases, other
+nested elements), and an end tag (<CODE>&lt;/EM&gt;</CODE>, indicated
+by the <CODE>&lt;/</CODE>). A common mistake is to miss the <CODE>/</CODE>
+in the end tag. All elements (except empty elements, below) must
+be terminated by an end tag -- otherwise, undefined behavior
+may occur.
+
+<P> Some HTML elements may be empty, such as <CODE>&lt;P&gt;</CODE>
+and <CODE>&lt;HR&gt;</CODE> (<A
+HREF="http://www.w3.org/pub/WWW/MarkUp/">the HTML 2.0
+specification</A> provides <A
+HREF="http://www.w3.org/pub/WWW/MarkUp/html-spec/html-spec_3.html#SEC3.2.2">more
+information about element content</A>).  If this is the case, there is
+no need for an end tag.
+
+<H3><A NAME="using_white_space_around_tags">Using white space
+around element tags</A></H3>
+
+<P> In general, the use of white space around element tags should be
+avoided. For example, if white space immediately follows a start tag,
+the style changes implied by that element may be applied to the
+initial space as well. For instance,
+
+<PRE>
+You really should
+&lt;A HREF="http://www.cs.cmu.edu/~tilt/"&gt; CZeCh THIZ 0uT &lt;/A&gt; !
+</PRE>
+
+<P> would be rendered in Netscape as shown in figure 18, and in
+Lynx as shown in figure 19.
+
+<HR> <P ALIGN="center"> <A HREF="figures/fig18.html">[Figure 18:
+Improper use of whitespace (and spelling and punctuation, too)
+(Netscape)]</A>
+
+<P ALIGN="center"> <A HREF="figures/fig19.html">[Figure 19: Improper
+use of whitespace (Lynx)]</A>
+
+<HR>
+
+<P> On some browsers, there may be white space around the anchor,
+which adds unwanted unsightliness to the rendering, and may lessen
+the impact of the document. (This comment really applies to white
+space immediately following start tags, and immediately preceding
+end tags).
+
+<H2><A NAME="stylesheets">Stylesheets</A></H2>
+
+<P> The point has probably been well made by now that HTML is not
+a very good vehicle for providing specific information about layout
+and presentation. There are no mechanisms for an author to specify
+how she wants specific elements rendered, or to control aspects
+of page layout. While one of the strengths of HTML is this very
+independence from presentation details, it has become clear that
+some form of presentation control is needed. 
+
+<P> Stylesheets are the answer to this problem. It provides the other
+half of the equation, the half that is currently not provided
+by HTML. While HTML provides information about content, stylesheets
+will provide information about how to render specific elements.
+
+<P> Unfortunately, while several mechanisms for providing stylesheets
+are under development, there is no clear standard at the time
+of this writing. We cannot tell you what stylesheet mechanism(s)
+will become standard, but we can tell you about the current contenders.
+Keep your hopes up, though: because of the importance of stylesheets,
+it is highly likely that a usable standard will emerge within
+the next year.
+
+<H3><A NAME="stylesheet_proposals">Some Stylesheet Proposals</A></H3>
+
+<P> In these proposals, the stylesheets contain information about how
+elements should be rendered, whether this is font information,
+justification information, etc. At the time of this writing, the
+syntax for these stylesheets has not yet been fully designed.
+
+<H4><A NAME="cascading_style_sheets">Arena/Cascading Style Sheets</A></H4>
+
+<P> The Arena browser is currently the only browser which supports
+a stylesheet mechanism, and that mechanism is currently only very
+limited and very experimental. The mechanism involves "<A HREF="http://www.w3.org/pub/WWW/Style/css/draft">cascading style sheets</A>,"
+which means that the several different style sheets, each with
+a different order of importance, are combined in order of importance
+to create a presentation style. The reader can specify her own
+preferences for rendering, as can document authors, and these
+preferences are merged to produce the final document.
+
+<H4><A NAME="dsssl_lite">DSSSL/DSSSL Lite</A></H4>
+
+<P> DSSSL is the Document Style Semantics and Specification Language,
+which has emerged from the <A
+HREF="http://www.ncsa.uiuc.edu/SDG/Software/Mosaic/WebSGML.html">SGML</A>
+community as a potential stylesheet mechanism. Because it is complex,
+work is being done to create "<A
+HREF="http://www.jclark.com/dsssl/">DSSSL Lite</A>," a modified subset
+of DSSSL which can be easily implemented by client programmers, and
+easily used by HTML authors.
+
+<H3><A NAME="stylesheet_alternatives">Alternatives to Stylesheets</A></H3>
+
+
+<P>While stylesheets are not currently useable, there are alternatives
+in existing specifications, which can be used with existing browsers.
+While the HTML 3.0 enhancements below are not yet widely propagated,
+it is likely that they will be soon; and the Netscape enhancements are
+already available (and are likely to be integrated into the <A
+HREF="http://www.w3.org/pub/WWW/MarkUp/html3/CoverPage.html">evolving
+HTML 3.0 specification</A>).
+
+<H4><A NAME="html_30_page_layout">HTML 3.0</A></H4>
+
+<P> While HTML 3.0 does include the <CODE>STYLE</CODE> element for
+supporting whatever mechanism is eventually deployed for stylesheets,
+HTML 3.0 also provides some new elements for greater control over
+presentation. These elements include <CODE>BANNER</CODE>, <CODE>BIG</CODE>,
+<CODE>SMALL</CODE>, <CODE>TABLE</CODE>, <CODE>MATH</CODE>, and
+<CODE>TAB</CODE>.
+
+<P> The <CODE>BANNER</CODE> element provides a means for a banner
+of HTML that will always remain on the screen. This might be a
+copyright notice, a toolbar, or any other content which should
+always be available.
+
+<P> The <CODE>BIG</CODE> and <CODE>SMALL</CODE> elements allow for
+rendering text as bigger or smaller, as compared to the default
+text size.
+
+<P>The <CODE>TABLE</CODE> and <CODE>MATH</CODE> elements provide
+for a more sophisticated means of layout. The <CODE>TABLE</CODE>
+element allows the author to specify a spreadsheet-style arrangement,
+with cells that can contain text, images, and even input elements
+for <CODE>FORM</CODE>s. The <CODE>MATH</CODE> element allows for
+the description and rendering of complex mathematical formulae.
+
+<P> The <CODE>TAB</CODE> element allows the author to specify tab
+stops within the document.
+
+<P> In addition, some entities have been added, such as
+"<CODE>&amp;emspace;</CODE>", to provide finer control over spacing.
+
+<P> For more information about these additional elements and entities,
+see the <A
+HREF="http://www.w3.org/pub/WWW/MarkUp/html3/CoverPage.html">HTML 3.0
+specification</A>.
+
+<H4><A NAME="netscape_page_layout">Netscape</A></H4>
+
+<P> The Netscape approach cannot be called a "style sheet,"
+per se. Rather, as of the 1.1 release of Netscape Navigator, Netscape
+has provided several "enhanced" elements to help control
+presentation. These elements include <CODE>FONT</CODE>, <CODE>BASEFONT</CODE>,
+<CODE>IMG</CODE>, and <CODE>BODY</CODE>.
+
+<P> The <CODE>FONT</CODE> and <CODE>BASEFONT</CODE> elements allow
+changing the size of font within a document. The <CODE>IMG</CODE>
+element, on the other hand, has been enhanced to provide text
+flow around images in documents.
+
+<P> The <CODE>BODY</CODE> element now allows control over the background.
+The author is allowed to provide a background color or image for
+their document. In addition, the author can specify different
+colors for hypertext links, in case the default colors do not
+have sufficient contrast to the new background color.
+
+<P> If you would like more information, Netscape Communications has
+provided documentation of their HTML extensions online (both for the
+<A
+HREF="http://home.netscape.com/assist/net_sites/html_extensions.html">Netscape
+HTML 2.0 extensions</A> and the <A
+HREF="http://home.netscape.com/assist/net_sites/html_extensions_3.html">Netscape
+HTML 3.0 extensions</A>).
+
+<P> <STRONG>Note:</STRONG> Be careful when changing colors for hypertext
+links. Most browsers take the approach of using a bright color
+(such as bright blue), which has high contrast to the default
+page background, for links which have not yet been followed; and
+of using a dull color (such as dark blue), which has less contrast
+to the default page background, for links which have already been
+followed. Readers have become used to this high-contrast/low-contrast
+visual cue, and changing the link colors can confuse readers.
+
+<P> The best approach is to, first, not change the link colors unless
+you have to. With most background colors, the defaults should
+still be fine. If you do need to change the link colors, use a
+color that is bright, and high-contrast to the background color,
+for links to pages which have not yet been visited. Use a duller
+version of that same color for links that have already been followed.
+
+<H1><A NAME="web_style_considerations"></A>Web Style Considerations
+</H1>
+
+<P> A quick plug: Chapter 5 of <CITE>Web Weaving</CITE> discusses
+many of the issues you should take into account in planning and
+administering your Web (in fact, the entire book revolves around
+the subject in great detail). Here we will also address that subject,
+considering the architecture of your infostructure.
+
+<H2><A NAME="organization">Organization</A></H2>
+
+<P> When organizing your infostructure, there are several important
+issues to consider. These issues include:
+
+<P> <STRONG>Presenting a clear ordering of information</STRONG> by
+subject (table of contents), or some other form of reasonable
+entry into the infostructure. Some useful forms are:
+
+<UL>
+<LI>Table of Contents
+<LI>Searchable Index
+<LI>What's New (with the organic nature of online documents, a
+time-oriented ordering will help the infonaut quickly orient herself
+with what is new and/or changed in otherwise familiar territory)
+</UL>
+
+<P> The reader needs to be able to find what they are looking for,
+and a good overview that allows the reader to quickly find a particular
+topic or document is invaluable.
+
+<P> <STRONG>Only making a document as long as it needs to be</STRONG>.
+If a document can be logically decomposed into more then one file,
+do so, but only decompose a document if the narrative branches
+from the linear structure of the current document. An example
+of this is breaking a book-length work up into chapters, and further
+breaking those chapters up into sections. Because of the length
+of time involved in retrieving documents, making the document
+available in readable chunks means that the reader can use the
+information without becoming overwhelmed in loading times and
+a correspondingly large amounts of information presented a single,
+huge, scrolling document.
+
+<P> Correspondingly, make sure a document is richly cross-referenced,
+so that if reader wants to ask, "Why?", she can. If
+you can split up supplementary information into separate documents,
+do so. This allows the reader to follow a main flow of narrative,
+but still able to look up evidence and additional related stories
+and information as necessary. But don't put in so many links that
+the reader gets lost trying to follow them all.
+
+<P> <STRONG>Providing a clear, consistent navigation
+structure</STRONG>.  You should always be easily able to navigate to
+all documents which immediately relate, but you should also always be
+able to get any other document in the infostructure with a minimum of
+fuss. Always provide access to the original table of contents, or its
+equivalent. This is especially important for when others create links
+to documents in your Web, but do not necessarily create links to your
+main entry points; readers can find themselves in the middle of what
+is obviously a larger document, but without any means of finding
+additional information. See <CITE><A HREF="#scenic_path">Main Roads and
+Scenic Paths</A></CITE>, below.
+
+<H2><A NAME="design_goals">Design Goals</A></H2>
+
+<H3><A NAME="importance_of_content">Importance of content</A></H3>
+
+<P> Anyone working with HTML for any length of time will soon realize
+that the markup language is composed of containers, which label
+content. It should be obvious, then, that your web should be primarily
+about this content, whatever it may be.
+
+<P> That's not to say that content only lies between HTML tags: content
+is also found in other media types, of course, and, depending
+upon the type of information you provide, sounds or images may
+be more important to both you and your readers than other types
+of media.
+
+<P> Web sites, however, should be driven by content, not by vanity or
+the need or desire to make a buck. Whatever your background, you have
+real "content" -- information, discussion, narrative, ideas -- to
+publish on the Web. People <EM>will</EM> visit your site to find this
+content. Provide it. Focus your site around it.
+
+<P> The largest threat to the Web is that as it becomes insanely popular,
+instead of becoming a world-wide information repository, as its
+founders and proponents have hoped, it becomes a large intertwined
+mass of self-referential sites unwittingly involved in meta-discussions
+on the nature of the Web: home pages which say little more than
+"This is my home page" (or "our home page",
+in the case of the corporate or organizational "presence"),
+with a collection of links which (virtually) point to the same
+collections of sites as the last page you visited did.
+
+<H3><A NAME="scenic_path">Main Roads and Scenic Paths: Issues
+of Navigability</A></H3>
+
+<P> As readers attempt to sail the seas of your infostructure, it
+is important that you provide useful ways for them to move around
+in your infostructure. Many readers complain about the proliferation
+of links in documents, providing so many choices that it becomes
+impossible to decide where to go next. The blessings of hypertext -- leaving
+control in the hands of the reader -- can also be a curse, as
+the original thrust of the narrative becomes awash in side tracks
+and dead ends.
+
+<P> A means of approaching this problem is to use the metaphor of
+"main roads" and "scenic paths." This means
+categorizing the kinds of links you include into two major groups:
+those which are recommended next destinations, and those which
+lead off into explanatory side-trails and divergences. As an example,
+a main path through a hypertext version of a book would be a linear
+progression from first chapter to the last. A side trail, on the
+other hand, would be a reference from (for example) Chapter 6's
+description of CGI functionality in various HTTP servers to Chapter
+8's extended discussion of CGI scripting.
+
+<P> This is not to say that there is a single main path through a
+document -- there can be several (just as there are several
+ways to read a book, including as a linear narrative, and as a
+random-access reference). And side trails include references outside
+of the immediate document, such as bibliographic references. In
+addition, side trails can become main paths if the trail leads
+to another document instead of self-contained explanation.
+
+<P> The point, however, is that a document (in the extended sense
+of several HTML pages collected and interlinked) should contain
+at least one or more author-defined main paths through the text,
+in order to provide a guidepost for those exploring the information.
+These main paths should take the form of "next" and
+"previous" anchors, links back to the table of contents
+and index from any point within the document, and pointers to
+alternate main paths which are available (where appropriate).
+
+<P> Although hypertext is based on notions of non-linear text, readers
+<em>do</em> make it linear as they read through it. And it doesn't
+hurt to provide at least one sensible linear pathway through the
+document for readers who aren't interested in wandering around
+in hyperspace.
+
+<H3><A NAME="consistency">Consistency</A></H3>
+
+<P> Consistency is what brings your site together so that it feels
+like a cohesive whole -- it can unite otherwise disparate topics
+or content areas, and it can be used to give your site a distinctive
+feel in comparison to other sites, or a sense of personality.
+Consistency also lends to the maintenance of a site -- if you
+have a certain way of doing things site-wide, it becomes much
+easier to make significant site-wide changes without putting a
+great deal of time into it. You can achieve site-wide consistency
+a number of ways:
+
+<H4><A NAME="headers_and_footers">Headers and footers</A></H4>
+
+<P> A standard site-wide graphical banner or text-based header can
+be used to easily identify the site or sponsoring organization.
+Your header doesn't necessarily need to be static across the site;
+you can easily share dimensions and a primary graphic element
+across banners while making each one relate specifically to the
+content at hand.
+
+<P> Footers can be used in the same way; a standard method to sign
+documents and/or a standard text-based or graphical menu bar can
+easily pull a site together, not only as a design element, but
+also as an easy way to always navigate to the table of contents
+or index of a site.
+
+<P> Server-side includes, supported by most HTTP servers, can simplify
+some of this work, allowing you to create generic headers and
+footers which can be modified once and included in all of your
+documents.
+
+<H4><A NAME="graphic_elements">Graphic elements</A></H4>
+
+<P> A unifying theme for graphic elements throughout the site easily
+pulls it together into a whole. A shared motif, such as bubbles,
+sign posts, or a corporate logo, works, as does a site-wide color
+scheme or page backgrounds. You can rely on sizing and positioning
+of graphic elements or textual elements, as well, to achieve a
+unified feel.
+
+<H4><A NAME="personality_and_style">Personality and style</A></H4>
+
+<P> Beyond images and design elements, sites come together because
+of personality and style. A consistent feel or attitude for a
+site, conveyed across textual and graphic elements, can not only
+make each piece feel as if it's part of a larger whole, it can
+also attract readers who share the same attitude or outlook (or
+are fascinated by yours). The best sites on the Web aren't necessarily
+the most polished, but those that pull readers back again and
+again not only because of informational content but also because
+of the voice with which that content is presented.
+
+<P> For documents which should have a personality all their own, such
+as user home pages, you can still pull all these different personalities
+and outlooks together by presenting a common theme or launching
+point. All the users of a particular Internet service provider,
+for example, have something in common by the sheer fact of their
+being there -- and by the mere fact of providing a top page
+view to user-maintained areas, the service provider has begun
+to form a community around which a commonality can develop.
+
+<H3><A NAME="persistent_urls">Persistent URLs</A></H3>
+
+<P> Although <A HREF="http://www.ics.uci.edu/pub/ietf/uri/">Universal
+Resource Names</A>, or URNs, are being developed in order to provide a
+naming system similar to the domain naming system for URLs, at this
+point it remains desirable to use URLs as if they refer to the same
+resource persistently through time.
+
+<P> As a content provider, you can help provide those who make link
+which point to your site by developing a file structure which
+will allow you to manage content as it grows and develops.
+
+<P> If your Web space is based on a hierarchical filing system, you
+can avoid major reorganization of that file system by
+
+<UL>
+<LI>thinking not only about organizing your current content, but
+how you plan on developing and expanding that content in the future
+<LI>creating a file space which is neither too shallow nor too
+deep for your content.
+</UL>
+
+<P> An example might be an organization which has just created a new
+division, Foobar. Currently, there's little information to publish
+about Foobar on the Web: Foobar has a mission statement and little
+else. Though it might logically follow to create a file, "foobar.html",
+to hold the mission statement, and to store it in the same directory
+as your main organization's web, it might be wiser to create a
+subdirectory named <CODE>foobar</CODE> which could then contain
+<CODE>foobar.html</CODE> and other files, as Foobar expands. This
+way, links don't have to be changed or redirected down the road
+when Foobar adds additional files and perhaps chooses to design
+and administer its own web space. If part of Foobar's mission
+statement is to spin off into its own organization, you might
+even create a directory on the same level as the parent organization's,
+to signify within the URL path the relative autonomy of the division
+and its future direction.
+
+<P> Another way to manage URLs is to only publicize a few well-known
+entry points to your Web: for example, the top view, or table
+of contents page, and perhaps an index page, or a FAQ page.
+
+<P> When URLs do change, it's important that you not only provide
+links from the old URLs to the new ones (or redirect the URLs
+to the new ones), but you also make an attempt to notify those
+that have links into your Web space, through general announcements
+or by contacting directly those who have well-known links to your
+documents (such as <A HREF="http://www.yahoo.com/">Yahoo</A> or
+<A HREF="http://www.lycos.com/">Lycos</A>).
+
+<H3><A NAME="seamlessness">Seamlessness</A></H3>
+
+<P> Your web space should not only be consistent with itself internally,
+it should make references between the site and the outside world
+appear seamless.
+
+<P> A good case in point is the corporate site which has made its
+product information available via the Web, but, under the link
+for Ordering Information, only provides an 800 number in order
+to purchase the advertised commodity. Or the home page for a band
+which doesn't provide any audio clips of the band's songs, but
+just a thumbnail image of the cover art from their most recent
+album, available through some obscure indie label. Or the online
+newspaper which provides news coverage, but doesn't push the envelope
+and provide a real way to participate in the political process.
+
+<P> Seamlessness is about bridging the gap between the world you create
+within your web and the world outside it. Often, this means not
+carrying over from traditional broadcast media restrictions or
+limitations that fail to make sense in interactive media. 
+
+<H2><A NAME="macro_n_micro">Macrocosms and Microcosms</A></H2>
+
+<H3><A NAME="entire_server_structure">The big picture: entire
+server structure</A></H3>
+
+<P> A site-wide strategy to organize information is never easy to
+invent, but vitally important to your site's success as a place
+where information is retrieved and used, versus simply being an
+area in which content is stored.
+
+<H4><A NAME="server_structure_metaphor">Finding a metaphor</A></H4>
+
+<P> Of course, there's no single recipe or structuring mechanism which
+you can apply to all types of content to give you a well-designed
+web site. That comes from thinking about the nature of your site
+and your content, and the logical divisions that your content
+can be organized around. However, finding an existing metaphor
+which you can work within while also pushing the boundaries of
+can be an effective way to plan for the organization of a site.
+
+<P> There are many obvious metaphors upon which to base a web site:
+thinking of your content as being organized like a book, building,
+or branching tree.
+
+<H4><A NAME="server_as_book">The book metaphor: pages of content</A></H4>
+
+<P> Books lend themselves easily to the Web: and, in fact, many books
+have been "ported" to the Web, for better and for worse.
+Books have tables of contents and indices, for quickly locating
+information; parts, chapters, sections, and sub-sections, for
+organizing content; and footnotes, endnotes, and bibliographies,
+for displaying links to other content. Collections of books become
+"libraries", complete with card catalogs and help desks.
+
+<P> However, books also have pages which display content statically,
+while computer displays have a single, dynamic screen. A book
+metaphor quickly falls apart when applied to the Web on a page
+level: you could choose to consider a single HTML document a "page",
+causing you to break up content into arbitrarily small and hard
+to manage, difficult to navigate pieces; or you could think of
+whatever text and graphics being currently displayed on a screen
+as a "page", which could easily drown the user in a
+sea of text without the benefit of traditional navigational tools
+such as page breaks and numbering of pages. The screen is not
+a page.
+
+<H4><A NAME="server_as_artifice">The building metaphor: content
+as artifice</A></H4>
+
+<P> Sites can also be managed as being housed in a building, a collection
+of buildings, or along some other spatial metaphor. The information
+you hope to store and manage is divided for the user along content
+areas, which is housed in different "buildings", which
+can then be further subdivided into "rooms". Obviously,
+this can be effective for some types of content, such as a large
+corporate site with many divisions, or a museum or gallery: basically,
+any information which can be mapped into a spatial plane consistently
+lends itself to this sort of view.
+
+<P> At the same time, a spatial metaphor in a largely text-driven
+medium, as the Web is today, is often hard to pull off convincingly.
+<A HREF="http://vrml.wired.com/">VRML (Virtual Reality Markup Language)</A>
+and other such developments will allow for the creation of virtual
+spaces; even then, the connecting points between rooms or buildings -- hallways
+and walkways -- need to be considered thoughtfully. It's also
+the case that, at many sites, the metaphor is dropped too quickly:
+you're asked to select a content area based upon a clickable map-based
+view, but then you're dropped into pages of descriptive text.
+Not only can this be disconcerting for a user, it points out the
+fact that oftentimes resources aren't allocated wisely across
+a Web site, with too much attention and time spent on the top
+page of a site in comparison to the remainder of the site.
+
+<H4><A NAME="server_as_tree">The branching metaphor: regimented
+growth</A></H4>
+
+<P> A third way of thinking about a site as a whole is using a branching
+metaphor, where all content springs from a common root and then
+branches out into many divisions and content areas. This is an
+obvious metaphor to use for web sites built atop file systems,
+since most file systems share this organization of directories
+(or folders) branching into subdirectories (or subfolders), and
+so on.
+
+<P> A branching metaphor shouldn't be pursued over the linear flow
+of information, however: too many branches can be confusing or
+frustrating for a user, especially if navigating those branches
+requires repeated jumps to a monolithic top structure.
+
+<P> In general, there some key issues you should keep in mind when
+organizing a site on a macro level, including:
+
+<P> <STRONG>Providing a main entry point</STRONG>, or top view, which
+makes it easy for users to find the content which they're most
+interested in. At times, you'll know exactly what a user is looking
+for: if you run a site which provides audio clips of theme songs
+from popular cartoon series of the '70s, users probably expect
+to find a listing of available audio samples or a link to such
+a listing from your site's top page. Other times, you can't be
+expected to know: for a site covering a wide diversity of subjects,
+it may be necessary to provide a search mechanism or user-customizable
+top view in order for users to navigate your site comfortably.
+
+<P> <STRONG>Offering multiple paths to the same content</STRONG>.
+Not all readers seek the same information in the same way. A good
+glossary or index will cross-reference information: for example,
+you may be told to look under "automobiles" if you seek
+information under "cars". That same information could
+probably be found by looking through a table of contents. With
+hypertext links, you can refer to the same information in many
+ways. Do so, where it facilitates the user without overwhelming
+her.
+
+<P> Keep in mind, too, that a site, whether it be a file system or
+a database, need not be organized as the user sees it: the underlying
+structure doesn't have to be identical to the structure which
+the user navigates. However, a close relationship between the
+two can make it easier to maintain a site, as content is revised
+and expanded. A change in one part of your web space can have
+an impact on other parts of your site which share links or other
+references: the easier it is for you to see these relationships
+while maintaining these underlying documents, the more likely
+it becomes that your site as a whole is kept up-to-date and cohesive.
+
+<H3><A NAME="document_structure">The little picture: a document
+corpus</A></H3>
+
+<P> Many of the decisions you make on a site-wide level to organize
+content carry over to the management of "documents",
+whether they be single pages of HTML, or a collection of such
+pages which cover a single topic. These things include such obvious
+carry-overs as having an overview of the information presented
+within the document available to the reader at the "top"
+page, or expected entry point; making links available at appropriate
+points (usually, at the tops or the bottoms of pages) to bring
+the reader back to the overview for the document; and keeping
+your collection of documents uniform in terms of both content
+and form.
+
+<P> Much of the management of documents, though, is the management
+of links. Hypertext is all about links -- this should be patently
+obvious to most. But <EM>producing</EM> hypertext is all
+about managing links from the perspective of your potential reader.
+Too often, Web documents fail by failing to manage links effectively -- either
+by delivering screenfulls and screenfulls of ever-scrolling text,
+or providing index-card-sized groupings of hypertext which link
+in a myriad of directions to other index-card-sized groupings
+of hypertext. Neither end of the spectrum allows the user to navigate
+the content presented easily: in one case, one becomes disoriented
+in a sea of text; in the other, in an ocean of links. Worse yet,
+documents can become so overseasoned with random and senseless
+connections to every possible place that that the reader becomes
+lost in a sea of text <EM>and</EM> links!
+
+<P> The key to managing links in your documents (besides simply verifying
+that they are correct) is to organize them into classifications,
+and to employ links of various classifications in a reasonable
+and intelligent way. The next few sections describe some of the
+various classifications of links.
+
+<H4><A NAME="links_to_footnotes">Footnotes</A></H4>
+
+<P> There are two traditional purposes for footnotes: for bibliographic
+references, and for further commentary and/or elaboration of points
+within the main text. Links to short explanatory text within a
+hypertext document can be useful to readers, if it's clear from
+context that the link is a digression.
+
+<P> Within your documents, the "footnote" style of link
+should be regarded as an explanatory link which elaborates on
+the current discussion without drawing the reader away from the
+main text. A footnote will draw the reader away temporarily, explain
+something, and then allow the reader to return to the main flow
+of text. While a footnote might offer further links to further
+explanations of greater depth, the footnote itself is usually
+nothing more than a brief explanation or glossary-style definition.
+
+<P> You can achieve this effect by context, by linking from a phrase
+(as in the lemming example below) to a short explanation or parenthetical
+remark that explains the text in question. If you are to trying
+to achieve a more traditional effect, you can also use numbered
+note references, by either using a number surrounded by brackets
+(<CODE>[1]</CODE>), or by using the <CODE>SUP</CODE> element in
+HTML 3 (<CODE>&lt;SUP&gt;1&lt;/SUP&gt;</CODE>).
+
+<P> HTML 3 also defines the FN element for use in footnotes, which,
+"when practical, [should be] rendered as pop-up notes":
+
+<PRE>
+&lt;P&gt;Nothing is certain about the &lt;A HREF="#FN1"&gt;lemmings&lt;/A&gt;,
+other than that they left as they came, with nothing but a silly grin an
+some lemon pies.
+
+&lt;FN ID="fn1"&gt;Lemmings: Small rodents that like to leap off of
+cliffs if necessary for retrieving a really nice lemon pie.&lt;/FN&gt;
+</PRE>
+
+<H4><A NAME="links_to_whole_documents">Whole documents</A></H4>
+
+<P> Where the footnote provides brief elaboration, the link to a "whole
+document" (whether it be a single document, or to the entry
+point for a collection of documents) provides a whole new potential
+area of exploration. This is the most common sort of link, which
+provides a connection between your document and the outside world.
+
+<P> This sort of link should be used with care. It has the potential
+to draw your reader completely away from your document, by providing
+supplementary information that takes longer to read than the original
+document. It is better to use footnote-style links for explanation
+and elaboration, and from there to use links to outside documents
+to provide further reference information for the curious (and
+insatiable) reader. Another danger is that of peppering your document
+with random hypertext links that a reader feels she must follow,
+without actually providing further explanations or further reading
+that's germane to the context or the point of your own document.
+
+<P> On the other hand, if you are referring directly to another on-line
+document, this is the kind of link to use. By providing direct
+access to supplementary material for your readers, you can give
+them as much or as little detail as they are willing to plow through.
+
+<H4><A NAME="links_to_indices">Indices</A></H4>
+
+<P> Another form of link is the index. Unlike the previous two classifications,
+which provide further information for the reader as they advance
+through the text, the index allows the reader to enter the text
+from whatever point she desires, so that she can get right to
+the meat of what she is interested in. An index allows the reader
+to cut through the author's pre-designed tour of the information,
+and get right to that vital information on wildebeest's dietary
+habits.
+
+<P> There are several variations on this. The most popular is the
+full-text searchable, allowing readers to query a database of keywords
+and retrieve those portions of your text which contain those
+keywords. <A
+HREF="http://www2.ncsu.edu/bae/people/faculty/walker/hotlist/isindex.html">Several
+software packages provide full-text searching capability</A>, and <A
+HREF="http://hopf.math.nwu.edu/">the WN server</A> provides has
+searching built-in.
+
+<P> Another variation is often found in books: an enumerated list
+of keywords. This differs from an index where the reader supplies
+the keywords in that the author can provide a selection of keywords
+that are particularly useful for finding information. This is
+important-picking proper keywords can be an arcane art, sometimes
+requiring intimate knowledge of the contents of the collection
+being searched. Especially if the collection is a large one, most
+keywords will return a large amount of documents which may be
+only partially related to what the reader had in mind.
+
+<P> Yet another variation provides even more refinement and selection:
+the table of contents. A table of contents is a form of index,
+organized by broad topic. Consider providing not just one, but
+multiple tables of contents for your documents, especially if
+there is more than one reasonable way in which to read the information.
+
+<H2><A NAME="portability">Portability Between Server Platforms</A></H2>
+
+<P> One of the advantages of HTML, which most Web documents consist
+of, is that HTML is based upon a number of other clearly defined,
+widely supported, non-proprietary formats, such as ISO Latin-1
+and Internet Media Types (itself based on MIME). This approach
+makes it much more likely that, a decade from now, your documents
+will not be part of some legacy system which is, at best, difficult
+to maintain and expand.
+
+<P> If your documents do have that kind of lifespan, however, it's
+probable that they will reside on multiple hosts in that timeframe:
+perhaps concurrently, in the case of popular sites which are mirrored.
+A little attention to the requirements of different filesystems
+during the initial planning of your site could save a lot of time
+spent renaming files and links in the future.
+
+<P> About filesystems: some make the argument that Web servers should
+sit atop databases, instead of filesystems; databases certainly
+allow non-hierarchical relationships between pieces of content
+and make it easier to provide "dynamic" documents (documents
+which alter their appearance or content based upon the user accessing
+the data or other conditions) than traditional filesystem-based
+approaches. By the time this book sees print, there will certainly
+be several HTTP-serving database systems which address many of
+the issues raised here "automatically".
+
+<P> There are some very compelling reasons for using a database over
+a file system. A database-oriented system might be utilized to
+maintain linkages as documents move and change; to track documents
+as they grow old, alerting maintainers to update the documents
+periodically so that they do not suffer "bit-rot"; and
+to generate multiple representations of a collection of information
+dynamically (allowing your readers to order your document collections
+in ways that make sense to them). However, a database approach
+is not required to get some of this functionality; other tools
+also exist that also do these sorts of things (Chapter 7 of <CITE>Web
+Weaving</CITE> covers these sorts of tools in more detail; examples
+include <A HREF="http://www.ics.uci.edu/WebSoft/MOMspider/">MOMspider</A>
+and the <A HREF="http://www.webtechs.com/html-val-svc/">HTML Validation
+Service</A>).
+
+<P> But this automation may not come cheap: there will always be a
+learning curve to mastering any system, proprietary or non-proprietary,
+and the skills learned from managing a proprietary system are
+not easily transferred to other systems. You, as an information
+provider, must rely on your database solutions vendor to understand
+your needs and continue to build the feature-set of the system
+to satisfy them as you develop and grow. You may be risking the
+future of your documents -- by marrying your content to a single-vendor
+methodology -- for some short-term gains in manageability and
+ease of publishing content.
+
+<P> Do keep these sorts of considerations in mind: a fear of ours
+is that the Web, as it moves forward almost exponentially, may
+lose any sense of history as links fail and documents drop out
+of view because the cost of maintenance and "keeping up"
+has grown to great. Pick simple solutions over complex ones.
+
+<H3><A NAME="naming_space">Naming Space</A></H3>
+
+<P> Historically, most Web servers have been Unix-based, and have
+used the naming space associated with that operation system. Many
+servers have since been developed for other platforms, however,
+and it's no doubt prudent that, as you create documents, you do
+not adhere to a naming space for a particular platform such that
+you make it difficult to move your documents to another platform.
+
+<OL>
+<LI>Some filesystems have naming spaces which are case-sensitive.
+Unix is a good example of an OS which would consider "document.html"
+a different file from "Document.html", while other file
+systems, such as the Mac OS, make no such distinction -- both
+names would refer to the same file. For the sake of portability,
+it's probably best to keep all the file and directory names within
+your web structure lowercase. An added benefit is that this makes
+your URLs much more human-communicable: it's much easier to read
+an all-lowercase URL over the phone than one which contains both
+uppercase and lowercase characters, when case is significant.
+
+<LI>Some filesystems require file extensions to properly type
+files. Servers running under the Mac OS could serve up files with
+proper Content-type headers based upon the file's creator and
+file type stored in the file's resource fork; other filesystems
+use extensions to do this typing. It's always wise to use the
+appropriate file extension for the content type -- such as .gif
+for GIF files -- whenever possible.
+
+<LI>Some filesystems are restricted to a limited number of significant
+characters. DOS and Windows, of course, only allow eight characters,
+plus three characters for the file extension. Generally, filenames
+under 32 characters should be fairly cross-platform, but for DOS/Windows
+(although Windows 95 and NT eliminate this restriction). If you
+think your files may ever need to live on a DOS or Windows server,
+you may need to restrict yourself to 8 + 3 character filenames.
+
+<LI>Almost all filesystems define special characters.
+</OL>
+
+<P> Almost all operating systems allow certain special characters in filenames,
+while disallowing others; the Mac OS, for example, allows slashes
+in file names, while Unix doesn't. It's best to avoid all characters
+but for the letters a through z, the numbers 0 through 9, and
+the underscore, hyphen, and period.
+
+<H2><A NAME="developing_content">Developing Content</A></H2>
+
+<H3><A NAME="uniqueness">Uniqueness</A></H3>
+
+<P> Uniqueness may not be seen as an important design goal at first
+glance: after all, uniqueness -- not duplicating efforts by
+creating or compiling same or similar content -- may appear
+to be more of a community issue than an organizational one.
+
+<P> Providing a unique resource, however, increases traffic to your
+site, and adds to the authoritativeness of your content (see below).
+It will also require support, and a popular, unique resource can
+have a spill-over effect on the other content you provide on your
+site, especially if your site has a consistent feel and character.
+
+<P> In addition, redoing what has already been done elsewhere can
+add to frustration on the part of readers. Providing yet another
+list of exciting online resources means that there is simply more
+of the same sort of content available, which readers must then
+evaluate and compare to other such resources. Providing a unique
+resource (or a resource in short supply) means that you are adding
+to the content of the network, instead of duplicating it.
+
+<P> How to check for uniqueness of content? There are many search
+mechanisms on the Web, such as <A HREF="http://www.lycos.com/">Lycos</A>.
+You can also check in relevant newsgroups and mailing lists. (Chapter
+10 of <CITE>Web Weaving</CITE> covers these sorts of issues in
+more detail).
+
+<P> You can also produce your content so that it leans towards providing
+unique, value-added content: instead of simply providing a list
+of poetry sites, say, you could provide a list of poetry resources
+which you find particularly compelling, with descriptions of why
+you think they are compelling. Adding value and content means
+that you are being a good network citizen, leaving the community
+with more than you found it with.
+
+<H3><A NAME="authoritativeness">Authoritativeness</A></H3>
+
+<P> Authoritativeness has always been a fallacy, except when read
+as author-itativeness; whatever claims to authority you or your
+organization have ultimately boil down to status and reputation
+within the community. One becomes a reputable source not by being
+non-refutable, but by putting a stamp on what you write; by claiming
+authorship, and, thereby, author-ity.
+
+<P> This means that readers must take greater responsibility for critically
+analyzing what documents they come across. But it also means that
+you must be responsible in establishing credentials for what you
+claim, providing source material and raw data to justify your
+conclusions.
+
+<P> In some sense, this is the end result of all of the things we
+discuss here (and in <CITE>Web Weaving</CITE>). In building and
+maintaining your infostructure what you are aiming for is authoritativeness;
+for creating documents which are well thought out and well designed;
+which do not become stale or inaccurate; and which remain both
+internally and externally consistent. Your mission now is to use
+the tools we have provided you with to place the stamp of authority
+and relevance on your own works, and to truly create infostructures
+on the Web which are compelling and creative. Good luck!
+
+<H1><A NAME="for_more_info">For More Information</A></H1>
+
+<P> There already exist documents on the Web which address this same
+topic, and perhaps in more detail. For definitive reference information
+you may wish to check the <A HREF="http://www.w3.org/hypertext/WWW/MarkUp/">HTML specifications</A>
+from the <A HREF="http://www.w3.org/">World Wide Web Consortium (W3C)</A>.
+For a more detailed discussion of HTML composition style, you
+should also check the <A HREF="http://www.w3.org/hypertext/WWW/Provider/Style/Overview.html">Style Guide</A>
+(especially the section on <A HREF="http://www.w3.org/hypertext/WWW/Provider/Style/DeviceIndependent.html">device-independent formatting</A>),
+which is also from the <A HREF="http://www.w3.org/">W3C</A>. 
+
+<P> If you're looking for a good document for learning the basics
+of HTML, you will want to check out the <A HREF="http://www.ncsa.uiuc.edu/demoweb/html-primer.html">Beginner's Guide to HTML</A>,
+from NCSA.
+
+<P> Also useful is the Bibliography from <CITE>Web Weaving</CITE>,
+from <A HREF="http://www.aw.com/">Addison-Wesley</A> (as soon
+as this is placed on-line, I'll put a link to it here).
+
+<P> Finally, the somewhat creatively-minded among you can draw inspiration
+from this page's evil twin,
+<A HREF="http://www.zikzak.net/~acb/hacks/htmlth.html">Composing Evil HTML</A>.
+Officially, I don't endorse any of these techniques. Unofficially . . .
+well, let's just say someday I intend to buy Andrew several beers.
+
+<H1><A NAME="acknowledgments">Acknowledgements</A></H1>
+
+<P> I'd like to thank all of you who have visited this document and
+commented on it, suggesting fixes, clarification, and even new
+sections. You know who you are (even if I managed to lose your
+addresses in the flood of information)! It is, in some senses,
+always a work in progress and is always amenable to suggestion,
+modification, and repair. I appreciate your help!
+
+<P>We (the authors of <CITE>Web Weaving</CITE>) especially like to
+thank the folks at <A HREF="http://www.aw.com/devpress/">Addison-Wesley</A>,
+for helping us turn all of this into much more than I, at least,
+ever thought it would be. There's something just so satisfying
+about actually holding a book, hypertext be damned.
+
+<HR>
+
+<P> Copyright &copy; 1994, 1995, 1996 by Eric Tilton. Permission is
+granted for individual use and reproduction provided that this
+document remains intact, with this copyright message clearly visible.
+Commercial use and reproduction rights are held by Addison-Wesley,
+and this document may not be resold or redistributed for compensation
+of any kind without prior written permission from Addison Wesley
+-- contact me for details. Parts of this document appear in a
+revised form in <CITE>Web Weaving</CITE> (ISBN 0-201-48959-7),
+a book by <A HREF="http://www.cs.cmu.edu/~tilt/">Eric Tilton</A>,
+<A HREF="http://www.freedonia.com/~carl/">Carl Steadman</A>, and
+<A HREF="http://www.willamette.edu/~tjones/">Tyler Jones</A>,
+to be published by Addison-Wesley. Look for it in a bookstore
+near you!
+
+<P> The upshot is, this document has always been meant as a public
+service, and will remain a public service. I hope you've found
+it to be useful; I've had fun providing it for your use.
+
+<HR>
+
+<P> Last modified: Dec 8, 1995
+
+<ADDRESS><A HREF="http://www.cs.cmu.edu/~tilt/">James "Eric" Tilton,
+HTML Guru Wannabee and Occassional Author, tilt@cs.cmu.edu</A></ADDRESS>
+
+<P> (and with most of the Web style considerations contributed by
+<A HREF="http://www.freedonia.com/~carl/">Carl Steadman</A>, Guy
+Who <A HREF="http://www.freedonia.com/~carl/bp/bp.html">Doesn't</A>
+<A HREF="http://www.suck.com/">Suck</A>, carl@freedonia.com)
+</BODY>
+
+</HTML>

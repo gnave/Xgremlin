@@ -1,0 +1,94 @@
+<head>
+<title> filter </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>filter</h2><p>
+
+<b>Syntax</b><br>
+<ul>
+<li> <b>Cutoff - filter:</b> <kbd>filter &lt;nrise&gt &lt;ncut&gt</kbd>
+<li> <b>Gaussian filter:</b> <kbd>filter &lt;nrise&gt &lt;ncut&gt &lt;width&gt gauss</kbd>
+<li> <b>Boxcar filter:</b>   <kbd>filter &lt;nrise&gt &lt;ncut&gt &lt;width&gt boxcar</kbd>
+<li> <b>Voigt filter:</b>    <kbd>filter &lt;nrise&gt &lt;ncut&gt &lt;ampnoise&gt voigt</kbd>
+</ul>
+
+These four forms of the filter command invoke different types of filters (see below).
+The meaning of the command parameters is:
+
+<dl>
+<dt> <b>nrise</b>
+<dd> rise width of cosine bell to avoid end effects<p>
+
+<dt> <b>ncut</b>
+<dd> cut off frequency of the FFT<p>
+
+<dt> <b>ampnoise</b>
+<dd> magnitude of the transform at the cutoff frequency <b>ncut</b>
+     of the Voigt filter. It is a measure for the noise amplitude.<p>
+
+<dt> <b>width</b>
+<dd>  the width of the gaussian or boxcar filters
+</dl>
+
+Filter the data by taking the transform, apply a particular filter
+shape and the take the inverse transform. The ends of the original
+data are first multiplied by a cosine bell of width <b>nrise</b>, to
+bring it smoothly down to zero and hence avoid any end effects (see <a
+href="mask.html"> mask</a>). A value of <b>nop/10</b> is usually
+sufficient.<p>
+
+The first form uses a sharp cut-off filter which sets all values in
+the transform of the data in the <b>r</b> array to zero above the
+point <b>ncut</b>. Since the filter drops abruptly to zero at
+<b>ncut</b>, this results in ringing around the lines, and hence it is
+probably not particularly useful.<p>
+
+The second form uses a gaussian filter of width <b>width</b>. This is
+often useful to suppress ringing around lines (i.e. the lobes of the
+sinc function which appear in the wings of strong lines) caused by
+under-resolution. In this case, values of <b>width = 2 or 3</b> are
+usually sufficient. <b>ncut</b> should be equal to the number of points in
+the transform at which it drops to zero. To determine this, transform
+the data using <a href="fourtran.html">fourtran</a> and plot it. Then
+place the cursor over the point at which the plot drops to zero and
+use the displayed point value as <b>ncut</b>.<p>
+
+The third form applies a boxcar filter of a specified <b>width</b>.
+<b>width</b> and <b>ncut</b> should be determined in the same way
+as with the gaussian filter.<p>
+
+The fourth form uses a voigt filter. <b>nrise</b> should be half the
+value of the point where the transform drops to zero, and
+<b>ampnoise</b> should be the value of the transform at this half way
+point. These should be determined in the same way as with the
+gaussian filter.<p>
+
+The filter commands do change the data, sometimes in rather 
+unexpected ways. So it is advisable to examine the results carefully 
+to ensure you have exactly what you require.
+<p><br>
+
+<h3>Examples</h3>
+<dl>
+<dt> <kbd>filter 100 100</kbd>
+<dd> apply a simple cut-off filter to data in the <b>r</b> array.<p>
+<dt> <kbd>filter 100 100 90. gauss</kbd>
+<dd> apply a gaussian filter of width 90 and cutoff 100 to data in the 
+     <b>r</b> array. The first and last 100 points of the data are masked
+     with a cosine bell.<p>
+</dl>
+
+<h3>Related commands:</h3>
+<menu>
+<li><a href="fourtran.html"> fourtran </a>
+</menu>
+ 
+</body>
+
+

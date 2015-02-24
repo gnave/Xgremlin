@@ -1,0 +1,7 @@
+#
+# compiler flags for the g77 FORTRAN compiler
+#
+FF = gfortran 
+# F77FLAGS = -O3 -fomit-frame-pointer -malign-natural -fno-automatic
+#F77FLAGS = -g  -fno-automatic -m32
+F77FLAGS = -g  -fno-automatic 

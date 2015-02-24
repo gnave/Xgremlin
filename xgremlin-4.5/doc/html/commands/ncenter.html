@@ -1,0 +1,30 @@
+<head>
+<title> ncenter </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>ncenter</h2><p>
+
+<b>Syntax:</b> <kbd>ncenter</kbd> <i> [ ncentr ]</i><p>
+
+By default, the position of the center (<b>ncentr</b>) of the
+interferogram is taken from the header file. This command overrides
+the default.  If no parameter (or 0), find peak from data; if a
+parameter is given, it becomes the effective center.<p>
+
+The correct centre must be used to determine the phase, otherwise
+there may be 2*pi phase flips which cannot be fitted by a polynomial.
+<p><br>
+
+<h3>Related commands</h3>
+<ul>
+<li><a href="transform.html>transform</a>
+<li><a href="phcorr.html>phcorr</a>
+</ul>
+ 
+</body>

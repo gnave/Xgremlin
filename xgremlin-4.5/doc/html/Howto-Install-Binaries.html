@@ -1,0 +1,84 @@
+<head>
+<title>Installing Xgremlin Binaries</title>
+</head>
+
+<body bgcolor="#ffffff">
+
+<h2>Installing Pre-compiled Binaries of Xgremlin</h2>
+<b>Ulf Griesmann, May 2, 1996</b><p><br>
+<b>Note this is legacy information. Pre-compiled binaries are currently not available</b>
+
+<h2>Introduction</h2>
+This document explains how to install precompiled binary distributions
+of Xgremlin. It will be updated if and when we distribute precompiled binaries.
+
+
+
+
+<h3>Step 0: Tools and Libraries</h3>
+In order for the binaries to work you must have the X11 libraries,
+the 3d Athena Widget library installed and if you don't have a PostScript
+printer you also have to install the PostScript interpreter 'GhostScript'.
+Read the file <a href="Howto-Install.html"> Howto-Install, Step 0 </a> 
+if you have not installed the libraries.
+Note that some commercial Unixes (Suns come to mind) do not have the
+complete set of libraries from the X Consortium installed.<p>
+<hr>
+
+<h3>Step 1: Installing the binary distribution</h3>
+Load down the appropriate file from the FTP server. Unpack the compressed 
+archive with the following commands:
+<pre>
+    gzip -d xgremlin-<number>-<machine>.tar.gz
+    tar xvf xgremlin-<number>-<machine>.tar
+</pre>
+or in one swoop:
+<pre>
+    gzip -dc xgremlin-<number>-<machine>.tar.gz | tar xvpf -
+</pre>
+(don't forget the trailing '-' !)<p>
+
+Example:
+<pre>
+    gzip -dc xgremlin-2.7-linux-i386.tar.gz | tar xvpf -
+</pre>
+This command will unpack all files and store them in a directory
+named './xgremlin-binaries'<p>
+
+Change to this directory, become superuser, and type
+<pre>
+    make
+</pre>
+This will install the binaries in directory  /usr/local/bin  and set up
+the required symbolic links.<p>
+
+Finally change to the directory  /usr/local/bin  and remove any old
+versions of Xgremlin unless you wish to save them.<p>
+<hr>
+
+<h3>Note 1:</h3>
+If this is the first installation also read the file <a
+href="Howto-Install.html"> Howto-Install</a>, especially the sections
+on configuring Xgremlin ( Step 3 ). At the very least you will have to
+install documentation and drivers with the command 
+<pre>
+    make install-doc install-drivers
+</pre>
+issued in the xgremlin top level directory.
+
+<h3>Note 2:</h3>
+It is important the the application defaults file 'Xgremlin' was installed
+in its correct place
+<pre>
+    /usr/X11R6/lib/X11/app-defaults
+</pre>
+You should make sure that the application defaults database 'Xgremlin'
+was correctly copied to this directory. 'Xgremlin' is the single most
+important configuration file.
+	
+</body>
+
+
+
+
+

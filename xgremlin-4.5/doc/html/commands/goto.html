@@ -1,0 +1,50 @@
+<head>
+<title> goto </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>goto</h2><p>
+
+<b>Syntax: </b> <kbd>goto [&lt;w_center&gt;] [ &lt;w_range &gt; ["nm"]
+] [ &lt;line number&gt;] ["next"] ["prev"]</kbd><p>
+
+plots a range of <b>w_range</b> wavenumbers centered at
+<b>w_center</b> if that part of a spectrum is in the current
+buffer. If <b>w_range</b> is omitted the wavenumber or wavelength
+range is taken from the current plot.  If the the string <b>nm</b> is
+added at the end of the command the numbers on the command line are
+converted to wave numbers first before passing them to the program.<p>
+
+If the number of a marked line is given as command parameter this line will
+be plotted if it is in the current buffer. Subsequent lines can be plotted with 
+the <b>goto next</b> command whereas preceeding lines are plotted with <b>goto prev</b>.
+
+<h3>Examples:</h3>
+<dl>
+<dt> <kbd>goto 32156.</kbd>
+<dd> center plot at 32156 cm^-1 without changing the current dispersion
+of the plot.<p>
+<dt> <kbd>goto 312. nm</kbd>
+<dd> convert wavelengths to primary units and center plot there.<p>
+<dt> <kbd>goto 23</kbd>
+<dd> plots the spectrum around line 23. A line list file (.lin) must be open.<p>
+<dt> <kbd>goto next</kbd>
+<dd> plots the spectrum around line 24 if this command 
+     follows the <kbd>goto 23</b> command.
+</dl>
+<p><br>
+
+<h3>Related commands:</h3>
+<ul>
+<li><a href="plot.html">plot</a>
+<li><a href="wplot.html">wplot</a>
+</ul>
+
+</body>
+
+

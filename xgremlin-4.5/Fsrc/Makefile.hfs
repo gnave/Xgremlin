@@ -1,0 +1,50 @@
+#
+# creates the debugging version of the Xgremlin f77 library
+#
+
+FF = lf95
+F77FLAGS = -O --quiet --sav --tp --wide
+
+
+F = apoption.f arminmax.f cardio.f cmplx.f sort.f chebychev.f \
+    fft.f findl.f fourier.f ftsin.f ftsout.f funct.f gboss.f gdataio.f \
+    ghelp.f gmainit.f gopen.f infio.f infioalt.f strutil.f headers.f \
+    lineio.f linel.f lsq.f modify.f multif.f multir.f option.f integrate.f \
+    page.f plot.f plotr.f plot2.f prnio.f random.f read.f stds.f \
+    phase.f trans.f voigt.f vwidth.f wavcon.f dispatch.f gremlininit.f \
+    writeout.f svd.f readasc.f atlas.f response.f quad.f vquad.f background.f \
+    tspack.f minpack.f zminmax.f voigtfunct.f blas.f fitpack.f srwli.f \
+    hfs.f hfssub.f hfsmisc.f fitshape.f fit.f 
+
+O = $(F:.f=.o)
+
+P = $(O:.o=.prj)
+
+all : libgremlin.a init.o
+
+libgremlin.a : $(O)
+	ar rv libgremlin.a $?
+	ranlib libgremlin.a
+
+tags:
+	etags $(F)
+
+clean:
+	rm -f *~* *.bak *.o *.c *.prj *.log core *.a TAGS
+
+check: $(P)
+	ftnchek -nonovice -array=0 -library -noextern -calltree $(P) >& check.log
+
+%.o : %.f
+	$(FF) $(F77FLAGS) -c $<
+
+%.prj : %.f
+	ftnchek -project -array=0 -nonovice -noextern -notruncation -library $< >& $*.log
+
+# Dependencies still have to be worked out
+
+
+
+
+
+

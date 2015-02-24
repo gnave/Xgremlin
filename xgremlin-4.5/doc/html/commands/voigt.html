@@ -1,0 +1,71 @@
+<head>
+<title> voigt </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>voigt</h2>
+<h3>Syntax:</h3>
+<ul>
+<li>voigt <em>&lt;w&gt; &lt;nop&gt; </em>
+<li>voigt <em>&lt;w&gt; &lt;nop&gt; &lt;ncenter&gt;</em>
+<li>voigt <em>&lt;wl&gt; &lt;wg&gt; &lt;nop&gt;</em>
+</ul>
+where
+<ul>
+<li>	w, wl	-  FWHM of the Lorentzian function (points)
+<li>	wg	-  FWHM of the Gaussian function (points)
+<li>	ncenter	-  central point of Lorentzian
+<li>	nop	-  number of points in the generated function
+</ul>
+
+	This command generates a function in the 'r' array, covering a
+	range of NOP points.  The first two forms generate a Lorentzian
+	function, given by:
+<p>
+<img src="lorentz.gif" >
+<p>
+	In the first form ncenter = nop / 2 + 1.  
+<p>
+	The three parameter form can generate in 'r', a Lorentzian profile, 
+	a Gaussian profile or a convolution of the two.  The two parameters 
+	wl and wg govern the contribution of each type of the function to 
+	the final profile.  The simple cases occur when either wl or wg is 
+	zero.  If wl is zero, the resulting function will be a Gaussian, 
+	and vice versa.  This form uses an inverse Fourier transform to 
+	generate the Voigt profile.  For this reason nop must be large enough 
+	for the function to drop off to zero within its bounds, to avoid 
+	aliasing effects.  This form also destroys the previous contents 
+	of 'tr'. The resulting Voigt profile can be moved to the
+	desired position with the command
+	<a href="shift.html">shift</a>.
+
+
+<h3>Examples:</h3>
+<pre>
+voigt 0. 10. 512
+</pre>
+makes a Gaussian profile of width 10 points, centred at 256 points, in
+an r array of length 512 points.
+<pre>
+voigt 10. 200 512
+</pre>
+generates a Lorentzian of width 10 points, centred at 200 points and
+512 points wide.
+
+<h3>Related commands</h3>
+<ul>
+<li><a href="shift.html">shift</a>
+<li><a href="sinc.html">sinc</a>
+<li><a href="sincos.html">sincos</a>
+<li><a href="noise.html">noise</a>
+<li><a href="data.html">data</a>
+<li><a href="exp.html">exp</a>
+<li><a href="log.html">log</a>
+<li><a href="planck.html">planck</a>
+</ul>
+</body>

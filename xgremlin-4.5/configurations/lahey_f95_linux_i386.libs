@@ -1,0 +1,6 @@
+#
+# libraries required with Absoft Fortran
+#
+FLIBS = -L/usr/local/lf9562/lib -lfj9f6 -lfj9i6 -lfj9e6 
+FLINK = lf95
+FELIB = 

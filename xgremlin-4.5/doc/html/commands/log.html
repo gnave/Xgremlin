@@ -1,0 +1,49 @@
+<head>
+<title> log </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>log</h2><p>
+
+<b>Syntax:</b> <kbd>log</kbd> <i> [ &lt n &gt ] [ &lt errval &gt ]</i><p>
+
+	n  -  base of logarithm. 
+	errval - if r(i) < 0.0, this will be substituted for log(r)
+
+Log with no arguments takes a natural logarithm of the contents
+of the <b>r</b> array.  An integer argument causes the log to the
+base <b>n</b> to be taken. The optional parameter <b>errval</b> is
+substituted for log(r) if r(i) &lt 0.0. <p><br>
+
+<h3>Example</h3>
+<dl>
+<dt> <kbd>log 10</kbd>
+<dd> calculate the log base 10 of the data in the <b>r</b> array:<br>
+<pre>
+        r(i) = log  ( r(i) )     for  i = 1, ... ,nop
+	          10
+</pre>
+</dl>
+<p><br>
+
+<h3>Related commands:</h3>
+<menu>
+<li><a href="derivative.html"> derivative </a>
+<li><a href="exp.html"> exp </a>
+<li><a href="sinc.html"> sinc </a>
+<li><a href="sincos.html"> sincos </a>
+<li><a href="planck.html"> planck </a>
+<li><a href="voigt.html"> voigt </a>
+<li><a href="clear.html"> clear </a>
+<li><a href="data.html"> data </a>
+<li><a href="decimate.html"> decimate </a>
+<li><a href="noise.html"> noise </a>
+</menu>
+
+</body>
+

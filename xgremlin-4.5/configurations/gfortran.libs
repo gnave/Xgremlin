@@ -1,0 +1,7 @@
+#
+# libraries required with gfortran
+#
+FLIBS = -lgfortran
+FLINK = gcc
+FELIB = -lm
+

@@ -1,0 +1,92 @@
+<head>
+<title> open </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>open</h2><p>
+
+<b>Syntax:</b> <kbd>open</kbd> <i> &lt unit name &gt &lt file name &gt
+[ new ] </i><p>
+
+Xgremlin is mostly written in Fortran and retains a certain
+Fortran-ish feel. One of the surviving Fortran anachronisms in
+Xgremlin is that certain named and unalterable <b>units</b> are used
+for reading and writing data from and to files.  <b>Before reading
+from or writing to a file, a file name has to be assigned to a
+suitable unit. Subsequently the file is then referred to by the unit
+name.</b><p>
+
+The Xgremlin unit names are:
+<dl>
+<dt> <b>com</b>
+<dd> The batch file (cards file) unit. Does not normally
+     need to be specifically opened.<p>
+
+<dt> <b>datain</b>
+<dd> The normal unit for reading in spectral data.
+(not interferograms).<p>
+
+<dt> <b>dataout</b>
+<dd> For binary output files. Usually opened using
+<a href="create.html"> create </a>.<p>
+
+<dt> <b>lineio</b> 
+<dd> For files with binary line list data (.lin files).
+If the .lin file does not exist and <b>new</b> is specified on the
+command line, a new .lin file will be created.<p>
+
+<dt> <b>altdata</b>
+<dd> An alternative <b>datain</b> unit.<p>
+
+<dt> <b>rawin</b>
+<dd> for interferograms to be transformed.<p>
+
+<dt> <b>scratch</b>
+<dd> For saving any data temporarily in the scratch directory.
+The scratch directory lives in a users home
+directory or the directory pointed to by the 
+XGREMLIN_SCRATCH_PATH environment variable.<p>
+
+<dt> <b>spool</b>
+<dd> A file to take output usually directed to the
+screen (see <a href="spool.html"> spool </a> for use).<p>
+
+<dt> <b>logfile</b> 
+<dd> To log all the commands you type in. (default name:
+xgremlin-(date)-(time).log  in the home directory).<p><br>
+</dl>
+
+<h3>Examples</h3>
+<dl>
+<dt> <kbd>open datain k11sh2</kbd>
+<dd> will assign the file <b>k11sh2.dat</b> to the input unit 
+<b>datain</b>. Subsequent <a href="read.html"> read </a> commands will then read
+data from the file <b>k11sh2.dat</b><p>
+
+<dt> <kbd>open lineio k11_a</kbd>
+<dd> will assign the file <b>k11_a.lin</b> to the unit <b>lineio</b>. Subsequent 
+<a href="getlines.html">getlines</a> and <a href="putlines.html">putlines</a>
+commands will then read line list data from (or write them to) the file
+<b>k11_a.lin</b><p>
+
+<dt> <kbd>open lineio foobar new</kbd>
+<dd> will create a new linelist file <b>foobar.lin</b> and assign it to
+the unit <b>lineio</b>. This form of the command allows to write internal
+line lists to a file after creating them e.g. with a 
+<a href="findlines.html">findlines</a> command.<p>
+</dl>
+
+<h3>Related commands:</h3>
+<menu>
+<li><a href="close.html">close</a>
+<li><a href="files.html">files</a>
+<li><a href="rewind.html">rewind</a>
+</menu>
+
+</body>
+

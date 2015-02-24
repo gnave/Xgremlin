@@ -1,0 +1,7 @@
+#
+# libraries required with f2c
+#
+FLIBS = -lf2c
+FLINK = gcc
+FELIB = -lm
+

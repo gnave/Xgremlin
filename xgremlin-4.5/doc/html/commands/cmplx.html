@@ -1,0 +1,126 @@
+<head>
+<title> cmplx </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>cmplx</h2>
+<p>
+
+<b>Syntax:</b> <kbd>cmplx</kbd>  <i> &lt subcommand &gt [ &lt
+additional parameters &gt ] </i>
+<p>
+
+This instruction is an umbrella for several commands which operate on
+complex data in the <b>r</b> array. Most are concerned with phase
+correction etc.  and are probably less important with Xgremlin, as the
+phase correction is usually very good (although we have found
+exceptions!).<p>
+
+<dl>
+<dt> <b>cmplx linecorr  &lt nstart &gt &lt nstop &gt [local]</b>
+<dd>Find the phase of a part of a complex array in <b>r</b> 
+betwenn points <b>nstart</b> and <b>nstop</b>, the
+correct all of <b>r</b> with that phase, unless the optional parameter 
+<b>local</b> is present which restricts the application of the phase
+correction to the points between <b>nstart</b> and <b>nstop</b>.
+If no range is given all points in the <b>r</b> array are 
+used for phase determination and correction corrected.
+<p>
+
+<dt> <b>cmplx angle  &lt nstart &gt &lt nstop &gt </b>
+<dd>Find the phase of a part of a complex array in <b>r</b> 
+betwenn points <b>nstart</b> and <b>nstop</b> but do <b>not</b> apply
+a phase correction to the <b>r</b> array.
+<p>
+
+<dt> <b>cmplx rotate  &lt theta &gt ( or: cmplx rotate  &lt real &gt
+&lt imag &gt )</b>
+<dd>Given the phase angle of a vector, or its real and imaginary parts, 
+rotate the <b>r</b> array to make that vector real.
+<p>
+
+<dt> <b>cmplx complex</b>
+<dd> Combine two real vectors in the <b>r</b> and <b>tr</b> arrays
+into a complex vector in the <b>r</b> array. The contents of the <b>tr</b>
+array becomes the imaginary part.
+<p>
+
+<dt> <b>cmplx real </b>
+<dd> Extract the real part of a complex array in the <b>r</b> array.
+The dispersion variable <b>delw</b> is modified by this instruction.
+<p>
+
+<dt> <b>cmplx imag </b>
+<dd> Calculate the imaginary part of a complex array in the <b>r</b> array.
+The dispersion variable <b>delw</b> is modified by this instruction.
+<p>
+
+<dt> <b>cmplx conjug</b>
+<dd> Calculate the complex conjugate of a complex array in the <b>r</b> array.
+<p>
+
+<dt> <b>cmplx add</b> &lt real &gt &lt imag &gt</b>
+<dd> Add a complex constant to every element of a complex vector in the <b>r</b> array.
+<p>
+
+<dt> <b>cmplx combine</b>
+<dd> Add the two complex vectors in the <b>r</b> and <b>tr</b> arrays and
+store the result in the <b>r</b> array.
+<p>
+
+<dt> <b>cmplx multiply &lt real &gt &lt imag &gt</b>
+<dd> Multiply every element of a complex vector in the <b>r</b> array with
+a complex constant.
+<p>
+
+<dt> <b>cmplx product</b>
+<dd> Multiply the two complex vectors in the <b>r</b> and <b>tr</b> arrays
+and place the result into the <b>r</b> array.
+<p>
+
+<dt> <b>cmplx one [&lt npts &gt ] </b>
+<dd> Establish a complex vector filled with  1.0 + 0i of <b>npts</b> points
+in the <b>r</b> array. If the number of points is omitted the entire <b>r</b>
+array is used.
+<p>
+
+<dt> <b>cmplx amp </b>
+<dd> Calculate the amplitude of a complex array in the <b>r</b> array.
+The dispersion variable <b>delw</b> is modified by this instruction.
+<p>
+
+<dt> <b>cmplx phase </b>
+<dd> Calculate the phase of a complex array in the <b>r</b> array.
+The dispersion variable <b>delw</b> is modified by this instruction.
+<p>
+
+<dt> <b>cmplx compexp </b>
+<dd>Change phase (in upper half of <b>nop</b> pts of the <b>r</b>
+array) to complex exponential. All data in the <b>r</b> arrau are 
+overwritten by the result. Note that the complex array must be 
+stored in amplitude-phase format for this command to work.
+<p>
+
+<dt> <b>cmplx spiral &lt N &gt &lt m &gt </b>
+Rotate the <b>r</b>array by 
+<pre>
+                          n - m
+         exp[ i *  2pi * ------- ]
+                            N
+</pre>
+</dl>
+<p>
+
+<h3>Examples</h3>
+<p>
+<kbd>cmplx real</kbd>
+<p>
+Will take the real part of a complex spectrum in the <b>r</b> array.
+
+</body>
+

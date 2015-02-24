@@ -1,0 +1,58 @@
+<head>
+<title> font </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>font</h2>
+<p>
+
+<b>Syntax: </b>font <i>&lt; "small" | "large" &gt &lt; fontname &gt</i>
+<p>
+
+This command is used to change the two fonts for the plotter
+window. A <b>large</b> font is used for tick labels etc. whereas the
+<b>small</b> font is used for exponents, the mouse position indicator
+and such. Any X11 font that is available on a given system or via a
+font server can be used although for best results <b>fixed width fonts
+should be used</b>. Proportional fonts usually lead to placement
+errors of tick labels and other misfits.
+<p>
+<br>
+<b>Note 1:</b><br>
+The UNIX command <b>xlsfonts</b> can be used to find out what fonts are
+available on a system. This command prints out a list of all fonts to
+standard output.<p>
+
+<b>Note 2:</b><br>
+The font used for the text window and button labels can only be
+changed in the application defaults file <b>Xgremlin</b> in the
+directory <kbd>/usr/lib/X11/app-defaults</kbd> or the
+<b>.Xdefaults</b> files in home directories. Modify the resource
+<b>*Xgremlin*font</b> to change the font.<p>
+
+<h3>Examples:</h3>
+<dl>
+<dt> <kbd>font small lucidasans-12</kbd>
+<dd> Change the small font of the plotter window to <i>lucidasans-12</i><p>
+<dt> <kbd>font large lucidasans-14</kbd>
+<dd> Change the large font of the plotter window to <i>lucidasans-14</i><p>
+<dt> <kbd>font large 9x15</kbd>
+<dd> Change the large font of the plotter window to the 9x15 pixel
+fixed font.
+</dl>
+
+<p>
+<h3>Related commands:</h3>
+<menu>
+<li><a href="bubbles.html"> bubbles </a>
+<li><a href="button.html"> button </a>
+<li><a href="color.html"> color </a>
+</menu>
+
+</body>
+

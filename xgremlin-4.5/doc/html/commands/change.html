@@ -1,0 +1,60 @@
+<head>
+<title> change </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>change</h2>
+<p>
+
+<b>Syntax:</b> <kbd>change</kbd> <i> &lt line number &gt &lt line
+variable &gt &lt new value &gt</i><p> 
+
+This command changes the line parameter values in the internal
+linelist and updates the residuals in the process. Possible values for
+the <i>line variables</i> are:
+
+<ul>
+<li> <b>amp</b> or <b>int</b>: line intensity
+<li> <b>sigma</b>: line position / wavenumber
+<li> <b>damp</b> or <b>dmp</b>: damping parameter
+<li> <b>width</b>: line width in mK
+<li> <b>tags</b>: 3 characters of line tags
+<li> <b>id</b>: 32 characters of new line identification
+</ul>
+
+Zero (0.0) serves as a place holder, keeping the previous value; dmp
+may be set to 0.0 in spite of this convention by using any negative
+value. The last two versions are editing commands, to enable certain
+lines to be tagged with the same character for use by e.g.
+<a href="hold.html">hold</a>, or to give a line an identification.  
+<p>
+
+<h3>Example:</h3>
+<kbd>change 129 width 117.32</kbd><br><br>
+sets the width of line 129 to a new value of 117.32mK
+<p>
+<br>
+
+<h3>Related commands:</h3>
+<menu>
+<li><a href="active.html"> active </a>
+<li><a href="dispar.html"> dispar </a>
+<li><a href="drop.html"> drop </a>
+<li><a href="findlines.html"> findlines </a>
+<li><a href="lsqfit.html"> lsqfit </a>
+<li><a href="hold.html"> hold </a>
+<li><a href="holdx.html"> holdamp </a>
+<li><a href="holdx.html"> holddamping </a>
+<li><a href="holdx.html"> holdwidth </a>
+<li><a href="holdx.html"> holdsigma </a>
+</menu>
+
+</body>
+
+
+

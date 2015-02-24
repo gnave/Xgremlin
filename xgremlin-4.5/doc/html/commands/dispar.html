@@ -1,0 +1,77 @@
+<head>
+<title> dispar </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+
+<h2>dispar</h2><p>
+
+<b>Syntax:</b> <kbd>dispar</kbd> <em>[ n ] [ m ]</em><p>
+
+Dispar displays the line parameters in the internal line list starting
+at line <b>n</b> and continuing to line <b>m</b> or the last line.
+If only <b>n</b> is given the parameters for that single line are 
+displayed.<p>
+
+Parameters which have been fixed using 'hold' are coded in column
+'H' as follows:
+<ul>
+<li> 1 = damping
+<li> 2 = width
+<li> 4 = sigma
+<li> 8 = amplitude
+<li> 16 = all parameters; 'active' undoes this flag, but leaves
+		individual parameter holds intact
+</ul>
+
+If more than one parameter is held, H is the sum of the individual
+values.<p>
+
+The column 'T' lists the processes the line has been through.
+The following 'tags' are in use:
+
+<ul>
+<li> <b>F:</b>    line has been found using 'findlines'
+<li> <b>L:</b>    line parameters have been improved with 'lsqfit'
+<li> <b>I:</b>    line has been inserted by hand
+<li> <b>G:</b>    line was inserted following a 'centre of gravity' ( C+g ) command
+<li> <b>P:</b>    line marks the peak found in a centroid ( C+w ) command
+</ul>
+
+The format of the data is:
+<pre>
+                                           Held    Equivalent
+               Intensity  Width   Damping  params   width       Residuals....
+                    vvv     vvv    vvv      v        vv     vvvvvvvvvvvvvvvvvv
+ No.    Sigma       Amp    Wid(mK)  Dmp Itn H   T    Ew      rms    even   odd
+   1  60021.8307    6.3253  258.5 1.000  6  0   L  2568.59  .8563  .5876  .6301
+   2  60097.0116   17.6102  307.3  .000  4  0   L  5761.24 1.5859  .6708 1.4496
+                                         |      |
+                           No. lsqfit----+      +---- fitted?
+                           iterations
+</pre>
+
+<p>
+<br>
+<h3>Related commands:</h3>
+<menu>
+<li><a href="active.html"> active </a>
+<li><a href="change.html"> change </a>
+<li><a href="drop.html"> drop </a>
+<li><a href="getlines.html"> getlines </a>
+<li><a href="findlines.html"> findlines </a>
+<li><a href="lsqfit.html"> lsqfit </a>
+<li><a href="hold.html"> hold </a>
+<li><a href="holdx.html"> holdamp </a>
+<li><a href="holdx.html"> holddamping </a>
+<li><a href="holdx.html"> holdwidth </a>
+<li><a href="holdx.html"> holdsigma </a>
+</menu>
+  
+</body>
+

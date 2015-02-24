@@ -1,0 +1,30 @@
+<head>
+<title> kernel </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>kernel</h2><p>
+
+<b>Syntax:</b> <kbd>kernel newnop</kbd><p>
+
+The kernel function is assumed to be in the <b>r</b> array.  It is
+masked, stretched to <b>newnop</b> points, and transformed; the transform
+is phased so that the center of gravity is at nop/2 + 1.
+This command was designed to permit matching the
+length of an instrumental profile scan to the scans which are to
+be deconvolved using the instrumental profile, but may be used
+for any kernel function to be used for convolution or
+restoration.<p>
+
+<b>Note:</b><br>
+Unlike in MS/DOS - Gremlin the resulting kernel is <b>not</b> automatically
+saved in the ffta array because there may be no ffta array 
+allocated when the <b>kernel</b> command is typed in.
+</body>
+
+

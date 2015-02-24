@@ -1,0 +1,155 @@
+<head>
+<title> response </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>response</h2>
+<p>
+
+<b>Syntax: </b>response <i> &lt filename &gt [ &lt spline tension factor &gt ]
+&lt'photon' or 'intensity'&gt</i>
+<p>
+
+This command recovers the combined response function of an optical
+system (filters transmission, spectrometer transmissionand detector
+quantum efficiency) from the measured spectrum of a standard lamp and
+the known spectral radiance data for the standard lamp. The measured
+spectrum of the standard lamp must be in the <b>r</b> array before the
+<b>response</b> command is run. When the command is completed the lamp
+spectrum in <b>r</b> will be replaced by the optical response
+function; the <b>tr</b> array will contain the interpolated lamp
+calibration spectrum for inspection. (It is accessible via the <a
+href="exchange.html">exchange </a> command.) The response function is
+always normalized to a peak value of 1. Once obtained it may be used
+directly in e.g. a <a href = "writelines.html"> writelines </a>
+command for calibration of spectral line intensities.
+<p>
+
+When the command parameter <b>photon</b> is specified with the
+<b>response</b> command, the resulting response curve will be weighted
+with the wavenumber.  This has the effect that the intensities in the
+output of a subsequent <a href = "writelines.html"> writelines </a>
+command are proportional to the photon flux which is desirable for
+branching ratio work because branching ratios are ratios of transition
+probabilities. When the command parameter <b>intensity</b> is
+specified, no weighting with wavenumbers takes place and the
+intensities in the output of <a href =
+"writelines.html">writelines</a> will be true spectral intensities
+(proportional to <i>Watts</i>). <b>The intensity calibration of a
+spectrum is carried out in the <a href="writelines.html"> 
+writelines</a> command in which the equivalent width of 
+the lines is divided by the value of the response curve at 
+the wavenumbers of the spectral lines.</b>
+ <p>
+
+The parameters for the <b>response</b> command are:<br><br>
+
+<b>filename</b> 
+(a character string)<br> This is the file name of the
+calibration data of the standard lamp. The file must be a 2 - column
+ASCII file with <b>wavelengths</b> in the first column and radiances
+in the second column. If the <b>vuv flag</b> (see the <a href="info.html"> 
+info </a> command) is set the wavelengths in the spectral radiance file must
+be vacuum wavelengths, otherwise they are air wavelengths.
+xgremlin searches for the calibration file
+first in the director /usr/local/xgremlin, then in the current
+directory (see <a href="pwd.html">pwd</a>).  Comment lines may begin
+with either one of the following characters: ; # !  Spectral radiances
+(usual symbol: L) <b>must</b> be in the following units: 
+<pre>
+
+                            W
+         [L]  =    -------------------
+                         2     
+                       cm    nm  sr
+</pre>
+i.e. radiance / <b>unit wavelenth in nm</b>. Note that for historical 
+reasons, to confuse the unwary, and because it yields radiance data with
+convenient magnitude, spectral radiances are often given 
+in the units
+<pre>
+
+                     W
+         [L]' =    -------
+                     3     
+                   cm  sr
+</pre>
+in other words, the wavelength is measured in <b>cm</b>.
+Obviously, [L]' can easily can easliy be converted into [L]:
+<pre>
+                  -7
+         [L]' = 10   [L]
+</pre>
+For the purpose of the <b>response</b> command one set of units is as
+good as the other since the response function is normalized to a peak
+value of 1 anyway.  A typical spectral radiance calibration file may
+look like this:
+<p>
+<pre>
+#
+# NIST tungsten strip standard lamp Q76 
+# re-measured spectral radiance of June 13, 1988
+#
+#  wavelength / nm          spectral radiance / W cm-3 sr-1
+   250.0                    44.087
+   260.0                    82.57
+   280.0                    245.95
+   300.0                    612.57
+   350.0                    3422.9
+   400.0                    11166.0
+   500.0                    47638.0
+   600.0                    104335.0
+   654.6                    135815.0
+</pre>
+<p>
+
+<b>spline tension factor</b> (a floating point number)<br>
+This parameter is <b>optional</b> and should hardly ever be needed. 
+A spline function under tension is
+used to interpolate the spectral radiance data. The default tension factor is 0.0 
+(i.e. no tension). A larger tension factor leads to a 'stiffer' spline function 
+which can be used to achieve some degree of smoothing of the radiance data.
+<p>
+
+<b>photon or intensity (mandatory)</b><br>
+Specifies the type of response function and determines if the output
+of a subsequent <a href = "writelines.html">writelines</a> command is proportional 
+to photon flux or true intensity.
+<p>
+
+
+<h3>Example:</h3>
+<p>
+The intensity calibration of a line spectrum typically requires
+the following steps:
+
+<ol>
+<li>generate a line list file (.lin) in the way described elsewhere.<p>
+
+<li> read the standard lamp spectrum into the <b>r</b> array and prepare
+it for the recovery of the response function if necessary. This
+may involve filtering the spectrum with a 
+<a href = "filter.html"> filter </a> command to simulate a lower resolution
+if the standard lamp spectrum is not free of line structure (can
+happen with deuterium lamps and argon miniarcs) or to remove excessive noise
+from the lamp spectrum.<p>
+<li>recover the response function:
+<pre>
+   response  d2_lamp_radiance.dat photon
+</pre>
+This command will read radiance data from the file
+<b>d2_lamp_radiance.dat</b> and create the response curve in the <b>r</b> 
+array. <p>
+<li>The resulting response function can then be used in a
+<a href = "writelines.html"> writelines </a> command for intensity 
+calibration of lines in a line list. The output is already weighted
+for the calculation of branching ratios.
+</ol>
+</body>
+
+ 

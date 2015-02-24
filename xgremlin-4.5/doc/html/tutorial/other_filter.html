@@ -1,0 +1,48 @@
+<HEAD>
+<TITLE> Filtering</TITLE>
+<!-- Changed by: Gillian Nave, 26-Mar-1996 -->
+</HEAD>
+<BODY bgcolor="#ffffff"><P>
+
+<B> Next:</B> <A  HREF="other_synth.html"> Synthetic Spectra</A>
+<B>Up:</B> <A 4 HREF=other.html"> Other Commands and </A>
+<B> Previous:</B> <A  HREF="other_mask.html"> Masking data before </A>
+<HR> <P>
+<H2> Filtering</A></H2>
+<P>
+Some aspects of filtering have already been dealt with in the section
+describing intensity calibration and ringing. There are three basic
+types of filter in Xgremlin: the Gaussian filter, the Voigt filter and the
+boxcar filter. The form of these is:
+<DL><DT><A HREF="../commands/filter.html"><b>filter</b><em>  nrise  ncut</em></a>
+<DD>   
+	A sharp cut-off filter at ncut
+<DT><b><A HREF="../commands/filter.html">filter  nrise  ncut  igw</b></a>
+<DD>  
+	(obsolete) A gaussian filter, gaussian width igw
+<DT><b><A HREF="../commands/filter.html">filter  nrise  ncut  'gaussian' gw</b></a>
+<DD> 
+	A gaussian filter, gaussian width gw
+<DT><b><A HREF="../commands/filter.html">filter  nrise  ncut  'boxcar' bxw</b></a>
+<DD>  
+	A boxcar filter, width bxw
+<DT><b><A HREF="../commands/filter.html">filter  nrise  nsen  voigt  ampnoise</b></a>
+<DD> 
+	A voigt  approx. to optimum filter
+        nsen = freq. where signal=noise.  ampnoise = amp. of white noise
+<P>
+ </dl>
+<P>
+In each case, they multiply the ends of the spectrum in
+the <em>r</em> array with a mask of width <em>nrise</em>. This is a cosine
+bell and is used to bring the spectrum smoothly down to zero at the
+ends. The data is then Fourier transformed,  multiplied by the
+specified filter, and transformed back. The variable <em>ncut</em>
+specifies that the transform should be set to zero at all points
+greater than <em>ncut</em>/2. By applying the boxcar filter twice, it is
+possible to filter the data with a triangle function, which is what is
+used in e.g. matching the resolution of the your spectrum to a
+previously-recorded one, as in the example of intensity calibration.
+<P>
+
+</BODY>

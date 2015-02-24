@@ -1,0 +1,106 @@
+
+	Important Changes ( for details see the ChangeLog file )
+	========================================================
+
+       *  version 4.5
+          -----------
+        Phase correction fixed so it only picks up one point per line (set by swid variable).
+        Change command fixed so commands actually match documentation
+        Inline functions modified so they work with new gfortran
+        Documentation for phase correction and change commands updated
+        New tutorial added for spline fitting
+        Documentation updated for installation
+
+        * version 4.2
+          -----------
+        Hyperfine structure routines of Bruce Pulliam integrated.
+        HFS routines modified for use with gfortran.
+        Tested with OS X and Linux (SuSE 10.3).
+
+	* version 3.x
+	-------------
+	Spline phase correction mode: the phase function can
+	be fitted by a cubic smoothing spline. This is very
+	useful in cases where a polynomial doesn't fit.
+
+
+	* version 2.48
+	--------------
+	can transform up to 16M points now.
+
+
+	* version 2.18
+	--------------
+	all subroutines from Numerical Recipes have now been replaced 
+	by equivalent ones in the Public Domain. Xgremlin is no
+	longer "legally challenged".
+
+
+	* version 2.15
+	--------------
+	documentation is all in HTML format now and can be
+	viewed with any HTML browser. The 'Help' button 
+	in Xgremlin now runs an external HTML browser with
+	the help text. Dynamic array allocation is no longer
+	experimental.
+
+
+	* version 2.8
+	-------------
+	internal buffers in Xgremlin are allocated dynamically
+	and may be changed with the new 'alloc' command. As a
+	consequence it is no longer necessary to have several 
+	different versions of Xgremlin compiled with different
+	buffer sizes. Now, one size fits all.
+
+
+	* version 2.3
+	-------------
+	completely new scratch file mechanism. Allows to store an
+	arbitrary number of points. By default the whole current
+	buffer is stored in the scratch file.
+
+
+	* version 1.13
+	--------------
+	The printer driver script 'xgremlin_print' is now obsolete.
+
+
+	* version 1.7
+	-------------
+	Nice user interface to phase correction and fourier transforms.
+	Click on 'Phase/Transform' in the 'Gremlins' menu.
+
+	The default behaviour for the 'getlines' command is now
+	'inactive' rather than 'active'.
+
+	Xgremlin always uses 'nm', never Angstrom as a secondary unit
+	( unlike Gremlin ). This was done solely to confuse the atomic
+	spectroscopists among the users.
+
+	Xgremlin can be started with the command line option -mono
+	A dashed line will then be used to plot the imaginary part
+	of a spectrum to make it distinguishable from the real
+	part on a monochrome display.
+	
+
+	* version 1.1
+	-------------
+	Phase correction with interactive selection of bad phase points
+	is working. This closes the last gap between Xgremlin and Gremlin.
+
+
+	* version 0.52
+	--------------
+	When reading complex data ( nwpp = 2 ) the spectrum is plotted in 
+	COMPLEX mode by default: the real part is plotted in black, the 
+	imaginary part in blue. This is different from Gremlin where real 
+	and imaginary part of complex data are plotted interlaced by
+	default.
+
+
+	Jun 1995
+	--------
+	* Everything !
+
+

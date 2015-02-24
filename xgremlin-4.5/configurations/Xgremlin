@@ -1,0 +1,334 @@
+!
+! Resource database for the Xgremlin program versions 3.x
+! (for the Athena widget set)
+!
+! This resource database is an integral part of the Xgremlin program. 
+! Changes should be made with great care because they can prevent the
+! program from working. Always keep a backup copy.
+! 
+! Author: Ulf Griesmann
+! 
+! last change: March 1997
+
+! XGremlin shell widget
+*Xgremlin.geometry:	700x500
+
+!*Xgremlin*font:		lucidasans-bold-12
+*Xgremlin*font:			7x13bold
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! change resources below this line ONLY if you know what you are doing
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+! general settings for the Xaw3d widget set ( poor man's Motif )
+*background: 			grey80
+*ScrollbarBackground: 		grey60
+*Scrollbar*width: 		20
+*Scrollbar*height: 		16
+*Scrollbar*shadowWidth: 	2
+*Scrollbar*cursorName:		double_arrow
+*Scrollbar*pushThumb: 		true
+*ShapeStyle: 			Rectangle
+*beNiceToColormap: 		false
+*shadowWidth: 			2
+*SmeBSB*shadowWidth: 		2
+*topShadowContrast:		20
+*bottomShadowContrast:		40
+
+! the pane window
+*Grip.width:			12
+*Grip.height:			12
+
+! buttons on menu bar
+*bubblehelp*background:		LemonChiffon
+*buttons.hSpace:		5
+*buttons.vSpace:		2
+!*buttons.orientation:		OrientHorizontal
+*buttons.borderWidth:   	0
+*option.label:			Gremlins
+*option.height:			25
+*toggle.label:			Plotmode
+*toggle.height:			25
+*toggle.foreground:		red3
+*phase.label:			Phase
+*phase.height:			25
+*phase.foreground:		red3
+*interrupt.label:		Stop
+*interrupt.height:		25
+
+*left_button.width:		25
+*left_button.height:		25
+*right_button.width:		25
+*right_button.height:		25
+*yfull_button.width:		25
+*yfull_button.height:		25
+
+*xshrink_button.width:		25
+*xshrink_button.height:		25
+*xexpand_button.width:		25
+*xexpand_button.height:		25
+*yshrink_button.width:		25
+*yshrink_button.height:		25
+*yexpand_button.width:		25
+*yexpand_button.height:		25
+*xcentre_button.width:		25
+*xcentre_button.height:		25
+*ycentre_button.width:		25
+*ycentre_button.height:		25
+*xsection_button.width:		25
+*xsection_button.height:	25
+*ysection_button.width:		25
+*ysection_button.height:	25
+*redraw_button.width:		25
+*redraw_button.height:		25
+*undo_button.width:		25
+*undo_button.height:		25
+
+! options menu
+*menubox.Command.width:		135
+*menubox.Box.orientation:	orientVertical
+*menubutton0.label:		Print plot window
+*menubutton0.height:		30
+*menubutton1.label:		Documentation
+*menubutton1.height:		30
+*menubutton2.label:		Phase / Transform
+*menubutton2.height:		30
+*menubutton3.label:	        HFS fitting
+*menubutton3.height:		30
+*menubutton4.label:		Version info
+*menubutton4.height:		30
+*menubutton5.label:		Quit program
+*menubutton5.height:		30
+*menubutton5.foreground:	red3
+*optionmenu.Box.hSpace:		0
+*optionmenu.Box.vSpace:		0
+*optionmenu.translations:\
+	<BtnUp>:	XtMenuPopdown(optionmenu)
+*menubox.Command.translations:\
+	<EnterWindow>:	set()		\n\
+	<LeaveWindow>:	unset()		\n\
+	<BtnUp>:	notify()  unset()
+
+! buttons for scroll / shrink / expand
+*left_button.foreground:	blue3
+*right_button.foreground:	blue3
+*yfull_button.foreground:	blue3
+*xshrink_button.foreground:	blue3
+*xexpand_button.foreground:	blue3
+*yshrink_button.foreground:	blue3
+*yexpand_button.foreground:	blue3
+*xcentre_button.foreground:	blue3
+*ycentre_button.foreground:	blue3
+*xsection_button.foreground:	blue3
+*ysection_button.foreground:	blue3
+*redraw_button.foreground:	blue3
+*undo_button.foreground:	blue3
+
+! plotter pane
+*plot*background:	thistle
+
+! function button bar
+*functions.height:		10
+*functions.hSpace:		8
+*functions.vSpace:		2
+*funcbutton0.foreground:	blue3
+*funcbutton1.foreground:	blue3
+*funcbutton2.foreground:	blue3
+*funcbutton3.foreground:	blue3
+*funcbutton4.foreground:	blue3
+*funcbutton5.foreground:	blue3
+*funcbutton6.foreground:	blue3
+*funcbutton7.foreground:	blue3
+
+! editor pane
+!*edit*background:		white
+*edit.borderWidth:		4
+*edit.height:			100
+*edit.scrollHorizontal:		Never
+*edit*Translations: #override \
+	<Key>Right:	forward-character()	\n\
+	<Key>Left:	ArrowLeft()		\n\
+	<Key>Up:	RecallCommand() end-of-line() \n\
+	<Key>Down:	RecallCommand()	end-of-line() \n\
+	Shift<Key>Up:	scroll-one-line-down()  \n\
+	Shift<Key>Down: scroll-one-line-up()    \n\
+	<Key>Return:	end-of-file() newline()	ExecCommand() end-of-file() \n\
+	<Key>Delete:	delete-next-character()	\n\
+	<Key>BackSpace:	BackSpace()		\n\
+	<Key>Tab:	TabAction()		\n\
+        <Key>Prior:     multiply(8) scroll-one-line-down() \n\
+        <Key>Next:      multiply(8) scroll-one-line-up() \n\
+ 	Ctrl<Key>BackSpace: backward-kill-word()\n\
+	Ctrl<Key>Right:	forward-word()		\n\
+	Ctrl<Key>Left:	backward-word()		\n\
+	Ctrl<Key>A:	BeginLine()		\n\
+	Ctrl<Key>E:	end-of-line()		\n\
+	Ctrl<Key>K:	kill-to-end-of-line()	\n\
+	Ctrl<Key>R:	no-op()			\n\
+	Ctrl<Key>S:	no-op()			\n\
+	Ctrl<Key>T:	transpose-characters()	\n\
+	<Key>:		insert-char()
+	
+
+! popup window with version info
+*vershell.title:		Xgremlin Version
+*verdialog.defaultDistance:	0
+
+! phase correction window
+*phaseform*Label*borderWidth:	0
+*phaseform*Label*shadowWidth:	0
+*phaseform*Text*background:	white
+*phaseform*Text*foreground:	black
+*phaseform*Text*height:		18
+*phaseform*Text*Translations: #replace \
+	<Btn1Down>:     Focus() end-of-line()   \n\
+	<Key>Right:	forward-character()	\n\
+	<Key>Left:	backward-character()	\n\
+	<Key>Return:	Accept() 		\n\
+	<Key>Delete:	delete-next-character()	\n\
+	<Key>BackSpace:	delete-previous-character()\n\
+	Ctrl<Key>A:	beginning-of-line()	\n\
+	Ctrl<Key>E:	end-of-line()		\n\
+	Ctrl<Key>K:	kill-to-end-of-line()	\n\
+	Ctrl<Key>R:	no-op()			\n\
+	Ctrl<Key>S:	no-op()			\n\
+	Ctrl<Key>T:	transpose-characters()	\n\
+	<Key>:		insert-char()
+
+*filetext*width:		210
+*otherlabel*foreground:		green4
+*othertext*width:		300
+*skiplabel.foreground:		blue3
+*pointslabel.foreground:	blue3
+*pointslabel*horizDistance:	16
+*pointstext*width:		113
+*apodizelabel.foreground:	blue3
+*limitslabel.foreground:	blue3
+*outputcommand.foreground:	blue3
+*outputlabel.foreground:	blue3
+*centertoggle.foreground:	blue3
+*centertoggle*horizDistance:	19
+*centertoggle*width:		179
+*outputfile*width:		173
+*outputlabel2.foreground:	blue3
+*outputfile2*width:		189
+*otypebutton.foreground:	blue3
+*otypelabel.foreground:	 	blue3
+*invertcommand*horizDistance:	2
+*righttext*horizDistance:	19
+
+! the buttons
+*buttonbox.borderWidth:		0
+*buttonbox.hSpace:		10
+*buttonbox.vSpace:		10
+*closebutton.height:		30
+*closebutton.foreground:	red3
+*fillinbutton.height:		30
+*fillinbutton.foreground:	green4
+*phasebutton.height:		30
+*transformbutton.height:	30
+*transformbutton.foreground:	blue3
+
+
+! HFS fitting window
+*hfsform*Label*borderWidth:	0
+*hfsform*Label*shadowWidth:	0
+*hfsform*Text*background:	white
+*hfsform*Text*foreground:	black
+*hfsform*Text*height:		13
+*hfsform*Text*Translations: #replace \
+	<Btn1Down>:     hfsFocus() end-of-line()\n\
+	<Key>Right:	forward-character()	\n\
+	<Key>Left:	backward-character()	\n\
+	<Key>Return:	hfsAccept() 		\n\
+	<Key>Delete:	delete-next-character()	\n\
+	<Key>BackSpace:	delete-previous-character()\n\
+	Ctrl<Key>A:	beginning-of-line()	\n\
+	Ctrl<Key>E:	end-of-line()		\n\
+	Ctrl<Key>K:	kill-to-end-of-line()	\n\
+	Ctrl<Key>R:	no-op()			\n\
+	Ctrl<Key>S:	no-op()			\n\
+	Ctrl<Key>T:	transpose-characters()	\n\
+	<Key>:		insert-char()
+
+*levfiletext*width:	250
+! *levfiletext*height:	30
+*levfilebutton*width:	40
+*levfilebutton*height:	13
+
+*readlinefiletext*width: 	250
+*readlinefilebutton*width:	40
+*readlinefilebutton*height:	13
+
+*numstructtext*width:	30
+! *numstructtext*height:	1
+*thisstructtext*width:	30
+! *thisstructtext*height:	1
+*numstructupbutton*width:	10
+*numstructdownbutton*width:	10
+*thisstructupbutton*width:	10
+*thisstructdownbutton*width:	10
+
+*numstructupbutton*height:	13
+*numstructdownbutton*height:	13
+*thisstructupbutton*height:	13
+*thisstructdownbutton*height:	13
+
+*thislinelabel*foreground:	red3
+*thislinetext*width:	130
+*thislinetext*foreground:	red3
+*thislinebutton*height:	13
+*thislinebutton*foreground:	red3
+*deletelinebutton*height:13
+*deletelinebutton*foreground:   red3
+
+*lowlevtext*width:	130
+*upplevtext*width:	130
+*lowjtext*width:	90
+*uppjtext*width:	80
+*lowatext*width:	80
+*lowatogglebutton*width: 40
+*lowatogglebutton*height:	13
+*uppatext*width:	80
+*uppatogglebutton*width: 40
+*uppatogglebutton*height:	13
+*lowbtext*width:	80
+*lowbtogglebutton*width: 40
+*lowbtogglebutton*height:	13
+*uppbtext*width:	80
+*uppbtogglebutton*width: 40
+*uppbtogglebutton*height:	13
+
+*wavetext*width:	150
+*wavetoggle*width:	40
+*wavetoggle*height:	13
+*insert*height:	13
+*insert*foreground:	red3
+*intentext*width:	150
+*intentoggle*width:	40
+*intentoggle*height:	13
+*damptext*width:	150
+*damptoggle*width:	40
+*damptoggle*height:	13
+*fwhmtext*width:	150
+*fwhmtoggle*width:	40
+*fwhmtoggle*height:	13
+*commenttext*width:	300
+*linefiletext*width:	200
+*linefilebutton*height:	13
+*ascfiletext*width:	200
+*ascfilebutton*height:	13
+
+! the buttons
+*hfsbuttonbox.borderWidth:	0
+*hfsbuttonbox.hSpace:		40
+*updatebutton*height:		30
+*updatebutton*foreground:	red3
+*fitbutton.height:		30
+*fitbutton.foreground:		blue3
+*plotbutton.height:		30
+*plotbutton.foreground:		green4
+*compbutton.height:		30
+*compbutton.foreground:		green4
+*hfsclosebutton.height:		30
+*hfsclosebutton.foreground:	red3

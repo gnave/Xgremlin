@@ -1,0 +1,25 @@
+
+	Portable machine parameter library
+        ----------------------------------
+
+	The MPAR library contains functions to calculate machine 
+	constants such as the smallest floating point number that can
+	be represented etc. 
+
+        i1mach, r1mach and d1mach are drop-in replacements for the machine 
+        constant databases from Argonne National Lab which have become 
+        largely obsolete (they are e.g required by the MINPACK library). 
+        The functions [ird]1mach in libMPAR are based on the subroutines 
+	[sd]machar which calculate machine constants on arbitrary
+	machines (W J Cody, MACHAR: A subroutine to dynamically determine
+	machine parameters, TOMS 14, 1988). 
+
+	The new functions  spmpar  and  dpmpar  which replace the older
+	r1mach and d1mach functions are also available.
+	 
+	NOTE:
+	The function i1mach assumes 32-bit integer arithmetic. If a 
+	different integer width is used a few constants in the source
+	code must be changed.
+
+	Ulf Griesmann, 10/95

@@ -1,0 +1,42 @@
+<head>
+<title> dump </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>dump</h2><p>
+
+<b>Syntax:</b> <kbd>dump</kbd> <em> &lt;array&gt &lt;file name without extension&gt 
+[&lt;ni&gt &lt;nop&gt;]</em><p>
+
+This command creates a pair of header (<b>.hdr</b>) and data
+(<b>.dat</b>) files and writes the current contents of any one of the
+<b>r</b>, <b>tr</b>, <b>ffta</b> and <b>phz</b> arrays to the file.
+The file pair will be in NSO type 6 format. A start index <b>ni</b> and the
+number of points <b>nop</b> must be specified for the <b>phz</b> and <b>ffta</b>
+arrays.  For the <b>r</b> and <b>tr</b> arrays this is an option and
+if start index and number of points are omitted the entire array is
+written to the file.  <p><br>
+
+<h3>Example:</h3>
+<kbd>dump r spectrum</kbd><br>
+Creates files 'spectrum.hdr' and 'spectrum.dat' with the current contents of 
+the <b>r</b> array.
+<p><br>
+
+<H3>Related commands:</H3>
+<UL>
+<LI> <A HREF="writeasc.html">writeasc</A>
+<LI> <A HREF="writefile.html">writefile</A>
+<LI> <A HREF="readasc.html">readasc</A>
+</UL>
+ 
+</body>
+
+
+
+

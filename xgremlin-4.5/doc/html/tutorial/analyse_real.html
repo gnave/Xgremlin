@@ -1,0 +1,38 @@
+<head> 
+<title> Check phase and create a real spectrum </title>
+<!-- Changed by: , 24-Mar-1996 -->
+</head>
+
+<body bgcolor="#ffffff">
+<B> Next:</B> <A HREF=analyse_initial.html> Subtracting the continuum</A>
+<B>Up:</B> <A HREF=analyse.html> Using Xgremlin to analyse a spectrum </A>
+<B> Previous:</B> <A HREF=analyse_general.html> 
+                  General procedure</A>
+<HR> <P>
+
+
+<h2> Check phase and create a real spectrum </h2>
+
+The first thing to do with the spectrum, if it has not been done
+already, is to check the phase and and subtract any continuum. To check the
+phase, first open the complex spectrum and read in a section with
+<a href="../commands/read.html"><b> read</b></a> <em>waveno</em>
+and plot it. If you set a large value for the r array with the 
+<a href="../commands/alloc.html"><b>alloc</b></a> command
+you will probably be able to read in the whole file at once. 
+If you are satisfied, close the complex file using
+<a href="../commands/close.html"><b>close datain</b></a> 
+and open the real file.
+
+<p>
+If you have not previously prepared a real file, you should do so
+now. First use the 
+<a href="../commands/create.html"><b> create</b></a> <em>filename</em>
+command, giving a suitable filename for output, and then save the real
+part of the complex file to it with
+<a href="../commands/copy.html"><b>copy real</b></a>. Then
+<a href="../commands/close.html"><b>close datain</b></a> and
+<b>dataout</b> and re-open the real file.
+
+
+</body>

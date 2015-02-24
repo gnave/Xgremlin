@@ -1,0 +1,142 @@
+<head>
+<title>Xgremlin plot mode commands </title>
+</head>
+
+<body bgcolor="#ffffff">
+<h2>Plot Mode Commands</h2><p>
+
+The following commands are single or multiple key commands that can be
+executed when Plotmode is activated. To get into plot mode either
+press the <a href="tutorial/plotmode.html">Plotmode button</a> or
+press the <b>Tab</b> key.  In both cases the Plotmode button will be
+highlighted and depressed.<p>
+
+Most of the important key commands are also associated with the
+row of blue buttons along the top of the XGremlin window.
+Those commands which let the user a section of a plot marked by two
+markers are only accessible through the buttons.<p>
+
+<b>Note:</b>
+<ul>
+<li> <b>S+x</b> means: hold down the shift key while pressing key <b>x</b>
+<li> <b>C+x</b> means: hold down the control key while pressing <b>x</b>
+<li> <b>M</b> stands for a modifier key that is usually 
+              the <b>Alt</b> key on PC type machines. Other keyboards
+	      have different meta keys.
+</ul><p><br>
+
+
+<h3>Plotting and moving around:</h3>
+<pre>
+.	  move to the right, do not rescale y axis
+>	  move  to the right and rescale y axis to fill plotter window
+,	  move to the left, do not rescale y axis
+<	  move to the left and rescale y axis to fill plotter window
+z	  move zero line to the centre of the plot
+e	  move zero line to bottom edge of the plot
+x	  zoom in horizontally around centre of window or marker
+	  zoom factor is 0.5, zoom in
+S+x       zoom factor 0.25, zoom in
+C+x       zoom factor 0.1, zoom in
+M+x       zoom out horizontally around centre of window or marker
+y	  zoom in vertically around zero line or marker, zoom factor 0.5
+S+y       zoom factor 0.25, zoom in
+C+y       zoom factor 0.1, zoom in
+M+y       zoom out vertically around zero line
+^	  full scale in y direction, data fill window in y direction
+p         (lower case 'p') overplot the current content of the r
+	  array onto the current plot.
+C+r       exchange r and tr arrays, then overplot the contents of 
+          the r array.	
+S+p	  replot. Optionally  put zeroline where the cursor marker is set.
+S+u	  undo last plot mode operation.
+</pre><p><br>
+
+<h3>Plot modes:</h3>
+<pre>
+n	  normal plot. No complex data, r array contains real data
+r	  r array contains complex data, plot real part only
+i	  r array contains complex data, plot imaginary part only
+c	  r array contains complex data, plot real and imag part	
+</pre><p><br>
+
+<h3>Line list related commands:</h3>
+<pre>
+S+a       make all lines in the current line buffer 'active'
+C+a       add the (cursor-)marked line(s) to the line list
+C+d       delete (drop) a marked line from the linelist.
+C+s       use last marked line for width, damping etc. 
+          of future added lines
+C+t       toggle a line active or inactive
+v         move a marked line. The line to be moved must be 
+          marked with a red marker (left mouse button), the
+          new position must be marked with a blue marker
+          (middle mouse button).
+S+v       toggle all lines visible or invisible on the screen
+g         calculate the centre of gravity between two markers
+	  and print it in the text window. The c.g. is not 
+	  inserted into the line list.
+C+g       same as 'g' command but the resulting c.g. is also 
+	  used as the line position and inserted into the 
+	  internal line list.
+m         print information about the line marked with a red
+          cursor marker (middle mouse button).
+a,o       mark all lines in the current plotter window with
+          line markers.
+w         First mark the edge of a line. The 'w' command will then
+	  find the corresponding 'other edge', calculate and print
+          out the width of the line and the bisector of both edges
+          of the line. The centroid (= bisector) is marked with an 
+	  auxiliary marker.
+C+w       same as 'w' command but also inserts the line into the 
+          internal line list
+M+C+g     do a 'getlines inactive'. This will overwrite all 
+          data in the linelist buffer (hence the inconvenient key
+          combination).
+</pre><p><br>
+
+<h3>Line intensity related commands:</h3>
+<pre>
+M+a	  execute an 'area' command to determine the area between
+          two cursor markers.
+</pre><p><br>
+
+<h3>Miscellaneous:</h3>
+<pre>
+S+c       find the center of an interferogram in r and display it
+C+z       set to zero the r-array between two mouse markers.
+N	  put polynomial through 1-3 (cursor-)marked point(s)
+          and normalize to 1.0 .
+B         put ploynomial through 1-3 (cursor-)marked point(s)
+          and subtract from data.
+#         print 11 points around each cursor marker in the
+          text window.
+M+c       connect two or more markers by a straight line and put 
+          the result into the r array.
+M+d       print the distance between two mouse markers in points
+          and wavenumbers
+l         replace a set (red) marker bye a wavenumber label
+          (primary units)
+M+l       replace a set marker by a label in secondary units
+          nm, Hz or GHz.
+u	  cycle secondary units through nm, Hz and GHz.
+	  The position in secondary units is displayed in 
+	  brackets after the wavenumber in the plotting 
+          window.
+M+w 	  calculate the wavelength/number difference between
+	  two mouse markers and set the line 'width' parameter
+	  to the result.
+@	  read 2048 points from a datafile (connected to the
+	  unit 'datain') centered at a previously set mouse
+   	  marker.
+M+b       write deleted phase points to bad points file.
+</pre><p><br>
+
+<b>Note:</b><br>
+See command <a href="commands/button.html">button</a> for an
+explanation of how to assign the plot mode commands to the user
+configurable buttons.  
+
+</body>
+
+

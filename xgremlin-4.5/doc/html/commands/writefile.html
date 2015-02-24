@@ -1,0 +1,59 @@
+<head>
+<title> writefile </title>
+<!-- Changed by: Gillian Nave, 27-Mar-1996 -->
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>writefile</h2>
+<p>
+<h3>Syntax: <br></h3> writefile [xy|xybin] <i>&lt;filename&gt; 
+[&lt; nop&gt; ] [&lt;format&gt;] </i>
+
+<p>	Write nop points of the data in 'r' to an output file in ASCII,
+	using a FORTRAN format if given. The FORTRAN format must be
+	enclosed in brackets. If the flag 'xy' is given, data are written
+	as unnormalized x-y pairs. Use flag 'xybin' to write data
+	as binned unnormalized x-y pairs.
+
+<H3>Example:</H3>
+<pre>
+sinc 10. 1024
+writefile sinc.out 512 (f8.3) 
+</pre>
+writes 512 points (half) of the sinc function to the file 'sinc.out',
+using the FORTRAN format f8.3, together with the Xgremlin statements
+needed to read it in again with the <a href="run.html">run</a> command.
+</body>
+The file looks like the following:
+<pre>
+
+info id '                      '
+info wref        1.000000
+info delw    0.10000000000E+01
+length    512
+readdata (f8.3)
+  -3.715
+  -1.957
+   0.000
+...
+...
+ 872.678
+ 951.056
+1000.000
+ multiply   0.98363170E-03
+ keyboard    
+</pre>
+<p>
+
+<H3>Related Commands:</H3>
+<UL>
+<LI> <A HREF="writeasc.html">writeasc</A>
+<LI> <A HREF="readdata.html">readdata</A>
+<LI> <A HREF="readasc.html">readasc</A>
+<LI> <A HREF="run.html">run</A>
+</UL>

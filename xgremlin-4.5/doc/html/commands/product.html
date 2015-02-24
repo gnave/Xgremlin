@@ -1,0 +1,50 @@
+<head>
+<title> product </title>
+<!-- Changed by: LION, 10-May-1996 -->
+</head>
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>product</h2>
+<b>Syntax:</b> <kbd>product</kbd>
+<p>
+This command does a vector multiply on <b>r</b> and <b>tr</b>. 
+ie,  
+<pre>
+r(i) = r(i) * tr(i)    for i=1, ... ,nop
+</pre>
+<p><br>
+
+<h3>Examples</h3>
+The following commands simulate an under-resolved line (Voigt convolved
+with sinc, which is equivalent to multiplying the Fourier transforms.
+<pre>
+sinc 10. 1024
+fourtran
+exchange
+save 1 'FT of sinc'
+voigt 10. 1024
+fourtran
+exchange
+save 2 'FT of Voigt'
+exchange
+recall 1
+product
+plot
+exchange
+invtran
+plot
+</pre>
+<p><br>
+
+<h3>Related commands</h3>
+<ul>
+<li> <A HREF="combine.html">combine</A>
+<li> <A HREF="diff.html">diff</A>
+<li> <A HREF="ratio.html">ratio</A>
+<ul>
+
+</body>

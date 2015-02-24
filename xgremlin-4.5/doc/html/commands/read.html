@@ -1,0 +1,81 @@
+<head>
+<title> read </title>
+<!-- Changed by: LION,  3-May-1996 -->
+</head>
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>read</h2>
+<h3>Syntax:</h3>
+<ul>
+<li>read &lt;wstart&gt;
+<li>read &lt;wstart&gt; [ &lt;wstop&gt; ] [ &lt;unit name&gt; ]
+<li>read &lt;wstart&gt; [ &lt;npts&gt; ] [ &lt;unit name&gt; ]
+<li>read "offset"  &lt;noffset&gt;
+</ul>
+where
+<ul>
+<li> unit name" - unit name to which the unit number is assigned 
+<li> wstart	-  starting wavenumber(length)
+<li> wstop	-  stopping wavenumber(length)
+<li> npts	-  the number of points to read; max of 8192, default 2048
+			(see set readlength)
+</ul>
+
+Reads in a block of data from the unit <b>unit name</b>, starting at 
+<b>wstart</b> and ending either at <b>wstop</b>, or after <b>npts</b> 
+data points have been read in. 
+<p>
+A read with no unit specified defaults to the <b>datain</b> unit. Other
+valid names are: 
+<ul>
+<li>datain 
+<li>dataout 
+<li>altdata.
+</ul>
+
+The data will always be scaled by the factor <b>rdsclfct</b> which is
+defined in the header file during reading. The scale factor may also
+be set with the command <A HREF="set.html">set "read scale"</A>.  This
+scaling is undone with <A HREF="set.html">set "read noscale"</A>. In
+header files produced by Xgremlin <b>rdsclfct</b> is always set to 1.
+<p>
+
+The data can be normalized such that the maximum in the <b>r</b> array
+is always set to 1 using the command <A HREF="set.html">set "read
+normalize"</A>. This undoes the standard input scaling, and can be
+reversed with the command <A HREF="set.html">set nonorm</A>.  <p>
+
+The last command sets a flag, but does not actually read.  
+
+<dl>
+<dt> <b>read offset &lt;noffset&gt;</b>
+<dd> ignores the first &lt;noffset&gt; bytes before calculating which
+block of data to read in; this can be useful when the data is preceded
+by a header block.
+
+</dl>
+
+<h3> Examples</h3>
+<pre>
+read 33000. 65536
+</pre>
+reads in 65536 points starting at the wavenumber 33000.
+
+<pre>
+read 33000. 35000. altdata
+</pre>
+reads in a block of data between 33000. and 36000. wavenumbers
+from the file attached to the unit "altdata"
+
+<h3>Related commands</h3>
+<ul>
+<li><A HREF="readdata.html">readdata</A>
+<li><A HREF="input.html">input</A>
+<li><A HREF="readasc.html">readasc</A>
+</ul>
+
+</body>

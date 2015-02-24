@@ -1,0 +1,58 @@
+<head>
+<title> dumplin </title>
+</head>
+
+<body bgcolor="#ffffff">
+<h2>dumplin - dump and analyze (X)Gremlin line list files</h2><p>
+
+<b>Syntax:</b> <kbd>dumplin</kbd> <i> &lt .lin files &gt [-tsh] </i><p>
+
+<b>dumplin</b> is a small utility which may be used to display the
+header portion of a binary Gremlin line list (.lin) file, to dump the
+data in a line list file in text format and to trim trailing invalid
+line records from the line list file. It is a convenient way to "peek"
+at the contents of a .lin file without having to start up Xgremlin and
+load spectrum and .lin file.<p>
+
+Without any command options the contents of the line list file will be
+written to an ASCII file which gets the file extension .lin.lst 
+The following options are available in <b>dumplin</b>:
+
+<dl>
+<dt> <b>-h</b>
+<dd> print out the header section of a line list file (number of lines and 
+data in the file).<p>
+
+<dt> <b>-s</b>
+<dd> write the line list in text format to 
+<b>stdout</b> ( standard output ) and not to a file.<p>
+
+<dt> <b>-t</b>
+<dd> the actual size of a line list file increases whenever line records are
+added to the file but as a consequence of the way line list files are
+handled by
+Xgremlin
+it does not shrink when line records are removed. When many lines are
+removed from a linelist (e.g. after a 
+<a href="commands/linelist.html">linelist</a>
+command with a small discriminator) many invalid line records can accumulate
+at the end of a line list file. The <b>-t</b> option may be used to remove these
+already deleted line records. Also, if line records are out of order in 
+a line list file (for whatever reason) the <b>-t</b> option will return them to
+ascending wavenumber order.
+</dl>
+<p><br>
+
+<h3>Examples:</h3>
+
+<dl>
+<dt> <kbd>dumplin -h *.lin</kbd>
+<dd> will display the header sections of all .lin files in the current directory.
+<p>
+<dt> <kbd>dumplin mydata</kbd>
+<dd> will dump the line list data records in the file
+<b>mydata.lin</b> in ASCII. A file <b>mydata.lin.lst</b> will be
+created.
+</dl>
+
+</body>

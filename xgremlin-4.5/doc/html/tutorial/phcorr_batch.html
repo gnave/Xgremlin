@@ -1,0 +1,33 @@
+<head>
+<title> Using Xgremlin to transform and phase correct interferograms </title>
+</head>
+<body bgcolor="#ffffff">
+<h1> Using Xgremlin to transform and phase correct interferograms</h1>
+
+<h1>The cards file `phscds'</h1>
+
+<pre>
+open logfile gnome.log
+open rawin gnome
+twosided
+ncenter 123456
+phcorr fit      0     0.050   0.0010
+#phcorr `fit' nterms cutfrac fracnoise
+#input inverted
+#movecenter [n]
+input center
+keyboard
+
+input
+apodize
+transform
+wavelimits
+real gnomer
+#complex gnomec
+</pre>
+
+<p>
+<a href="../tutorial/transform.html#phscds">
+Back to transforming</a>
+</body>  
+

@@ -1,0 +1,37 @@
+<head>
+<TITLE>Continuum correction (illustrations)</TITLE>
+<!-- Changed by: Gillian Nave, 25-Mar-1996 -->
+</head>
+<body bgcolor="#ffffff">
+<B>Up:</B> <A HREF="analyse_initial.html"> Continuum correction </A>
+<HR> <P>
+
+<H3>Continuum correction (illustrations)</H3>
+<IMG SRC="contin_orig.gif"><br>
+Here is the result of the command 
+<A HREF="../commands/extended.html"><B>extended bin</B></A> on an
+infra-red file. There is an obvious continuum which needs to be
+subtracted off. 
+<P>
+<IMG SRC="contin_mark.gif"><br>
+To do this, go through the file placing markers as shown. The aim is
+to roughly draw a line through the continuum. When you have finished,
+<A HREF="../commands/multiply.html">multiply</A> the result by -1.,
+and <A HREF="../commands/save.html">save</A><EM>n</EM> the result to
+the scratch directory. This is what it will look like:
+<P>
+<IMG SRC="contin_inv.gif"><br>
+<p>
+To correct the original file, first 
+<A HREF="../commands/create.html">create</A> the file and then run 
+<A HREF="../commands/extended.html"><b>extended add</b></A><EM>n</EM>,
+<EM>n</EM> being the number of the entry in the scratch
+directory. Then
+<A HREF="../commands/close.html"><B>close</B></A> both <B>datain</B>
+and <B>dataout</B> and re-open the newly-created file as datain. This
+is what an <B>extended bin</B> on the file looks like:<br>
+<IMG SRC="contin_new.gif">
+<p>
+The continuum is now down to the level of the noise.
+</body>
+

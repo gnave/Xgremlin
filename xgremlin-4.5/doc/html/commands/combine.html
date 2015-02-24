@@ -1,0 +1,43 @@
+<head>
+<title> combine </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>combine</h2><p>
+<b>Syntax:</b>
+<key>combine</key> <em>[ &lt a &gt &lt b &gt ]</em><p>
+
+Where
+<ul>
+<li> a	-  coefficient for the <b>r</b> array
+<li> b	-  coefficient for the <b>tr</b> array
+</ul>
+<p>
+Computes a linear superposition of the data in the <b>r</b> and <b>tr</b>
+arrays, the result is left in the <b>r</b> array:
+<pre>
+                r(i) = a * r(i)  +  b * tr(i)   for i=1, .. ,nop
+</pre>
+The constants a and b both default to 1.0
+<p><br>
+
+<h3>Example:</h3>
+<key>combine 1.0 -1.0</key><br>
+will subtract the <b>tr</b> array from the <b>r</b> array
+<p><br>
+
+<h3>Related commands:</h3>
+<menu>
+<li><a href="diff.html"> diff </a>
+<li><a href="exchange.html"> exchange </a>
+<li><a href="product.html"> product </a>
+<li><a href="ratio.html"> ratio </a>
+</menu>
+</body>
+
+

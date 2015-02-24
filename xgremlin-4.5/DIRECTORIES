@@ -1,0 +1,29 @@
+
+	Directories in Xgremlin source tree
+	===================================
+	
+	./Widgets         : Sundar Narasimhan's Display widget (heavily 
+		            modified) which is used for plotting in Xgremlin
+                            and the LiteClue widget for help bubbles.
+
+	./Common          : Code common to several programs
+ 
+	./Csrc            : C part of Xgremlin, mostly user interface and
+		            main program.
+
+	./Fsrc            : FORTRAN part of Xgremlin, mostly the modified
+			    sources of Jim Brault's Gremlin.
+
+	./configurations  : Configuration files for different platforms.
+
+	./doc             : Documentation, man pages, wall chart etc.
+			    Complete documentation in HTML format.
+
+	./tools           : Two utilities for converting text files between
+		            DOS and Unix and the 'dumplin' and 'mergelin'
+                            utilities.
+
+	./mpar            : A library with functions to determine 
+                            machine parameters.
+
+

@@ -1,0 +1,52 @@
+<head>
+<title> mergelin </title>
+</head>
+
+<body bgcolor="#ffffff">
+<h2>mergelin - merge two or more Gremlin line list (.lin) files</h2><p>
+
+<b>Syntax:</b> <kbd>mergelin</kbd> <i>  -o &lt output file&gt &lt input files &gt
+[ -t xxx.x ]</i><p>
+
+<b>mergelin</b> is used to merge several Gremlin line list data files
+(with .lin extension) into a single line list file. The program is
+especially useful to combine the output from several <a
+href="commands/linelist.html">linelist</a> commands in Xgremlin.
+The resulting new line list file can be loaded into Xgremlin with the
+<a href="commands/open.html">open lineio</a> command after a corresponding
+spectrum has been read into the <b>r</b> array.
+<p><br>
+
+<h3>Options:</h3>
+<dl>
+<dt> <b>-o</b>
+<dd> actually not an option because it <b>must</b> be given on the command line. 
+It is followed by the name of the output file (without .lin extension).<p>
+
+<dt> <b>-t</b> <kbd>xxx.x</kbd>
+<dd> mergelin reads the line list data from every input file and
+assembles the merged line list in memory before writing it out to
+disk. If one of the input files contains a line that is <b>xxx.x</b>
+wavenumbers closer to one of the lines already in the merged list it
+will not be transferred to the output line list because it is assumed
+that it is identical to the line already in the list.  <b>The default
+threshold is 5mK (0.005/cm).</b> The -t option may be used to change
+the threshold. If the threshold is set to 0 all lines will be included
+in the output line list.
+</dl>
+<p><br>
+
+<h3>Examples:</h3>
+<dl>
+<dt> <kbd>mergelin -o all.lin *.lin </kbd>
+<dd> will merge all line list files in the current directory into a file
+<b>all.lin</b>. Identical lines (within the default threshold) will 
+appear only once in the output line list.<p>
+
+<dt> <kbd>mergelin -o all.lin a.lin b.lin -t 0.0</kbd>
+<dd> will merge all line list data from files <b>a.lin</b>
+and <b>b.lin</b> into a single output file <b>all.lin</b>.
+All lines will be included in the output file.
+</dl>
+
+</body>

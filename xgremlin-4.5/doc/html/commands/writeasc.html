@@ -1,0 +1,60 @@
+<head>
+<title> writeasc </title>
+<!-- Changed by: Gillian Nave, 27-Mar-1996 -->
+</head>
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+
+<h2>writeasc</h2>
+<h3>Syntax :</h3>  <br> writeasc <i>&lt;output file&gt;</i> [<i>&lt;first point&gt; &lt;last point&gt;</i>] [ <i>&lt;comment line character</i>&gt; ]
+         [ <i>&lt;title string for GLE&gt;</i> ] </i></h3>
+
+	writes out a portion of the r array between two point in ASCII
+	suitable for reading into programs such as GLE, Gnuplot,
+	a spreadsheet program or some other data plotting program.
+	Real data are written in two columns as x-y pairs, complex data
+	are written out in three columns. The beginning of the file	
+	consists of a number of comment lines with by default start with
+	a '!' character. The comment line character can be changed with
+	the 'writeasc' command. If the range of points is omitted from the 
+	command the range that is currently visible in the plotting window
+	will be written to the file.
+<p>
+	The 'writeasc' command provides a convenient interface to GLE.
+	The first string variable in a 'writeasc' command must always be 
+	the output file name of the data file. If the second string on the 
+ 	command line does NOT begin with a comment character the string 
+	is assumed to be the title of a plot to be created with the 
+	GLE plotting program. In this case Xgremlin also creates a suitable 
+	input file for the GLE plotting program which includes the 
+	previously created data file. Real data and the real part of complex
+	data are plotted in black whereas the imaginary part of complex
+	data is plotted in blue as in the Xgremlin plot window.
+
+<h3>	Examples:</h3>
+<dl>
+<dt>	<b>	 writeasc test.dat "#" 100 300		</b>
+<dd>		   writes points 100 - 300 from the r array into the file
+		   'test.dat' using a '#' for the comment lines. The data
+		   file 'test.dat' would be suitable for reading into	
+		   Gnuplot.
+<p>
+<dt>	<b>	 writeasc test.dat 200 5000 "A test spectrum" </b>
+<dd>		   writes points 100 - 5000 from the r array to the 
+		   file 'test.dat' and also writes a file 'test.gle'
+		   which can be processed by the plotting program GLE.
+		
+</ol>
+
+<H3>Related commands:</H3>
+<UL>
+<LI> <A HREF="dump.html">dump</A>
+<LI> <A HREF="writefile.html">writefile</A>
+<LI> <A HREF="readasc.html">readasc</A>
+</UL>
+
+</body>

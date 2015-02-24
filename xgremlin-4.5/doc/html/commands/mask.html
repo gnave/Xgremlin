@@ -1,0 +1,42 @@
+<head>
+<title> mask </title>
+</head>
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>mask</h2><p>
+
+<b>Syntax:</b> <kbd>mask</kbd> <i>  nrise [ average ]  [ gwidth ]</i><p>
+
+Multiplies the ends of the data in <b>r</b> by a cosine bell which
+rises from 0. to 1.0 in <b>nrise</b> points.  The bell is split into
+rising and declining parts separated by (<b>nop</b> - <b>2 * nrise</b>)
+points.  If a value is supplied for <b>average</b>, the mean value of
+the data in <b>r</b> is set to <b>average</b> before masking.  If the
+string width <b>gwidth</b>is specified, the data is further multiplied
+by a Gaussian of width <b>gwidth</b> points.<p>
+
+A mask avoids end effects caused by discontinuities in the value
+and slopes of the data at the ends.  This is important when
+performing an FFT because the data in <b>r</b> is assumed to be one
+period of an infinitely periodic function; hence any end
+discontinuities appear to be part of the spectrum.<p>
+
+"mask 0 0.0" can be used to subtract the mean from the data in
+the r array.
+
+<p><br>
+
+<h3>Related commands:</h3>
+<menu>
+<li><a href="fourtran.html>fourtran</a>
+<li><a href="invtran.html>invtran</a>
+<li><a href="power.html>power</a>
+<li><a href="transform.html>transform</a>
+</menu>
+
+</body>
+

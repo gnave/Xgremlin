@@ -1,0 +1,45 @@
+<head>
+<title> The raw phase plot </title>
+</head>
+<body bgcolor="#ffffff">
+<h1>  The raw phase plot </h1>
+
+In the phase plot, the spectrum is represented in black and the phase
+points, going from +pi to -pi, are in red. 
+Both spectrum and phase can be expanded with the buttons at the top of
+the <a href="../tutorial/gremlin_figure.html"> gremlin window</a>. To
+expand the spectrum vertically, make sure that the 'phase' button is not
+highlighted. If this button is red, then you will expand the phase
+plot instead. If you only expand in the wavenumber direction, then
+both the spectrum and phase are expanded together.
+
+<p>
+<img src="../tutorial/raw_phase.gif"><p>
+In this phase plot, all of the points line on a well-defined line,
+with no 2-pi phase flips or false points caused by ghosts or foldback. 
+
+<p>
+<img src="../tutorial/phase_2pi.gif"><p>
+In this plot, there is a 2-pi phase flip, caused by using a wrong
+value for the central point. A single polynomial cannot be fitted to
+this phase, and to correct it you should go back to the phase window
+and change the value used for the central point. Alternatively, you
+can correct a problem like this by multiplying the interferogram by
+-1. This is done with the command
+<a href="../commands/input.html"><b>input inverted</b></a>, which is
+bound to the 'Invert interferogram' button in the plot window.
+
+<p>
+<img src="../tutorial/phase_gho.gif"><p>
+In this plot, the general phase is well-behaved, but there are false
+points caused by <a href="../glossary.html"> foldback</a> 
+from other aliases and by 
+<a href="../glossary.html">laser ghosts</a>. These must be
+removed by surrounding them with two markers and deleting them with
+&lt;Ctrl+d&gt; (usually bound to the button 'delete' if you are using
+the default mappings for the buttons). 
+
+<p>
+<a href="../tutorial/transform.html#raw_phase">
+Back to transforming</a>
+</body>

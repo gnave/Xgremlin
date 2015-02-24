@@ -1,0 +1,49 @@
+<HEAD>
+<TITLE> Intensity Calibration</TITLE>
+<!-- Changed by: Ulf Griesmann, 25-Mar-1996 -->
+</HEAD>
+<BODY bgcolor="#ffffff"><P>
+<B> Next:</B> <A HREF="analyse_ring.html"> Dealing with Ringing</A>
+<B>Up:</B> <A HREF="analyse.html"> Using Xgremlin to Analyse </A>
+<B> Previous:</B> <A HREF="analyse_cal.html"> Wavenumber Calibration</A>
+<HR> <P>
+<H2> Intensity Calibration</H2>
+<P>
+Applying an intensity calibration to the output file is easily done by
+typing:
+<A HREF="../commands/writelines.html"><b>writelines intcorr</b></A> 
+You should first have the response function of your spectrometer in
+the <em>r </em> array. This corrects the <b>equivalent width</b> but leaves the
+peak intensity <b>unchanged</b>, giving you a record of the signal-to-noise.
+<P>
+
+It is generating the response function that is the tricky
+problem. The usual procedure is to take a separate calibration
+spectrum using some standard lamp (tungsten and deuterium lamps are
+commonly used). This will be a relatively low-resolution spectrum
+which can be combined with the known spectral output of your
+calibrated lamp to determine the response function of the
+spectrometer, which should vary fairly slowly with wavenumber. 
+The response function R of the spectrometer is defined by the relation:
+<BLOCKQUOTE>
+<EM>(Standard lamp radiance) * R = (Measured radiance)</EM> 
+</BLOCKQUOTE>
+Note that the response function is a <b>dimensionless</b> function.
+It is important to bear this in mind because whereas the radiance of 
+a standard lamp is measured in <EM>W cm&#175;&#179;sr&#175;&#185;</EM>,
+the signal from e.g. a photomultiplier is not proportional to the
+radiative power but to the number of photons received. The calibration
+spectrum must therefore be weighted with the wavenumber before
+dividing it by the tabulated standard lamp radiance to obtain R. All this is done
+automatically with the <a href = "../commands/response.html"> <b>response</b>
+</a> command which turns the calibration spectrum in the <b>r</b>
+array into the spectrometer response function with the help of a
+supplied standard lamp calibration.
+<P>
+See the <a href = "../commands/response.html"> <b>response</b> </a>
+command for a description of the format of the standard lamp
+calibration file.
+<p>
+<HR>
+
+</BODY>

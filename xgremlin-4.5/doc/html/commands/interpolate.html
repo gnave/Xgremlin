@@ -1,0 +1,60 @@
+<head>
+<title> interpolate </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>interpolate</h2><p>
+
+<b>Syntax:</b><br>
+<ul>
+<li> <kbd>interpolate disp wstart wstop</kbd>
+<li> <kbd>interpolate disp wstart np</kbd>
+<li> <kbd>interpolate disp ni np</kbd>
+<li> <kbd>interpolate disp ni</kbd>
+<li> <kbd>interpolate disp</kbd>
+</ul>
+
+<b>Parameters:</b><br>
+<dl>
+<dt> <b>disp</b>
+<dd> dispersion in wavenumber/wavelength per point
+<dt> <b>wstart</b>
+<dd> wavenumber/wavelength to start interpolation
+<dt> <b>wstop</b>
+<dd> wavenumber/wavelength to finish interpolation
+<dt> <b>ni</b>
+<dd> point subscript to start interpolation
+<dt> <b>np</b>
+<dd> number of points to interpolate
+</dl>
+
+The current buffer (contents of <b>r</b>) is interpolated onto the
+wavenumber/wavelength scale specified by <b>disp</b> (which is given
+in wavenumbers or nm per point), starting at wavenumber/wavelength
+<b>wstart</b> or point <b>ni</b> and continuing until
+wavenumber/wavelength <b>wstop</b>, or until <b>np</b> points have
+been interpolated; the result replaces the original data in
+<b>r</b>. It is not possible to obtain more than <b>nrtr</b> (number
+of points in <b>r</b> and <b>tr</b> arrays) points although the call
+may specify parameters which would require more than <b>nrtr</b>
+points.  If a call requests an interpolation through
+wavenumbers/wavelengths outside the range of the data in the <b>r</b>
+array, as many points as possible are interpolated (the routine will
+try to do the best it can with the situation).  The information block
+entries <b>nop</b>, <b>wref</b> and <b>delw</b> are all modified by
+this command.<p>
+
+<b>Note:</b><br>
+If <b>disp</b> is negative, it is interpreted as a step size in the
+<b>alternate</b> (wavelength/wavenumber) regime; for <b>wstart</b>, use the
+highest value wanted, and for <b>wstop</b> use the lowest. The contents
+of the <b>tr</b> array are destroyed. The <b>tr</b> array is used as a
+scratch work area by this command.
+</body>
+
+

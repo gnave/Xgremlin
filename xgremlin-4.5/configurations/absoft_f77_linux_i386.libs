@@ -1,0 +1,6 @@
+#
+# libraries required with Absoft Fortran
+#
+FLIBS = -lU77 -lf77math -lfio 
+FLINK = f77
+FELIB = 

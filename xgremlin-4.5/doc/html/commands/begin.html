@@ -1,0 +1,25 @@
+<head>
+<title> begin </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>begin</h2>
+<p>
+
+Only effective after a <a href = "set.html">set batch</a> command.
+<p>
+
+A sequencing instruction included so that an entire run need
+not be aborted in case of an error.  This command does not
+stop terminations which arise from system problems.  If a
+syntax error is encountered, the remaining commands are scanned
+until either a "begin" or an "end" command is found.  The "end"
+command terminates the run while the "begin" indicates that
+the commands which follow are not dependent upon the success
+of the previous commands.  All status is saved.(eg. saves, etc)
+</body>

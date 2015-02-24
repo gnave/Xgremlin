@@ -1,0 +1,68 @@
+
+#################################################################################
+#
+# Makefile for the Xgremlin program (debugging version)
+#
+#################################################################################
+
+
+# Location of X11 libraries
+XLIBLOC = -L/usr/X11R6/lib
+
+
+#################################################################################
+# 
+# No changes should be required below this line
+#
+#################################################################################
+CC = gcc
+CFLAGS = -g -pipe -DHAVE_ANSI_TIME -Wall -fstrict-prototypes -DHAVE_ANSI_SIGNALS -DDEBUG
+LDFLAGS =
+LIBLOC = -L../Fsrc -L../Widgets -L../Common -L../mpar
+INCLOC = -I../Widgets -I../Common
+LIBS = -lWidgets -lXaw3d -lXt -lXext -lSM -lICE -lXmu -lX11 -lgremlin -lMPAR -lCommon -lg2c -lc -lm
+
+S = xgremlin.c OptionMenu.c Help.c Functions.c Buttons.c Miscellaneous.c \
+    Edit.c ByteOrder.c FortranWrappers.c PlotMode.c SignalHandlers.c \
+    Version.c Phase.c Hfs.c Scratch.c argtype.c arralloc.c
+
+O = $(S:.c=.o)
+
+all: ostype.h xgremlin
+
+xgremlin: $(O) ../Fsrc/init.o ../Fsrc/libgremlin.a ../Widgets/libWidgets.a
+	$(CC) $(LDFLAGS) -o xgremlin  $(O) ../Fsrc/init.o $(XLIBLOC) $(LIBLOC) $(LIBS)
+
+clean:
+	rm -f *.o *~* ostype.h ff-version core xgremlin TAGS
+
+tags: $(S)
+	etags $(S)
+
+version:
+	awk -f version.awk Version.h >version
+
+%.o : %.c
+	$(CC) $(CFLAGS) $(INCLOC) $(EXTRA) -c $<
+
+ostype.h:
+	echo "#define SYSNAME     \"`hostname`\"" > ostype.h
+	echo "#define OSNAME      \"`uname`/`uname -m`\"" >> ostype.h
+	echo "#define OSVERSION   \"`uname -mr`\"" >> ostype.h
+	$(CC) -v 2> cc-version
+	echo "#define CCVERSION   \"`cat cc-version|sed 1,1d`\"" >> ostype.h
+	rm -f cc-version
+	echo "#define FFVERSION \"`cat ff-version`\"" >> ostype.h
+
+# Revision history:
+# -----------------
+# $Log$
+
+
+
+
+
+
+
+
+

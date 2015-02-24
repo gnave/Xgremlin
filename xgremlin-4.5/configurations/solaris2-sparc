@@ -1,0 +1,20 @@
+#
+# f77 and C compiler flags for Sunos 5.x (Solaris 2.x) on Sparc processors
+#
+CC = gcc
+CFLAGS = -O3 -pipe -fomit-frame-pointer -DHAVE_ANSI_TIME -DHAVE_ANSI_SIGNALS
+
+#
+# linker flags
+#
+LDFLAGS = -t
+
+#
+# extra libraries which may be needed for this platform
+#
+EXTRALIBS = -lsocket -lnsl
+
+#
+# complex arithmetic available
+#
+HAVE_GCC := yes

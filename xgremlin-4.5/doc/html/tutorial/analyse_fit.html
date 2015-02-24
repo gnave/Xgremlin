@@ -1,0 +1,82 @@
+<head>
+<TITLE>Fitting lines</TITLE>
+<!-- Changed by: Gillian Nave, 25-Mar-1996 -->
+</head>
+
+<body bgcolor="#ffffff">
+<B> Next:</B> <A HREF="analyse_cal.html"> Wavenumber calibration</A>
+<B>Up:</B> <A HREF="analyse.html"> Using Xgremlin to Analyse </A>
+<B> Previous:</B> <A HREF="analyse_find.html"> Finding lines</A>
+<HR> <P>
+
+<H2>Fitting lines</H2>
+<P>
+<A HREF="../commands/linelist.html">
+<b>linelist</b></A> just produces a first approximation for the line
+positions, intensities and widths; to get accurate values you
+should perform a further least squares fit of the lines.
+There is now a global method of fitting lines once you are happy you
+have all the correct ones in the list. First you must set the
+number of iterations using
+<A HREF="../commands/set.html">
+<b>set lsq</b></A> <em>itnum</em>
+and the number of points read in using
+<A HREF="../commands/set.html">
+<b>set readlength</b></a> <em>n</em>
+Then type
+<A HREF="../commands/fitlines.html">
+<b>fitlines</b></a> <em>wstart wstop</em>
+How long it takes depends on the speed of your computer and the number
+of lines and iterations you have chosen. 
+
+<P>
+Xgremlin usually does a fairly good job of fitting lines, but it is always
+a good idea to check what it has done afterwards. To do this, read in
+a section of the spectrum with 
+<A HREF="../commands/read.html"><b>read</b></A> <em>wstart</em>,
+and get the lines from the <em>.lin</em> file using
+<A HREF="../commands/getlines.html"> <b>getlines</b></A>. 
+You then need to subtract the fit from the data by typing 
+<A HREF="../commands/active.html"> <b>active</b></A>. 
+This may take some time if many lines are in the buffer. Then plot the
+result and see what the residuals look like. If Xgremlin has done a
+good job, the residuals will look like noise.
+
+<P>
+Large residuals may have several causes. The most likely reason is
+that the actual lineshape is not a Voigt profile, which is the only
+profile that Xgremlin fits. This is often the case for the strongest
+lines, which may be self-absorbed in typical laboratory sources. The
+residuals are <A HREF="analyse_absorb.html"> large and symmetric</a>.
+In extreme cases, the line may actually self-reverse, giving a
+double-humped structure. It is important to recognize these as a
+single self-reversed line, and not treat them as two separate lines.
+
+<P>
+Another possibility is that the line is weak and/or blended. <A
+HREF="../commands/lsqfit.html"><B>lsqfit</B></A> fits lines out to 5
+half-widths, and any lines that fall within that region may affect the
+fit of the line.  To fit weak and blended lines accurately it is
+usually necessary to specify that the width and damping parameter
+should not be revised by the fitting procedure. To do this type
+<A HREF="../commands/holdwidth.html">
+<b>holdwidth</b></A> <em>width linenumber</em> and
+<A HREF="../commands/holddamping.html">
+<b>holddamping</b></A> <em>damping linenumber</em>
+where <em>width</em> and <em>damping</em> are the widths and damping
+parameters you think the lines should have (check a few adjacent lines
+belonging to the same multiplet to find this), and
+<em>linenumber</em> is a list of lines to be fitted. Make sure the
+lines are active, and then try fitting the lines again by typing
+<A HREF="../commands/lsqfit.html"><b>lsqfit </b></A> <em>itnum </em>.
+To return the lines to the <em>.lin</em>file, type
+<A HREF="../commands/putlines.html">
+<b>putlines</b></A>
+<P>
+A third possibility for large residuals is that the lines are
+under-resolved, and are `ringing'. This is described in the section on
+<A HREF="analyse_ring.html">dealing with ringing</A>.
+
+<h3> Integrating lines </h3>
+
+</BODY>

@@ -1,0 +1,47 @@
+<head>
+<title> reverse </title>
+<!-- Changed by: Gillian Nave,  1-May-1996 -->
+</head>
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<H2>reverse</H2>
+<H3>Syntax:</H3>
+reverse  (no arguments)
+<p>
+Reverse the data in the 'r' array.  Reset wref and delw to correspond
+to the reversed data.
+<p> 
+This command is most often used when dealing with even order aliases,
+where the spectrum has been obtained from the interferogram using the
+command <a href="fourtran.html"> fourtran</a>. In this case, remember
+to reset the length to half the number of points that you read in, as 
+the 'fourtran' command leaves the spectrum in the lower part of the
+'r' array only.
+
+It could also in principle be used for plotting spectra in increasing
+wavelength, rather than wavenumber, but in this case the command <a
+href="interpolate.html">interpolate</a> is more useful, as it changes
+the scale such that the points are evenly spaced in wavelength, rather
+than wavenumber.
+
+<H3>Example:</H3>
+The following commands will open an interferogram, read in the central
+section, transform it, reverse the spectrum and plot the result.
+<pre>
+open datain &lt;filename&gt;
+set centerread
+read &lt;wref&gt; 65536
+fourtran
+length 32768
+reverse
+plot
+</pre>
+<H3>Related commands:</H3>
+<ul>
+<li> <A HREF="fourtran.html">fourtran</A>
+<LI> <A HREF="interpolate.html">interpolate</A>
+</ul>

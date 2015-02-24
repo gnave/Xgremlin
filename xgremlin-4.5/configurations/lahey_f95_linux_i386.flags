@@ -1,0 +1,6 @@
+#
+# flags for the Lahey/Fujitsu Fortran 95 complainer under Linux
+#
+FF = lf95
+# F95FLAGS = --quiet --sav --tp -O --wide 
+ F95FLAGS = --quiet --sav --tp -O  --wide 

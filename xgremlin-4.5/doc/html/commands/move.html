@@ -1,0 +1,30 @@
+<head>
+<title> move </title>
+</head>
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>move</h2><p>
+
+<b>Syntax</b> <kbd>move</kbd> <i> &lt src&gt &lt srcindex&gt
+ &lt dest&gt &lt destindex&gt [ndata]</i><p>
+
+Move the contents of the array <b>src</b>, starting at <b>srcindex</b>, to
+the array <b>dest</b>, starting at <b>destindex</b>.
+<b>src</b> and <b>dest</b> are <b>r, tr, ffta</b> or <b>phz</b>.
+<b>ndata</b> is the number of data to be moved (defaults to <b>nop</b>).
+<p><br>
+
+<h3>Examples:</h3>
+<dl>
+<dt> <kbd>move r 1 ffta 1</kbd>
+<dd> will copy the <b>r</b> array over to the <b>ffta</b> array (nop points)<p>
+
+<dt> <kbd>move r 1 tr 100 100</kbd>
+<dd> copies  r(1)...r(100)  to  tr(100)...tr(200)
+</dl>
+
+</body>

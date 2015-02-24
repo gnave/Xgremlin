@@ -1,0 +1,91 @@
+\subsection{A Few Useful Commands} \label{sec:useful}
+
+These descriptions are mainly taken from the help file.
+
+\subsubsection{alias}
+{\tt alias newname "string"}\\
+{\tt alias}\\
+        newname   will become a new command; it will be expanded to
+        ``string'' in the command line at execution time, but need not be
+        the last command on the line.  If no newname is given, this
+        command will simply list the existing aliases. The string may
+        include several commands separated by semicolons, but only the
+        last one will have access to further parameters in the original
+        command line.  An alias may use another alias.
+
+	Newname is limited to 12 characters; string may be up to 80 chars,
+	but the final expansion for all aliases in the line is limited
+	to 127 characters.
+
+\subsubsection{info}
+\begin{description}
+\item[{\tt info}]
+        on its own gives a summary of the information block.
+        Alternatively type
+        for the value of {\em var}. The help file lists the variables
+        that {\em info} knows about.
+\item[{\tt info}\/ {\em var} {\em value}]
+        sets  {\em var} to {\em value}. 
+\end{description}
+
+\subsubsection{set}
+
+{\tt set xreg(i)}\/ {\em xnum}\\
+{\tt set ireg(i)}\/ {\em inum}\\
+{\tt set ireg(i) up}\/ {\em inum}\\
+{\tt set xreg(i) down}\/ {\em xnum}\\
+        There are ten integer and ten floating registers - ireg(i) and
+        xreg(i), i=0-9.  These registers can be used anywhere in a
+        command  (even ``set'') as if they were numbers. They are
+        initialized by using the command without modifiers; by using the
+        modifiers ``up'', ``down'', ``times'' and ``over'' the registers
+        can be modified at will.  For example:
+
+        \begin{description}
+           \item[{\tt set xreg(2) 30000.}]   will set register 2 to 30000.0, and
+           \item[{\tt set xreg(2) up 100.}]  will increase it by 100 to 30100.  Then
+           \item[{\tt read xreg(2)} ]        will read a record starting at 30100.
+        \end{description}
+
+        If used without a subscript (i.e., just xreg or ireg), the
+        default is 0.
+
+        There are a number of variables and flags that can be set. Full
+        information is in the help file. Some handy ones are:
+
+        \begin{description}
+          \item[{\tt set centerread}\/ {\em wstart}] signifies that
+             the next read command {\em read wref}\/ will read a buffer
+             centred around {\em wstart} 
+          \item[{\tt set firstread} \/ {\em wstart}] signifies that 
+             the next read command will read a buffer beginning at {\em wstart}.
+          \item[{\tt set width}\/ {\em width}] so width is the values set
+             for all lines subsequently included via the plot routine.
+          \item[{\tt set readlength} {\em value}] will set the number
+	     of points read in by the next {\em read} statement to {\em value}
+        \end{description}
+
+\subsubsection{whats}
+        \begin{description}
+         \item[{\tt whats saved}]
+                            lists the contents of the scratch file
+                            (written by the command {\tt save}\/ {\em inum}.
+         \item[{\tt whats xreg(inum)} and
+               {\tt whats ireg(inum)}]
+                            lists the values of the registers as set
+                            in {\tt set}.
+         \item[{\tt whats r}\/ {\em n m}] lists the values in the r
+		array between points n and m.
+         \item[{\tt whats tr}\/ {\em n m}] lists the values in the tr
+                array between points n and m.
+        \end{description}
+
+\subsubsection{save and recall}
+\begin{description}
+\item[{\tt save}\/ {\em n}  ] saves up to 8192 points of the r array in label {\em n} in
+                        the scratch file.
+\item[{\tt recall}\/ {\em n}] recalls  the contents of {\em n} into the r
+                        array.   
+\end{description}
+
+

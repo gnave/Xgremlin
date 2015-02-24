@@ -1,0 +1,80 @@
+<head>
+<title> phcorr </title>
+</head>
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>phcorr</h2>
+<h3>Syntax:</h3>
+<ul>
+<li> phcorr <em>'fit' &lt;nterms&gt; &lt;cutfrac&gt; &lt;fracnoise&gt; 
+[&lt;npoints&gt;] [&lt;fraclim&gt;] [&lt;tol&gt;]  </em>
+
+<li> phcorr <em>'smooth' &lt;nwidth&gt;  </em>
+<li> phcorr <em>'spline' &lt;cutfrac&gt; &lt;fracnoise&gt; [&lt;npts&gt] 
+[&lt;fraclim&gt] [&lt;tol&gt;] </em>
+</ul>
+where:
+<dl>
+<dt> nterms <dd> number of terms in Chebyshev fit (maximum 8). A value
+of 0 will just plot the phase points, without fitting
+the polynomial
+
+<dt> cutfrac <dd> is the discriminator above which lines are selected for the 
+phase fitting, expressed as a fraction of the maximum in the spectrum. 0.05 is 
+usually sufficient, but a lower value will be needed if the spectrum is 
+dominated by a few, very strong lines and phase information is required well 
+away from these values.
+
+<dt> fracnoise <dd> noise level relative to a spectral maximum of 1.0
+
+<dt> npoints <dd> number of points to use in phase determination
+     default: largest power of 2 in balanced portion of interferogram,
+             up to 262144
+
+<dt> fraclim <dd> 1/fraclim is taken as the limiting S/N for strong lines
+
+<dt> tol <dd> singular value tolerance (default 10**-6)
+
+<dt> nwidth <dd> FWHM of apodizing Gaussian
+</dl>
+
+Parameters controlling the spline phase fit (set by <a 
+href="info.html">info</a>):
+<dt> stol <dd> tolerance for the fit. Must be between 0 and 1. If stol = 0, the 
+spline is an interpolating spline (goes through the points). Values of stol 
+larger than 0 describe how closely the approximating spline approaches the data 
+points.
+
+<dt> sten <dd> tension factor for the fit. The tension factor must be positive. 
+If sten = 0, the spline is a normal cubic spline.
+
+<dt> smof <dd> smoothing factor (default is 0.). The larger this factor, the 
+larger the degree of smoothing.
+
+<dt> swid <dd> Set this above zero to ensure that only one point is picked up 
+per line. Default is 6.  Use only the phase from the largest amplitude point 
+within swid points.
+
+<dt>
+This command sets flags and parameters for phase correction.  If
+no paramters are given, use only apodization with default width.
+If 'smooth' is specified, use given apodization only. If
+'fit' is specified, fitting parameters must be given; limiting
+S/N for strong lines is assumed to be 1000.
+<p>
+<b>NOTE:</b>
+In Xgremlin phase correction is normally done using the 
+'Phase / Tranform' interface. 
+	
+<h3>Related topics</h3>
+<ul>
+<li> <a href="transform.html">transform</a>
+<li> <a href="../tutorial/transform.html">... transform and phase correct 
+...</a>
+</ul>
+
+</body>

@@ -1,0 +1,26 @@
+#
+# make the MPAR library (functions to determine machine constants)
+#
+# NOTE:
+#        must be compiled with 'make -r'
+#
+
+FF = f77
+FFLAGS = -f -K -N1 -N90 -B108 -O
+
+F = i1mach.f spmpar.f dpmpar.f r1mach.f d1mach.f smachar.f dmachar.f
+
+O = $(F:.f=.o)
+
+libMPAR.a : $(O)
+	ar rv libMPAR.a $?
+	ranlib libMPAR.a
+
+clean :
+	rm -f *~*~ *.o libMPAR.a
+
+install :
+	install -m 644 -o root -g root libMPAR.a /usr/local/lib
+
+%.o : %.f
+	$(FF) -c $(FFLAGS) $<

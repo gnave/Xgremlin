@@ -1,0 +1,15 @@
+#
+# f77 and C compiler flags for IBM RS/6000 workstations running AIX 3
+#
+CC = gcc
+CFLAGS = -O3 -mpower -pipe -fomit-frame-pointer -DHAVE_ANSI_TIME -DHAVE_ANSI_SIGNALS
+
+#
+# linker flags
+#
+LDFLAGS = 
+
+#
+# complex arithmetic available
+#
+HAVE_GCC := yes

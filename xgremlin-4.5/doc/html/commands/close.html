@@ -1,0 +1,52 @@
+<head>
+<title> close </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>close</h2>
+<p>
+
+<b>Syntax:</b> <kbd>close</kbd> <i>&lt unit name &gt </i>
+<p>
+
+This command closes the file attached to <b>unit name</b> (with an 
+<a href="open.html">open</a> command) so that it
+can either be re-opened as another unit name or so that the unit
+name can be attached to another file using 
+<a href="open.html">open</a>.<p>
+        
+Valid <a href="../techref/units.html">unit names</a> are:   
+<ul>
+<li><b>altdata</b>
+<li><b>com</b>
+<li><b>datain</b>
+<li><b>dataout</b>
+<li><b>helpfile</b>
+<li><b>infile</b>
+<li><b>logfile</b>
+<li><b>lineio</b>
+<li><b>outfile</b>
+<li><b>rawin</b>
+<li><b>scratch</b>
+<li><b>spool</b>
+</ul>
+
+<h3>Example:</h3>
+<kbd>close datain</kbd><br><br>
+Closes the file attached to the unit <b>datain</b>.
+<p>
+
+<h3>Related commands:</h3>
+<ul>
+<li><a href="open.html">open</a>
+<li><a href="files.html">files</a>
+<li><a href="rewind.html">rewind</a>
+</ul>
+
+</body>
+

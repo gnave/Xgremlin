@@ -1,0 +1,51 @@
+<head>
+<title> integrate </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>integrate</h2><p>
+
+<b>Syntax:</b> <kbd>integrate</kbd><p>
+
+This command will calculate the integral of a line between two markers
+that have first been set. The line shape has to be defined with the <a
+href="profile.html">profile</a> command first. The fitted line profile will
+be plotted over the data for comparison and the residumm will be
+plotted ( except when profile type is 'none' ).
+<p><br>
+
+<h3>Fitting and integrating one or more Gauss profiles</h3>
+The range of integration must be specified by setting pairs of 
+mouse markers with the left mouse button. All data points inside
+those pairs of markers will be included in the fit. The first and
+last mouse marker enclose the whole range for which the theoretical
+profile will be calculated.
+Initial position and intensity (height) of each line to 
+be fitted must be specified with middle button mouse markers.
+The initial with and the tolerance for the least squares fit
+are set with the following commands:
+<pre>
+   set width <width>
+   set lsqtol <number>    (default is 1.e-6)
+</pre>
+<p><br>
+
+<h3>Example:</h3>
+<pre>
+    set width 0.015
+    set lsqtol 1.e-7
+    integrate
+</pre>
+<p><br>
+
+<h3>Related commands:</h3>
+<menu>
+<li><a href="profile.html"> profile </a>
+</menu>
+
+</body>

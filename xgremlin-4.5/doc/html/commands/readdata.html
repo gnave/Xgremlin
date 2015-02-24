@@ -1,0 +1,64 @@
+<head>
+<title> readdata </title>
+<!-- Changed by: LION,  3-May-1996 -->
+</head>
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>readdata</h2>
+<H3>Syntax:</H3>
+<ul>
+<li>readdata <em> [ (&lt;format&gt;) ] [ &lt;nop&gt; ] </em>
+<li>readdata <em>  (&lt;format&gt;) [ &lt;unit-name&gt; ] [ &lt;nop&gt; ] </em>
+</ul>
+<p>
+where
+<ul>
+<li>	"format" - any valid FORTRAN format specification for REAL numbers.
+			(must include parentheses)
+<li>	"unit-name" - one of the symbolic Xgremlin unit names
+<li>	nop	-  the number of points to be read in.
+</ul>
+Readdata will read the format specifier as the 1st line of the
+input if not given on the command line.  By default the input will
+be taken from the source of command input unless overridden.  The
+number of points may be set prior to issuing this command or on the
+command line.  The unit which is read may be reset using the
+"unit-name"; appropriate Xgremlin unit-names are:
+<ul>
+<li>com
+<li>outfile
+</ul>
+readdata is most commonly used to read in ASCII data from a file, especially
+that which has been produced with <A HREF="writefile.html">writefile</A>.
+
+<h3>Examples:</h3>
+The follwing commands in a file will read the data in the specified format 
+into the r array:
+
+<pre>
+info wref      1199.16334
+info id 'Some meaningful title                                            '
+info delw     .15585311200E-02
+length  90000
+readdata (8f10.4)
+   67.1441   62.1346   67.9790   67.9790   81.3377   91.3567   97.2011  105.5503
+...
+...
+...  
+  795.4764  800.4860  809.6700  819.6891  833.0478  844.7366  855.5906  867.2794
+multiply    .11977220E+01
+keyboard  
+</pre>
+
+
+<h3>Related commands</h3>
+<ul>
+<li> <A HREF="writefile.html">writefile</A>
+<li> <A HREF="readasc.html">readasc</A>
+<li> <A HREF="writeasc.html">writeasc</A>
+</ul>
+

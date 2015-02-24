@@ -1,0 +1,94 @@
+<head>
+<title> standards </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>standards</h2>
+<h2>Syntax:</h3>
+standards  <em>&lt;standardfilename&gt;[&lt;tolerance&gt;] 
+[&lt;maximum deviation factor&gt;] 
+[&lt;lines&gt;]</em>
+<ul>
+<li> standardfilename : A list of wavenumber standards in the format:<br>
+  <b>1x, a4 (of id), f13.6</b>
+</ul>
+<p>
+
+Lines from the .lin file are corrected for the refractive index of air
+(if <em>pspect</em> &gt; 1 Torr) and <em>wavcorr</em> - the wavenumber
+correction factor, and then compared to the lines in
+<b>standardfilename</b>. If any lines match a line in the file of
+standards to within <b>maximum deviation factor * uncertainty</b>,
+they are used to calculate a new value for <em>wavecorr</em>.
+However, lines which fulfill this criterion, but which fall outside
+the match window (default +- 0.02 cm-1, or set by <b>uvar0</b> and
+<b>uvar1</b> in the .hdr file) are not used.  The <b>tolerance</b>
+sets the window (+/- tolerance in wavenumbers) within which a standard
+line must match a line in the linelist to be accepted as a
+standard. The default tolerance is 0.02cm**-1.  The tolerance may also
+be set with the user variables <b>uvar0</b> and <b>uvar1</b>. The
+match window is then defined by <i>wavenumber +uvar0 -uvar1</i>.
+<b>lines</b> is the number of lines used for the deviation plot. By default,
+one line per standard is used but the plot can be 'spaced out' by
+specifying a larger (up to 180) number of lines. A good wavenumber 
+calibration will have a small standard deviation in the deviation
+plot, no outliers and no systematic trends.<br><br>
+<b>Note:</b><br>
+Xgremlin always assumes that the linelist with the lines that are to
+be calibrated has been read into memory. This corresponds to the
+<i>local</i> mode of the same command in gremlin.
+<p>
+
+A file with the extension <b>.cal</b> is created which contains
+the results of the calibration and statistical information.
+<p>
+
+The uncertainty is calculated from the following formula:
+<pre>
+        0.01 * sqrt(fwhm * resolution)
+ unc = --------------------------------
+                peak height
+</pre>       
+
+<h3>Example:</h3>
+<pre>
+standards file.stds 2
+</pre>
+This compares wavenumbers in the .lin file attached to the
+<b>datain</b> unit with those in the file <em>file.stds</em>. For all
+lines that match within 2*fwhm/(2*signal-noise) the values of wavecorr
+are calculated.  The output is similar to the following:
+<pre>
+   0:32:14   standards feuvb.std 5000.
+       Standard       Observed      Amp    Width    Unc     Delta      Wcorr
+ 122  53246.605100  53246.548632    7.40   .2706  .000199  .056468   1.060E-06
+ 264  53400.480400  53400.425922   23.94   .2701  .000061  .054478   1.020E-06
+ 537  53488.674200  53488.617904   50.70   .2631  .000029  .056296   1.052E-06
+ 229  53534.854400  53534.795220   22.64   .2791  .000066  .059180   1.105E-06
+ 176  53554.437700  53554.377282   21.06   .2837  .000072  .060418   1.128E-06
+ 109  53822.469000  53822.425410   19.04   .2884  .000080  .043590   8.099E-07
+ 360  53870.012200  53869.954056   62.91   .2931  .000024  .058144   1.079E-06
+ 119  53918.177800  53918.114518   19.97   .3045  .000078  .063282   1.174E-06
+ 110  54072.083200  54072.016950   22.53   .2949  .000068  .066250   1.225E-06
+ 188  54163.317000  54163.262894   40.57   .2649  .000036  .054106   9.989E-07
+ 120  54220.804100  54220.749383   33.10   .2802  .000045  .054717   1.009E-06
+ 122  54251.678400  54251.618796   33.20   .2714  .000044  .059604   1.099E-06
+ 108  54297.391400  54297.339506   31.71   .2677  .000046  .051894   9.557E-07
+ 189  54496.958400  54496.898188   66.31   .2705  .000022  .060212   1.105E-06
+ 269  54536.316300  54536.261074  106.57   .4050  .000017  .055226   1.013E-06
+ 268  54636.927400  54636.865504  118.50   .2961  .000013  .061896   1.133E-06
+ Average correction factor:   1.060484E-06
+ standard deviation:  9.066664719115082E-008
+</pre>
+
+<h3>Related commands:</h3>
+<ul>
+<li><a href="writelines.html">writelines</a>
+<li><a href="info.html">info wavecorr</a>
+</ul>
+

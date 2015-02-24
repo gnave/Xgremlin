@@ -1,0 +1,15 @@
+
+        Undesirable features we know of:
+	--------------------------------
+
+	* At least some Sparcstations running SunOS 4.1.3 come with an 
+	X server that has flaws and does not display the grips for resizing
+	panes correctly. Only the upper half of the grips show up on the 
+	display. This could be caused by a X11R5 server running a R6 client.
+	Fix: unknown.
+
+
+	Please report bugs to 
+
+	Gillian Nave  ( gnave@nist.gov )
+

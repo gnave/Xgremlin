@@ -1,0 +1,282 @@
+<head>
+<title> Re-compiling and Installing Xgremlin from scratch </title>
+</head>
+
+<body bgcolor="#ffffff">
+
+<h2>Re-compiling and Installing Xgremlin from Scratch</h2>
+<b>Ulf Griesmann, Oct 27, 1997</b><p>
+<b>update: Gillian Nave, Feb 2015 (gnave@nist.gov)</b><p><br>
+<h3>Introduction</h3>
+This document details the steps involved in compiling a new version
+of the FTS spectrum analysis program Xgremlin from the sources and 
+the installation procedure. With time the installation procedure will 
+(hopefully) be increasingly automated but at present some 
+human intervention is required. However, some of the software 
+(like compilers) need only be installed once.<p>
+
+<hr>
+<b>Note:</b><br> 
+If you already have installed compilers and libraries as
+described in <b>Step 0</b> you can immediately proceed with <b>Step
+1</b>.  If you want to install a binary distribution (programs
+precompiled and ready for installation) read the file
+<a href="Howto-Install-Binaries.html"> Howto-Install-Binaries</a> 
+first and then proceed with <b>Step 3</b>.<p>
+<hr>
+
+<h3>Step 0: Tools and libraries</h3>
+If you already have installed the Fortran compiler <b>gfortran</b>, the
+<b>GNU C</b> compiler (or another ANSI C compiler) and the <b>Athena
+widget library</b> you can proceed to <b>Step
+1</b> unless you wish to update any of the compilers or libraries. Note that 
+many implementations of the 3d Athena widget library have bugs preventing their 
+use. The default compilation option is now the old ugly widgets.
+<b>There is no need to install or update any of the compilers or
+libraries regularly!</b><p>
+
+Xgremlin uses only freely available compilers and libraries.
+No proprietary software of any kind is required in compiling Xgremlin.
+The following tools,
+compilers and libraries must be installed:<p>
+
+
+<dl>
+<dt><b>Cygwin/X (Windows only)</b>
+<dd>Cygwin/X provides an X11 interface and other packages to enable Xgremlin to be run on any Windows machine. It is
+available from:
+<pre> x.cygwin.com </pre>
+All of the compilers and libraries below are available in cygwin. A full installation is not
+usually necessary, but make sure that you have included all of the packages needed for Xgremlin.
+If you have installed cygwin, you can proceed to <b>Step 1.</b>
+<p>
+
+<dt><b>GNU make</b>
+<dd>This is optional but if your make utility has problems with the 
+Xgremlin makefiles you will have to install GNU make. 
+<p>
+
+<dt><b>Fortran compiler gfortran </b>
+<dd>This compiler is available for most machines, including Windows/cygwin, Mac OSX, and Linux.
+It is available from:
+<pre> https://gcc.gnu.org/wiki/GFortran </pre>
+Follow the instructions that come with the package to install gfortran
+on your computer.<p> 
+
+<dt><b>GNU C compiler</b>
+<dd>An ANSI C compiler is required for compiling Xgremlin. 
+If you already have an ANSI C compiler you can use it, otherwise we
+recommend that you install the GNU C compiler from the Free Software
+Foundation. (GCC is installed by default on computers running Linux and is 
+the default xtools compiler on OS X) 
+
+<b>Version 2.6.3 or higher of GCC should be used for Xgremlin.</b><p>
+
+<dt><b>Machine precision library MPAR</b>
+<dd>This library contains functions which are required by MINPACK. It is usually 
+not necessary to install it separately.
+Go the the subdirectory ./libMPAR and compile the library with
+<pre> make -r</pre>
+then install it with
+<pre> make install</pre><p>
+
+<dt><b>Athena-3d widget library (optional)</b>
+<dd>
+<b> Note that this packages causes problems on many machines now. The 2-d widget normally has fewer problems </b>
+<dd>The components of the user interface of Xgremlin such as Buttons,
+Text editor etc. are contained in the 'Athena widget library'. 
+The normal Athena widget library that is distributed together with
+the X window system only provides simple, 2-dimensional widget. 
+Xgremlin will work well with the 2d Athena widgets but it will
+not look good.<p>
+
+<dt><b>Ghostscript</b>
+<dd>Xgremlin can render the content of its plotting window as a color
+Postscript file. If your site has no access to a Postscript printer
+you can print these files on any printer using the freely 
+available Postscript interpreter <b>Ghostscript</b>. 
+
+
+This was the hard part, now comes the fun!<p>
+<hr>
+
+<h3>Step 1: Compiling Xgremlin</h3>
+The source distribution is contained in a file called
+<pre> xgremlin-x.xx.tar.gz </pre>
+where x.xx is the version number e.g.: xgremlin-2.37.tar.gz
+Uncompress the file with GNU 'gzip' and unpack it as follows:
+<pre>
+    gzip -d xgremlin-x.xx.tar.gz
+    tar xvf xgremlin-x.xx.tar
+</pre>
+(<b>Note:</b> these two commands may be combined using a pipe:
+<pre>
+    gzip -dc xgremlin-<number>.tar.gz | tar xvf -
+</pre>
+Don't forget the trailing '-' ! ).<p>
+
+This will create a subdirectory 'xgremlin-x.xx' containing all
+source files. Go to the new directory  xgremlin-x.xx  
+and type in the command
+<pre>
+    ./Configure
+</pre>
+You will be asked a few questions mostly about library locations.
+Then type
+<pre>
+    make machine-type
+</pre>
+where <kbd>machine-type</kbd> is the type of your computer. <kbd>machine-type</kbd>
+must be one of the following (at present):
+<dl>
+<dt> <b>sunos4-sparc</b>
+<dd> SunOS 4.1.x running on Sparc processors 
+<dt> <b>solaris2-sparc</b> 
+<dd> Solaris 2.x running on Sparc processors
+<dt> <b>aix3-rs6000</b> 
+<dd> AIX 3.x running on IBM RS/6000 Power processors
+<dt> <b>linux-i386</b>
+<dd> Linux running on Intel x86, Pentium etc. processors
+<dt> <b>linux-axp</b>
+<dd> Linux on DEC Alpha processors
+<dt> <b>macosx</b>
+<dd> OS X on Macintosh computers.
+<dt> <b>cygwin</b>
+<dd> Under cygwin on Windows machines.
+</dl>
+
+By default it is assumed that you use GCC for compiling the program.<p>
+
+<b>Example:</b>
+<pre>
+    make macosx
+</pre>
+will in one swoop compile the whole Xgremlin program 
+for you on your Macintosh computer. 
+<p>
+<hr>
+
+<h3>Step 2: Installing Xgremlin</h3>
+If all the programs have been created successfully, 
+type
+<pre>
+    sudo make install
+</pre>
+and type the superuser password. This will install the programs in the directory /usr/local/bin.<p>
+
+If this is the first time you install Xgremlin you will have to install 
+the documentation in the directory /usr/local/xgremlin. 
+This is done automatically with the command
+<pre>
+    sudo make install-doc
+</pre>
+This step completes the installation.<p>
+
+If you wish to keep the source code around you can save some disk
+space by typing
+<pre>
+    make clean
+</pre>
+which will remove object files and object libraries in all 
+subdirectories.<p>
+<hr>
+
+<h3>Step 3: Configuring Xgremlin</h3>
+Before Xgremlin can be used a few things need to be configured:
+<b>If you have already configured the printer and configuration files
+previously you can skip this step.</b><p>
+
+<b>The most important configuration file</b> is the application defaults
+database 'Xgremlin' which is found in the directory './configurations'
+The location of the application default files varies with the computer, with the default being:
+<pre>
+    /usr/X11/lib/X11/app-defaults
+</pre>
+Other places to look for the app-defauls directory are:
+<pre>
+    /opt/X11/share/X11/app-defaults
+</pre>
+
+The application defaults file will be copied to this directory when
+the 'make install' command is issued but you should make sure that
+it was really installed correctly. A binary distribution also installs
+this file to its correct location automatically.<p>
+
+<b>If the application defaults file is not installed correctly the
+program will not work.</b> Should you get a pile of buttons and
+windows instead of a nicely laid out application then you know that
+the application defaults file is not in its proper place.<p>
+
+Any startup commands that are to be executed by every user when 
+the program is started should be included in the system wide
+initialization file 
+<pre>
+    /usr/local/xgremlin/xgremlin.conf .
+</pre>
+Every user should have their own initialization file named
+<pre>
+    .xgremlinrc        ( don't forget the dot ! )
+</pre>
+in the home directory which is run after the
+system wide initialization file when Xgremlin is started.
+(This would be the place to configure your buttons).<p>
+
+
+<b>Printing and screen dumps</b><br>
+An important part of configuration is the printer configuration which 
+enables hardcopies of the plotter window. Xgremlin uses the 'standard'
+(BSD-) Unix command 'lpr' for printing the screen dump. By default the
+printer name in Xgremlin is set to 'none' which means that screen dumps
+are created but not printed. The 'printer' command must be used 
+(e.g. in a startup file) to define the printer/queue Xgremlin should use.<p>
+
+
+<b>Printing with Ghostscript</b><br>
+For those without access to a Postscript printer all is not lost because there
+is Ghostscript, a program that will turn any tired printer into a fully
+featured Postscript printer. <p>
+
+
+<b>Sample spectra</b><br>
+Xgremlin comes with a sample solar spectrum 'solar_spectrum.run' 
+(provided by Mark Abrams) in the directory ./doc This spectrum could 
+be copied to /usr/local/xgremlin to give users a sample file to play 
+with that is guaranteed to work. The sample solar spectrum can be
+loaded into Xgremlin with the command 'run solar_spectrum.run'.<p>
+
+This completes configuration of Xgremlin.<p>
+<hr>
+
+<h3>Step 4: Running Xgremlin</h3>
+Xgremlin is started with the command
+<pre>
+    xgremlin &
+</pre>
+It is usually most convenient to run
+<b>xgremlin</b> as a <b>background process</b>.<p>
+
+<b>Getting help</b><br>
+The Xgremlin help system is invoked by clicking on the <b>Documentation</b>
+menu entry in the <b>Gremlins</b> menu.
+The directory ./doc of the source distribution
+contains a file 'plot-mode-chart.ps' which is a wall chart with the plot 
+mode commands of Xgremlin. The man pages can be viewed with
+<pre>
+man xgremlin
+man dumplin
+man mergelin
+</pre>
+
+<b>Memory requirements</b><br>
+The memory requirements of Xgremlin depend on the size of the dynamic
+arrays that are being used. After program startup Xgremlin requires
+only approximately 4MB of memory because the default size for the
+internal arrays is small.<p>
+<hr>
+
+<h3>Step 5: Bugs</h3>
+E-mail with bug reports should be sent to:
+<pre>
+	    gnave@nist.gov
+</pre>
+</body>

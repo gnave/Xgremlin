@@ -1,0 +1,15 @@
+#
+# f77 and C compiler flags for Sunos 4.x on Sparc processors
+#
+CC = gcc
+CFLAGS = -O3 -pipe -fomit-frame-pointer -DHAVE_BSD_TIME -DNEED_UNISTD_H
+
+#
+# linker flags
+#
+LDFLAGS = 
+
+#
+# complex arithmetic available
+#
+HAVE_GCC := yes

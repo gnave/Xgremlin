@@ -1,0 +1,132 @@
+<head>
+<title> CONCEPTS </title>
+</head>
+
+<body bgcolor="#ffffff">
+<h2>Glossary</h2><p>
+
+<h3>The Arrays</h3>
+Xgremlin is is essence a program written for the processing of 
+large arrays of data which represent optical spectra. The program
+is tailored for the needs of Fourier transform spectrocopy but
+may also be used with e.g. digitized photographic plates from 
+grating spectrographs etc. Analyzing a spectrum with Xgremlin
+invariably entails the following steps:
+
+<ol>
+<li> read in data from a file into a workspace array in Xgremlin
+<li> modify data in workspace (e.g. Fourier transform them)
+<li> write modified data to file 
+</ol>
+
+The central workspace array in Xgremlin is called the <b>r</b>-array
+(for reasons unknown). Many of the operations which modify data in the
+<b>r</b>-array require temporary storage which is the purpose of the
+<b>tr</b>-array (read: <b>temporary r</b>-array).  In addition to
+these two arrays two more arrays exist. One, the <b>ffta-array</b> is used
+for large Fourier transforms, the other is used in phase correction of
+FT spectra and is therefore named the <b>phase</b>-array. The following
+table summarizes the use of these four arrays in Xgremlin:
+
+<dl>
+<dt> <b>r</b>-array		
+<dd> general purpose array, used in most
+ operations. Contents can be plotted
+ in a plotting window.<p>
+
+<dt> <b>tr</b>-array		
+<dd> companion to the <b>r</b>-array for temporary
+ storage. Contents cannot be plotted
+ but can be copied into the <b>r</b>-array
+ for inspection (see e.g. <a href="commands/exchange.html">exchange</a> ).<p>
+
+<dt> <b>ffta</b>-array             
+<dd> solely used for Fourier transformation
+ of interferograms.<p>
+
+<dt> <b>phz</b>-array
+<dd> solely used in phase corrections
+ of FT spectra.
+</dl>
+<p><br>
+
+<h3>Command/Edit window</h3>
+Xgremlin has a command input window which allows to type in
+commands to modify data in one (or more) of the data arrays.
+All commands are described in this help file. The 
+<a href="commands/button.html">button</a>
+command may be used to assign these commands to a row of 
+buttons seperating the command input window and the plot
+window.
+<p><br>
+
+<h3>Plot window</h3>
+The contents of the <b>r</b>-array can be plotted in a window above
+the command input window in Xgremlin. A special set of commands (plot
+mode commands) can be used to zoom into a plot to have a close look at
+small details. See the <a href="plotmode.html">plot mode commands</a>
+help topic for a list of all plot mode commands. The most important
+plot mode commands are accessible via buttons on top of the plot
+window.
+<p><br>
+
+<h3>Data files and header files</h3> 
+Every data file in one of the NSO
+formats must be accompanied by a so-called <b>header</b> file ( with
+the file name extension <b>hdr</b> ) which contains all the
+information needed for processing an interferogram, such as the alias,
+fringe division ratio, number of points etc.
+<p><br>
+
+<h3>Unit names</h3> 
+A symbolic name that is associated with a
+particular file using the <a href="commands/open.html">open</a>
+command.  See <a href="commands/open.html">open</a> for a list of all
+valid names. The most common ones are the <b>rawin</b> unit (for
+interferograms), the <b>datain</b> unit (for spectra) and the
+<b>lineio</b> unit for line list files. Pure ASCII files do not
+require a header file.
+<p><br>
+
+
+<h3>Internal line list</h3> 
+Spectroscopists deal with spectral lines. Xgremlin has a number of
+commands to create and modify line lists. Most important is the <a
+href="commands/linelist.html>linelist</a> command which is used to
+create a line list from a spectrum that has been loaded into the
+<b>r</b>-array.  It is also possible to read the lines from a binary
+line list file (the <b>.lin</b> file) using the <a
+href="commands/getlines.html">getlines</a> command), or by <a
+href="commands/findlines.html">findlines</a>.  It is destroyed by a <a
+href="commands/read.html">read</a> command, but the lines can be saved
+in the <b>.lin</b> file using <a
+href="commands/putlines.html">putlines</a>.
+<p><br>
+
+<h3>Fourier transforms</h3>
+In two sided interferograms, the centre
+occurs roughly half way through the interferogram, and the FT
+programs only use an equal number of points on either side of
+the centre. If the centre is <b>significantly</b> away from the half
+way point (e.g. 1/5 or 1/4 of the way through), the
+interferogram should be treated as one-sided, so it is
+multiplied by an amertising function to <b>balance it up</b>
+before it is transformed.
+<p><br>
+
+<h3>Ringing lines</h3>
+In an under-resolved spectrum, the instrument
+function of the interferometer is an important contributor to
+the line shape. This instrument function is the Fourier
+transform of a top hat - namely a sinc function, and every
+line in the spectrum will be convolved with this sinc
+function. The positive and negative lobes of this function
+appear in the wings of the line, and are referred to as
+<b>ringing</b>.
+
+<h3>Scratch directory</h3>
+A directory with files for the persistent storage of data from the <b>r</b> 
+array.
+
+</body>
+

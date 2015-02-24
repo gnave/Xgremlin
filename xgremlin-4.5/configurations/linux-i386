@@ -1,0 +1,18 @@
+#
+# f77 and C compiler flags for Linux on Intel i386 and i486 machines
+#
+CC = gcc
+# CFLAGS = -O3 -fomit-frame-pointer -malign-double -DHAVE_ANSI_TIME -DHAVE_ANSI_SIGNALS
+CFLAGS = -g -malign-double -DHAVE_ANSI_TIME -DHAVE_ANSI_SIGNALS
+# CFLAGS =  -pipe -DHAVE_ANSI_TIME -Wall -fstrict-prototypes -DHAVE_ANSI_SIGNALS -DDEBUG
+
+
+#
+# linker flags
+#
+LDFLAGS = 
+
+#
+# complex arithmetic available
+#
+HAVE_GCC := yes

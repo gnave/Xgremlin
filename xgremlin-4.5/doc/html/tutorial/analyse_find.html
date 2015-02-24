@@ -1,0 +1,151 @@
+<HEAD>
+<TITLE> Finding and Fitting Lines</TITLE>
+<!-- Changed by: Gillian Nave, 25-Mar-1996 -->
+</HEAD>
+<BODY bgcolor="#ffffff"><P>
+<B> Next:</B> <A HREF="analyse_fit.html"> Fitting lines</A>
+<B>Up:</B> <A HREF="analyse.html"> Using Xgremlin to Analyse </A>
+<B> Previous:</B> <A HREF="analyse_initial.html"> Subtract the continuum</A>
+<HR> <P>
+<H2>Finding Lines</H2>
+<P>
+Now you have a real spectrum file with all of the continuum subtracted
+away. The next thing you will probably want to do is to find out where
+all the lines are over a certain discriminator. Which discriminator to
+used depends on what you want to do and on what the spectrum looks
+like. If you want to pick up as many lines as possible without getting
+too many noise spikes, a good place to set the discriminator is at 5
+times the noise level.
+<P>
+The best thing to do is to scale the whole spectrum such that the
+noise level is equal to 1, so that the peak intensities will give the
+signal-to-noise ratio. First, find the noise level, by plotting the
+spectrum and placing two markers to deliminate a section that contains
+noise and no lines. Then press &lt;Alt+a&gt; (bound to the button
+'area' if you have the default button mappings). In the edit window
+you will get output similar to the following:
+
+<pre>
+[21]:  
+ Sum of r(i)       =  0.75096E+07
+ Area              =  0.29417E+06 wavenumbers
+ Mean of r         =   93870.
+ RMS dev from mean =  0.16409E+06
+ Centre of gravity =   94170.     points
+                       24226.     wavenumbers
+ Mean of range     =   24226.
+</pre>
+ 
+The noise level is given by the rms deviation from the mean. To scale
+subsequent reads such that the noise level is 1, type
+<A HREF="../commands/set.html">
+<b>set scale</b></A> <em>1/noise</em>
+You can enter this value into the appropriate space in the header
+file, in which case it will be applied 
+each time you open the spectrum to make it take effect.
+<P>
+To find all the lines, use the command  <A HREF="../commands/linelist.html">
+<b>linelist</b></A> <em>discrim wstart wstop</em>.
+This command needs all its parameters - just typing <b>linelist</b>
+will not get you very far.
+<b>linelist</b> finds all lines between <em>wstart</em> and
+<em>wstop</em> with peak intensity greater than <em>discrim</em>
+(<em>after</em> re-scaling with any factor you have set in the header
+or with the <b>set scale</b> command). 
+<p>
+This creates the file <em>filename.lin</em> and stores the lines in
+that file in binary format. If the file already exists, it makes a
+copy of the old one in <EM>filename.lin.bak</EM> before creating the
+new one. To get an ASCII listing, type
+<A HREF="../commands/writelines.html">
+<b>writelines </b> <em>filename wstart wstop</em></A>, where
+<em>filename</em> is the name of the file for the listing.
+
+<p>
+This shows an <A HREF="analyse_writelines.html">
+example of the <b>writelines</b> output</A>.
+
+<P>
+The command <b>writelines</b> <em>wstart wstop int</em>
+only lists the lines between <em>wstart</em> and <em>wstop</em> over an
+intensity <em>int</em>. If you lose or corrupt a .lin file, it is now
+possible to read a file produced using writelines and use it to
+produce another .lin file. The command is
+<A HREF="../commands/readlines.html">
+<b>readlines</b> <em>filename</em></A>. You can also close a .lin file
+and re-open another .lin file by using the commands 
+<A HREF="../commands/close.html"><b>close lineio</b></A>, followed by
+<A HREF="../commands/open.html"><B>open lineio</B> <EM>filename</EM></A>.
+
+<P>
+Having found as many lines as possible, you should now go through the
+spectrum and see what Xgremlin has found. It does not
+always have the same idea as you as to what constitutes a line. To do
+this, read in each buffer using 
+<A HREF="../commands/read.html">
+<b>read</b> <em>wstart</em></A>. If you have a reasonably small file,
+you may be able to read in the whole of the file at once by setting
+the size of the r array to the number of points using the 
+<A HREF="../commands/alloc.html"><B>alloc</B></A> command.
+
+<p>
+You probably have only 3-4 points per line width, and you may wish to
+interpolate a few more to give you a better idea of what the line
+looks like. To do this, type 
+<A HREF="../commands/stretch.html">
+<b>stretch </b> <EM>n</EM></A>
+where <EM>n</EM> is some power of 2 (2 is usually sufficient). 
+This does a Fourier interpolation, and is equivalent to doing an
+original FT of n-times the length, padding beyond the ends with
+zeros. Then get the lines from the .lin file using
+<A HREF="../commands/getlines.html"><b>getlines</b></A>
+and <A HREF="../commands/plot.html"><b>plot</b></A>
+them. 
+
+<P>
+If you wish to add lines, you must first set the width. You can
+either set the width outside the plot routine with the command
+<A HREF="../commands/set.html">
+<b>set width</b> <em>width</em></A>
+or inside the plot routine by telling Xgremlin to use the
+width of the last line marked for all future lines. First display the
+lines by pressing 
+<A HREF="../plotmode.html">
+<b>o</b></A>
+and click with the left mouse button on a line with a suitable
+width. The parameters of each line are listed at the bottom of the
+screen. Then press <A HREF="../plotmode.html"> <b>&lt;Ctrl+s&gt;</b></a>
+to set the width (ensure that you are in <em>plotmode</em>!). To
+add a line, move the cursor until it is at the correct position, and press
+<A HREF="../plotmode.html"><b>&lt;Ctrl+a&gt;</b></a>
+To delete a line, click on it with the left mouse button and press
+<A HREF="../plotmode.html"><b>&lt;Ctrl+d&gt;</b></a>
+
+<P>
+If you have un-resolved hyperfine or isotope structure it may be
+better to save the centres of gravity of the lines. These should
+correspond well to the unshifted energy levels, and experience has
+shown that they can be reproducible to within a few mK. To save the
+centre of gravity, first set markers on either side of the line
+and then press
+<A HREF="../plotmode.html"><b>&lt;Ctrl+g&gt;</b></a>.
+This finds the centre of gravity, saves the parameters in the internal
+linelist, and displays the parameters on the screen. You may either
+delete the lines gremlin found (the individual hfs components), or
+keep them if you wish to try and fit the structure of the line.
+
+<P>
+Once you have selected all the lines, remember to put them back on to the
+.lin file with
+<A HREF="../commands/putlines.html">
+<b>putlines</b></A>
+It is often a good idea to set up an alias, such as
+<b>
+<A HREF="../commands/alias.html">alias</A>
+fitl &quot;getlines;plot;putlines&quot;</b>
+so lines are automatically put back once you have found them. An
+even better way is to bind the <b>putlines</b> command to one of the
+buttons, between the plot and edit screens. This encourages you to save the
+lines frequently (say every screenfull).
+
+</body>

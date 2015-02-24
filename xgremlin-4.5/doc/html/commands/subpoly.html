@@ -1,0 +1,56 @@
+<head>
+<title> subpoly </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>subpoly</h2>
+
+<h3>Syntax:</h3>
+subpoly [<em>&lt;order of polynom&gt;</em>] ["restore"]
+
+<p>
+A straight line (default) or polynomial of higher order can be fitted
+to a part of the r array e.g. the background continuum of a line. 
+The continuum is then subtracted from the line. 2, 4, 6, 8, ... markers 
+must be set before entering the command. Each pair of markers selects a 
+section of background that is to be included in the fit. 
+<p>
+If the command is used to subtract the background continuum of a line the 
+best approach is to select a range of points to the 'left' and a range to 
+the 'right' of the line of interest. The maximum total number of points 
+that can be included is 4096.
+<p>
+Two blue mouse markers (set with the middle mouse button) may be set
+to extend or narrow the range in which the polynomial is subtracted
+from the data. This is useful for extrapolation - use with care.<p>
+
+The <b>subpoly restore</b> command undoes the effect of an immediately
+preceeding <b>subpoly</b> command.
+
+<h3>Examples:</h3>
+<ol>
+<li><pre>
+subpoly 3
+</pre>
+fit a 3rd order polynomial to the data and subtract the fit. 
+<p>
+<li> 	 
+<ul>
+<li>  set 4 red mouse markers and two blue ones
+<li>  <b><a href="stom.html">stom</a> a</b> : stores all the markers
+<li>  <b><a href="fitpoly.html">fitpoly</a> 3</b>: to see the result of a Chebychev fit
+<li>  <b><a href="recm.html">recm</a> a</b>: recalls the markers
+<li>  <b>subpoly 3</b> : to fit again and subtract
+</ul>
+</ol>
+
+<h3>Related commands:</h3>
+<ul>
+<li> <a href="stom.html">stom</a>
+<li> <a href="recm.html">recm</a>
+<li> <a href="fitpoly.html">fitpoly</a>

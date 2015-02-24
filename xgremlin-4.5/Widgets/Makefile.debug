@@ -1,0 +1,27 @@
+#
+# for Display widget library
+#
+
+# we rarely want to debug the Display widget --> optimize it
+CC = gcc
+CFLAGS = -g -Wall -fstrict-prototypes
+
+INCDIR = -I. -I../Csrc
+
+SRCS=Display.c dps.c misc.c LiteClue.c
+
+OBJS=$(SRCS:.c=.o)
+
+all: libWidgets.a
+
+libWidgets.a: $(OBJS)
+	ar rv libWidgets.a $(OBJS) 
+	ranlib libWidgets.a
+
+%.o : %.c
+	$(CC) $(CFLAGS) $(INCDIR) -c $<
+
+clean:
+	rm -f *~*~ *.o libWidgets.a
+
+

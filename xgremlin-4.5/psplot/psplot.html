@@ -1,0 +1,21 @@
+<head>
+<title>psplot: A program to create atlas plots from Xgremlin</title>
+</head>
+
+psplot  is  used  to  create  spetral atlas plots in conjunction with the 
+<<a href="atlas.html">atlas</a>
+command in Xgremlin. The documentation for psplot is minimal, but some example files are included in the distribution in the hope that they will be somewhat useful.
+<p>
+The file that the atlas command creates in Xgremlin has the default name <b>atlas.data</b>. An example atlas.data file is included in the psplot directory, taken from the solar_spectrum.run file in the doc directory. The atlas.data file was created from the solar spectrum example using the following commands in Xgremlin:
+<pre>
+run solar_spectrum.run
+atlas scale 0. 1000.
+atlas label "Example solar spectrum"
+atlas 9000. 26000. 10.
+<\pre>
+
+The <a href="atlas.html">atlas</a> command is reasonably well documented, unlike psplot itself. psplot in turn creates the file <b> psplot.ps</b> in Postscript format. 
+
+When psplot is started it first reads commands  from  a  local  configuration file <b>psplot.init</b> in  the current directory. The name of the configuration file may be changed with the -i command line option. If this is not present, it gives the error message 'No local init file'. The example file <b>plot.ini</b> contains the psplot commands required to create the double pane atlas plot in the file <b>psplot.ps</b>.  
+
+</body>

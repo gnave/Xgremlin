@@ -1,0 +1,70 @@
+<head>
+<title> convolute </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>convolute</h2><p>
+
+<b>Syntax:</b><br>
+<kbd>convolute</kbd> <em> &lt nrise &gt &lt ncut &gt &lt label &gt </em><br>
+<kbd>convolute</kbd> <em> &lt nrise &gt &lt ncut &gt &lt label &gt &lt igw &gt </em><br>
+<kbd>convolute</kbd> <em> &lt nrise &gt &lt nsen &gt &lt ampnoise &gt &lt label &gt</em>
+<p>
+
+The parameters of the <kbd>convolute</kbd> command are:
+
+<dl>
+<dt> <b>nrise</b>
+<dd> width (in points) of mask at each end of data
+<dt> <b>ncut</b>
+<dd> cut off frequency, frequencies are zero'd above
+<dt> <b>label</b>
+<dd> save label of transform of convoluting function
+<dt> <b>igw</b>
+<dd> width (in points) of gaussian filter in real space
+<dt> <b>nsen</b>
+<dd> frequency where signal = noise
+<dt> <b>ampnoise</b>
+<dd> amplitude of noise
+</dl>
+<p>
+
+The contents of the <b>r</b> array are filtered according to the
+appropriate parameter specification and the resulting spectrum is
+convolved with the transform previously formed and labeled with an <a
+href="kernel.html"> kernel </a> command or other save.  The filter
+specification is as follows:
+<p>
+
+<dl>
+<dt> <b>nrise ncut label</b>
+<dd> sharp cut off filter
+<dt> <b>nrise ncut label igw</b>
+<dd> Gaussian filter of width igw
+<dt> <b>nrise ncut label ampnoise label</b>
+<dd> Voigt optimum filter
+</dl>
+<p>
+
+The filter specifications (first two parameters) are those discussed
+in <a href="filter.html"> filter </a>.  This command is the logical
+inverse of the equivalent <a href="restore.html"> restore </a>
+command.
+
+<h3>Related commands:</h3>
+<menu>
+<li><a href="kernel.html"> kernel </a>
+<li><a href="filter.html"> filter </a>
+<li><a href="restore.html"> restore </a>
+<li><a href="mask.html"> mask </a>
+<li><a href="fourtran.html"> fourtran </a>
+<li><a href="invtran.html"> invtran </a>
+</menu>
+
+</body>
+

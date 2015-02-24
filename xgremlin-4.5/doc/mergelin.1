@@ -1,0 +1,61 @@
+.\"-*-nroff-*-
+.\\
+.\\ man page for the mergelin program
+.\\
+.TH mergelin 1 "October 1995"
+.SH NAME
+mergelin \- merge two or more Gremlin line list (.lin) files
+
+.SH SYNOPSIS
+.B mergelin -o <output file> <input files> [ -t xxx.x ]
+
+.SH DESCRIPTION
+.B mergelin
+is used to merge several Gremlin line list data files (with .lin extension)
+into a single line list file. The program is especially useful to combine the 
+output from several
+.B linelist
+commands in Gremlin.
+
+.SH OPTIONS
+.B -o :
+actually not an option because it must be entered on the command line. 
+It is followed by the name of the output file. 
+
+.B -t xxx.x :
+.B mergelin
+reads the line list data from every input file and assembles the merged line
+list in memory before writing it out to disk. If one of the input files
+contains a line that is 
+.B xxx.x
+wavenumbers closer to one of the lines already in the merged list it will not be
+transferred to the output line list because it is assumed that it is identical
+to the line already in the list. 
+.B The default threshold is 5mK (0.005/cm). 
+The -t option may be used to change the threshold. If the threshold is set to 0
+all lines will be included in the output line list.
+
+
+.SH EXAMPLES
+
+.B mergelin -o all.lin *.lin 
+
+will merge all line list files in the current directory into a file
+.B all.lin. Identical lines will appear only once in the output line
+list.
+
+.B mergelin -o all.lin a.lin b.lin -t 0.0
+will merge all line list data from files
+.B a.lin
+and
+.B b.lin
+into a single output file
+.B all.lin.
+All lines will be included in the output file.
+
+.SH BUGS
+Bug reports should be sent to:
+
+.CD
+Gillian Nave, NIST ( gnave@nist.gov )
+.DE

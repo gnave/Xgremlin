@@ -1,0 +1,61 @@
+<head>
+<title> fits2nso </title>
+</head>
+
+<body bgcolor=#ffffff>
+<h2>fits2nso - convert FTS data files from FITS format to NSO type 6 format</h2><p>
+
+<b> Syntax:</b> <kbd>fits2nso [-f] [-h] [-r] &lt;input files&gt;</kbd><p>
+
+The NIST UV-vis-IR Fourier transform spectrometer and the FTS data
+analysis program <b>xgremlin</b> (from version 3 onwards) write data
+files in FITS (Flexible Image Transfer System) format.  <b>
+fits2nso</b> converts data files in FITS format to NSO type 6 format
+so they can be read by J. W. Brault's <b> Gremlin </b> program.  <b>
+xgremlin</b> can read files in FITS format directly.  <b> fits2nso
+</b> creates a header (.hdr) and data (.dat) file pair and keeps the
+original FITS file by default.  <p>
+
+<h3>Options:</h3>
+<dl>
+<dt> <b>-f</b>
+
+<dd>the <b>fringe division ratio</b> is stored in a real valued
+variable <b>fdr</b> in FITS files from the NIST FTS. In NSO type data
+files the fringe divsion ratio is stored as the ratio <b> M/K</b> of
+two integer variables <b> M</b> and <b>K</b>.  By default,
+<b>fits2nso</b> computes a pair of integer variables M and K with a
+ratio very close to the fringe division ratio. If the
+<b> -f</b> switch is used the variable <b>fdr</b> is stored in the
+header file instead of M and K. This is useful and may be a little bit
+more accurate if the header / data file pair is to be read with
+<b>xgremlin</b> which can read the <b>fdr</b> variable in NSO type 6
+data files.
+
+<dt> <b>-h</b>
+<dd> creates a header file only which can be used together with the
+existing FITS file. Note that the data file must have the extension .dat for
+<b>Gremlin</b>.
+
+<dt> <b>-r</b>
+<dd> <b>renames</b> the FITS file into a file with extension .dat so that it can be
+used together with the header file.
+</dl>
+<p>
+
+<h3>Examples:</h3>
+
+<kbd> fits2nso -r *.fits </kbd><br><br>
+
+will convert all FITS data files in the current directory
+in NSO type 6 header- and data file pairs. The original FITS
+files will be renamed in the process.
+
+<h3>Bugs:</h3>
+Bug reports, complaints, suggestions etc.  should be directed to:<p>
+
+Ulf Griesmann, NIST ( ulfg@atm.nist.gov )
+
+</body>
+
+

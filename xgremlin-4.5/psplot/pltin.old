@@ -1,0 +1,53 @@
+Screen "Standard KPNO atlas pages, loop until out of data"
+option ps
+
+location 150 3180 1411 2450  
+ticksize 1. 1. 10. .05 0.1 0.2
+font 27; size 8; box
+font 27; size 8;justify right; relocate 3240 1371 ;putlabel  "cm^{-1}"
+lweight 2
+wavelabel nm
+store
+
+# scaled by 10 version
+# location 150 3180 1411 2450  
+# lweight 1
+# store
+
+screen "Draw the three horizontal dividing lines"
+
+location 150 3180 233 1272   
+ticksize 1. 1. 10. .05 0.1 0.2
+font 27; size 8; box
+screen "Title line below"
+justify right; relocate 3240 193;putlabel  "cm^{-1}"
+font 27; size 16; slant 0; direction right; justify center
+relocate 1665 141 
+putlabel "KPNO  10 Air Mass Solar Spectrum "
+relocate 3000 333 
+putlabel "AT-3"
+relocate 3000 1511
+putlabel "SL-3"
+
+#font 27; size 5; justify left
+#relocate 150 160
+#putlabel "ATMOS Solar Spectra from Space -- ATLAS-3, 1994"
+#relocate 150 160
+#putlabel "Spectrum: SL3.SUN.4"
+#relocate 150 135
+#putlabel "Spectrum: AT3.F4.SS.SUN"
+#lweight 2
+#wavelabel nm
+#store
+
+# scaled by 10 version
+# location 150 3180 233 1272   
+# lweight 1
+# store
+
+
+#hardcopy
+#run plot.ini
+#end
+keyboard
+

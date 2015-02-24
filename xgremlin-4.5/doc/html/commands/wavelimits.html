@@ -1,0 +1,41 @@
+<head>
+<title> wavelimits </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>wavelimits</h2>
+
+<h3>Syntax: </h3>
+wavelimits  [<em> &lt;wavlo&gt; &lt;wavhi&gt; </em>]
+
+<ul>
+<li>	wavlo - lowest wavenumber to save (rounded to start of block) 
+<li>	wavhi - highest wavenumber to save (rounded to end of block)
+</ul>
+This command is used to specify or clear the wavenumber range of a 
+transformed interferogram that is to be written to disk
+in the following 'real' or 'complex' command.
+If no wavenumbers are specified, the currently set 
+wavelimits are cleared.
+
+<h3>	Example:</h3>
+<pre>
+wavelimits 25000. 30000.
+complex myfile
+</pre>
+The 'complex' command will write the spectrum (transformed
+interferogram between  25000.cm^-1 and  30000.cm^-1 
+to the file  myfile.dat (+header).
+
+<h3>Related commands:</h3>
+<ul>
+<li><a href="complex.html">complex</a>
+<li><a href="real.html">real</a>
+</ul>
+
+

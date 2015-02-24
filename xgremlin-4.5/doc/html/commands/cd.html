@@ -1,0 +1,72 @@
+<head>
+<title> cd </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>cd</h2>
+<p>
+
+<b>Syntax: </b>cd <i>&lt pathname &gt </i>
+<p>
+
+changes the current working directory to "pathname". 
+Directory names may be specified in four different ways:
+<p>
+
+<dd>
+<dt> <b>1) absolute directory names</b>
+<dd> The complete directory name must be typed in, beginning with
+     the root directory '/'.<p>
+	
+     <b>Example:</b> cd /disk2/home/ulfg/spectra/neon<p>
+
+<dt> <b>2) relative to the current directory</b>
+<dd> Directory names may be specified relative to the current directory.
+     Any directory name that does not begin with '/' is assumed to be
+     relative to the current directory<p>
+
+     <b>Examples:</b><br>
+	<ol> 
+ 	<li>cd neon<br>
+	changes to directory /disk2/home/ulfg/spectra/neon
+	if the current working directory (see <a href = "pwd.html">pwd</a> 
+	help entry) was /disk2/home/ulfg/spectra
+
+	<li> cd ..<br>
+	changes to the parent directory
+	</ol><p>
+
+<dt> <b>3) relative to the home directory</b>
+<dd> Directory names beginning with a '~' (tilde) are relative to the home 
+     directory (also supported by POSIX compliant UNIX shells).<p>
+
+	<b>Examples:</b><br>
+	<ol>
+	<li>cd ~<br>
+	changes to your home directory
+
+	<li>cd ~/spectra<br>
+	changes to the directory 'spectra' in your home
+	directory.
+	</ol><p>
+
+<dt> <b>4) return to previously visited directory</b>
+<dd> The special directory name '-' (minus) takes you back 
+     to the previously visited directory.<p>
+
+	<b>Example:</b> cd -
+</dl>
+<p>
+<h3>Related commands:</h3>
+<menu>
+<li><a href="ls.html"> ls </a>
+<li><a href="pwd.html"> pwd </a>
+</menu>
+
+</body>
+

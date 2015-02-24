@@ -1,0 +1,36 @@
+#
+# makefile to go with the Xgremlin binary distributions
+#
+
+include config.user
+
+BINDIR = /usr/local/bin
+APPDEF = /usr/X11R6/lib/X11/app-defaults
+
+install-binaries:
+	if [ ! -d /usr/local/xgremlin ]; then mkdir /usr/local/xgremlin ; fi
+	if [ -f $(BINDIR)/xgremlin ]; then rm $(BINDIR)/xgremlin; fi
+	install -m 644 Xgremlin $(APPDEF)
+	cat xgremlin-html.tar | ( cd /usr/local/xgremlin; tar xvf - )
+	install -m 644 ChangeLog /usr/local/xgremlin
+	install -m 644 xgremlin.1 $(MANLOC)
+	rm -f $(BINDIR)/xgremlin
+	install -m 755 ./xgremlin-`cat version` $(BINDIR)
+	ln -s $(BINDIR)/xgremlin-`cat version` $(BINDIR)/xgremlin
+	install -m 755 fits2nso $(BINDIR)
+	install -m 644 fits2nso.1 $(MANLOC)
+        ifdef LLTOOLS
+	   install -m 755 dumplin $(BINDIR)
+	   install -m 755 mergelin $(BINDIR)
+	   install -m 644 dumplin.1 $(MANLOC)
+	   install -m 644 mergelin.1 $(MANLOC)
+        endif
+        ifdef PSPLOT
+	   install -m 755 psplot $(BINDIR)
+	   install -m 644 psplot.1 $(MANLOC)
+	   install -m 644 psplot.init /usr/local/xgremlin
+        endif
+
+
+
+

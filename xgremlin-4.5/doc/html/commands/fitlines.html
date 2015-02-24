@@ -1,0 +1,60 @@
+<head>
+<title> fitlines </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>fitlines</h2><p>
+
+<b>Syntax:</b> <kbd>fitlines  smin  smax</kbd><p>
+
+All lines between <b>smin</b> and <b>smax</b> in the .lin file connected to
+<b>lineio</b> will be fitted using lsqfit. The parameters for lsqfit
+are given by the <a href="set.html">set</a> command:
+
+<ul>
+<li> use  set "lsqitnum" to set iterations
+<li> use  set readlength  to set read length
+<li> use  set "stretch"   to set stretch factor (if required)
+<li> use  lsqfit filter   if the data is underresolved and it
+            is desired to compensate for this by filtering the
+            data prior to fitting (see <a href="lsqfit.html">lsqfit</a>).
+<li> and type 'lsqfit quiet' to stop every iteration from being listed.
+</ul>
+<p><br>
+
+<b>Note:</b><br>
+This command is essentially a version of <a href="lsqfit.html">lsqfit</a>
+that operates on a complete data file instead of the data in the <b>r</b> 
+array only.
+<p><br>
+
+<h3>Example</h3>
+To find all the lines over intensity <b>smin</b>
+between wstart and wstop, then
+fit them using 5 iterations, stretching the data first:
+
+<pre>
+   open datain <filename>
+   set nonorm scale
+   linelist smin wstart wstop
+   set lsqitnum 5
+   set readlength 4096
+   set stretch 2
+   lsqfit quiet
+   fitlines wstart wstop
+</pre>
+<p><br>
+
+<h3>Related commands:</h3>
+<menu>
+<li><a href="findlines.html"> findlines </a>
+<li><a href="lsqfit.html"> lsqfit </a>
+</menu>
+ 
+</body>
+

@@ -1,0 +1,7 @@
+#
+# libraries required with f2c
+#
+FLIBS = -lgfortran
+FLINK = gcc
+FELIB = -lm
+

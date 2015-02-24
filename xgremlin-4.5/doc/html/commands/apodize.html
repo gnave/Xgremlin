@@ -1,0 +1,47 @@
+<head>
+<title> apodize </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>apodize</h2>
+<p>
+
+<b>Syntax:</b> apodize  <i> [ &lt width &gt ] </i>
+<p><br>
+
+Where <i>width</i> is the number of points of a cosine bell applied
+to the ends of the interferogram. The default width is <b>5%</b> of 
+the longer side of the interferogram. The <b>apodize</b> command is
+usually employed in  batch files.<p> 
+
+Interferograms should be apodized i.e., the ends of the data
+are brought smoothly down to zero at the ends before
+transforming. The data is usually padded out with zeros to bring
+the number of points up to a power of 2 so it can be
+transformed. If the ends of the interferogram are not first
+brought down to zero before padding, there will be a jump in the
+interferogram actually transformed (remember that the discrete Fourier
+transform is periodic), which will introduce 
+<a href="../glossary.html"> ringing </a>
+around the lines.<p>
+
+Xgremlin has two sets of commands relating to Fourier transforms. One
+set is used for smaller transforms in the <b>r</b> array, the other is
+used for large transforms in the <b>ffta</b> array. The <b>apodize</b>
+command is used for apodizing during large Fourier transforms. For
+apodizing prior to small transforms in the <b>r</b> array the
+<a href="/usr/local/xgremlin/html/commands/mask.html"> mask </a>
+command must be used.<p><br>
+
+<h3>Related commands:</h3>
+<menu>
+<li><a href="transform.html"> transform </a>
+</menu>
+</body>
+
+

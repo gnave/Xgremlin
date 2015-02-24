@@ -1,0 +1,32 @@
+<head>
+<title> photonscm-1 </title>
+</head>
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>photonscm-1</h2>
+<h3>Syntax:</h3>
+photonscm-1 <em> [&lt;nm&gt;] </em>
+<p>
+	Convert data points in the 'r' array from either W/cm-1 or
+	W/nm to photons/cm-1. RELATIVE SCALE ONLY.
+<p>
+        This command may be used in radiometric applications to transform
+        the radiance of a standard source into a form that may be compared
+        to data measured with e.g. photomulitpliers on a FTS. Radiances
+        of standard sources are commonly given in  W / cm^2 nm sr.
+        A photomultiplier attached to a FTS measures  photons/cm-1.
+
+<h3>Examples:</h3>
+<pre>
+photons/cm-1     # converts W/cm-1  -->  photons/cm-1
+photons/cm-1 nm  # converts W/nm    -->  photons/cm-1
+</pre>
+<h3>Related commands:</h3>
+<ul>
+<li> <a href="planck.html">planck</a>
+</ul>
+ 

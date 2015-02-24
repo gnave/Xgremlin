@@ -1,0 +1,43 @@
+<HEAD>
+<TITLE> Using Xgremlin with non-FT spectra</TITLE>
+<!-- Changed by: Gillian Nave, 26-Mar-1996 -->
+</HEAD>
+<BODY bgcolor="#ffffff"><P>
+
+<B>Up:</B> <A  HREF="contents.html">An Xgremlin tutorial (contents) </A>
+<B> Previous:</B> <A  HREF="other.html"> Other commands in Xgremlin </A>
+<HR> <P>
+<H1> Using Xgremlin with non-FT spectra</A></H1>
+<P>
+We have recently been using Xgremlin successfully with spectra obtained on
+grating instruments. Even from high resolution instruments there are
+normally many fewer points for a typical run than from an FTS, so the
+easiest way of getting the data into Xgremlin is usually by making an ASCII
+file, similar to the one described in section 
+<A HREF="quick_look.html">'A first quick look at your spectrum</A>, which
+you can read into Xgremlin with the  <A HREF="../commands/run.html">
+<b>run </b></a> command. After that, all the
+commands used in single buffers, such as 
+<A HREF="../commands/findlines.html"><b>findlines</b></a>
+<A HREF="../commands/lsqfit.html"><b>lsqfit</b></a>,
+<A HREF="../commands/writeparams.html"><b>writeparams</b> </a>
+etc.  will work successfully 
+<P>
+One problem we have discovered in using Xgremlin with non-FT spectra is
+that the lineshape from a grating instrument is often not a pure Voigt
+profile. Since this is the only profile fitted by 
+<A HREF="../commands/lsqfit.html"><b>lsqfit</b></a>, it may
+be the case that you get the best wavelengths by either taking the
+peak of the profile (by simply setting a marker there and pressing 
+<A HREF="../plotmode.html">
+'a'</a>)
+ or the centre of gravity (by setting two markers either side of the
+line and pressing
+<A HREF="../plotmode.html">
+ &lt;Ctrl+g&gt;</a>)  . We have found the best
+wavelengths from  noticeably asymmetric lines from the 10.7 m normal
+incidence grating spectrometer at N.I.S.T. are obtained by taking the
+peak of the profile rather than the centre of gravity.
+<P>
+
+</BODY>

@@ -1,0 +1,32 @@
+<head>
+<title> Finding the central fringe </title>
+</head>
+<body bgcolor="#ffffff">
+
+<h1> Finding the central fringe </h1>
+<img src="centre_fringe.gif"><p>
+This shows a typical centre burst from an interferogram with a fairly
+rich line spectrum.<p>
+
+<img src="centre_asym.gif"><p>
+Sometimes it is not so easy to decide exactly
+which point to take as the centre
+In this case, the best thing to do is to determine the phase and
+iterate through various values for the centre point to see which gives
+the flattest phase. 
+
+<p>
+<img src="centre_hg.gif"><p>
+In the case of a spectrum with few lines, it might be nearly
+impossible to determine exactly which fringe is the central fringe.
+If you can determine it fairly closely, you may be able to determine
+it from the phase plot as before. However if this is not possible, the
+only thing to do is to correct the phase of each line individually
+using <a href="../commands/cmplx.html"><b>cmplx linecorr<b></a>.
+<p>
+<a href="../tutorial/transform.html#prac_centre">
+Back to transforming</a>
+</body>  
+
+
+

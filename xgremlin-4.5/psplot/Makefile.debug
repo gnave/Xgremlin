@@ -1,0 +1,24 @@
+#
+# make the atlas plotting program (debugging version)
+#
+
+FF = g77
+F77FLAGS = -g -Wall
+ 
+
+F = psplot.f pssub.f psmainit.f plmain.f plboss.f \
+    cheat.f option.f
+
+O = psplot.o pssub.o psmainit.o plmain.o plboss.o \
+    cheat.o option.o
+
+
+psplot : $(O)
+	$(FF) -o psplot $(O) -lg2c -L../Common -lCommon -lm
+
+clean:
+	rm -f *.o *~*~ cheat.c option.c plboss.c plmain.c psmainit.c psplot.c pssub.c psplot core
+
+%.o : %.f
+	$(FF) -c $(F77FLAGS) $<
+ 

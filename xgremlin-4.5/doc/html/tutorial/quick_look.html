@@ -1,0 +1,135 @@
+<head>
+<title> A first quick look at your spectrum </title>
+</title>
+<!-- Changed by: Gillian Nave, 26-Mar-1996 -->
+<body bgcolor="#ffffff">
+<B> Next:</B> <A HREF="plotting.html"> Plotting</A>
+<B>Up:</B> <A HREF="contents.html"> Table of contents </A>
+<B> Previous:</B> <A HREF="first_see.html"> 
+                  A first introduction </A>
+<hr><P>
+<h1> A first quick look at your spectrum </h1>
+
+When you are taking your first interferograms, you may not wish to go
+through the rigmarole of a full Fourier transform with interactive
+phase correction if all you are interested in is whether things are
+behaving properly. In this case the best thing is to just read in the
+central section of an interferogram you have acquired, do a
+medium-sized transform and look at the amplitude spectrum. 
+Even when you have done a full transform and phase correction,  there
+may be times when you do not want to find and fit lines in the
+whole spectrum at one time - if you only need to look at one section of
+it, or if you want to do a better job on the phase correction than was
+originally done. In this case, it is possible to work on single buffers.
+The lines found are not stored in a separate file, but can be written to
+an ASCII file and read back in at a later date.
+<p>
+The first thing to do is to find the centre of the interferogram. This
+is done by reading in a section of the interferogram and searching it
+for the centre. Do this using the 
+<b><a href="../commands/open.html">
+open</a> datain </b> and 
+<a href="../commands/read.html">
+<b> read</b></a>
+commands described under the section
+<a href="../tutorial/first_see.html">
+General Construction</a>. The next step is to
+read in a section of the interferogram centred on this point, making
+sure that the number of points read in is a power of 2, which is
+required for the Fourier transform. First type
+<b><a href="../commands/set.html">
+set</a> centerread</b>, to ensure that the value you type in for the
+read command will be centred in the plot, and then read in the data
+using
+<b><a href="../commands/read.html">
+read</a></b> <em>f1 n1</em>, where f1 is the centre you have found and
+n1 is a power of 2.
+<a href="../commands/fourtran.html">
+<b>fourtran</b></a> performs the Fourier transform, leaving the
+<a href="../commands/glossary.html">
+amplitude</a> spectrum in the lower half of the <em>r</em> array and
+the complex spectrum in the <em>tr</em> array. The upper half of the
+<em>r</em> array contains phase information. The maximum value of 
+<em> n1</em> is defined by the size of the <em>r</em>
+array, and can be increased with the 
+<b><a href="../commands/alloc.html">
+alloc</a></b> command.
+
+The complex spectrum in the <em>tr</em> array can be displayed by
+first transferring the data to the <em>r</em> array using
+<b><a href="../commands/exchange.html">
+exchange</a></b> and then typing
+<b><a href="../commands/plot.html">
+plot</a></b>.
+
+<p>
+The phase of the resulting spectrum will probably be incorrect, but it is
+possible to correct the phase on a line-by-line basis. First, find the
+line that you wish to phase correct, and note  two point numbers, <em>
+n1</em> and <em> n2</em> on either side of it between which you think you
+probably have good phase information. Then type:
+<b><a href="../commands/cmplx.html">
+cmplx</a> linecorr</b> <em> n1 n2</em>
+to correct the phase. The default number of points is the whole
+buffer, which may or may not be useful, depending on whether you have
+mainly signal (i.e. continuum spectrum) or noise! This is the most
+useful command for correcting
+the phase of a specific section, although there are other commands
+listed in the help file under 
+<b><a href="../commands/cmplx.html">
+cmplx</a></b>. However for a quick look,
+it is often best to ignore the whole thing and just use the amplitude
+spectrum, unless of course you are interested in what the phase looks
+like! You can save an ASCII file of the <em>r</em> array with the
+command
+<b><a href="../commands/writefile.html">
+writefile</a></b> <em>filename</em>, or simply save the data to the
+scratch directory using
+<b><a href="../commands/save.html">
+save</b></a> <em>filenum</em>, where <em>filenum</em> is a number to
+designate where the data goes. The scratch file is kept intact between
+the various runs of Xgremlin.
+
+<p>
+It is possible to make a quick list of all the lines in the current
+buffer above an intensity <em>disc</em> by typing
+<b><a href="../commands/findlines.html">
+findlines</a></b> <em>disc</em>. You can then plot them and select the
+ones you wish to add or discard as before. 
+
+<p>
+<b>findlines</b> usually fits the wavenumbers of the lines quite well, unless
+there are blends present, but does not do such a good job with the
+intensities and widths. To fit them, you must first subtract the
+initial fit from the spectrum, to generate a set of residuals. This is
+done with the command
+<b><a href="../commands/active.html">
+active</a></b>. Then you can run 
+<b><a href="../commands/lsqfit.html">
+lsqfit</a></b> <em> n</em>,
+where n specifies the number of iterations you want for the least
+squares fitting. <b>active</b> and <b>lsqfit</b> are run automatically by
+<b><a href="../commands/fitlines.html">
+fitlines</a></b> when you fit a whole spectrum. <b>lsqfit</b> leaves the
+residuals from the fit in the r array, so you can check how well they
+have been fitted. They should be down to the noise level. Deviations
+indicate that the lines are either ringing, are blended with other lines
+you have not included, or are self-absorbed.
+
+<p>
+To display the parameters of the lines you have found, there are two
+commands:
+<b><a href="../commands/dispar.html">
+dispar</a></b> and
+<b><a href="../commands/printparams.html">
+printparams</a></b>.
+To save them in a file so that they can be read in later, use
+<b><a href="../commands/writeparams.html">
+writeparams</a></b> <em>filename</em>
+This saves them in a file with the Xgremlin commands for reading them back
+in, so to recall them you need just say
+<b><a href="../commands/run.html">
+run</a></b> <em> filename</em>.
+
+</body>  
+

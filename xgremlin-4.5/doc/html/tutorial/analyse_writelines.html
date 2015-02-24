@@ -1,0 +1,48 @@
+<head>
+<TITLE>Example of writelines output</TITLE>
+<!-- Changed by: Gillian Nave, 25-Mar-1996 -->
+</head>
+
+<body bgcolor="#ffffff">
+<B>Up:</B> <A HREF="analyse_find.html"> Finding and Fitting lines </A>
+<H3>Example of writelines output</H3>
+This is an example of the output from
+<A HREF="../commands/writelines.html">writelines</A>:
+<IMG SRC="analyse_writelines.gif"><p>
+The meaning of the columns are as follows:
+
+<dL ><DT><b>2: wavenumber</b>
+<DD> The wavenumber (or wavelength if that is your primary unit)
+<DT><b>3: peak ht</b>
+<DD> The intensity (peak). This is the signal-to-noise if you have
+scaled the spectrum so that the noise is 1. 
+<DT><b>4: width</b>
+<DD> The full width at half maximum, in mK (or m&#197; if you are
+using &#197;ngstr&#246;ms).
+<DT><b>5: damping</b>
+<DD> The damping paramter. This is the ratio of the Lorentzian
+width to the total width of the line, and thus runs from 0 (for a pure
+Gaussian) to 1 (for a pure Lorentzian).
+<DT><b>6: E.W.</b>
+<DD> The integrated intensity of the line (equivalent width in mK).
+<DT><b>7: itn</b>
+<DD> The number of times the line has been fitted with lsqfit
+<DT><b>8: H</b>
+<DD>  A code indicating whether any parameters have been fixed
+during the fit.
+<DT><b>9: tags</b>
+<DD> A code indicating the origin and history of the line. `F'
+means the line has been found with <b>linelist</b> or
+<b>findlines</b>; `I' means it has been added from the plot; `L'
+means it has been fitted with lsqfit; and `G' means it is a centre of
+gravity.
+<DT><b>10-13: epstot  epsevn  epsodd epsran</b>
+<DD> The residuals left from the fit.
+
+<DT><b> 14: identification</b>
+<DD> Any identification you may have added to the line
+<DT><b>15: (unlabelled)</b>
+<DD> The wavelength in &#197; (or wavenumber in cm^-1 if your
+primary units are wavelengths)
+<P>
+ </DL>

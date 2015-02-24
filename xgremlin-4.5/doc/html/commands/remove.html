@@ -1,0 +1,42 @@
+<head>
+<title> remove </title>
+<!-- Changed by: Gillian Nave,  1-May-1996 -->
+</head>
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+
+<h2>remove</h2>
+<H3>Syntax:</H3>
+
+remove <line number>
+<p>
+removes a single line from the internal line list. 
+When removing several lines, with a succession of 'remove'
+commands, make sure that they are removed with the <em>highest</em> 
+line number first, or you may not remove the line that you want to 
+remove!
+<p>
+NOTE:
+It is better to use the plot mode command  C+d  instead of
+'remove' because it gives immediate visual feedback.
+
+<h3>Examples:</h3>
+<pre>
+set 'read normalize'
+read &lt;wref&gt;
+findlines 0.1
+dispar
+remove 3                      # Removes the third line in the list
+dispar
+</pre>
+
+<h3>Related commands:</h3>
+<ul>
+<li> <A HREF="findlines.html">findlines</A>
+<li> <A HREF="getlines.html">getlines</A>
+<li> <A HREF="putlines.html">putlines</A>
+</ul>

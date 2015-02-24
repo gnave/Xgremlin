@@ -1,0 +1,47 @@
+<head>
+<title> save </title>
+<!-- Changed by: , 30-Mar-1996 -->
+</head>
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<H2>save</H2>
+<H3>Syntax:</H3>
+
+save <em>&lt;key&gt;  [&lt;npts&gt;] [tr]  [&lt;new id&gt;]</em>
+<p>
+<UL>
+<LI> 	<em>&lt;key&gt;</em> :  an integer 1-29, except 17,18,19 to specify the scratch file
+<LI> 	<em>&lt;npts&gt;</em>:  the number of points to be saved to the scratch file
+</UL>
+<p>
+	Saves data from the 'r' or 'tr' arrays into a scratch file.
+	If the number of points to be saved is not specified all points
+	(nop) will be saved. By default data in the 'r' array will
+	be saved.
+	
+<H3>Example:</H3>
+<pre>
+save 1 "nice spectrum"
+</pre>
+will store all points in the 'r' array in a file  scratch.1
+in the current scratch file directory.
+<pre>
+save 2 tr 1024
+</pre>
+will save 1024 points from the 'tr' array in a file
+named  scratch.2
+
+<H3>Related commands:</H3>
+<UL>
+<LI> <A HREF="recall.html">recall</A>
+<LI> <A HREF="rmscratch.html">rmscratch</A>
+<LI> <A HREF="whats.html">whats saved</A>
+</UL>
+
+
+
+

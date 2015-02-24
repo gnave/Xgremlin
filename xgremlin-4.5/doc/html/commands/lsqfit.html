@@ -1,0 +1,79 @@
+<head>
+<title> lsqfit </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>lsqfit</h2><p>
+
+<b>Syntax:</b><br>
+<ul>
+<li> <kbd>lsqfit itnum [ nlo nhi ]</kbd>
+<li> <kbd>lsqfit itnum cont [ nlo nhi ] [ wdtfac ]</kbd>
+<li> <kbd>lsqfit "filter"  nrise [ ncut ]</kbd>
+<li> <kbd>lsqfit "filteroff"</kbd>
+<li> <kbd>lsqfit "quiet"</kbd>
+<li> <kbd>lsqfit "verbose"</kbd>
+</ul>
+
+<b>Parameters:</b><br>
+<dl>
+<dt> <b>itnum</b>
+<dd> iteration count (default: 1)
+<dt> <b>nlo</b>
+<dd> starting line number (default: 1)
+<dt> <b>nhi</b>
+<dd> ending line number (default: <b>nol</b>)
+<dt> <b>cont</b>
+<dd> continuum level (default: 0.0)
+<dt> <b>wdtfac</b>
+<dd> width factor (default: 5.0)
+<dt> <b>nrise</b>
+<dd> rise of the end mask (in points) for filtering
+<dt> <b>ncut</b>
+<dd> frequency cutoff (in points) of the sharp-cut filter
+</dl>
+
+This command performs a least squares fit to either absorption
+or emission data in the current buffer using Voigt profiles.
+Lines must be <a href="active.html">active</a> (i.e. subtracted from the data to produce
+a set of residuals) before they can be refined using the
+<b>lsqfit</b> command.<p>
+
+Lines which show appreciable ringing need a "filtered fit", in which
+the residuals are filtered back to the cutoff set by the original
+interferogram between each iteration; this process is invoked by the
+lsqfit filter version, which sets up the parameters but does not do
+any actual fitting. ncut specifies the cutoff point for filtering, and
+should be determined in the same way as for <a
+href="filter.html">filter</a>. If <b>ncut</b> is absent, it is
+calculated from parameters in the header file, using the number of
+points in the interferogram, the position of the central fringe and
+the apodization used.  If the latter is identically zero, it is
+assumed to be the canonical 10% . nrise is the width in points of the
+cosine bell function applied to the ends of the data before it is
+transformed for filtering. This is to prevent end effects, and values
+of nop/10 (usually 400) are normally sufficient (see mask for
+details). If a valid .hdr file does not exist (e.g., the data came in
+through readcards, not datain), then both nrise and ncut must be
+specified.<p>
+
+A filtered lsqfit is preferable to filtering the data and then
+executing <b>lsqfit</b> as filtering changes the width and intensity of
+the line, whereas a filtered lsqfit will resemble the original
+line more closely, as if it had not been under-resolved. Hence
+the profile from a filtered lsqfit may well be sharper than the
+observed data, as this observed data will have been broadened by
+the instrument function of the interferometer.<p>
+
+<b>Note:</b><br> A detailed discussion of line <a
+href="../tutorial/analyse_find.html">finding</a> and <a
+href="../tutorial/analyse_fit.html">fitting</a> lines is given in the
+<b>Xgremlin tutorial</b>. The tutorial also contains a section on
+<a href="../tutorial/filtering.html">filtering and fitting</a> lines.
+
+ </body>

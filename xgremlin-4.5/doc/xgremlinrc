@@ -1,0 +1,27 @@
+# local Xgremlin initialization file
+#
+# This file must be renamed '.xgremlinrc' and
+# lives in a user's home directory
+#
+alias exit end
+alias pr profile
+alias fft fourtran
+alias apo apodize
+alias rapo mask
+profile gauss
+printer ps
+info margin 4
+browser chimera
+color plotter-frame LemonChiffon
+#
+# button commands are commented out
+# i.e. the default button assignment will be used
+#button 1 edit integrate integrate
+#button 2 edit "sub. cont." subpoly
+#button 3 edit moments "moments 4"
+#button 4 edit "plot all" "plot all"
+#button 5 edit "cont. restore" "subpoly restore"
+#button 6 plot connect M+c
+#button 7 edit "sub. par." "subpoly 2"
+#button 8 plot "add lines" C+a
+break

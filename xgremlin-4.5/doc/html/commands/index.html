@@ -1,0 +1,49 @@
+<head>
+<title> filter </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>index</h2><p>
+
+<b>Syntax</b><br>
+<ul>
+<li> <kbd>index set &lt;thickness (in mm)&gt [&lt;uncertainty&gt;]</kbd>
+<li> <kbd>index estimate [&lt;chirp width&gt]</kbd>
+<li> <kbd>index mask &lt;chirp width&gt [&lt;fractional bandwidth&gt;] ['fft']</kbd>
+</ul>
+
+This is a special subset of commands for spectrally resolved Fourier
+transform refractometry.
+
+<dl>
+<dt> <b>index set</b>
+<dd> Set the thickness of the etalon sample.<p>
+<dt> <b>index estimate</b>
+<dd> Estimate the refractive index (incl. uncertainty) from the
+white light interferogram directly.<p>
+<dt> <b>index mask</b>
+<dd> Remove center burst and noise from the interferogram but leave
+the chirp signals that carry the refractive index information.<p>
+</dl>
+
+
+<h3>Examples</h3>
+<dl>
+<dt> <kbd>index mask 140 0.8 fft</kbd>
+<dd> Remove noise and center burst from an interferogram in the
+ffta array leaving only the refractive index chirps (with a width of
+140 points) and apply a cosine bell to the 'edges' of the chirps.
+This form of the command would be used mostly in the 'other' field
+of the phase correction and Fourier transform form where it will be
+applied after the calculation of the phase correction but before the 
+Fourier transform. 
+</dl>
+
+</body>
+
+

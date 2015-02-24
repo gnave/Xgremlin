@@ -1,0 +1,63 @@
+<head>
+<title> button </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>button</h2>
+<p>
+<b>Syntax:</b>
+<ul>
+<li> button <i>&lt number &gt</i> edit <i> &lt "button label" &gt &lt 
+     "command string" &gt </i>
+<li> button <i>&lt number &gt</i> plot <i> &lt "button label" &gt &lt 
+     "plot command" &gt </i>
+</ul>
+
+The button command is used to assign a command to one of the buttons
+between the ploting and editing window. Buttons are numbered from 
+1 to 8 (left to right). There are two types of commands: <b>edit commands</b>
+are those that would normally be typed in at the prompt in the text
+window of Xgremlin (e.g. <a href = "dispar.html">dispar</a>). 
+To assign an edit command to a button
+the following form of the button command must be used:<p>
+
+button <i>&lt number &gt</i> edit <i> &lt "button label" &gt &lt 
+     "command string" &gt </i><p>
+
+<b>Example:</b> button 1 edit sinc "sinc 10. 500;plot"<p>
+	
+will label the leftmost button <a href = "sinc.html">sinc</a> and
+assign the command 'sinc 10. 500;plot' to the button (calculate a sinc
+function in the r-array and plot the result on the screen). (It is
+also possible to assign some useful command to a button.)<p>
+	
+For <b>plot commands</b> the command has the same form as described in
+help topic <a href = "../plotmode.html">Plot mode commands</a>:<br>
+<b> &lt modifier &gt + &lt key &gt </b> <p>
+
+<b>Example 1:</b> button 2 plot Zoom-in x <p>
+	
+This labels the 2nd button from the left with 'Zoom-in' and assigns
+to it the command 'x' which lets you zoom in at the center of the plot
+(or at a set marker). None of the keys <shift> <control> <meta> (or <alt>)
+is pressed.<p>
+
+<b>Example 2:</b> button 4 plot Zoom-out M+x <p>
+
+assigns the plot command &lt meta &gt -x (or &lt alt &gt -x on a PC) used 
+for zooming out to button number 4.<p>
+
+<b>Note:</b><br>
+Following the usual Xgremlin conventions, strings containing blank spaces 
+such as in "sinc 10. 500" must be enclosed in quotes so they are 
+recognised as a single string by Xgremlin.<p>
+
+For a list of plot commands see help topic <a href =
+"../plotmode.html">Plot mode commands</a>.
+
+</body>

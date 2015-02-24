@@ -1,0 +1,3046 @@
+2015-02-23 Gill
+       *  version 4.5
+
+       * Phase correction fixed so it only picks up one point per line (set by swid variable).
+       * Change command fixed so commands actually match documentation
+       * Inline functions modified so they work with new gfortran
+       * Documentation for phase correction and change commands updated
+       * New tutorial added for spline fitting
+       * Documentation updated for installation
+
+
+2009-06-09 Gill
+        
+        * version 4.3
+
+        * Center of gravity now holds all parameters
+        * Active does not modify lines that are held
+        * Hold now has option of negative number which releases hold
+        * Documentation for Hold, Active, updated
+        * Fitlines will no longer work on complex files
+        * Removed tabs from strings - can cause failure
+	* dump can now make file name that includes a '.'
+        * Made default browser firefox rather than mosaic (!)
+        * Assorted other bug fixes.
+
+
+2009-04-09 Gill 
+        * version 4.2
+       
+        * HFS routines modified for gfortran. Tested on OS X and Linux
+
+2001-04-01  Gill  
+
+	* version 4.1
+
+	* incuded calculation of uncertainties of intensities.
+
+2000-07-30  Ulfi  <ulf@puffin.woodland>
+
+	* version 4.0
+
+	* attempt to fix the 'writefile' command.
+
+	* integrate Gill's (originally Bruce Pulliam's) 
+	hyperfine structure fitting code. Still needs lots
+	of polishing but works. All the work was done by Gill Nave.
+	
+
+2000-03-07  Ulfi  <ulf@puffin.woodland>
+
+	* version 3.15
+
+	* fixed the 'fits2nso' command to correctly translate
+	FITS files from the McMath archive at Kitt Peak NSO.
+	
+
+2000-02-26  Ulfi  <ulf@puffin.woodland>
+
+	* version 3.12 - 3.14
+
+        * A 'getlines' command now also plots the line markers 
+        in xgremlin's plotting area by default.
+
+        * The auxiliary plot function 'pltaux' now clips
+        horizontally which is needed for the overplotting
+        of hyperfine structure patterns.
+
+        * wavenumber correction (wavcorr) is applied in a 
+        'writeasc' command.
+        
+	* add a 'set noglitch' (and 'set glitch') option to
+	turn off the deglitching algorithm that is applied to
+	an interferogram before a transform. Needed to make sure
+	that the chirps from etalon fringes are not recogized
+	as glitches in the data.
+
+	* added a new 'index' set of commands for Fourier
+	transform refractometry.
+	
+
+1999-10-11  Ulfi  <ulf@puffin.woodland>
+
+	* version 3.10
+
+	* Wider format for point of c.g. in (^)g commands to 
+	avoid *****.
+
+	* xgremlin can now be compiled with the Lahey/Fujitsu
+	Fortran 95 compiler. Very nice compiler, actually and not
+	expensive ($200.-). The new compiler uncovered four genuine
+	bugs which I had so far overlooked. 
+	
+
+1999-10-05  Ulfi  <ulf@puffin.woodland>
+
+	* version 3.9
+
+	* Ooops. The 'standards' command ignored the tolerance when
+	both tolerance and maximum deviation factor were specified
+	on the command line. Fixed.
+	
+
+1999-10-02  Ulfi  <ulf@puffin.woodland>
+
+	* version 3.8
+
+	* The plot mode move command 'v' which moves a line now
+	also copies the line id correctly.
+
+	* Fixed a bug in the 'background' command. The background
+	is now calculated correctly - previously, the wrong spline
+	knots were used. (The effect was almost unnoticable, though.)
+	
+
+1999-09-24  Ulfi  <ulf@puffin.woodland>
+
+	* version 3.7
+
+	* Spruced up the 'standards' command. The command now creates a
+	.cal file which contains all calibration results and a plot of
+	deviations to make it easy to identify outliers and other
+	anomalies.
+	
+
+1999-09-21  Ulfi  <ulf@puffin.woodland>
+
+	* version 3.6
+
+	* the 'response' command must now specify whether the intensities
+	resulting from 'writelines' should be proportional to the photon
+	flux or proportional to the intensity. Improved the documentation.
+
+	* one more significant figure for the wavelengths in the
+	'writelines' command.
+	
+
+1999-09-17  Ulfi  <ulf@puffin.woodland>
+
+	* version 3.5
+
+	* added a new plot mode command S+c (shift c) which finds and
+	displays the center of an interferogram in r.
+
+	* in phase plot mode, the low resolution spectrum is now
+        normalized to 1 to make it easier to determine a good cutoff factor.
+	
+
+1999-09-11  Ulfi  <ulf@puffin.woodland>
+
+	* version 3.4
+
+	* reading headers with continued lines finally works.
+
+	* the variables that control the spline phase fit can
+	now be changed with the info command.
+
+	* Chebychev polynomial phase fits up to 15-th order 
+	(i.e. 16 terms) are now possible.
+	
+
+1999-09-09  Ulfi  <ulf@puffin.woodland>
+
+	* version 3.3
+
+	* finally managed to make spline phase correction fit
+	interruptible with the 'Stop' button. 
+
+	* nK,nM,nS are now read in correctly. They are needed 
+	for backward compatibility with older versions of 
+	gremlin which don't understand the 'fdr' variable.
+
+	* fixed numerous bugs in the functions that write 
+	header files.
+	
+
+1999-09-08  Ulfi  <ulf@puffin.woodland>
+
+	* version 3.2
+
+	* fixed the 'filter' command which broke when 'stretch'
+	was fixed.
+
+	* fixed the 'read' command to not omit the last point in
+	a complex file. This was a long-standing bug in gremlin.
+	
+
+1999-09-07  Ulfi  <ulf@puffin.woodland>
+
+	* version 3.1
+
+	* Made spline fit function in phase correction interruptible
+	with the stop button.
+
+	* When switching to the spline fit mode, the spline fit
+	is turned off by default.
+	
+
+1999-08-21  Bear  <ulf@puffin.woodland>
+
+	* version 3.0
+
+	* Added Jim's recent modifications and bug fixes to 'lsq.f'
+	and 'ghelp.f'. Added variable 'wdlim'.
+
+	* Add Jim's fixes to fourier.f, cardio.f, cmplx.f, ftsin.f,
+	ftsout.f, funct.f, (except 'loglin' command which is
+	not clear to me), infio.f, stds.f. This synchronizes xgremlin 
+	with a 1999 version of Jim Brault's gremlin with the exception
+	of the 'option' and 'other' commands and the 'loglin' 
+	command which I don't understand. In xgremlin, commands must
+	still be typed out, it is not enough to type the first few
+	characters only as it is now in gremlin. Aliases are your
+	friend.
+
+	* Added a spline phase correction mode: the phase curve is 
+	calculated from the phase points of a line spectrum with a 
+	smoothing spline under tension. This is useful for the phase
+	correction of interferograms measured with two different
+	detectors/amplifiers which often have sharp bends in the 
+        phase curve that cannot be fitted well with a polynomial.
+
+	* Strings that are longer than 20 characters are written
+	into header files with continuation lines.
+
+	* Remove 'contincorr' command because its algorithm and use
+	cannot be reconstructed (by me).
+
+	* Fixed 'stretch' after Roland Schermaul alerted me to the
+	fact that the normalization was broken. 'fortrn' and 'invtrn' 
+	now use the Fourier transform subroutines for long arrays.
+	This was a long standing gremlin bug.
+
+	* Changed subroutine 'fourier.f:fortrn' to leave the 
+	transform in r instead of tr. Modified 'fourier.f:invtrn'
+	accordingly. This gets rid of many unnecessary calls to
+	'rext'.
+
+	* libMPAR is now compiled together with xgremlin. This makes
+	the source code finally completely self contained (apart
+	from standard libraries).
+
+	
+=====================================================================	
+
+1999-03-28  Bear  <ulf@puffin.woodland>
+
+	* version 2.63
+
+	* put 4 digit years in header files - not just '19'.
+
+	* modify 'headers.f' to make it read 'continue'd strings.
+	The 'continue' stanza is used in files from recent versions
+	of Alice to store strings with more than 20 characters.
+
+	* fixed extensions of backup files. They are no longer
+	very long strings of random characters.
+
+
+1999-01-17  Bear  <ulf@puffin.woodland>
+
+	* version 2.62
+
+	* A bug made the 'integrate' command enter an interminable 
+	loop. The problem went away when the -mpentium switch
+	was removed from the g77 options.
+
+	* Made the graphics cursor somewhat smaller again.
+	
+
+1998-12-07  Bear  <ulf@puffin.woodland>
+
+	* version 2.61
+
+	* Modified flags for compilation with EGCS 1.1.1.
+	It turns out that the Pentium - aware version of EGCS
+	(pgcc) is no good at all. It is very buggy and best
+	left alone. 
+	[Optimization is the root of all evil. -Donald E. Knuth]
+	
+
+1998-12-06  Bear  <ulf@puffin.woodland>
+
+	* version 2.60
+
+	* Source file 'read.f' does not compile correctly with pg77
+	when optimization is turned on. Sigh. Turn optimization off
+	for this one file an hope for the best...
+	
+
+1998-12-04  Bear  <ulf@puffin.woodland>
+
+	* version 2.59
+
+	* Ooops! Introduced a bug in 2.57 that made the program 
+	crash during a phase correction. Names for phase points
+	and bad points are now generated correctly.
+	
+
+1998-12-03  Bear  <ulf@puffin.woodland>
+
+	* version 2.58
+
+	* Finally (!) found the reason why xgremlin would always 
+	fail to read our header files when compiled with a F77
+	compiler other than f2c: 'decim' (decimation) is a floating
+	point variable for the NIST FTSs, whereas it is an integer
+	in (x)gremlin.
+
+	* Added missing include file 'solinf.h' in infio.f.
+
+	* Fixed the phase plots for continuum spectra. The phase
+	curve is no longer compressed into the left part of the 
+	plot with the right part containing junk.
+	
+
+1998-11-22  Bear  <ulf@puffin.woodland>
+
+	* version 2.57
+
+	* Switch over from f2c to g77. This required some changes
+	to the Fortran code. It is amazing that after all that
+	time and several compilers there are still non-F77 syntax 
+	quirks left in the source code.
+
+	* Changed the function 'chdir_' for changing the working
+	directory to 'chngdir' do avoid symbol conflicts with
+	'chdir' from the glibc C library.
+
+	* Added an unobtrusive marker for the center of the plotting
+	pane.
+
+	* Fixed a bug in 'page.f': the page number was overwritten
+	because several id strings were dimensioned too short.
+
+	* Wavelimits are now cleared at the beginning of the transform
+	batch file. Previously it was not obvious how to clear them.
+	
+
+Sun Oct  4 17:22:32 1998  Ulfi  <ulf@puffin.woodland>
+
+	* version 2.56
+
+	* The secondary unit "Hz" now refers to the sampled acoustic
+	frequency. This makes it very easy to determine the frequency
+	of ghosts in a spectrum. The secondary unit GHz was changed to
+	THz.
+	
+
+Wed Sep  9 05:23:20 1998  Ulfi  <ulf@puffin.woodland>
+
+	* version 2.55
+
+	* For some reason wavelengths outside the range of an intensity 
+	calibration curve were printed out to stdout. This was not intended.
+	
+
+Sun May 10 04:00:29 1998  Ulfi  <ulf@puffin.woodland>
+
+	* version 2.54
+
+	* fix 'fits2nso' program to work with older files from KPNO.
+
+	* re-instated the 'fits' option to the 'copy' command to 
+	enable folks to convert old FITS files from KPNO. Not tested
+	very much.
+	
+
+Wed Apr 22 04:57:38 1998  Ulfi  <ulf@puffin.woodland>
+
+	* version 2.53
+
+	* removed all occurences of control characters (e.g. \n) in
+	format statements because the Absoft f77 compiler does not
+	handle those correctly.
+	
+
+Sat Apr 18 04:52:14 1998  Ulfi  <ulf@puffin.woodland>
+
+	* version 2.52
+
+	* make all changes needed to compile with Absoft f77 under Linux.
+	This should lay the groundwork for the use of f77 compilers
+	on other machines too.
+	
+
+Mon Mar 16 03:05:00 1998  Ulfi  <ulf@puffin.woodland>
+
+	* version 2.51
+
+	* re-re-instate the 'atlas' command and the psplot program. Gill Nave
+ 	thinks that they are useful after all - and better than nothing at all.
+	Can't argue with that. Also re-instated and improved the documentation
+	for the 'atlas' command.
+
+	* write out the "Wref = ....." message in a read command only
+	when verbose mode is set (with 'set verbose'). This reduces the
+	amount of unnecessary output for commands which do many reads, such
+	as 'atlas'.
+	
+
+Wed Feb 25 18:40:47 1998  Ulfi  <ulf@puffin.woodland>
+
+	* version 2.50
+
+	* fixed a problem with the 'response' command which made it fail
+	when the standard lamp spectrum did not overlap with the
+	wavelength range of the calibration file. 
+
+	* modified the 'writelines' command to not write out intensities
+	if the response curve is zero if intensity calibration is requested.
+	
+
+Sat Feb  7 18:47:29 1998  Ulfi  <ulf@puffin.woodland>
+
+	* version 2.49
+
+	* Aaaaaaargh - I am so stupid. Changed definitions of 'BIG_ENDIAN'
+	and 'LITTLE_ENDIAN' in 'byteorder.h' back to what they were. Data
+	files are no longer byte reversed indiscriminately.
+	
+
+Fri Jan 16 18:30:01 1998  Ulfi  <ulf@puffin.woodland>
+
+	* version 2.48
+
+	* increase the maximum allowable size of a Fourier transform 
+	to 16M points.
+
+	* add minpack library to the FORTRAN sources. It is no longer
+	necessary to compile the library separately. Increases the size
+	of Xgremlin insignificantly.
+
+	* 4 digit year in log file name
+
+	
+Sun Nov 23 06:15:33 1997  Ulfi  <ulf@puffin.woodland>
+
+	* version 2.47
+
+	* remove transform batch file after use. Forgot to do this after
+	debugging in 2.46.
+
+	* added the <ctrl>z command in plot mode to zero the r array 
+	between two markers
+	
+
+Tue Nov 11 06:20:58 1997  Ulfi  <ulf@puffin.woodland>
+
+	* version 2.46
+
+	* removed the 'mask' option from the 'data' command because it is not
+	needed after all.
+
+	* added the 'bomem2dat' utility to the tools collection. It is a simple
+	program to convert data files acquired with BOMEM spectrometers to 
+	NSO type 6 header-data file pairs. 
+
+	* fixed a format overflow in 'findlines' for the number of lines found.
+	>9999 lines are now possible.
+	
+
+Mon Oct 27 18:03:50 1997  Ulfi  <ulf@puffin.woodland>
+
+	* version 2.45
+
+	* make 'rmove' function faster by having it call 'memcpy'.
+
+	* make 'page.f' write out 4-digit years.
+
+	* integrate 'tspack' function into gremlin library instead of 
+	making it a separate library to make installation easier.
+
+	* make 'dump' command more flexible and fix bugs. Remove
+	'option dump' command.
+
+	* fixed a bug in 'response' that caused a crash for 
+	wavenumber 0 in first alias spectra.
+
+	* alloc scratch file index 0 because it is used for the raw
+	center of the interferogram during phase correction.
+
+	* store meaningful id's with internally generated records
+	when set in the program (fix to subroutine 'oscrwrite').
+
+	* finally found the bug that screwed up the low res spectrum in
+	the phase plot for low resolution spectra (e.g. standard lamp spectra)
+	with short interferograms.
+
+	* finally found out how to transform white light spectra with
+	refractive index chirps such that only the part with the chirp 
+	can be transformed. The 'Other' field in the Phase Correct/Transoform
+	menu now allows to insert an arbitrary command after the phase 
+	correction stage but before the transform stage.
+
+	* add a 'mask' qualifier to the 'data' command to allow smooth
+	transitions between existing data in the arrays and data set
+	with the 'data' command.
+
+
+Fri Sep 12 17:57:56 1997  Ulfi  <ulf@puffin.woodland>
+
+	* version 2.44
+
+	* added a variant to the 'cmplx linecorr' command to apply the
+	phase correction only locally (at the nagging request of Krysztof 
+	Dzerzega. Documentation updated.
+	
+
+Mon Sep  8 17:47:16 1997  Ulfi  <ulf@puffin.woodland>
+
+	* version 2.43
+
+	* introduced a stupid bug in 'writelines': wrong column in 
+	exponential format. The eps parameters are now also in exponentional
+	format to avoid format overflows.
+
+	* fixed a bug in the 'cgline' subroutine which determines the
+	center of gravity of a line and inserts it into the line list.
+	Such lines are now correctly tagged with 'G'.
+
+	* fixed a bug with the calculation of the low resolution amplitude
+	spectrum during phase transform.
+	
+
+Thu Sep  4 18:01:58 1997  Ulfi  <ulf@puffin.woodland>
+
+	* version 2.42
+
+	* change the format for the line intensity in 'writelines' from a
+	F to an E format to prevent format overflows for people who do not
+	use read scale factors.
+	
+
+Wed Aug 20 16:25:21 1997  Ulfi  <ulf@puffin.woodland>
+
+	* version 2.41
+
+	* changed the inner workings of the 'response' command. Interpolation
+	of spectral radiance data is now done with the data in wavelength
+	space because they are typically evenly spaced in wavelength space,
+	not in wavenumber space. This makes the spline interpolation more
+	accurate (no oscillations). Also upgraded and corrected the
+	documentation for the 'response' command.
+
+	* allow 99 scratch files instead of only 30. I thought I had done
+	that earlier but it turned out that I hadn't. A change in 'dispatch.f'
+	was required.
+	
+
+Thu Aug 14 12:20:03 1997  Ulfi  <ulf@puffin.woodland>
+
+	* version 2.40
+
+	* modified the response commmand. It now leaves the interpolated
+	response curve in the tr array.
+	
+
+Wed Jul 30 18:24:30 1997  Ulfi  <ulf@puffin.woodland>
+
+	* version 2.39
+
+	* add a new button to the Phase/Transform window to request 
+	transforming only the central section of an interferogram.
+
+	* add a 'break' command to the end of the transform batch files to 
+	suppress the warning after completing a Fourier transform.
+
+	* de-activate the 'Phase' button before carrying out a Fourier
+	transform. Before, vertical zooming would become disabled if 
+	it was forgotten to disable the button.
+
+	* do not normalize peak height during intensity calibration, only
+	the equivalent width to preserve the peak height as a measure of
+	the signal-to-noise ratio.
+
+	* new command 'info ntrans' to set transform size to something 
+	different than the ntrans value in the header file.
+
+	* fixed the output of 'dispar' (again).
+	
+
+Wed Jul  9 17:32:36 1997  Ulfi  <ulf@puffin.woodland>
+
+	* version 2.38
+
+	* fixed a bug in the dump subroutine: the correct spelling of
+	the output unit is 'dataout'.
+
+
+Tue Jul  1 17:43:12 1997  Ulfi  <ulf@puffin.woodland>
+
+	* version 2.37
+
+	* fixed a bug I introduced myself by mistake: Unit 'dataout' is
+	called 'dataout' again, so 'close dataout' works again.
+
+	* modified the output format of a line list once more because 
+	someone keeps telling me that I didn't get it right last time.
+	
+
+Tue Jun 17 16:53:39 1997  Ulfi  <ulf@puffin.woodland>
+
+	* version 2.36
+
+	* fixed a bug in bad points handling of phase correction
+	when number of bad points reaches 512. Deleted bad points are not 
+	replaced by new phase points as before.
+
+	* fixed a format error in subroutine ghelp.f:whats.
+
+	* turn off the Phase button after a phase correction.
+	
+
+Mon May  5 21:29:07 1997  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.35
+
+	* explicitely define a default font in the application defaults file.
+
+	* fixed a bug in the Fourier transform batch file: an 'input inverted'
+	command was not generated when the 'invert' button was pressed
+	(Craig Sansonetti figured it out).
+	
+
+Mon Apr 21 21:06:18 1997  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.34
+
+	* fixed another bug in the "v" (move line) plot mode command: 
+	width and damping are now carried over correctly (or so I hope).
+
+	* added a new "font" command to allow changing the fonts
+	in the plotter window.
+
+	* made a few fixes to the bubble help messages.
+	
+
+Wed Apr  9 21:40:28 1997  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.33
+
+	* added bubble help from version 3.2 to this version.
+
+	* fixed a bug in appdefaults file: replace Page_Up --> Prior,
+	Page_Down --> Next.
+
+	* added a new command 'background' to subtract continuum
+	backgrounds from line spectra (see documentation for details).
+
+	* fixed a bug in the "v" (move line) plot mode command:
+	width and damping of the old line are now preserved.
+	
+	* first attempt to speed up 'active' and 'lsqfit' commands
+	for large 'r' arrays. This involved a change in subroutine
+	'addlin' which up to know calculated Voigt profiles over the 
+	entire 'r' array for each line. I hope I didn't screw it
+	up ....
+
+	* fixed a bug in function  wavcon.f::rindex : one of the
+	coefficients in the Edlen formula for the refractive index
+	of air was wrong (inherited from Gremlin).
+
+	* apply wavenumber correction (wavcorr) _only_ if it was
+	explicitely requested. This is now consistent with air correction
+	and intensity correction.
+
+
+Wed Apr  2 21:38:11 1997  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.32
+
+	* fixed a format bug in 'apoption.f'
+
+	* added 'goto next' and 'goto prev' commands for easier
+	inspection of spectral lines.
+	
+
+Thu Mar 13 23:37:57 1997  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.31
+
+	* Make the format for Wref wider to avoid *****.
+
+	* existing transform outputs are now overwritten when a new transform
+	of the same file is carried out. This is less annoying.
+
+	* make the format for x labels wider to accomodate very large files.
+	
+
+Wed Feb 12 23:26:34 1997  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.30
+
+	* fixed a long-standing flaw: the display widget does not allocate 
+	a large number of colors any longer which occasionally lead to 
+	problems on 8-bit displays.
+	
+
+Mon Feb 10 21:12:24 1997  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.29
+
+	* fixed a stupid bug in the top level HTML file of the documentation.
+	
+
+Sat Feb  8 22:46:54 1997  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.28
+
+	* fixed a bug in 'linelist' command: the name of the newly created
+	linelist file is added to the file name array and is therefore
+	displayed correctly by the 'files' command.
+	
+
+Mon Jan 27 22:34:31 1997  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.27
+
+	IMPORTANT BUG-FIX: the linear wavenumber correction is now
+	only applied when a linelist is created with a 
+	'writelines' command. This is consistent with
+	DOS Gremlin.
+
+	* various cosmetic changes; 'wavcorr' is written out
+	when a file is opened etc.
+	
+
+Sun Jan 26 17:59:59 1997  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.26
+
+	* added a 'vactoair' command for convenient conversion of
+	wavenumbers to air wavelengths. 
+
+	* Use Birch and Downs refractive index formulae for air
+	everywhere consistently.
+
+	* change 'writelines' command to be more flexible about
+	the corrections that are applied to wavenumbers in line lists.
+	
+
+Sat Sep  26 00:28:19 1996  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.25
+
+	* better formatting of x axis labels and one digit more 
+	precision.
+
+	* fixed a number of bugs that showed up when xgremlin 
+	was compiled with f2c -a ...	Xgremlin should not
+	be compiled with automatic variables however. As a good old
+	FORTRAN program it relies on static memory allocation.
+
+	* added many more useful complex commands to the 
+	'cmplx' umbrella command.
+
+	* the 'filter' command did not work and the documentation
+	was lousy. The bug is fixed and the documentation is improved.
+	
+
+Thu Aug 29 23:15:58 1996  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.24
+
+	* phase correction was broken in 2.22 because the size
+	of the phase array was not set to a power of two in the
+	'alloc' command. fixed.
+
+	* display the correct absolute point number for complex 
+	data in the r array.
+
+	* the travel length (variable 'ctrav') was not calculated
+	correctly when reading files with fringe division ratio
+	variable 'fdr'.
+	
+
+Wed Aug 28 21:21:26 1996  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.23
+
+	* added a variable 'fdr' to the header files because 
+	the NIST FTS uses that instead of M,K.
+	
+
+Wed Aug 21 23:28:46 1996  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.22
+
+	* the variable 'ctrav' in new header files was internally
+	set to a very large number that made a format overflow in 
+	newly created header files --> header file was unreadable.
+	Fixed.
+
+	* the 'fourtran' command had a bug that restricted the max. 
+	length of transforms in the r array to 2^17 = 131072 points.
+	This is now fixed and long transforms in the r array are
+	possible.
+
+	* change overplotting colors to use red first, not blue
+	which stands for 'complex data' in Xgremlin.
+
+	* made the 'writefile' and 'run' commands aware of
+	complex data. Reading and writing of complex data now
+	produces the correct result.
+
+	* the x-axes of reversed spectra were not plotted correctly
+	or not at all. fixed.
+
+	* the range of points displayed by the barmeter for
+	internally created functions was off by one because
+	variable 'pref' was not initialized correctly. fixed.
+	
+
+Mon Aug  5 20:44:34 1996  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.21
+
+	* modified the makefiles at the suggestion of Wolfgang
+	Mende to make xgremlin compile cleanly under Solaris 2.x
+
+	* increased the max. number of scratch files to 99.
+
+	* retain old id strings of scratch files if no new
+	id string is typed in for an existing scratch file.
+	This makes Xgremlin behave more closely like Gremlin.
+
+	* fixed a bug in the 'alloc' command: 1M is 1024*1024.
+	
+
+Wed Jul 17 00:02:34 1996  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.20
+
+	* 'alloc' command without parameters now prints the
+	current size of arrays.
+
+	* add a command 'sincos' which computes a sine 
+	function in the r array and a cosine in the tr array.
+
+	* fix the 'power' command to set 'nop' correctly.
+	
+
+Sun Jul 14 23:33:37 1996  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.19
+
+	* changed the names of all FORTRAN include files to have
+	the extension .h for consistency.
+
+	* corrected a small bug in the phase correction code: the
+	mapping [1,nphz] --> [-1,1] which is needed for calculation
+	of the Chebychev polynomial was off by one point (i.e. 1 was 
+	not mapped to -1). Since the phase correction polynomial 
+	does not change much with wavenumber this bug made no
+	difference to the phase correction.
+	
+
+Sun Jul  7 22:10:46 1996  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.18
+
+	* replaced the singular value decomposition subroutines
+	from Numerical Recipes by subroutines from SLATEC / BLAS.
+	Xgremlin can now be distributed legally!
+
+	* modified phase correction code to use the new SVD fit
+	subroutine 'svdlsq'. 'ftsin.f' is still a terrifying mess.
+	
+	* made the 'noise' command a bit more versatile
+
+	* fixed several bugs in 'plot.f': variable 'ln' was
+	mis-spelled 'nl' in commands C+d and C+a which had a couple 
+	of unpleasant but harmless effects.
+
+	* fixed subroutine 'synclin'. This subroutine should not
+	do it's own plotting.
+
+	* fix a problem with the 'dump' command. The value of variable
+	'sampfreq' is now set to something meaningful to avoid those
+	******'s in the header file.
+
+	* a 'change' command now upates the plotter line list
+	data of the changed line as it should be.
+
+
+Sat Jun 29 20:50:06 1996  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.17
+
+	* replaced all sorting subroutines from 'Numerical Recipes'
+	by counterparts from GAMS.
+
+	* temporary files are not created in the current directory
+	any longer but in /tmp. This makes it possible to have the 
+	current directory on a read-only medium (e.g. CD-ROM).
+
+	* fixed a problem in subroutine 'create' that would make
+	Xgremlin dump core when a data file was created with 'dump'
+	under certain circumstances (file with same name existed already).
+
+	* replaced the random number generator by one written by
+	J. Blue, D. Kahaner and G. Marsaglia. The new generator 
+	is MUCH faster than the old one and scores VERY MUCH better
+	in I. Vattulainen's  random number generator test program
+	( see Phys. Rev. Lett. 73, 2513 (1994) for a description
+	of the test program )
+	
+	* do not use AWK after all in 'Configure'. There are too
+	many versions of AWK in use on various platforms.
+
+
+Mon Jun 24 22:44:34 1996  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.16
+
+	* fix a bug in 'readasc' that could lead to a buffer
+	overrun during reading of ASCII data.
+
+	* make the AWK that is being used during compilation
+	configurable.
+	
+
+Mon Jun 10 21:16:23 1996  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.15 (first non-experimental dynamic version)
+
+	* checked the Fortran source code again with 'ftnchek'
+	--> discovered several cases of subroutines invoked
+	with the wrong number of arguments. This should hopefully
+	fix all problems that were introduced with the new 
+	dynamic arrays.
+
+	* completed conversion of all existing documentation
+	into HTML format. The technical reference manual remains
+	to be written.
+
+	* fixed a small bug in the Phase/Transform window to make
+	the center up/down buttons work better if pressed when the
+	field is empty.
+
+	* New plot mode command <shift>+u to return to the 
+	previous plot frame (a kind of 'undo'). The command
+	also has a new button above the plot window.
+
+	* added interactive fitting of Voigt profiles.
+
+	
+Sat Jun  1 21:25:37 1996  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.14
+
+	* added an output option in the phase correction window to
+	allow the simultaneous creation of real and complex spectra
+	after a Fourier transform.
+
+	* translated more of the help text into HTML: this
+	chore is nearing completion now.
+	
+
+Sat May 11 23:39:21 1996  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.13
+
+	* Xgremlin now uses an external HTML browser to view the
+	online documentation. Simple and effective. This also 
+	means that the documentation can be viewed outside
+	Xgremlin with a HTML browser.
+
+	* new command 'browser' to define the HTML browser that
+	is to be used by Xgremlin to view online documentation.
+	Any browser will do (chimera, mosaic, netscape ...).
+
+	* removed the 'print' command because it is at least
+	partly duplicated by the 'info' command. 'print data'
+	was undocumented and did not work.
+
+	* removed another sore spot of Xgremlin: an internal line
+	list from a 'findlines' command can now be written to a 
+	line list (.lin) file. Simply create the .lin file with
+	'open lineio <name> new' and do a 'putlines'.
+	
+
+Thu Apr 25 22:38:53 1996  Ulfi  <ulf@puffin.quince.home>
+
+	* version 2.12
+
+	* commands 'fitpoly' and 'subpoly' were temporarily broken. fixed.
+
+	* fix an error with stray \0 which occasionally screwed up the
+	output of the 'dispar' command.
+
+	* slightly improved the output of 'dispar': added space between
+	'sigma' and 'amp' column.
+	
+	* fixed a bug in the 'change' command. The width is now 
+	specified in mK consistent with the rest of the program.
+
+	* plot updated line markers after an 'lsqfit' command.
+
+	* removed obsolete conversion functions from the 'copy'
+	command. Support for FITS is not yet in the program.
+
+	* the point position shown in the upper right corner of the plotting
+	window is now the absolute point position in the file, not the point
+	in the current r-array. That way the 'Fill in' button in the
+	phase correction window works correctly.
+	
+
+Mon Mar 25 12:00:30 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 2.11 (not public)
+
+	* make the 'dump' command finally work.
+
+	* fixed the 'updatelines' subroutine: no more 'tr array too small'
+	messages.
+
+	* the command 'open lineio some_name new' will create a new
+	linelist file. New line list files will not be created automatically
+	any more. (There used to be a new linelist file for every
+	typo in an 'open lineio ...' command.
+
+	* removed a call to function 'usleep' which caused problems
+	when compiling the program for Solaris 2.x 
+	(Wolfgang Mende, IPP Hannover)
+
+	* updated Makefiles for TSPACK and MINPACK libraries to 
+	allow creation of shared libraries under Linux ELF. Shared
+	libraries on other platforms will be coming soon.
+
+	* made most of the changes required for the transition to 
+	ELF binary format on Linux machines.
+	
+
+Fri Mar 22 12:55:32 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 2.10 (experimental)
+
+	* fixed a long standing bug: the point position displayed in the
+	top right corner of the plot window is now the absolute point
+	in the data file, not the point relative to the current buffer.
+	The fill in button now fills in the absolute not the relative
+	point of the mouse marker. The new reference point is called
+	'nrefp' and may be modified with and 'info' command.
+
+	* plotting of the phase fit did not work after using dynamic
+	arrays. fixed.
+
+	* the detector type parameter in the 'response' command is
+	no longer optional, it has to be typed in. That way it is less
+	likely for things to go wrong.
+
+	* fixed a bug that was introduced in 1.44: after a 'lsqfit'
+	command the plotter line list gets updated correctly.
+
+
+Mon Mar 18 09:39:16 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 2.9 (experimental)
+
+	* add error checking to memory allocation functions and
+	keep old arrays if something goes wrong.
+
+	* fixed the 'read' subroutine to read as many points
+	as possible by default (one full r array).
+
+	* make the header of a line list written with the
+	'writelines' command line up with the data columns.
+
+	* 'stop' button remains always sensitive now.
+
+
+Mon Mar 18 09:39:16 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 2.8 (first public test version)
+
+	* fixed bug in allocation of memory for tr and phz. 
+
+	* also evaluate read scaling factor when reading older
+	NSO type 5 files.
+
+
+Sun Mar 17 12:27:29 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 2.7 (experimental)
+
+	* more bug hunting with 'ftnchek' to consolidate the 
+	transition to dynamic data arrays.
+
+	* started the new HTML based help system based on the
+	html widget from the NCSA which is also the core of
+	the 'Mosaic' WWW browser.
+
+
+Sun Mar  3 10:27:29 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 2.6 (experimental)
+
+	* general cleanup of libCommon. Most functions of that library
+	are now inlined for speed. This should increase the speed
+	of the plotter line list code.
+
+	* Clean up display widget to finally make it compile without
+	warnings with an ANSI C compiler.
+
+	* new command 'alloc' for dynamic allocation of all large
+	work arrays in Xgremlin. This required massive changes in
+	the Fortran part of the source code and may well have 
+	introduced bugs. However, these changes eliminate the need
+	for various Xgremlin versions with different array sizes.
+
+	* write a message into a final linelist that states if an
+	intensity calibration was applied to intensities or not.
+
+	* update the plotter line list every time a change was made to
+	the internal line list (e.g. with 'lsqfit').
+
+	* removed commands 'headeredit' and 'greg'. Batch processing
+	should be made part of the 'Phase/Transform' menu if it
+	is ever needed.
+
+	* removed old and tired integer conversion options from the 
+	'read' command because they could only be of value for some
+	very old data files.
+
+	* removed 'extended worm', 'extended apodize' and 'extended
+	phcorr' commands. 'worm' needs to be re-done from scratch,
+	the purpose of the others is unclear.
+	
+	* new command 'dump' to write the contents of the r-array
+	to a proper data file.
+
+
+Fri Jan 26 13:01:03 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 2.5 (backup version, not public)
+
+	* numerous bug fixes to keep in sync with 1.32	
+
+
+Thu Nov 16 12:30:35 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 2.4 (test version, not public)
+
+	* added the following checks which were also folded back into
+	version 1.25
+
+	   - check if too many points are requested in the 'sinc' 
+           command to avoid core dumps.
+
+	   -  number of points in the 'move' commmand now defaults 
+           to 'nop' (i.e. the number of data points in the r array).
+
+	   - made 'move' command fool proof by checking for array 
+           overruns.
+
+	* new command 'zerofill' (can sometimes be useful in combination
+	with a 'fourtran' command for q&d Fourier transforms).
+
+	* the 'fourtran' command now leaves the complex spectrum in
+	the r array and flags it as complex (nwpp=2). This is more
+	convenient than the Gremlin way and works well because Xgremlin	
+	can plot complex data nicely.
+
+	* the 'invtran' command expects a complex spectrum in the r
+	array.
+
+	* the following changes were folded back into version 1.26
+
+	  - the 'printparms' command did not print out the identifier 
+	  string of a line (inherited from Gremlin). Fixed.
+
+	  - whenever the cursor is moved onto a line marker in a plot the
+	  parameters of that line are displayed below the plotting window.
+	  The id string is also printed out which makes it much more
+	  attractive to use the id information in a line list file.
+	
+	  - fixed a buglet in the 'plot phase' command. The low resolution
+	  spectrum was not (always) printed correctly.
+
+	  - whenever a line is added to or removed from the internal
+	  line list ( C+a and C+d commands ) the total number of lines
+	  in the internal line list is printed out in the left lower corner
+	  of the plotting window.
+
+
+Wed Oct 25 09:44:53 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 2.3 (not public)
+
+	* completely overhauled the scratch file mechanism. Xgremlin
+	now uses a scratch file directory with multiple scratch 
+	files. This makes it possible to save a variable number
+	of points with the 'save' command. By default the whole
+	current buffer (nop points) is saved.
+
+	* fixed several bugs in the line fitting code.
+
+	* moved more of the initialization from the block data subprogram
+	in 'init.f' to 'gmainit.f' for runtime initialization. This
+	reduces the size of the binaries because the loader does
+	store uninitialized common blocks in the bss segment.
+
+	* Turns out that the single precision version of MINPACK does
+	not have enough significant figures for many FTS spectra because 
+	the order of magnitude of line parameters differs enormously.
+	The width is usually a small, the initensity a very large number
+	with the difference in orders of magnitude larger than the number
+	of significant figures in single precision --> use double
+	precision MINPACK.
+
+
+Mon Oct 23 04:50:41 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 2.2 (not public)
+
+	* modified the Display widget to use the default colormap. 
+	The previous method of private colormap allocation caused 
+	no end of trouble with X-servers running under Windows.
+	(It does now run on Merv Bridges' PC). The changes were
+	also folded back into 1.15
+	As a consequence, resizing the display widget is finally 
+	as fast as it should be.
+
+
+Sun Oct 22 09:58:51 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 2.1 (not public)
+
+	* another interim version to enable Gabor Veres to analyze 
+	his data
+
+	* Finished support for fitting of Gauss profiles - other profile
+	types are still missing.
+
+	* started work on replacing the scratch file with a scratch
+	file directory to remove the limitation on the number
+	of points which can be saved in the scratch file.
+
+
+Sun Oct 15 10:14:10 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 2.0 (not public)
+
+	* started work on the line fitting and integrating.
+	Added support for fitting of one or more Gauss
+	functions to a blended line.
+
+
+==========================================================================
+
+Thu May  9 21:08:04 1996  Ulfi  <ulf@puffin.quince.home>
+
+	* version 1.47
+
+	* array 'locbuf' in subroutines 'readline' and 'wrtline'
+	was not aligned to a double word boundary which leads
+	to SIGBUS on Sun workstations. Fixed.
+	
+
+Sun Apr 21 11:20:40 1996  Ulfi  <ulf@puffin.quince.home>
+
+        * version 1.45, 1.46
+
+        * do not synchronize internal line list and plotter line list
+        automatically because it is broken. Will not get fixed in 1.xx
+        versions.
+
+        * make small modifications to 'xgremlin.c' and Makefiles to
+        be able to compile xgremlin on Linux systems with ELF binaries.
+
+        * there is no functional difference between versions 1.45
+        and 1.46
+ 
+
+Wed Mar 13 08:31:26 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+        * version 1.44
+
+        * improved 'change' command for editing line list data.
+
+        * removed the 'scale' parameter from the 'linelist'
+        command - use the scaling factor from the header file
+        instead. The original treatment of the scaling factor
+        by Gremlin is inconsistent with the 'set scale' command
+        because it globally overwrites the scaling factor from the
+        header file. It is also not necessary. Read help for details.
+
+        * fixed a few bugs related to synchronizing the internal line
+        list and the plotter line list after changes to the internal
+        list.
+
+ 
+Tue Mar 12 12:16:44 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+        * version 1.43
+
+        * fixed a stupid goof in PlotMode.c:MotionHandler which
+        lead to segmentation faults when line list files contained
+        line id strings.
+
+
+Sun Mar 10 07:53:04 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+        * version 1.42
+
+        * added a new variable 'drivevel' to the header file namelist
+        so data files created with the adaptive digital filtering
+        systems are read in correctly.
+
+	* fixed some long standing bugs in the plotting code.
+	Expanding and shrinking vertically should work o.k. now.
+
+
+Thu Mar  7 10:46:27 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+        * version 1.41
+
+        * synchronize internal line list and plotter line list every
+        time the internal line list was changed (e.g. by a 'lsqfit'
+        command).
+
+  
+Mon Mar  4 09:45:39 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.40
+
+	* more changes for radiometry: fixed the 'response' command
+	to correctly calculate the (dimensionless) optical
+	response functions for photon and energy detectors from
+	spectral radiance data.
+
+	* made the 'photons/cm-1' commmand more flexible.
+
+
+Wed Feb 28 10:48:58 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+        * version 1.39
+
+        * new command 'response' which is used for generating response
+        curves of optical systems from a standard lamp spectrum.
+
+        * removed commands 'optronics' and 'miniarc' which contained
+        hardcoded radiance data for two specific lamps. These
+        commands are now superseded by 'response'.
+
+        * fixed a number of bugs in the scratch file subroutines
+        (several messages for error conditions were not printed out).
+
+ 
+Thu Feb  8 11:55:47 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+        * version 1.38
+
+        * changed the meaning of the options for scaling and
+        normalizing data during reading - so far one of the most
+        confusing corners of Gremlin.
+
+        set scale: use the scaling factor from the header file
+        set scale <factor>: use the scaling factor <factor> which
+                            overrides the factor from the file
+        set noscale: turn off data scaling
+        set norm: normalize data in the r array to 1.0 after reading
+        set nonorm: turn off normalizing
+
+
+Tue Feb  6 09:42:14 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+        * version 1.37
+
+        * do not create a new .lin file if the lineio unit is
+        already open at the beginning of a 'linelist' command.
+
+        * make sure that configurable buttons are always unblocked
+        after a command has completed.
+
+ 
+Sat Feb  3 02:21:00 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.36
+
+	* in fact, line info was not updated at all any more. 
+	Fixed - and tested, this time.
+
+	* fixed a memory allocation error in the plotter code.
+	(lead to core dumps only on the IBM RS6000 when resizing
+	Xgremlin horizontally).
+
+	* closing the line list unit removes the line list from internal
+	and plotter line lists.
+
+	* 'goto n' where n is the number of a line in the internal 
+	line list buffer plots that line.
+
+	* the command 'dispar <n>' now only displays the parameters
+	of that one line  n.
+
+	* a new 'info margin <n>' lets the user set a top/bottom
+	margin for plots in the plotter window. 
+
+
+Thu Feb  1 10:53:45 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.35
+
+	* on little endian machines the display of line info when
+	the cursor was moved on a line marker still did not work
+	because the line width was passed as a double precision
+	argument to a subroutine expecting it in single precision.
+	Fixed.
+
+	* line info is no longer updated when the cursor is
+	outside the plotting area.
+
+	* a 'set readlength -1' command restores the readlength
+	to the maximum value.
+
+	* the file name that is printed in the plotter window
+	during a screen dump gets correctly removed from the
+	internal display list and is therefore no longer resurrected
+	by the next expose event.
+
+
+Wed Jan 31 09:00:10 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+        * version 1.34
+
+        * write out a message when the command 'open lineio ...'
+        opens an existing line file.
+
+        * in the line info plot command add a space after 'I'
+
+        * the line width that was displayed when the mouse
+        cursor was moved on a line marker was still wrong.
+        Should be fixed now.
+
+ 
+Sun Jan 28 13:28:45 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.33
+
+	* Sigh. 'interpolate' still broken, make another attempt
+	at fixing it. Seems to work now. Also, Xgremlin does not
+	dump core any more when the parameters of the
+	'interpolate' command are typed in wrong order.
+
+	* added a 'diff' command as in recent versions of Gremlin.
+	For details consult the help window.
+
+	* the 'ls' command does not display dotfiles any longer
+	to reduce clutter in the edit window.
+
+	* changed the format for phase axis labels to a fixed format
+	to make sure that the origin gets labeled correctly and not
+	with the floating point expression of some small number
+	which looks terribly ugly.
+
+	* new 'no fit' toggle in phase correction form which is useful
+	when phase correcting spectra 'in bulk'. Pressing it 
+	suppresses the calculation of the phase polynomial even if
+	the number of terms is not 0.
+
+	* write out the name of the file connected to 'datain'
+	at the top of a screen dump to make it easier to identify
+	the plot.
+
+	* fix the bogus bad points which sometimes turned up in
+	phase plots.
+
+	* sometimes the mouse based plot commands (via buttons at the
+	top of the plot window) would not work correctly immediately
+	after a 'plot ....' command. Make sure that all mouse 
+	clicks are removed from the mouse click list before
+	the plot window is redrawn. Should fix the problem.
+
+	* the 'open lineio ...' command now creates a line list file
+	if none exists. This allows to start new .lin files without
+	having to go through a 'linelist' command first.
+
+	* changed format for output of line peak intensity to a 
+	g format to avoid those ******* stars.
+
+	* moving the cursor on a line marker did not display the correct
+	line width (in mK) at the bottom of the plot. Fixed.
+	
+	* fixed a long standing bug: whenever a Fourier transfrom
+	was repeated (e.g. after changing the output file type)
+	Xgremlin would crash. Now it works fine.
+
+
+Tue Jan 23 10:34:32 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.32
+
+	* Had improved subroutine 'wtop' beyond the point where
+	it ceased to work correctly. Fixed the blunder.
+	The 'interpolate' command should work again.
+
+
+Wed Jan 17 08:56:42 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.31
+
+	* forgot to incorporate  wavcorr  into subroutine 'wtop'.
+	fixed.
+
+	* apply wavcorr in a 'writelines' or 'readlines' command
+	(was taken out by mistake in 1.29).
+
+	* store wavenumbers in the plotter line list in double 
+	precision to have enough significant figures. 
+	The wavenumber printed by a 'dispar' command and the
+ 	wavenumber that is printed out when moving the mouse
+	cursor on a line marker are identical now.
+
+	* changed the format in 'dumplin' for the wavenumber to
+	print more significant figures.
+
+
+Sun Jan 14 09:53:04 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.30
+
+	* fixed a stupid conceptual flaw in the 'dumplin' program.
+
+	* updated man pages to reflect recent changes.
+
+	* a couple of cosmetic changes.
+
+
+Mon Jan  8 00:15:53 1996  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.29
+
+	* REMARK now prints the elapsed CPU time instead of the
+	wallclock time.
+
+	* the command decoder is now based on Tatu Ylonen's regular
+	expression matcher and is more reliable (e.g.  "-" and 
+	"d24385" are now correctly decoded as strings not as integer 
+	or float as in Gremlin). As a welcome side effect the new
+	decoder seems to be faster than the old one which relied on
+	Fortran error handling.
+
+	* the command 'cd -' can now be used to return to the last
+	visited directory.
+
+	* make sure the mouse marker was actually on a line before
+	toggling that line.
+
+	* also display the line width at the bottom of the plot
+        when the mouse cursor is moved on a line marker.
+
+	* folded back the new scratch file system from version 2.5.
+	Xgremlin now uses a scratch directory with multiple scratch
+	files instead of a single scratch file containing fixed length
+	blocks. This allows to store an arbitrary number of points
+	in a scratch file.
+
+	* changed a bug in subroutine 'ptow' which did not take into
+	account the value of the wavelength correction factor (wavcorr).
+	This means that wavenumbers within Xgremlin are always corrected
+	wavenumbers unlike in Gremlin where the wavenumber correction
+	is only applied in a 'writelines' command without visual feedback.
+
+	* improved Phase/Transform input form and added sanity checks for
+	the numerical input fields. Routine phase correction and Fourier
+	transforms now take only a few mouse clicks and (almost) no typed
+	input.
+
+	* as in Gremlin  'wref'  is now the wavenumber of a reference 
+	point 'pref'. In previous versions of Xgremlin the reference 
+	point was always assumed to be 1 and could not be changed.
+
+	* a correct phase plot is now generated for continuum spectra
+	too. Pressing the 'Phase correct' button in the phase correction
+	form will now create a phase plot without a seperate 'plot phase'
+	command.
+	
+
+Mon Nov 27 14:09:33 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.28
+
+	* the restriction that the names of spectra must end in either
+	R or C has been removed (this is enforced in Gremlin except
+	that it is not enforced in the case of complex spectra....)
+	In Xgremlin anything goes.
+
+	* before writing the result of a Fourier transform to disk
+	Xgremlin checks if the output file exists already. If yes, the
+	'real' or 'complex' command is aborted to avoid potential
+	disasters.
+
+	* the functions 'sinc', 'planck' and 'voigt' now reset the
+	info variable 'nwpp' to 1, meaning that the data in the
+	r array are of real type.
+
+	* due to a buglet in the handling of the plotter line list
+	(in PlotMode.c) the wrong line id was sometimes printed 
+	out when the cursor was moved onto a line marker. fixed.
+
+
+Sun Nov 26 21:32:38 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.27
+
+	* fix a bug in the 'helpindex' program that would prevent the
+	last help entry from being displayed in the help window if the
+	last character in the help file was not a \f.
+
+
+Wed Nov 22 13:30:31 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.26
+
+	* the following changes/fixes from version 2.4 were folded back:
+
+	  - the 'printparms' command did not print out the identifier 
+    	  string of a line (inherited from Gremlin). Fixed.
+
+	  - whenever the cursor is moved onto a line marker in a plot 
+	  the parameters of that line are displayed below the plotting 
+	  window. The id string is also printed out which makes it 
+	  much more attractive to use the id information in a line 
+	  list file.
+	
+	  - fixed a buglet in the 'plot phase' command. The low 
+	  resolution spectrum was not (always) printed correctly.
+	
+          - whenever a line is added to or removed from the internal
+          line list ( C+a and C+d commands ) the total number of lines
+          in the internal line list is printed out in the left lower corner
+          of the plotting window.
+
+	  - new 'zeropad' command (sometimes useful in combination with
+	  the 'fourtran' command for q&d Fourier transforms).
+
+	* new plot mode command '@' which reads 2k points from a data
+	file centered at a previously set mouse marker (at the request 
+	of Marc Salit).
+
+	* make the 'Phase' button pop out again if the phase plot mode
+	is turned off.
+
+	* sometimes during a lsqfit the damping parameter goes negative
+	and then a line apparently cannot be fitted any more (this problem 
+	is present in Gremlin too). Make sure the damping parameter 
+	remains always positive.
+
+
+Thu Nov 16 13:22:30 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.25
+
+	* folded back array overrun checks from version 2.4
+	because they should increase program stability
+	(or user sanity?).
+
+
+Wed Nov 15 06:22:17 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+        * version 1.24
+
+        * after complaints, Xgremlin does not do a 'putlines'
+        whenever the 'lineio' unit is closed because it may
+        make unwanted changes to the line list.
+
+
+Mon Nov 13 09:54:24 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.23
+
+	* If only people would install their X servers correctly!
+	Removed internationalization because it makes the program
+	fail when language support is not installed properly.
+
+
+Sun Nov 12 11:05:13 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.22
+
+	* Oops. Speeding up plotting unearthed a couple of rather
+	unpleasant bugs: freshly added lines now get plotted again.
+
+
+Thu Nov  9 11:45:46 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.21
+
+	* I learned something about user interfaces. As a consequence
+	the configurable buttons between the plotting and editing 
+	window now have a set of default actions bound to them. 
+	Novice users are no longer confronted with a row of buttons	
+	labelled 'none'.
+
+	* make the large tic marks on the x axis stick out below the
+	axis by a few pixels because it can be difficult to see the tic
+	marks in a spectrum with many densely packed lines.
+
+	* (temporarily) compile the file 'prnio.f' with low optimization
+	because with -O[23] the gcc compiler on IBM RS6000 falls over
+	with an internal error.
+	
+	* finally fixed the 'display_redraw_from' function of the Display
+	widget which reduces the number of complete redraws and therefore
+	speeds up plotting.
+
+	* 'plotsize' command now allows to specify the page orientation
+	( landscape or portrait ). The default orientation is 'landscape'.
+	
+
+Tue Nov  7 06:57:44 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.20
+
+	* The check to ensure that the ffta array is large enough
+	for a big fourier transform (in 'trans.f' and 'ftsin.f' )
+	was wrong. Fixed.
+
+	* In screen dumps of phase plots the good and bad phase points
+	would turn out colourless. Fixed.
+
+	* phase polynomial did not get clipped to the plotter frame.
+	Fixed.
+	
+
+Mon Nov  6 11:11:38 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.19
+
+	* made some changes to configuration and make files to
+	make it easier for myself to compile Xgremlin on the
+	IBM RS/6000. No changes to source code.
+
+
+Wed Nov  1 11:38:54 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.18
+
+	* some minor tweaks to make the program compile on an
+	IBM RS/6000 (include <time.h> instead of <sys/time.h> in
+	Display/misc.c). Added RS6000 compilation option. The
+	RS/6000 is a big endian machine so finally the line list
+	I/O code got debugged on one of these and all the byte
+	reversal code appears to be working fine now.
+	Incidentally, this also makes the 'dumplin' program work
+	on big endian machines.
+
+	* lots of cleaning up in the Display widget code. The sucker
+	still does not compile without warnings when compiled with 
+	-Wall, though but these are quite harmless now.
+
+	* call 'putlines' whenever the lineio unit is closed to make
+	sure that modified lines are always written back to the
+	line list file.
+
+	* since Xgremlin has special subroutines for reading and writing
+	linelist files the byte reversal calls for big endian machines 
+	have been moved into these subroutines instead of scattering
+	them all over 'lineio.f' and 'linel.f'. It's much cleaner now.
+
+	* 'info nol' added and format changed to catch up with Gremlin.
+
+	* made the 'standards' (and a couple of other) commands 
+	working again. These stopped working after the latest changes
+	to the 'getlin' subroutine.
+
+
+Mon Oct 30 11:15:27 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+        * version 1.17
+
+        * It is no longer possible to specify a wavelength range
+        with the 'getlines' command. This simplifies the line list
+        handling code very much thereby making it less prone to
+        errors.
+
+        * discovered yet another hippopotamus - size bug in the line
+        list io code: if the linelist file contains more lines than
+        the internal line list buffer can accomodate the 'putlines'
+        command failed. Reason: it used calls to 'readata' and
+        'wrtdata' but the record size of a line list file is only
+        80 bytes now.
+
+        * forgotten byte reversal in 'getlines' which would have
+        caused havoc on big endian machines.
+
+        * fixed the check for internal line list overflow in the
+        plot mode command ^a. It does now work when more than one
+        line is added at a time.
+
+
+Thu Oct 26 05:20:33 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+        * version 1.16
+
+        * 'dumplin' and 'mergelin' did not compile under SunOS -->
+        make sure getopt.c gets used under SunOS 4.
+
+        * remove source code of 'minpack' and 'libMACH' which will
+        be needed in Xgremlin version 2 only.
+
+	* remove some line noise in 'gboss.f' which had turned
+	the 'readlines' command into 'readlines$$'
+	
+
+Mon Oct 23 03:19:20 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.15
+
+	* found and fixed a quirk in the Makefile in ./Csrc 
+	(thanks to Wolfgang Mende, IPP Hannover) which may have prevented 
+	the program from building under SunOS 5 (aka Solaris 2).
+
+	* use default colormap in Display widget --> resizing the
+	widget is now quite fast.
+
+
+Tue Oct 17 07:53:47 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+        * version 1.14
+
+        * fixed a small bug in removing mouse markers with the right
+        mouse button. It used to require an extra click when mouse
+        markers of two types were on the plot.
+
+        * fixed a bug the size of a Newfoundland dog in the code
+        that handles the plotter line list. After deleting a marked
+        line the plotter line list was renumbered incorrectly.
+
+        * It is now possible to remove more than one line with
+        one  <ctrl>d  plot mode command.
+
+        * the Page_Up and Page_Down keys now scroll text in the
+        text window.
+
+
+Thu Oct  6 11:00:00 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+        * version 1.13
+
+	* the command 'color plotter-frame ...' does now work.
+	
+	* fixed a number of bugs in Fortran formats inherited from
+	Gremlin (formats are often not wide enough ******.).
+
+	* Printing does not use the driver 'xgremlin_print' any longer
+	but calls the printer command 'lpr' directly. Also allow
+	print command to be set with XGREMLIN_PRINT_COMMAND 
+	environment variable for machines without BSDish 'lpr'.
+
+	* the help text in 'xgremlin.help' has been given a complete
+	overhaul and is approaching usefulness. 
+
+	* done some weeding in the Makefiles and made them simpler
+
+	* use dashed lines on monochrome displays for confidence interval
+	of phase fit.
+
+	* allow to set the default print command via the envrionment
+	variable XGREMLIN_PRINT_COMMAND.
+
+	* make it possible to specify the number of points to be read
+	for FFT in the 'Phase / Transform' menu.
+
+	* 'Back' and 'Forward' buttons in the help system like in Mosaic
+	(or Netscape) to make it easy to return to a previously
+	visited help text page.
+
+	* new colours 'real-data' and 'imag-data' which can be set
+	with the 'color' command. This allows to modify the colours
+	used for plotting the actual data.
+
+	* add more parameter sets for Xgremlin versions with
+	(very) large r-arrays and line list buffers.
+
+	* fixed the 'recm' command. If the pixel coordinate system is
+	changed after a 'stom' command a subsequent 'recm' will place
+	markers correctly.
+
+	* removed the 'process' command. If anyone wants that it
+	has to be re-written in a different way (Xgremlin has no
+	standard input).
+
+
+Thu Oct  5 02:46:08 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+        * version 1.12
+
+	* fixed a nasty bug in 'lineio.f' which insert blanks into
+	the name of the line list file and therefore a 'putlines'
+	did not write new lines back to the correct line list file.
+	(This was a side effect of having the new 'lineio' unit).
+
+
+Wed Oct  4 02:46:08 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.11
+
+	* amended Makefile in ./tools to compile cleanly under SunOS.
+	(NO CHANGE TO BINARIES)
+
+
+Tue Oct  3 11:06:31 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.10
+
+	* a 'close datain' command now also closes the line list file
+	if one was open (this is buggy in Gremlin).
+
+	* new unit 'lineio' which allows to open and close a line 
+	list file independently from the data file. 
+
+	* vastly improved the i/o speed of line list (.lin) files
+	by reading/writing only 80 bytes per line record instead
+	of 4kB ( the normal data read and write subroutines have
+	potential for improvement too ...).
+
+	* there was one more place in Xgremlin where the line list
+	file was opened with the wrong record size. Fixed.
+
+	* new plot mode command 'v' to move a line marker. The line
+	to be moved must be marked with a red marker, the new position
+	with a blue mouse marker.
+
+	* wrote a utility 'mergelin' which allows to merge two
+	or more binary linelist files (.lin) into one file. Useful
+	for combining the output from two seperate 'linelist' 
+	commands.
+
+
+Tue Sep 26 15:03:49 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.9
+
+	* Put the entire Fortran source code of Xgremlin through
+	the Fortran source code analyzer 'spag' from Polyhedron 
+	Software and through Dr. Robert Moniot's Fortran checker 
+	'ftnchek' ( excellent program, that ). Eliminated all 
+	unnecessary 'include' statements. Traced all occurrences of 
+	variables that were used without being set. Some of them 
+	were pointing to serious bugs.
+
+	* marked potential remaining bugs with *BUG* in the
+	Fortran sources.
+
+	* re-instate variable 'xlast' in common block 'voigt'.
+
+	* Eliminate include file 'trparms.inc'
+
+
+Mon Sep 25 07:47:42 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.8
+
+	* forgot to unlink used batch files in 'Phase.c'
+	
+	* fixed a bug in the Fourier transform batch file
+	created by Xgremlin.
+
+
+Sat Sep 23 18:54:11 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.7
+
+	* Xgremlin now has a pretty good user interface to phase 
+	correction instead of that somewhat obscure 'phscds' file. 
+	Accessible via the entry 'Phase/Transform' in the 'Gremlins' 
+	menu.
+
+	* prevent dispatching of commands while a command is being 
+	processed. This means it is no longer possible e.g. to 
+	clear the 'r' array via a button command while a 'linelist'
+	command is busy.
+
+	* use the same formula for wavelength - wavenumber conversion
+	throughout the program ( B. Edlen, Metrologica 2, 7, 1966 ).
+	In Gremlin a different formula of unknown origin is used in 
+	some parts of the program which produces considerably different	
+	results from Edlen's formula at shorter wavelengths ( <400nm ).
+
+	* add basic support for monochrome displays. When Xgremlin is
+	started as  'xgremlin -mono'  the imaginary part of a complex
+	spectrum is plotted with dashed lines to make it possible
+	to tell real from imaginary part on a monochrome display
+	when they are plotted together (complex mode).
+
+	* up to now the help file was indexed every time Xgremlin
+	was started. To reduce startup time (a bit) an index file
+	is now created seperately and read in by Xgremlin during
+	startup.
+
+	* fixed another buglet that was inherited from Gremlin: when 
+	a line list file was open the 'files' command would list
+	the unit 'datain' twice. The 'files' command now displays
+	the opened line list (.lin) file.
+
+	* allow a range to be specified in the 'clear' command.
+
+	* fixed a bug in the 'goto' and 'wplot' commands. 'goto' now
+	uses the wavenumber range from the previous plot if no
+	new wavenumber range was specified on the command line.
+	Amend 'goto' and 'wplot' commands to accept ranges in
+	secondary units (nm).
+
+	* make the 'active' command interruptible via the 'stop'
+	button.
+
+	* finally fixed the bug that caused the overlapping line
+	labels on top of marked lines.
+
+	* fixed a buglet that would overwrite the unit label 
+	(cm^-1 or nm) in the lower right corner of the plotting 
+	window whenever two or more mouse markers were set.
+
+	* fixed a few bugs in sizes of arrays for the various
+	incarnations of Xgremlin and the man page.
+
+	* wrote a small utility 'lindump' which dumps (part of) the
+	data in a binary line list (.lin) file in text format.
+	Useful for debugging. Can be found in directory ./tools
+		
+
+Wed Sep 20 15:28:37 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+        * version 1.6
+
+        * fixed a bug of my own making in subroutine 'putlin'.
+        Forgot an equivalence statement; the command does now work.
+
+        * 'getlines inactive' is now the default for the 'getlines'
+        commmand. To activate the lines during 'getline' use the
+        command 'getline active'.
+ 
+
+Fri Sep 15 20:02:16 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+        * version 1.5
+
+        * BIG bug in backup of line list files fixed: when the backup
+        of a .lin file was created the .lin file was subsequently
+        re-opened with 'status=replace' which discarded the old
+        contents. Oh dear ...
+
+        * there is an insidious bug in the line list code of Gremlin:
+        in module 'linel.f' the line list file is opened with a
+        record length of 1 whereas the subroutine 'wrtdata' assumes
+        a record length of 4096 bytes. Under MS-DOS this bug seems
+        to be compensated by an appropriate bug in the Microsoft
+        Powerstation compiler but f2c gets in a tangle. Fixed.
+ 
+        * Make sure that the display of the data range is not
+        overwritten by line list numbers.
+
+	* lines activated in the 'linelist' command are displayed
+	as active lines (pink). This may still not be working
+	perfectly but we shall see.
+
+
+Sat Sep  9 18:13:04 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.4
+
+	* minor fix: prevent text window from flickering when an 
+	old command is recalled with the 'arrow up' key.
+
+	* make output of 'files' command a bit more pleasing.
+
+	* turn off mouse events in the text window as a further
+	saftey measure to avoid moving the cursor with mouse
+	clicks by mistake (on bad days this still seemed to lead
+	to the odd core dump).
+
+	* write extended version information into the log file 
+	to ease trouble shooting.
+
+
+Mon Sep  4 21:23:02 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.3
+
+	* make 'writeasc' command write out the currently plotted 
+	stretch of the spectrum by default when point range is 
+	omitted on the command line.
+
+	* fixed a few formatting problems in the output of the
+	'info' command (without parameters).
+
+	* fixed a goof in the 'readasc' command which prevented
+	multi column data files to be read in.
+
+	* new 'cmplx phase' command which is a companion to the
+	'cmplx amp' command. Calculates the phase from a complex
+	spectrum in the r array and leaves the result in r.
+	Not very useful for line spectra but handy for continuous
+	spectra e.g. those of large molecules.
+
+	* commands 'add' and 'multiply' now optionally take a range
+	of data points as arguments which e.g. allows to multiply
+	only a part of the 'r' array with a real number.
+
+	* the machine byte order (endian-ness) is now determined 
+	by Xgremlin during initialization - no need to define it 
+	in the Makefile any more.
+
+	* fixed a bug which made the 'l' plot command always print
+	the wavelength label in secondary units on top of the label
+	in primary units.
+	
+
+Mon Aug 21 15:44:25 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.2
+
+	* make sure bad phase points get always written to disk before
+	any other command is executed.
+
+	* sometimes the first large tic mark on the x axis would turn out 
+	small - fixed.
+	
+	* weed out obsolete variables from 'plcommon.inc'
+
+	* command 'printer' without parameters displays currently
+	defined printer.
+
+	* fix a bug that would retain cross markers in the printable
+	display list even after the cross markers were removed from
+	the plot. This made them show up in screen dumps.
+
+	* clean up functions that select default colours.
+	
+
+Sat Aug 19 15:41:12 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 1.1
+
+	* Phase correction  and interactive bad point 
+	selection. This completes the port of the DOS Gremlin 
+        to Unix/X11. From now on everything will be added value :-)
+
+	* added new command 'info pid' to display the process id of
+	the running Xgremlin (will be needed later for synchronizing
+	two Xgremlins).
+
+	* use GCC support for complex numbers and rewrite subroutine
+	'zminmax' in C. This should speed it up considerably.
+
+	* rename the command 'load' to 'readasc' and complement
+	it with a 'writeasc' command to write out portions
+	of the r array in a format suitable for GLE and similar
+	programs.
+
+	* new plot commands 'l' and 'M+l' to set wavenumber in
+	primary or seconary units in the plotting window. Useful 
+	in conjunction with screen plots to label individual lines.
+
+	* Add an interface to the plotting program GLE to Xgremlin:
+	the 'writeasc' command creates a GLE input file on demand.
+
+	* full support for secondary units nm, Hz and GHz as in Gremlin.
+	The new plot mode command 'u' cycles through the secondary units.
+
+	* better wall chart for plot mode commands (and with corrected
+	spelling!).
+
+	* added configuration support for Linux/AXP on DEC Alpha
+	machines. 
+
+	* if the fft array turns out to be  too small in a batch file
+	Xgremlin stops processing the batch file.
+
+	* new command 'info vuv' to enable correct treatment of vacuum
+	wavelengths in spectra above 50000/cm
+
+	* banished the unit 'Angstrom' as a wavelength unit from Xgremlin. 
+	The wavelength unit (secondary unit) is 'nm'.
+
+
+==========================================================================
+
+Tue Aug 15 09:55:41 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.61
+
+	* changed the visual class from 'PseudoColor' to 'StaticColor'
+	because static colour maps seem to be supported by more X 
+	servers (at least for the folks in Lund). If 'StaticColor' 
+	does not work  Xgremlin  tries to use the 'StaticGray' visual 
+	class as a last resort. If that does not work either the 
+	program rolls over and dies.
+
+
+Wed Aug  9 15:22:00 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+        * version 0.60
+
+        * clear internal line lists if new data are read in with
+        the 'load' (aka. 'readasc' command).
+
+        * print elapsed CPU time in log file instead of wallclock
+        time. The wallclock time is printed in the log file page
+        headers anyway.
+
+        * fix some formats in the 'lsqfit' command which would
+        print only those ******* stars.
+
+
+Mon Aug  7 17:07:06 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+        * version 0.59
+
+        * fixed bug in commands 'cmplx angle' and 'cmplx spiral'.
+        In Xgremlin the parameters to these commands refer to
+        COMPLEX points in the r array.
+
+
+Fri Jul 28 22:45:47 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.58
+	
+	* new commands 'stom' and 'recm' to store and recall a set
+	of markers (at the suggestion of Ewa Pawelec).
+
+	* extend 'subpoly' and 'fitpoly' commands such that the range 
+	of the subtraction or displayed polynomial can be larger than 
+	the range of the fit (extrapolation). The range of extrapolation 
+	is selected with the blue markers.
+
+	* Andreas Redfors complained about more quirks in the
+	installation scripts which do not show up under Linux - fixed.
+
+	* fixed a bug in plotting of y axes that would make xgremlin
+	dump core when the whole y axis was < 0.
+
+
+Thu Jul 27 10:29:44 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.57
+
+	* re-instate the 'atlas' command for creating spectral atlasses.
+	Atlasses can be plotted with the 'psplot' program by
+	Mark C. Abrams. ('psplot' creates Postscript files).
+	Documentation is sorely missing.
+
+	* fix several quirks in the installation procedure which
+	were uncovered by Andreas Redfors and his Sparcstation.
+
+	* added a sample solar spectrum to the documentation
+	(from Mark Abrams).
+
+
+Sun Jul 23 10:46:51 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.56
+
+	* better configuration program allows X11 libraries in non
+	standard location. Various changes to driver scripts and
+	help file, no changes to program itself.
+
+
+Wed Jul 19 10:21:19 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.55
+
+	* Sigh. fixed yet another goof in the new clipping code in
+	'PlotMode.c'.
+
+	* Installing binary distributions did not work well (or
+	not at all) the way it was done up to now. Change procedures.
+
+
+Tue Jul 18 19:55:38 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.54
+
+	* Ooops. In binning mode the plot was not clipped to the 
+	frame correctly - fixed. Another bug in the clipping code 
+	due to a superfluous 'return' was fixed too.
+
+
+Mon Jul 17 16:30:06 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.53
+	
+	* no changes to the program in this version but removed many
+	quirks in the make files which caused problems under SunOS.
+	( ln -sf not supported, awk is not compatible etc. )
+
+	* moved the 'Xgremlin-preview' files out of the source distribution
+	and into the documentation to reduce size of source archive.
+
+
+Wed Jul 12 16:26:47 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.52
+
+	* slightly increased the density of x labels.
+
+	* fixed 'files' command. The improvement introduced in the previous
+	version makes it dump core. The problems were related to uninitialized
+	string variables again.
+
+	* fixed 'parameters.*' and 'datetc.inc' which contained a nonsense
+	equivalence statement. Large versions build fine now.
+
+	* new command 'load' which is used to directly load data files in
+	multi column ascii format
+
+	* plotting of complex data was broken - fixed. When complex data are
+	read in the default plotting mode is now COMPLEX, for real only data
+	the default plotting mode remains NORMAL.
+
+
+Mon Jul 10 22:30:24 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.51
+
+	* make sure that 'open rawin <filename>' does not read more
+	data than the size of the ffta array allows. If data file
+	is too big, Xgremlin refuses to read it.
+
+	* fixed numerous occurences of '/' in formats
+
+	* fixed Gremlin bug in subroutine 'glitch': variable rms can overflow
+	with input data from NIST FTS --> made it double precision
+
+	* modify subroutine 'dfiles' so that file names are not truncated 
+
+	* write out progress indicators in 'input' and transform commands
+	in a nicer way.
+
+	* fixed a bug in 'plot.f' which would prevent plotting of both
+	real and imaginary part simultaneously.
+
+
+Fri Jul  7 17:13:35 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.50
+
+	* new command 'printer' to set default printer from within
+	Xgremlin.
+
+	* simplified printing, only a single printer driver
+	is needed now.
+
+	* prevent floating point exceptions from dumping core. It appears
+	that floating point exceptions are often the result of broken
+	header files - far too many header files seem to contain 'bugs'.
+	( not yet tested on Suns. )
+
+	* put in place the complete configuration and compilation framework.
+	Two simple steps are required for compiling the program:
+	a) run 'Configure'  b) type 'make <machine-type>'
+
+	* fixed another glaring bug in 'linel.f' which prevented the line
+	list code from working on Suns: data were not correctly byte reversed.
+	It is also not a good idea to byte reverse the contents of variables
+	which are subsequently used in the program....
+
+
+Wed Jul  5 20:37:34 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.49
+
+	* Write out a warning if the number of points read via a batch file
+	containing data exceeds the buffer size.
+
+	* return to keyboard input after an 'unknown command' error in
+	case it happened in a batch file.
+
+	* fixed numerous bugs related to byte reversal and .lin files.
+	(don't byte reverse before writing to an ASCII file....)
+
+	* make activation of all lines interruptible (with stop button)
+
+
+Mon Jul  3 21:30:00 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.48
+
+	* hard code the initial size of the display widget because under
+	SunOS the widget size could not be retrieved correctly from the widget
+	after program startup. This change makes plotting work o.k. on a
+	Sun and is generally as good as what we had so far.
+
+	* modify 'linel.f' so as to avoid alignment problems with
+	double precision numbers on Sun Sparcstations arising from the
+	data layout in the equivalenced variables (double precision variables
+	must be aligned on double word boundaries).
+
+	* removed double buffering and dithering from Display widget to reduce
+	its memory consumption. 
+
+	* improved the text editor. It is no longer possible to erase the
+	prompt or move the insertion point before the beginning of the 
+	editor line.
+
+	* change graphics cursor in plotting window to a cursor with a 'hole'
+	at the centre. This makes it easier to aim at something accurately
+	because the cursor does not cover what is plotted.
+
+
+Wed Jun 28 16:54:24 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.47
+
+	* fix a bug in the centroid command: there was no horizontal clipping
+	of the horizontal blue line that indicates the width of a line.
+
+	* make timer.c compile cleanly under SunOS ( CLOCKS_PER_SEC is not
+	defined )
+
+	* fixed log file page header: version string is no longer truncated.
+
+	* simplify plotting of integrated curve and residuum in 
+	'integrate.f' - should be faster now.
+
+	* make PlotMode.c:setcolor_ safe. It sometimes happened that a colour
+	could not be found.
+
+	* width in centroid command is now stored in mK in the line list.
+
+
+Sun Jun 25 20:06:46 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.46
+
+	* fixed  integrate.f:pcshft  to calculate polynomial coefficients correctly.
+	and use a g format to write them out.
+
+	* wrote a man page
+
+	* finished printer driver shell scripts.
+
+	* cosmetic changes to the 'ls' command.
+
+	* wrote a wall chart for plot mode commands.
+	
+	* some de-spagettifying of the command decoder in 'gboss.f'
+
+	* changed the way plot mode commands are assigned to buttons.
+	The command is now described as <Modifier>+<key> e.g.:
+
+	   button 1 plot connect M+c       
+
+ 	instead of:
+
+	   button 1 plot connect c 0 0 1
+
+	This makes the notation for key commands consistent between program and
+	documentation.
+
+
+Sat Jun 24 13:35:41 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.45
+
+	* finally (and really) fixed the command for background subtraction.
+	Up to now only straight lines were subtracted correctly - sigh ...
+
+	* rename the 'continuum' command to 'subpoly' because the new name is
+	more descriptive of what is actually happening: a polynomial is subtracted
+	from the r array
+
+	* new command 'fitpoly' which fits a Chebychev polynomial to the r array
+	as the 'subpoly' command but does NOT subtract the result from the 
+	r array. It simply calcuates coefficients and plots the fit.
+
+	* make the Display widget compile cleanly with gcc.
+
+
+Thu Jun 22 23:04:47 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.44
+
+	* most of the times the last line was not printed out in an 'ls' 
+	command - fixed.
+
+	* remove a sizable roach from the 'continuum' command. The result of 
+	background subtraction was not plotted correctly. Also, the polynomial
+	coefficients of the fit are now printed out. 
+
+
+Wed Jun 21 23:13:48 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.43
+
+	* make defining the byte order during compile time rather less clumsy
+
+	* use new button in help window to close help window again. This is less
+	confusing then clicking on the help button itself to close the window.
+
+	* fixed some formats in 'lineio.f' which could cause core dumps.
+
+	* integrate command (spline integration) was broken after integration
+	is carried out over proper wavelength scale - fixed.
+
+	* make 'w' and '<ctrl>w' commands print out value of r at line centroid.
+
+
+Sat Jun 17 22:42:08 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.42
+
+	* disabled 'other' command again to save some space. It is not 
+ 	documented anyway (well, like most of Gremlin actually ....) and 
+	probably used by one person only who will never be using Xgremlin.
+
+	* changed the names of a batch of environment variables to make
+	them more readable: 
+	XGREMLINCONFPATH    --> XGREMLIN_CONF_PATH
+	XGREMLINSCRATCHPATH --> XGREMLIN_SCRATCH_PATH
+	XGREMLINLOGPATH     --> XGREMLIN_LOG_PATH
+	XGREMLINHELPPATH    --> XGREMLIN_HELP_PATH
+
+	* exit gracefully if system wide configuration file cannot be found
+	rather than dumping core on the user.
+
+	* exchange the symbols for zooming in and zooming out on the top
+	row of buttons as everyone seems to agree that they are currently the 
+	wrong way round.
+
+	* made compiling the different sizes of Xgremlin much easier by 
+	collecting all the important array dimensions in a single file
+	'parameters.h' which is a symbolic link to the parameters file with
+	the desired dimensions.
+
+	* design parameters sets for different 'personalities' of Xgremlin:
+	- mostly fft versions with large fft arrays
+	- mostly line analysis versions with large line list buffers, r array
+          but small fft arrays
+
+	* amend the centroid ('w') plot command. <ctrl>w will calculate the
+	centroid AND add it to the in-core line list.
+
+	* new 'g' command in plot mode. Calculates the centre of gravity, prints
+	the result but does not insert into line list.
+
+
+Fri Jun 16 19:32:46 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.41
+
+	* does not segmentation fault any more if a non existing button
+	is specified in the 'button' command. Also, buttons are now
+	numbered from 1 to 8 instead of 0 to 7.
+
+	* changed the symbols on the blue buttons to make them (hopefully)
+	better understandable.
+
+	* if there are only 20% or fewer points than pixels better mouse aim
+ 	is required for line marking and deletion. We have to see if the
+	20% factor works well in practice.
+
+	* add a new plot command 'w'. First mark the edge of a line. The 'w'
+	command will then find the corresponding edge on the 'other side'
+	of the line, calculate the width of the line and the bisector.
+	(This was put in at the request of the Lund crowd.)
+
+	* found cockroach in 'centre of gravity' command. The line at the c.g. 
+	is now also added to the line marker list.
+
+	* fix a bug in the continuum subtraction command. The fitted 
+	Chebychev polynomial is now plotted correctly.
+
+	* extended the 'connect' command. It is now possible to set many markers 
+	and connect them in one go (although there does not appear to be
+	any use for this ... but as a matter of principle ... I've done it
+	anyway.)
+
+
+Thu Jun 15 19:30:38 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.40
+
+	* it is no longer necessary to place a marker exactly on a line
+	if the line is to be deleted or activated.
+
+
+Tue Jun 13 23:41:28 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.39
+
+	* moved all C modules and some Fortran modules into the RCS
+	All parts of the program will from now on have a revision
+	log appended to the end of their files.
+
+	* removed some minor quirks, mostly cosmetic.
+
+	* removed a potentially fatal bug in page.f:remark
+
+	* re-instate the 'other' command which had been disabled
+	by accident.
+
+	* new sub-command of 'info': 'info size' prints the buffer
+	size of the running Xgremlin version.
+
+
+Sat Jun 10 17:03:38 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.38
+
+	* made all necessary changes to compile the program
+	under SunOS (with gcc or acc).
+
+	* write Makefiles and installation scripts.
+	They are still far from complete but will need some evolution
+	anyway.
+
+	* fixed an embarassing bug in FortranWrappers:mkbackup_
+	(The error status of a stream was checked after the stream had
+	been closed ...) This was one of the reasons why the line list
+	code did not work
+
+	* added byte reversals for big endian machines to 
+	'linelist' (subroutine 'linel') command.
+
+	* fixed a bug in ByteOrder:sbrev_  - the result of byte reversal
+	was always 0.
+
+
+Wed Jun  7 21:20:48 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.37
+
+	* make output of 'ls' command look better. The directory list
+	is now printed line by line instead of in one swoop.	
+
+	* recalling commands should really, really .... work now.
+
+	* output the screen dump in color PostScript and in 'landscape'
+	format with user settable size ('plotsize' command).
+
+	* fixed real*8 byte reversal for those who do not use GCC.
+
+
+Mon Jun  5 22:10:45 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.36
+
+	* new command 'ls' to list the contents of the current directory
+	within Xgremlin. This command should make moving around the 
+	directory tree with Xgremlin more convenient.
+
+	* recalling previous commands should now work without hiccups.
+	(honest ...)
+
+	* fixed a bug that would leave Xgremlin in an infinite loop
+	when a batch file was not terminated with a 'break' 
+	(or 'keyboard') command.
+
+	* extend the 'cd' command to handle the special directory name
+	'--' which returns to the previously visited directory. Currently
+	one has to type 'cd --' instead of the more familiar 'cd -'. The
+	reason is the mechanism by which commands are decoded in
+	(X)gremlin. A single '-' is not recognised as a string but as a
+	'failed' number. This will change when the command decoder gets
+	refurbished.
+
+	* background (continuum) subtraction is now always carried out
+	using a Chebychev polynomial of specified order.
+
+	* fixed plotting of real (imaginary) parts of complex data in
+	r array. If nwpp=1 only every other point is plotted.
+
+	* fix the PostScript output of the plotter window. Left to do:
+	Output color postscript and write in 'landscape' mode to make
+	better use of the page.
+
+
+Fri Jun  2 21:46:34 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.35
+
+	* fixed the very clumsy and faulty command recall mechanism.
+	It is now based on the linked lists module. Also fixed another 
+	lingering bug in function 'list_insert' and made it possible
+	to specify the insertion order in the list.
+
+	* fixed a number of ill-formatted messages in the Fortran code.
+	Everything that is written out should start with a space.
+
+	* kludged around with 'gboss.f' until I finally could get command 
+	chaining (with the ';' character) working. The whole of 
+	'gboss.f' is one big kludge that cries out for re-writing.
+	One problem currently is that aliases cannot take parameters
+	because there is no mechanism for parameter substitution which
+	leaves aliases less useful than they could be.
+
+	* help window can now be closed again by pressing the 'Help' 
+	button while the window is open.
+
+	* new command color (or colour) to configure colours, mostly
+	those in the plotting window (color plotter-frame does not
+	work yet....)
+
+	* implement overplotting commands (albeit somewhat restricted
+	until we have dialog boxes).
+
+
+Sun May 28 18:33:15 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.34
+
+	* support directory names relative to the home directory.
+	These begin with a '~' following the POSIX convention.
+
+	* finally weeded out all list directed writes if the target was not
+	a file. Also, all output to '*' is now redirected to the text widget.
+
+	* 'atlas' command removed from Xgremlin. It will come back when 
+	the new atlas plotting program is ready.
+
+	* started adding more support for the analysis of line profiles
+	integrating lines etc. New commands:
+	- moments   : calculate the central moments of a line
+	- continuum : subtract a continuum from a line
+	- integrate : integrate a line
+	- profile   : define a profile for integration
+
+	* fixed the 'Problem of the missing prompt'. Text output
+        initiated by a plot command or a button command would not print
+	a new prompt after the text. Now the output status is checked and
+	whenever a command printed text to the text window, a new prompt
+	is printed.
+
+	* speed up plotting in 'plot.f' by reducing the number of transformations
+	from points to wave-numbers/lengths (calls to wnum) by 50%
+
+
+Fri May 26 14:33:10 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.33
+
+	* made some tasks which take long to complete interruptible with
+        the 'Stop' button. (Required an extra event processing loop that
+        is called regularly by time consuming subroutines).
+
+	* fixed line numbering atop the plotter frame. Labels do not overlap
+	any longer.
+
+	* attempted to fix a segmentation fault occuring in XDrawText by
+	drawing all text in non-inhibited mode. 
+
+	* new command 'erase lines' that empties the internal line list
+	buffer This was handy for testing the line list stuff but may be
+	useful otherwise, so I left it in.
+
+	* removed digital filtering stuff from Xgremlin as this was meant to 
+	be used during data acquisition (in pre-'gremrun' times).
+
+
+Thu May 25 00:49:12 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.32
+
+	* found and fixed another error in the linked list code that
+	maintains the plotter linelist.
+
+	* fixed a memory leak in linked lists. Data get now deallocated 
+	when a list entry is removed.
+
+	* toggling lines active/inactive did not work correctly,
+	works now.
+
+	* find center of gravity does not dump core any more.
+	The problem was a format containing a / for writing into
+	an internal file.
+
+	* implement 'connect' function to replace sections of the r
+	array by straight lines. Currently only two markers can be
+	connected and the they are always connected by straight lines.
+
+
+Tue May 23 23:58:13 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.31
+
+	* debug the line list code and make it actually work.
+
+	* make the output of 'findlines' look pretty
+
+	* line list data are always stored in little endian format.
+	On big endian machines line list data are byte reversed when
+	reading or writing a linelist (.lin) file (this is not yet tested).
+	This guarantees portability of linelist files accross machines with
+	different endianness.
+
+	* fix an error in the creation of backup linelist files (.lin.bak)
+        which had not worked.
+
+	* fix more uninitialized strings in the gremlin code. Also remove
+	embedded \0 from strings (those are the remnants of uninitialized 
+	strings)  before they get printed.
+
+
+Fri May 19 14:19:12 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.30
+
+	* completely turned off line wrapping in the text window.
+
+	* if the linelist command finds an existing linelist the old linelist
+	is renamed and gets the extension .lin.old
+
+	* the first time a line list file (.lin) is written to after opening
+	a backup file of the file is created with the extension .lin.bak
+
+	* line list data are appropriately byte-reversed when reading and
+	writing them on a big endian machine. The byte order in linelist 
+	(.lin) files is little endian by convention.
+	
+	* linelist related code is working. The marking is slightly different
+	from gremlin in that line markers are persistent when the plotting
+	window is re-drawn or zoomed. 
+
+	* make the middle row of buttons programmable. Commands can now
+	be assigned to those buttons with the new 'button' command.
+	
+	* make help window an independent top level widget which means that
+	the help system can be kept open while the main program is running.
+	( in fact, at the moment the help window can only be opened but not
+	be closed - it can be iconized, though ).
+
+
+Wed May 17 14:40:41 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* version 0.29
+	
+	* finally got the text window to work as desired. Scrolling is
+	smooth now and it does not dump core any longer (don't worry,
+	enough of that is left elsewhere).  It is also possible to recall
+	old commands with the cursor up and down keys.  As a side effect,
+	writing to the text window from the Fortran part of the program
+	has become easier: the subroutine wrtstr writes a string to the
+	text window, no extra buffering is performed any more.
+
+
+Tue May 16 21:29:21 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* versions 0.23 - 0.28 plotting rewritten from scratch. Plotting
+	works beautifully now and is quite fast too. (In fact, if Xgremlin
+	is compiled with full optimization the drawing speed is much
+	faster than the plotting speed of Gremlin under DOS. Considering
+	the enormous overhead of the X Window System this is rather
+	astonishing. What on earth are they doing at Microsoft ? )  The
+	text window is still a major problem.  It is not clear to me how
+	to insert new lines into the widget smoothly and get the insertion
+	point positioned visibly and correctly.
+
+	* new command 'wplot' that plots a section of the r array between
+ 	two specified wavenumbers. e.g.  wplot 12000. 14000.
+	Currently, if the wavelength range is not inside the current buffer
+	the buffer is not reloaded to avoid loosing linelists.
+
+	* new command 'goto' to go to a specified wavelength in the current 
+	r array. The plot is centered around the specified wavenumber and 
+	covers the specified range. If the specified wavenumber is outside the
+	current buffer the buffer is not reloaded.
+
+	* new command 'pwd' to print the current working directory.
+
+	* new command 'cd' to change the current working directory.
+	e.g.  cd /disk2/home/ulf/data/fantastic  will change to the
+	specified directory.
+
+	* Display widget debugged and taken out of the XG library. 
+	Some of the plotting commands are now done without dynamic memory
+	allocation to speed them up and to avoid excessive memory consumption.
+	It still needs to be made ANSII-C clean. For now ignore the warnings.
+
+	* settled on a final scheme for all file names:
+	/usr/local/xgremlin/xgremlin.conf  :  system wide initialization file
+	~/.xgremlinrc                      :  individual initialization file
+	/usr/local/xgremlin/xgremlin.help  :  system wide help file
+	Xgremlin                           :  application defaults file
+	xgremlin-s-<version>               :  small, medium and large  
+	xgremlin-m-<version>               :  xgremlin images
+	xgremlin-l-<version>                 
+	xgremlin-xl-<version>                 
+
+
+Fri Apr 28 21:35:15 1995  Ulf Griesmann  <ulf@puffin.quince.home>
+
+	* versions 0.20 - 0.22
+
+	* Make everything work except plotting which may have to be re-written 
+	completely.  
+
+	* new environment variables XGREMLINSCRATCHPATH, XGREMLINLOGPATH
+
+********************************************************************************
+*
+* moved from London to Gaithersburg -> no work on the program for almost a year.
+*	
+********************************************************************************
+
+Sat Jun 11 10:30:05 1994  Ulf Griesmann  (ulf@puffin)
+
+	* version 0.19
+
+	* Help.c (InitializeHelp): removed the hard coded limit for the number 
+	  of keywords. Help.c now adapts to the size of the keyword table.
+  
+
+Wed May 25 00:26:36 1994  Ulf Griesmann  (ulf@puffin)
+
+	* version 0.18
+
+	* PlotMode.c: Plotting is done with the Display widget from the libXG
+	  library. 
+
+	* Handle key, mouse etc events in the plotting mode with callback functions
+	  instead of modifying the main event loop.
+
+
+Sun May 22 01:21:30 1994  Ulf Griesmann  (ulf@puffin)
+
+	* Csrc/xgremlin.c: added global variable plot_mode 
+
+
+/*------------- now using GNU ChangeLog style --------------------*/
+
+* removed some of the 'integer*2' declarations. 
+
+* some of the Fortran source lines are now longer than 72 characters in 
+  violation of the F77 standard. These lines begin with a <tab> character 
+  and are recognised correctly by the f2c compiler.
+
+* replaced the 'chkkey' function by an 'Interrupt' button. 
+
+* options 'key' and 'simplot' removed. These options do not seem to do
+  anything important.
+
+* changed all 'write (*' and 'read (*' statements in the Fortran source code
+  to calls to functions which write into the editor window or pop up a dialog
+  box. 
+
+
+8/5/94  version 0.16 (ug)
+
+* introduced a new variable 'mbocode' (machine byte order code) in 
+  'infmtn.inc' to flag the endianness of the machine XGremlin is running on. 
+  The machine byte order code is defined at compile time. If machine byte 
+  order code and data byte order code are different, bytes are swapped. 
+
+* changed all binary file io. Set bocode correctly to 'mbocode' when
+  writing a file and swap data byte order to machine byte order when reading
+  a file. Some of the code for file io in Gremlin is completely obscure and
+  should be rewritten. 
+
+* commented out button bar. Should be done after plotting works.
+
+
+7/5/94  version 0.15 (ug)
+
+* changed all file name lengths in the Fortran code to 254 characters. There
+  should be only very few true SYSV machines with 14 character file names
+  around these days.
+
+* removed old file handles from 'iounit.inc'. Not used.
+
+* 'stop' statement in subroutine 'dexit' to actually stop the program
+
+* turned main program module 'gmain' into a subroutine 'dispatch'. The string
+  passed to the dispatch routine is the command entered in the editor pane.
+  Gremlin initialization taken out from 'gmain' and transferred to a 
+  subroutine 'gremlininit' which is called from 'xgremlin.c'.
+  Program logic:
+      	(1)  read new line in editor pane
+      	(2)  pass line to function 'dispatch'
+             (a) 'dispatch' calls 'gboss'
+             (b) function 'gttk' parses line passed to it from (1)
+        (3)  command is returned to 'dispatch' which calls a funtion
+        (4)  control passes back to editor pane
+
+  removed: continuation lines; not necessary any more (if they ever were).
+
+* started changing all 'write' statements into appropriate calls to C
+  functions which display strings in the editor pane. 'stdout' and 'stdin'
+  do not exist any more under X11. The few 'read(*,*)' will be replaced by
+  a dialog box.
+
+* new command 'break' which is synonymous to 'keyboard'.
+
+
+6/5/94  version 0.14 (ug)
+
+* finished the command input editor. It is based on the Athena Text widget
+  which was coaxed into displaying text and accepting input at the same
+  time. Unfortunately this leads to frequent updates of the whole widget
+  window and an unpleasant flicker. A new widget for the command editor 
+  will have to be designed (version 1). 
+
+* Started work on the Fortran code of Gremlin. File names in 'gmainit.f' 
+  changed to UNIX conventions:
+
+      /usr/local/lib/XGremlin.conf      system wide configuration file
+      ~/.XGremlinrc                     user's configuration file
+      ~/XGremlin.scratch                user's scratch file
+ 
+   The path of the system wide configuration file may be stored in the
+   environment variable XGREMLINCONFPATH
+
+* The configuration file 'gremlin.cfg' which contains the user's choice of
+  colours etc. is not required any longer because the looks of XGremlin are
+  defined in the application defaults database.
+
+
+April 1994: (ug)
+
+* started porting Gremlin to Unix/X11. Still not really sure that this
+  is the latest version of the source code. Currently, the user interface
+  is based entirely on the Athena Widget set. Mark II should probably make
+  use of the Layout Widget.
+
+* Help system taken out of the actual Gremlin code. It has been integrated 
+  into the new user interface. Can still be called with the 'help' command
+
+* Format of help file changed. Help topics are now seperated by a ^L (alias
+  formfeed characters) in the help file. The line following the ^L contains 
+  the keyword. The lines following the keyword up to the next ^L are
+  the help text for the keyword. This format is much easier to scan than
+  the old format. Name of the help file changed to 'XGremlin.help'
+  By default, the help file is in  /usr/local/lib but the path may be
+  stored in the XGREMLINHELPPATH environment variable.
+
+* interactive help system finished
+
+* program version display box finished
+
+* removed the 'dio' command because it invokes Intel processor specific code
+  for an I/O board.
+
+* added a second parameter to the 'dispar' command.
+
+* changed the semantics of the 'exp' command slightly. The parameter "n" now
+  DOES mean the base. 
+
+* the 'log' command works with all bases now
+
+* remove the notion of help levels because they are not useful any more. 
+  Xgremlin is always as helpful as possible. This means that the help file
+  had to be changed.
+

@@ -1,0 +1,144 @@
+
+%
+% a wall chart for Xgremlin's plot mode commands
+%
+\documentclass[10pt]{article}
+
+\usepackage{times}
+
+\sloppy
+\pagestyle{empty}
+
+\voffset = -1in
+\hoffset = -1in
+\textwidth = 6.5in
+\textheight = 10in
+
+\def\key#1#2{\textbf{#1}+\textbf{#2}}
+\def\kkey#1#2#3{\textbf{#1}+\textbf{#2}+\textbf{#3}}
+
+\begin{document}
+
+\noindent
+{\large {\bf Xgremlin plot mode commands \hfill \today}\\[1mm]
+
+\noindent
+In the following table the letters S, C and M signify the following
+key modifiers: {\bf S: Shift} key, {\bf C: control} key, {\bf M: meta}
+key (usually Alt on a PC).  The meaning of the left column of the
+table is is best explained by the following example: \key{S}{x} stands
+for: hold down the {\bf shift} key while pressing the {\bf x}
+key. The {\bf TAB} key may be used to toggle between plotting and 
+editing modes (and windows). \\[2mm]
+
+\noindent
+{\bf Plotting and moving around}
+\begin{tabbing}
+\textbf{xxxxxxxx}\=
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\= \kill
+\textbf{.} 	\> 	  move to the right, do not rescale y axis\\
+\textbf{$>$}    \>	  move  to the right, rescale y axis to fill plotter window\\
+\textbf{,}	\>	  move to the left, do not rescale y axis\\
+\textbf{$<$}	\>	  move to the left, rescale y axis to fill plotter window\\
+\textbf{z}	\>	  move zero line to the centre of the plot\\
+\textbf{e}	\>	  move zero line to bottom edge of the plot\\
+		\>	  \\
+\textbf{x}	\>	  expand x--axis around centre of window or marker, factor 0.5\\
+\key{S}{x} 	\>        expand x--axis,  factor 0.25\\
+\key{C}{x}	\>        expand x--axis, factor 0.1\\
+\key{M}{x}	\>        compress x--axis around centre of window or marker, factor 0.5\\
+		\>	  \\	
+\textbf{y}	\>	  expand y--axis around zero line or marker, factor 0.5\\
+\key{S}{y}	\>        expand y--axis, factor 0.25\\
+\key{C}{y}	\>  	  expand y--axis, factor 0.1\\
+\key{M}{y}	\>        compress y--axis around zero line (zoom out)\\
+		\>	  \\	
+\textbf{\^}	\>	  full scale in y direction, data fill plotting window\\
+		\>	  \\	
+\textbf{p}	\>        overplot with current content of r array\\
+\key{C}{r}	\>        exchange r and tr, then overplot\\
+\key{S}{p}	\>	  replot; put zeroline where marker is set\\
+\key{S}{u}	\>	  undo last plot mode operation\\
+\end{tabbing}
+
+\noindent
+{\bf Line intensities}
+\begin{tabbing}
+\textbf{xxxxxxxx}\=
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\= \kill
+\key{M}{a}	\>	  execute an {\em area} command\\
+\end{tabbing}
+
+\noindent	
+{\bf Plot modes}
+\begin{tabbing}
+\textbf{xxxxxxxx}\=
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\= \kill
+\textbf{n}	\>	  normal plot; no complex data. r array contains real data\\
+\textbf{r}	\>	  r array contains complex data, plot real part only\\
+\textbf{i}	\>	  r array contains complex data, plot imaginary part only\\
+\textbf{c}	\>	  r array contains complex data, plot real and imag part\\
+\end{tabbing}
+
+\newpage
+
+\noindent	
+{\bf Line list related commands}
+\begin{tabbing}
+\textbf{xxxxxxxx}\=
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\= \kill
+\key{S}{a}	\>   make all lines in the current line buffer {\em active}\\
+\key{C}{a}	\>   add the (cursor--)marked line(s) to the line list\\
+\key{C}{d}	\>   delete (drop) marked line(s) from the line list\\
+\key{C}{s}	\>   use last marked line for width, damping etc. of future added lines\\
+\key{C}{t}	\>   toggle a line {\em active} or {\em inactive}\\
+\textbf{v}      \>   move marked line position from red to blue mouse marker\\
+\key{S}{v}	\>   toggle all line markers visible or invisible on the screen\\
+\textbf{g}	\>   calculate centre of gravity between two markers\\
+		\>   centre of gravity is not inserted into the line list\\
+\key{C}{g}	\>   same as 'g' command but the resulting c.g. is also\\
+		\>   inserted into the internal line list\\
+\textbf{m}	\>   print information about the cursor--marked line\\
+\textbf{a,o}	\>   mark all lines in the buffer with line markers\\
+\textbf{w}	\>   calculate centroid of line whose edge was cursor--marked\\
+\key{C}{w}	\>   same as 'w' and insert line into internal line list\\
+\kkey{M}{C}{g}  \>   do a {\em getlines inactive} (read line list file)\\
+\end{tabbing}
+
+\noindent	
+{\bf Phase correction}
+\begin{tabbing}
+\textbf{xxxxxxxx}\=
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\= \kill
+\key{C}{d}      \>  mark phase points between two markers as bad \\
+\key{M}{b}      \>  save bad points from buffer to bad points file \\
+\end{tabbing}
+
+\noindent	
+{\bf Miscellaneous}
+\begin{tabbing}
+\textbf{xxxxxxxx}\=
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\= \kill
+\key{S}{c}      \>  find the center of an interferogram in r and display it\\
+\key{C}{z}      \>  set to zero the r-array between two mouse markers\\
+\key{S}{n}	\>  put polynomial through 1-3 (cursor-)marked points, normalize to 1\\
+\key{S}{b}	\>  put polynomial through 1-3 (cursor-)marked points, subtract from r\\
+\textbf{\#}     \>  print out 11 data points around each cursor marker\\
+\key{M}{c}	\>  connect two or more markers by a straight line, interpolate data\\
+\textbf{l}      \>  replace a set marker by a wavenumber label\\
+\key{M}{l}      \>  replace a set marker by a label in secondary units ({\em nm, Hz, THz})\\
+\textbf{u}      \>  cycle secondary units through {\em nm}, {\em Hz} or {\em THz}\\
+\key{M}{w}	\>  set (line) {\em width} to difference of two markers\\
+\textbf{\@}	\>  read data centered at a previously set mouse marker\\
+\end{tabbing}
+	
+\end{document}
+
+
+
+
+
+
+
+
+

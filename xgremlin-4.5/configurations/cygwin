@@ -1,0 +1,24 @@
+#
+# g77 and gcc compiler flags for Macintosh running OS X
+#
+CC = gcc
+#CFLAGS = -O3 -malign-natural  -fomit-frame-pointer -DHAVE_BSD_TIME -DHAVE_ANSI_SIGNALS
+CFLAGS = -g -DHAVE_BSD_TIME -DHAVE_ANSI_SIGNALS
+
+#
+# linker flags
+#
+#LDFLAG = -flat_namespace -lcc_dynamic
+LDFLAGS =  
+
+
+
+#
+# extra libraries which may be needed for this platform
+#
+EXTRALIBS = -L/usr/lib/gcc/i686-pc-cygwin/4.3.2
+
+#
+# complex arithmetic available
+#
+HAVE_GCC := yes

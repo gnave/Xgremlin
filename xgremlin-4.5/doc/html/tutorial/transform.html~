@@ -1,0 +1,128 @@
+<head>
+<title> Using Xgremlin to transform and phase correct interferograms </title>
+<!-- Changed by: Gillian Nave, 26-Mar-1996 -->
+</head>
+<body bgcolor="#ffffff">
+<B> Next:</B> <A HREF="analyse.html"> Analysing a spectrum</A>
+<B>Up:</B> <A HREF="contents.html"> Table of contents </A>
+<B> Previous:</B> <A HREF="plotting.html"> 
+                  Plotting </A>
+<hr><P>
+
+<h1> Using Xgremlin to transform and phase correct interferograms</h1>
+
+<h2>Why?</h2>
+
+After recording an interferogram on your interferometer, the first
+thing you will want to do is perform a Fourier transform to get the
+spectrum. Assuming that you have recorded an interferogram on both
+sides of the zero path difference, the transform will be a complex FT,
+with a non-zero imaginary part. This imaginary part comes from several
+causes:
+<ul>
+<li> You do not have a point exactly at the centre of the
+interferogram.
+<li> You have not sampled the interferogram symmetrically --
+e.g. Kitt Peak interferograms often have up to five times as many
+points on one side of the zero path difference as the other. This
+gives an antisymmetric imaginary part after phase correction, and it
+is particularly important that the phase correction is as good as
+possible to avoid distorting the line profiles. 
+<li> The interferogram will probably still be slightly asymmetric due
+to small imperfections in the alignment or the optics, meaning that
+the signal you recorded at a path difference of <em>-x</em> is not the
+same as that recorded at <em>+x</em>. 
+</ul>
+
+<p>
+The principle of phase correction is to make the imaginary part as
+close to zero as possible. Although this is sometimes done without
+intervention by the user, this is not always unsuccessful.
+The solution is to do the phase correction interactively.
+(See the recent paper by <a href="../tutorial/references.html#phcorr"> 
+Learner et al.</a> for more details on the principles of phase correction.)
+
+<h2>Principles</h2>
+
+Phase correction is controlled through the 
+<a href="../tutorial/phcorr_fig.html">phase correction window</a>
+which is opened by selecting the <b>Phase/transform</b> menu item in the 
+<a href="../tutorial/gremlins.html">gremlins</a>
+<a name="gremlins">menu</a>.
+There are five main steps to interactive phase correction:
+
+<ol>
+<li> 
+<a name="prac_centre">Find the position</a> of the 
+<a href="centre_fringe.html">central fringe.</a>
+First, open the interferogram file using 
+<a href="open.html"><b>open datain</b></a> <em>filename</em> <b>int</b>,
+<a href="read.html"><b>read</b></a> in a section of data around the
+central point, and <b>plot</b> it.
+Note the point number of the expanded 
+central fringe.
+
+<p> <li> <a name="raw_phase">Transform</a> the central section of the
+interferogram to give a <a href="../tutorial/raw_phase.html"> raw
+phase plot</a>, using points of amplitude above some plausible
+fraction of the maximum in the spectrum. Do this in the following way:
+
+<ul>
+<li>First, fill in the relevant
+data in the phase window. This can be done automatically by clicking
+on the <a href="phcorr_fig.html#fill_in"><b>fill in</b></a>
+button, but you may need to add the centre value
+by hand, and check that you have selected the correct symmetry of the
+interferogram, and that you have selected either a line or continuum
+spectrum. 
+
+<li>To transform the central section, click on the <b>phase
+curve</b> button. 
+</ul>
+The length of interferogram transformed is 256K
+points, or the whole interferogram if this is shorter. (For
+unequal-sided interferograms the length is the largest power of 2 that
+fits in the symmetric portion.) 
+The interferogram is carefully
+apodized before transforming to kill the ringing from strong lines.
+Up to 512 spectral points, distributed as uniformly as possible across
+the alias, are used for the raw phase plot, and the discriminator may
+need to be reset to get a reasonable number.
+
+<p>
+<li> Two operations may be necessary at this stage: 
+<a href="../tutorial/raw_phase.html">correct for any 2 pi phase flips;</a>
+and remove obvious bad points arising from alias
+foldover, ghosts, etc.  Replot the raw phase to see that it is
+satisfactory before proceeding.  As an optional refinement, before
+plotting the phase, determine the noise level (relative to the maximum
+signal) from the amplitude spectrum using the 
+<a href="../commands/area.html">area</a> command on a section with no
+lines. This returns, amoung other parameters, the mean of the marked
+section, which is a rough measure of the noise. Setting the noise
+level will enable the programme to calculate chi-square for the
+phase-fit applied in step 4.
+
+<p>
+<li> Decide on the number of terms required for the phase-fit
+polynomial, perform the phase correction on the same central section
+and <a href="../tutorial/phase_fit.html">
+inspect the result</a>.  The continuous line gives the phase curve
+that has been used, and the dots now give the difference between
+observed and calculated phase for the points used.  Repeat with more
+terms in the polynomial if this seems desirable (maximum is 8).
+
+<p>
+<li> Transform the full spectrum; this will be phase-corrected with 
+the above polynomial.  You have the option to set wavenumber 
+limits for the part of the spectrum to be written to disc and to
+specify real or complex or both.
+</ol>
+
+<a name="phscds"> You <em>can</em> </a>if you <em>really</em> want to,
+execute the phase correction using a 
+<a href="../tutorial/phscds.html">batch file</a> by typing 
+<a href="../commands/run.html"><b> run</b> </a><em>filename</em>.
+
+</body>  
+

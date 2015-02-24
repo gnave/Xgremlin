@@ -1,0 +1,51 @@
+<head>
+<title> recall </title>
+<!-- Changed by: LION,  2-May-1996 -->
+</head>
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>
+recall
+</h2>
+<h3>Syntax</h3>
+recall <em> &lt;key&gt; [&lt;npts&gt;] ['tr'] </em>
+<p>
+where:
+<ul>
+<li>key :  number of saved buffer
+<li>npts:  number of points to read back (optional)
+</ul>
+
+This command will recall a previously saved stretch of the 'r' or
+'tr' array from the scratch file into either the 'r' array (which
+is the default) or the 'tr' array. If the number of points is
+not specified all saved points will be recalled.
+
+<h3>Examples:</h3>
+<pre>
+recall 4 
+</pre>
+read back all data from scratch file  scratch.4
+
+<pre>
+recall 4 tr
+</pre>
+read back the contents of file  scratch.4 into 
+the 'tr' array
+
+<pre>
+recall 5 4096
+</pre>
+read back only 4k points from file  scratch.5
+
+<h3>Related commands </h3>
+<ul>
+<li> <A HREF="save.html">save</A>
+<li> <A HREF="rmscratch.html">rmscratch</A>
+<li> <A HREF="whats.html">whats saved</A>
+</ul>
+

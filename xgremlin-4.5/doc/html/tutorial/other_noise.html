@@ -1,0 +1,27 @@
+<HEAD>
+<TITLE> Finding noise in interferogram</TITLE>
+<!-- Changed by: Gillian Nave, 26-Mar-1996 -->
+</HEAD>
+<BODY bgcolor="#ffffff"><P>
+<B>Up:</B> <A  HREF="other.html"> Other Commands and </A>
+<B> Previous:</B> <A  HREF="other_synth.html"> Synthetic spectra </A>
+<HR> <P>
+<H2>  Finding noise in interferogram</H2>
+<P>
+The problem with finding noise in an interferogram is finding a
+portion of the interferogram that is really noise and no signal. Even
+at the ends of an interferogram, there is some modulation left which
+will give a false estimate of the noise level. The solution is to read
+in a section at the end of the interferogram where the noise dominates
+and to take the <A HREF="../commands/fourtran.html">Fourier transform</a>. 
+You will then get a rather noisy spectrum. Plot this spectrum, and
+manually take out all the lines using the 
+<A HREF="../commands/connect.html"><b>connect</b> </a> command,
+&lt;Alt+c&gt;, as described in section
+<A HREF="analyse_initial.html"> 'Subtract continuum'  </A>. Then
+transform the result back  again and you will be left with only the
+noise in the interferogram.
+
+<P>
+
+</BODY>

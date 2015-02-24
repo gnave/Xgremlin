@@ -1,0 +1,93 @@
+<head>
+<title> writelines </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>writelines</h2>
+
+<h3>Syntax: </h3> writelines <em> &lt;filename&gt;  [ &lt;wstart&gt;
+&lt;wstop&gt; ]  [ &lt;smin&gt; ]  [ &lt;smax&gt; ]  [intcorr] [aircorr] [wavcorr]</em> 
+
+<p>
+where
+<ul>
+<li>	wstart - first wavenumber wanted
+<li>	wstop  - last wavenumber wanted
+	(Default is all lines in the file)
+<li>	smin - minimum line strength written to file
+<li>	smax - maximum line strength written to file
+</ul>
+
+Writelines reads the line parameters from the .lin file attached 
+to unit <b>lineio</b> in the desired range and writes them out to file
+"filename" as an ASCII file.  This file may be sent to the terminal
+instead by simply using  "con" as the filename.
+<p>
+If an upper limit (smax) is wanted, all four parameters must be given.
+<p>
+If intensity correction is wanted have the (lo-res) response function
+of the optical system in r and add the command parameter <b>intcorr</b>.
+See the description of the 'response' command for a way to
+obtain the response function. if the response function is zero, lines at
+these wavenumbers are not written out to the linelist file.
+<p>
+If the command parameter <b>aircorr</b> is added on the command line the
+wavenumbers in the line list are corrected for the refractive index of air
+(Birch and Downs formulae). <b>The air correction is not applied by default.</b>
+Pressure and temperature parameters for the air correction are taken from the file header.
+<p> 
+The command parameter <b>wavcorr</b> requests that the linear wave number correction
+is applied to the wavenumbers in the line list. <b>The wavenumber correction is
+not applied by default.</b>
+<p> 
+The held parameters (H) are coded as follows:
+<ul>
+<li>		1 = damping
+<li>		2 = width
+<li>		4 = sigma
+<li>		8 = amplitude
+</ul>
+If more than one parameter is held, H = the sum of the individual
+values.
+
+System tags (4th tag character) have the following meaning:
+<ul>
+<li>		I = line was manually inserted
+<li>		F = line came from a derivative findlines or lineseek
+<li>		L = line has been through lsqfit
+<li>		R = line has been through a filter lsqfit ("ringfit")
+</ul>
+
+A description of the output format can be found in the Xgremlin
+tutorial in the section on
+<a href="../tutorial/analyse_find.html">
+finding and fitting lines</a>.
+
+<h3>  Example:</h3>
+<pre>
+writelines neon.data intcorr
+</pre>
+will read line data records from the line list file
+that is currently attached to the 'lineio' unit and write
+the line list data to the ASCII file "neon.data" after
+after dividing intensities by the optical response function
+in the 'r' array.
+
+<h3> Related commands:</h3>
+<ul>
+<li><a href="linelist.html">linelist</a>
+<li><a href="findlines.html">findlines</a>
+<li><a href="lsqfit.html">lsqfit</a>
+<li><a href="standards.html">standards</a>
+<li><a href="response.html">response</a>
+<li><a href="vactoair.html">vactoair</a>
+</ul>
+ 
+
+
+

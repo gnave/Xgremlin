@@ -1,0 +1,47 @@
+<head>
+<title> getlines </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>getlines</h2><p>
+
+<b>Syntax:</b> <kbd>getlines  [ "active" ]</kbd><p>
+
+Getlines reads line parameters from the .lin file attached to
+lineio into the internal linelist. Should the internal line buffer
+be too small to hold the desired number of line parameters it
+can be resized with the <a href="alloc.html">alloc</a> command.
+All lines between <b>wref</b> (the start of the buffer) and the 
+end of the buffer are loaded from the .lin file.<p>
+
+<b>active</b> specifies that the lines should be made active
+(i.e. should be subtracted from the data) after reading from
+the .lin file.<p>
+
+<b>The default is not to subtract the lines from the data.</b><p>
+<br>
+
+<h3>Example:</h3>
+<pre>
+	open lineio k11sh2
+	getlines
+</pre>
+
+will attach file 'k11sh2.lin' to the unit lineio and <b>getlines</b>
+reads in all line list data from the line list file. 
+<p><br>
+
+<h3>Related commands:</h3>
+<ul>
+<li><a href="linelist.html">linelist</a>
+<li><a href="open.html">open</a>
+<li><a href="putlines.html">putlines</a>
+</ul>
+ 
+</body>
+

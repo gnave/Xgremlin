@@ -1,0 +1,40 @@
+<head>
+<title> sinc </title>
+<!-- Changed by: , 28-Mar-1996 -->
+</head>
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>sinc</h2>
+sinc<i> &lt;scale&gt; [&lt;nop&gt;] </i>
+<p>
+<UL>
+<LI>	scale	-  number of points between zeros
+<LI> 	nop	-  total number of points in 'r' array
+</UL>
+
+	Create a sinc function centered in the 'r' array.
+<pre>
+                                   sin( pi * x )
+	sinc function:  sinc(x) = ---------------
+                                       pi * x
+</pre>
+<h3>	Example:</h3>
+<pre>
+ sinc 20. 400
+ plot
+</pre>
+		Creates a sinc function and plots it afterwards
+
+<H3>Related commands:</H3>
+<UL>
+<LI> <A HREF="voigt.html">voigt</A>
+<LI> <A HREF="planck.html">planck</A>
+<LI> <A HREF="noise.html">noise</A>
+<LI> <A HREF="exp.html">exp</A>
+<LI> <A HREF="log.html">log</A>
+</UL>
+

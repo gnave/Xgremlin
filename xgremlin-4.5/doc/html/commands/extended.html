@@ -1,0 +1,101 @@
+<head>
+<title> extended </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>extended</h2><p>
+
+<b>Command forms:</b><br>
+<ul>
+<li> extended <b>absorbance</b> [wstart wstop]
+<li> extended <b>add</b> isave [wstart wstop] 
+<li> extended <b>bin</b> [wstart wstop]
+<li> extended <b>exp</b> [wstart wstop]
+<li> extended <b>high-res-ratio</b> [wstart wstop]
+<li> extended <b>log</b> [wstart wstop]
+<li> extended <b>max</b> [wstart wstop]
+<li> extended <b>min</b> [wstart wstop]
+<li> extended <b>multiply</b> wstart wstop constant
+<li> extended <b>ratio</b> isave wstart wstop wcorr
+</ul>
+
+A set of commands which copy the input file to the output file after
+performing some operation on it. In many cases the set of 'extended'
+commands is not needed any more because it was designed to deal with
+large spectra on machines with little memory. The operands are
+described below, command parameters are:
+
+<ul>
+<li> <b>wstart</b>: starting wavenumber
+<li> <b>wstop</b>: stopping wavenumber
+<li> <b>isave</b>: <a href="save.html">save</a> number of low resolution function
+</ul>
+
+<b>Warning:</b><br>
+If some other old file has been opened which has its own,
+header file which is different to the high resolution file
+(e.g., by opening a second file for adding or ratioing), then
+care must be taken to have the high-res header information in
+memory when add, ratio or worm is executed; either open datain
+last or do any read from datain. Some commands may be terminated
+prematurely but cleanly by pressing the <b>Stop</b> button. Default 
+wstart and wstop are taken from the .hdr file.<p>
+
+<dl>
+<dt><b>extended absorbance wstart wstop</b><br>
+<dd>Take the negative of the log of the file on <b>datain</b>, write to <b>dataout</b>
+(i.e. dataout = -log(datain) ). 
+<b><a href="create.html">create</a> must be executed first.</b><p>
+
+<dt><b>extended add isave wstart wstop</b>
+<dd>Add a low resolution function which has been saved in isave to
+the data file on datain and write the result to dataout. The low
+resolution function is interpolated to the same scale as the
+input file.
+<b><a href="create.html">create</a> must be executed first.</b><p>
+
+<dt><b>extended bin [wstart wstop]</b>
+<dd>Create low resolution spectrum of averaged bins of file on
+<b>datain</b>. Output is in <b>r</b> and saved in 19.  Filtering is used
+to kill ringing.
+
+<dt><b>extended exp [wstart wstop]</b>
+<dd>Take the exponential of the file on <b>datain</b>, write to <b>dataout</b><p>
+
+<dt><b>extended high-res-ratio [wstart wstop]</b>
+<dd>Ratio a data file on <b>datain</b> to another high resolution
+function on <b>altdata</b> and write the result to <b>dataout</b>.
+<b><a href="create.html">create</a> must be executed first.</b>
+<b>Warning:
+Watch order in which files are opened - datain must come last.</b><p>
+
+<dt><b>extended log [wstart wstop]</b>
+<dd>Take the logarithm of the file on <b>datain</b>, write to <b>dataout</b>
+<b><a href="create.html">create</a> must be executed first.</b><p>
+
+<dt><b>extended max [wstart wstop]</b>
+<dd>Create low resolution spectrum of filtered maxima of file on
+<b>datain</b>. Output is in <b>r</b> and saved in 19.  Filtering is used
+to kill ringing.<p>
+
+<dt><b>extended min [wstart wstop]</b>
+<dd>Create low resolution spectrum of filtered minima of file on
+<b>datain</b>. Output is in <b>r</b> and saved in 19.  Filtering is used
+to kill ringing.<p>
+
+<dt><b>extended multiply [wstart wstop] constant</b>
+<dd>Multiply the file on <b>datain</b> by constant, write to <b>dataout</b>
+<b><a href="create.html">create</a> must be executed first.</b><p>
+
+<dt><b>extended ratio isave [wstart wstop] </b>
+<dd>Ratio a data file on <b>datain</b> to a low resolution function saved
+in isave and write the result to <b>dataout</b>.
+<b><a href="create.html">create</a> must be executed first.</b><p>
+</dl>
+ 
+</body>

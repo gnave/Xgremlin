@@ -1,0 +1,78 @@
+.\"-*-nroff-*-
+.\\
+.\\ man page for the fits2nso program
+.\\
+.TH fits2nso 1 "November 1996"
+.SH NAME
+fits2nso \- convert FTS data files from FITS format to NSO type 6 format
+
+.SH SYNOPSIS
+.B fits2nso [-f] [-h] [-r] <input files>
+
+.SH DESCRIPTION
+The NIST UV-vis-IR Fourier transform spectrometer and the FTS data
+analysis program 
+.B xgremlin
+write data files in FITS (Flexible Image Transfer
+System) format. 
+.B fits2nso
+converts data files in FITS format to NSO type 6 format so they can be
+read by J. W. Brault's 
+.B Gremlin
+program. 
+.B fits2nso 
+creates a header (.hdr) and data (.dat) file pair and keeps the
+original FITS file by default. The (.dat) file will not contain the
+original FITS header section
+
+.SH OPTIONS
+.B -f :
+the 
+.B fringe division ratio
+is stored in a real valued variable
+.B fdr
+in FITS files from the NIST FTS. In NSO type data files the fringe divsion
+ratio is stored as the ratio 
+.B M/K
+of two integer variables 
+.B M
+and 
+.B K.
+By default, 
+.B fits2nso
+computes a pair of integer variables M and K with a ratio that very closely 
+approximates the fringe division ratio. If the
+.B -f
+switch is used the variable
+.B fdr
+is stored in the header file instead of M and K. This is useful and may be a little bit more
+accurate if the header / data
+file pair is to be read with 
+.B xgremlin
+which can read the 
+.B fdr
+variable in NSO type 6 data files. 
+
+.B -h :
+creates a header file only which can be used together with the
+existing FITS file. Note that the data file must have the extension .dat for
+.B Gremlin.
+
+.B -r :
+renames the FITS file into a file with extension .dat so that it can be
+used together with the header file. 
+
+.SH EXAMPLES
+
+.B fits2nso -r *.fits 
+
+will convert all FITS data files in the current directory
+in NSO type 6 header- and data file pairs. The original FITS
+files will be deleted in the process.
+
+.SH BUGS
+Bug reports, complaints, suggestions etc.  should be directed to:
+
+.CD
+Gillian Nave, NIST ( gnave@nist.gov )
+.DE

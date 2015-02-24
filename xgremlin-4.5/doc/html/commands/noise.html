@@ -1,0 +1,43 @@
+<head>
+<title> noise </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>noise</h2><p>
+
+<b>Syntax:</b><br>
+<ul>
+<li> <kbd>noise nop [ &lt amplitude &gt] [add] </kbd>
+<li> <kbd>noise iseed "init"</kbd>
+</ul>
+
+Produce <b>nop</b> points of noise in the <b>r</b> array by summing 12 random
+numbers uniformly distributed in [0,1] and then subtracting 6.0 to
+give zero mean for every point in the <b>r</b> array. The RMS of the noise
+signal is 1. If the <b>amplitue</b> is given the noise signal will be 
+multiplied by the specified factor. If the string <b>add</b> is on the
+command line the noise will be added to the data in the <b>r</b> array. <p>
+
+The second form is used to initialize the noise generator.
+<b>iseed</b> is an integer seed value. 
+<p><br>
+
+<h3>Related commands:</h3>
+<menu>
+<li><a href="exp.html"> exp </a>
+<li><a href="log.html"> log </a>
+<li><a href="sinc.html"> sinc </a>
+<li><a href="sincos.html"> sincos </a>
+<li><a href="planck.html"> planck </a>
+<li><a href="voigt.html"> voigt </a>
+<li><a href="clear.html"> clear </a>
+<li><a href="data.html"> data </a>
+<li><a href="decimate.html"> decimate </a>
+</menu>
+ 
+</body>

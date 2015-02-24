@@ -1,0 +1,5 @@
+#
+# flags for the Absoft f77 FORTRAN complainer under Linux
+#
+FF = f77
+F77FLAGS = -s -f -K -N1 -N90 -B108 -O

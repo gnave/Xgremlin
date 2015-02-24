@@ -1,0 +1,2063 @@
+<head>
+<title> An Introduction to Xgremlin </title>
+</head>
+<body bgcolor="#ffffff">
+<h1>Introduction</h1>
+
+Gremlin is a spectral analysis program that is designed for the analysis
+of FTS data. It has evolved from two other programs -- grammy and
+decomp, and was written by Jim Brault (J. W. Brault,
+M. C. Abrams, Opt Soc. Am. Tech. Dig. Ser. <b> 6</b>, 110 (1989)). 
+It is used to Fourier
+transform interferograms, plot spectra, phase, intensity, and
+wavenumber correct them, subtract a continuum if present, and find and fit
+the spectral lines. It can also be used to construct synthetic spectra,
+compare several different spectra, and eliminate ringing around lines.
+<p>
+Gremlin exists in several incarnations, including gremrun, gremlin, and
+gremlet. All three require 386 processors or above, preferably with a maths
+co-processor if it is not part of the main processor (386 and 486SX
+machines). Gremrun is gremlin with additions to acquire and digitally
+filter FT interferometers, mainly using code specifically designed for Jim
+Brault's new data acquisition and sampling system. Gremlet is a
+cut-down version of gremlin without some of the FT and phase
+correction routines, which is suitable for running on smaller machines
+than gremlin. 
+<p>
+The most recent addition is the program Xgremlin which is a port of gremlin to
+PCs and workstations with a graphical user interface based on the X
+Window System, Version 11 (X11). X11 is independent of any particular
+computer hardware and is universally used on workstations and PCs
+running Unix or a Unix--like operating system. Other operating systems
+such as OS/2 or Windows NT also support X11. One of the main reasons 
+for the creation of Xgremlin was the desire to have a version of gremlin that 
+is no longer tied to some particular computer hardware or operating 
+system.  Xgremlin is fully compatible to gremlin  with the exception of some 
+recent hardware dependent additions to gremlin  for spectrometer 
+control.
+<p>
+This document is intended to give you a guide as to how to
+install gremlin and it's relatives,  what gremlin can
+do and how to use it to transform and analyse spectra from an FTS. It
+is by no means complete, but is intended to get you going, and
+supplement the information in the help file.
+
+<h2>Notation</h2>
+In this document, the following notation is used. Command that are typed
+in at the keyboard are designated by <kbd> typewriter mode</kbd>. Names of
+files, variables, arguments, etc. are <em> emphasized</em>. The case of
+commands is important, particularly in the plotting routines, where
+different cases of the same letter do different jobs. Also the type of
+the argument is important. If you miss the decimal point off a
+floating point argument, gremlin will do something completely different to
+what you intended. In describing the commands, the standard FORTRAN 
+conventions for names have been used (i.e. i-n are integer, the
+rest are real). Some commands within gremlin can operate with complex
+data, and others cannot, so it is important to know whether you have
+real or complex data.
+
+<h2>Where to find gremlin and Xgremlin</h2>
+
+The best place to get gremlin is the anonymous FTP server 
+<kbd> corona.kpno.noao.edu</kbd> (140.252.55.99),  in the directory 
+<em> pub/gremlin</em>. This is where Jim Brault usually places
+the most recent version. Both the source code and the executable are
+there, together with some brief information about installing and
+compiling the program. 
+<p>
+Xgremlin is currently available via anonymous ftp from <kbd>
+groundhog.phy.nist.gov</kbd> (129.6.168.156) in the directory <kbd>
+pub/xgremlin</kbd>. Any problems with (or questions about) Xgremlin should be
+referred to Ulf Griesmann ( e--mail: <kbd> ulfg@aeldata.phy.nist.gov</kbd> ).
+
+<h1>Installation and Requirements</h1>
+
+Xgremlin requires a machine running X11. For further details of the X
+Window system, see appendix \ref{sec:X11}. 
+Ready-compiled versions of Xgremlin for Linux and SunOS are available by
+anonymous ftp from {\tt groundhog.phy.nist.gov:/pub/xgremlin/bin}. These
+binaries will be updated frequently as these are
+the operating systems we have access to. If a binary of Xgremlin for your
+computer is available installation is trivial and is described in the
+README file that accompanies the program. 
+
+<h1>First Introduction to gremlin</h1>
+
+<h2>Example Session of gremlin 's Capabilities</h2>
+
+The file <em>demo.cds</em> on your disk contains an example of how to
+analyse a spectrum using gremlin. To use it, first check the files <em>
+demo.cds, demo.dat,</em> and <em>demo.hdr</em> are in your directory. Then 
+run gremlin by typing
+<kbd>xgremlin</kbd>
+At the gremlin prompt, type
+<kbd>run demo.cds</kbd>
+The example reads the test data into an internal buffer, finds all
+the lines above a cutoff, and plots the results. 
+To continue the demonstration, type <kbd>run</kbd>.
+Xgremlin then refines the fit of the lines found and plots the
+residuals. By typing <kbd>run</kbd> again, the fit will be displayed, and
+the line parameters listed. The plot routine contains an extensive set
+of commands which can be listed by clicking the mouse on the <em> help</em>
+button  and selecting <em> cursor</em>.
+
+
+<h2>General Construction</h2>
+
+To use gremlin , simply type {\tt gremlin}. The program then opens several
+files:
+\begin{itemize}
+        \item  The help files listed above
+        \item  A log file of the form {\em glXXXX} or {\em
+	       xgremlin.<date>.log} in Xgremlin, where the {\em
+               XXXX}'s are numbers denoting the date and time.
+        \item  A scratch file {\em gcscrtch} or {\tt xgremlin.scratch}
+	       for storage of temporary data.
+        \item  The initialization file, called {\em gremlin.ini} by gremlin
+        and {\em .xgremlinrc} by Xgremlin. This is a file where you can put
+        aliases and commands that you frequently use when starting gremlin.
+\end{itemize}
+The log and scratch files can be re-opened under another name. This can be
+useful either to save specific portions of temporary data associated
+with a file for later use, or for keeping a record of a session for
+later referance.
+
+gremlin then runs the commands in the initialization file, and returns
+control to the keyboard leaving  the gremlin prompt. Commands can then be
+typed in after this prompt. To get a list of the commands, type
+\begin{quote}
+{\tt help}
+\end{quote}
+or click on the {\em help} button in Xgremlin. This will display a list of
+topics for you to explore further.
+
+In order to perform data analysis, a file must be opened and the data
+read in. In addition to the data file, gremlin requires a header file. There
+are now several formats for header files in existence of various origin
+and antiquity. The latest header version is
+'type 6' and this header file is a Fortran `namelist' command. This
+gives it additional flexibility over previous headers as extra
+information can easily be added  or deleted.
+The latest version of gremlin should be able to cope with all header files
+but problems may occur with old headers. The only solution is to check
+the header file with an editor and try to make it to conform to one
+that works. The most important things to look for in broken header
+files are that the first and last wavenumbers are correct, the
+dispersion is correct, and the number of points declared in the header
+corresponds to that in the file. Also check that things that are
+supposed to be integers are integers and similarly with floats, and
+that there are no number fields filled with asterisks, indicating a
+{\sc FORTRAN} number overflow. It is
+possible to add any information you want to the end of a header file,
+and it can be particularly useful to append, for example, the log file
+of the run that performed the transform or details of how the source 
+was behaving during acquisition of the interferogram. 
+
+Old interferogram files acquired on the Chelsea FTS have the extension
+{\em .dat}, and old spectra {\em .spe}\footnote{KPNO interferograms
+have the extension {\em .int} and KPNO spectra, {\em .dat}}. New 
+interferogram files have the extension {\em .int}, and new spectra
+{\em .dat} (Are you confused yet?). Other filenames are used for card
+input (e.\/g.\ the initialization file) or the input of ASCII data
+(via the {\tt readdata} command).
+
+To open a spectrum file, type
+\begin{quote}
+{\tt open datain}\/ {\em filename}
+\end{quote}
+(with no
+extension to the filename). To open an interferogram file, type
+\begin{quote}
+{\tt open datain}\/ {\em filename}\/ {\tt int}
+\end{quote}
+The name {\em datain} is the
+name gremlin then associates with the file from then on, and is called
+the unit name of the file. Other examples of unit names are {\em
+rawin, dataout, outfile, scratch}\/.
+gremlin then tells you if it has been successful in opening the file and
+if so,  the number of points in the file and the wavenumber range. 
+If it fails, check that you have typed the command correctly and that  
+the files exist in the current directory. There are, as mentioned, 
+occasional problems with old headers.
+
+Data can then be read in. gremlin uses three main arrays for data: 
+an {\em r}\/ array, a {\em tr}\/ array, and an {\em ffta}\/ array. The
+{\em ffta} array is used to hold interferogram data for
+transforming. Spectrum data from the {\em datain}\/ unit 
+is read into the {\em r}\/ array by default, and the
+{\em tr}\/ array is used for scratch space and the storage of temporary
+data.  It can usually be ignored. Data can be swapped between them by
+\begin{quote}
+{\tt exchange}
+\end{quote}
+In addition, there is the {\em phase}\/ array, which is used during
+the main Fourier transform for phase correction.
+
+To read in data, type
+\begin{quote}
+{\tt read}\/ {\em f1 n2}
+\end{quote}
+where {\em f1}\/ is the initial wavenumber and {\em n2}\/ is the number of
+points to read in. Both these parameters are optional, in which case
+it will read in as many points as possible, starting at the first
+wavenumber in the file. If you have opened an interferogram, {\em
+f1}\/  should be
+the initial point number of the region you wish to read in. {\em n2}\/
+has a maximum value ranging from 262144 to 2 million depending on the
+limits specified when compiling gremlin. The default is the maximum value
+or the number of points between {\em f1}\/ and the end of the file,
+whichever is the smaller. If you wish to read a section centred on a
+particular wavenumber, type
+\begin{quote}
+{\tt set centerread}
+\end{quote}
+first. There is also the command 
+\begin{quote}
+{\tt set firstread}
+\end{quote}
+which specifies that subsequent reads should start at the wavenumber
+{\em f1}.
+
+The data can then be plotted by typing
+\begin{quote}
+{\tt plot}
+\end{quote}
+
+You can leave the gremlin plot screen and return to the edit screen by typing
+\begin{quote}
+\verb&<Esc>&
+\end{quote}
+-- in Xgremlin the plot and edit windows are both visible at the same time.
+
+
+Other commands in gremlin can be split into two types: global commands that
+work on the whole file or extended sections of it, and buffer commands
+which work on the contents of the {\em r}\/ array - the current
+buffer. The most important of these are the commands associated with
+line finding and line fitting. The two commands for finding lines in a
+spectrum are {\em linelist} and {\em findlines}. {\em findlines} works
+in a buffer, and the list of lines found is destroyed by a new read
+unless it has been saved in some way. {\em linelist} finds lines in
+the whole file and saves the list in a file named {\em
+$<$file$>$.lin}, where {\em $<$file$>$} is the name of the file you
+opened. It is a permanant file and cannot be deleted from withing gremlin
+-- if you wish to delete it to create a new one, you must close the
+{\em datain} file, delete the {\em .lin} file from your operating
+system, and re-open the {\em datain} unit in gremlin. In Xgremlin a backup of
+the {\em .lin} file is made when you make the first change to it in
+each run of Xgremlin. 
+
+In addition there are general commands that don't operate on the data,
+but set flags or print information. These will be described next.
+
+\subsection{A Few Useful Commands} \label{sec:useful}
+
+These descriptions are mainly taken from the help file.
+
+\subsubsection{alias}
+{\tt alias newname "string"}\\
+{\tt alias}\\
+        newname   will become a new command; it will be expanded to
+        ``string'' in the command line at execution time, but need not be
+        the last command on the line.  If no newname is given, this
+        command will simply list the existing aliases. The string may
+        include several commands separated by semicolons, but only the
+        last one will have access to further parameters in the original
+        command line.  An alias may use another alias.
+
+	Newname is limited to 12 characters; string may be up to 80 chars,
+	but the final expansion for all aliases in the line is limited
+	to 127 characters.
+
+\subsubsection{info}
+\begin{description}
+\item[{\tt info}]
+        on its own gives a summary of the information block.
+        Alternatively type
+        for the value of {\em var}. The help file lists the variables
+        that {\em info} knows about.
+\item[{\tt info}\/ {\em var} {\em value}]
+        sets  {\em var} to {\em value}. 
+\end{description}
+
+\subsubsection{set}
+
+{\tt set xreg(i)}\/ {\em xnum}\\
+{\tt set ireg(i)}\/ {\em inum}\\
+{\tt set ireg(i) up}\/ {\em inum}\\
+{\tt set xreg(i) down}\/ {\em xnum}\\
+        There are ten integer and ten floating registers - ireg(i) and
+        xreg(i), i=0-9.  These registers can be used anywhere in a
+        command  (even ``set'') as if they were numbers. They are
+        initialized by using the command without modifiers; by using the
+        modifiers ``up'', ``down'', ``times'' and ``over'' the registers
+        can be modified at will.  For example:
+
+        \begin{description}
+           \item[{\tt set xreg(2) 30000.}]   will set register 2 to 30000.0, and
+           \item[{\tt set xreg(2) up 100.}]  will increase it by 100 to 30100.  Then
+           \item[{\tt read xreg(2)} ]        will read a record starting at 30100.
+        \end{description}
+
+        If used without a subscript (i.e., just xreg or ireg), the
+        default is 0.
+
+        There are a number of variables and flags that can be set. Full
+        information is in the help file. Some handy ones are:
+
+        \begin{description}
+          \item[{\tt set centerread}\/ {\em wstart}] signifies that
+             the next read command {\em read wref}\/ will read a buffer
+             centred around {\em wstart} 
+          \item[{\tt set firstread} \/ {\em wstart}] signifies that 
+             the next read command will read a buffer beginning at {\em wstart}.
+          \item[{\tt set width}\/ {\em width}] so width is the values set
+             for all lines subsequently included via the plot routine.
+          \item[{\tt set readlength} {\em value}] will set the number
+	     of points read in by the next {\em read} statement to {\em value}
+        \end{description}
+
+\subsubsection{whats}
+        \begin{description}
+         \item[{\tt whats saved}]
+                            lists the contents of the scratch file
+                            (written by the command {\tt save}\/ {\em inum}.
+         \item[{\tt whats xreg(inum)} and
+               {\tt whats ireg(inum)}]
+                            lists the values of the registers as set
+                            in {\tt set}.
+         \item[{\tt whats r}\/ {\em n m}] lists the values in the r
+		array between points n and m.
+         \item[{\tt whats tr}\/ {\em n m}] lists the values in the tr
+                array between points n and m.
+        \end{description}
+
+\subsubsection{save and recall}
+\begin{description}
+\item[{\tt save}\/ {\em n}  ] saves up to 8192 points of the r array in label {\em n} in
+                        the scratch file.
+\item[{\tt recall}\/ {\em n}] recalls  the contents of {\em n} into the r
+                        array.   
+\end{description}
+
+
+\subsection{A first quick look at your spectrum}\label{sec:quick}
+
+When you are taking your first interferograms, you may not wish to go
+through the rigmarole of a full Fourier transform with interactive
+phase correction if all you are interested in is whether things are
+behaving properly. In this case the best thing is to just read in the
+central section of an interferogram you have acquired, do a
+medium-sized transform and look at the amplitude spectrum. 
+Even when you have done a full transform and phase correction,  there
+may be times when you do not want to find and fit lines in the
+whole spectrum at one time - if you only need to look at one section of
+it, or if you want to do a better job on the phase correction than was
+originally done. In this case, it is possible to work on single buffers.
+The lines found are not stored in a separate file, but can be written to
+an ASCII file and read back in at a later date.
+
+The first thing to do is to find the centre of the interferogram. This
+is done by reading in a section of the interferogram and searching it
+for the centre. Do this using the {\em open datain} and {\em read}
+commands described in section \ref{sec:first}. The next step is to
+read in a section of the interferogram centred on this point, making
+sure that the number of points read in is a power of 2, which is
+required for the Fourier transform. You can then transform it:
+\begin{quote}
+{\tt set centerread}
+{\tt read} {\em f1 n1}       where f1 is the centre you have found and
+			     n1 is a power of 2.
+{\tt fourtran}               performs the Fourier transform.
+\end{quote}
+The maximum value of {\em n1} is defined by the size of the {\em r}
+array, and depends on the version of gremlin you are running. The maximum
+size is 524288 points for most of the larger versions of gremlin, but may
+be as much as 2097152. 
+The lower half of the {\em r} array contains the amplitude
+spectrum (defined as $ \surd ((real)^2 + (imag)^2) $). The {\em tr}
+array contains the real and imaginary parts, which can be displayed by
+first transferring the data to the {\em r} array and then plotting
+them:
+\begin{quote}
+{\tt exchange}
+{\tt plot}
+\end{quote}
+To display the real part only, press {\em r} and to display the
+imaginary part only, press {\em i}. To display both again, press {\em
+n}. Ensure that you are in the plotting mode in Xgremlin by first pressing
+the $<$tab$>$ key!
+
+The phase of the resulting spectrum will probably be incorrect, but it is
+possible to correct the phase on a line-by-line basis. First, find the
+line that you wish to phase correct, and note  two point numbers, {\em
+n1} and {\em n2} on either side of it between which you think you
+probably have good phase information. Then type:
+\begin{quote}
+{\tt cmplx linecorr} {\em n1 n2}
+\end{quote}
+to correct the phase. The default number of points is the whole
+buffer, which may or may not be useful, depending on whether you have
+mainly signal (i.e. continuum spectrum) or noise! This is the most
+useful command for correcting
+the phase of a specific section, although there are other commands
+listed in the help file under {\em cmplx}. However for a quick look,
+it is often best to ignore the whole thing and just use the amplitude
+spectrum, unless of course you are interested in what the phase looks
+like! You can save an ASCII file of the {\em r } array with the
+command
+\begin{quote}
+{\tt writelines} {\em filename}
+\end{quote}
+This saves the data together with some gremlin commands that can be used
+for reading it back in again. If you have transformed less than 8192
+points, you can also save the {\em r} array in the scratch file, using
+the command:
+\begin{quote}
+{\tt save} {\em n}
+\end{quote}
+where {\em n} is the number of a record where you wish to store the
+data. The scratch file is kept between various runs of gremlin. 
+
+It is possible to make a quick list of all the lines in the current
+buffer above an intensity {\em disc} by typing
+\begin{quote}
+{\tt findlines}\/ {\em disc}
+\end{quote}
+You can then plot them and select the ones you wish to add or discard as
+before. To fit them, you must first subtract the initial fit from the
+spectrum, to generate a set of residuals. This is done with the command
+\begin{quote}
+{\tt active}
+\end{quote}
+{\tt findlines} usually fits the wavenumbers of the lines quite well, unless
+there are blends present, but does not do such a good job with the
+intensities and widths. To get good values for these, you must run
+\begin{quote}
+{\tt lsqfit}\/ {\em n}
+\end{quote}
+
+where n specifies the number of iterations you want for the least
+squares fitting. {\tt active} and {\tt lsqfit} are run automatically by
+{\tt fitlines} when you fit a whole spectrum. {\tt lsqfit} leaves the
+residuals from the fit in the r array, so you can check how well they
+have been fitted. They should be down to the noise level. Deviations
+indicate that the lines are either ringing, are blended with other lines
+you have not included, or are self-absorbed.
+
+To display the parameters of the lines you have found, there are two
+commands:
+\begin{quote}
+{\tt dispar}
+\end{quote}
+and
+\begin{quote}
+{\tt printparams}
+\end{quote}
+To save them in a file so that they can be read in later, use
+\begin{quote}
+{\tt writeparams}\/ {\em filename}
+\end{quote}
+This saves them in a file with the \de commands for reading them back
+in, so to recall them you need just say
+\begin{quote}
+{\tt run}\/ {\em filename}
+\end{quote}
+
+\section{Differences between gremlin and Xgremlin}
+
+Most of the commands in Xgremlin are identical to similarly-named commands
+in gremlin. In particular
+anything entered into at the prompt in gremlin should behave in the same
+way in Xgremlin, although there are a few commands which are either
+irrelevant in Xgremlin (such as the {\em sys}\/ command) or which have
+not yet been implemented. The main differences between gremlin and Xgremlin are listed
+here. The plot commands are significantly different in the two
+versions because of the different styles of user interfaces and they will
+be dealt with separately.
+
+\begin{description}
+\item{help} In gremlin help is available from the gremlin\/ prompt by typing
+{\tt help}. This displays a menu of topics under which the individual
+help commands are listed which can be navigated with the arrow
+keys on the keyboard. In Xgremlin clicking on the {\em help }\/ button with the
+left mouse button (single click!) gives a list of commands. Clicking
+on any of these
+gives help on that particular command. The help window remains open
+when you return to Xgremlin but can be hidden by another click on the {\em
+help}\/ button. 
+
+\item{Initialization file} In gremlin, this is called {\em gremlin.ini}\/
+and should be placed either in the directory pointed to by the {\em
+gremlin\_dir}\/ environment variable or in the directory you are working
+in. In Xgremlin there are two initialization files -- one is the
+system-wide configuration file {\em /usr/local/bin/xgremlin/xgremlin},
+and the other  is  {\em .xgremlinrc}\/ which is placed in your home
+directory. This latter file is where you can place commands to be
+executed when starting Xgremlin, such as commands to configure the buttons. 
+
+\item{Configuration of Colours} In gremlin colours and fonts are
+configured by the file gremlin.cfg, which is placed in the directory
+pointed to by the {\em gremlin\_dir}\/ environment variable. The format
+of the configuration file is completely different in Xgremlin due to the
+different user interface. For further instructions on Xgremlin
+configuration, see the installation guide in the file {\em
+HOWTO\_INSTALL} that is distributed with Xgremlin. Some of the colours in
+the plot window can be configured with the {\em color} command in Xgremlin.
+
+\item{Byte order} gremlin checks the variable {\em bocode}, which is one
+of the variables set in the header file,  to see which
+order the bytes are in the data (little endian, big endian or
+various other formats). If {\em bocode}\/ is zero, it assumes the data
+are in the order used by PC-compatible computers. If {\em bocode}\/ is
+one, it reverses the order of the bytes within each number. Xgremlin is
+designed to run on a variety of machines, each with a different byte
+order, and as a result, the handling is slightly different. It again
+checks the variable {\em bocode}, but this time compares it to the
+machine byte order code. If the two are different, the bytes are
+re-ordered so that the two correspond. The net effect is the same if
+Xgremlin runs on a PC, as the machine byte order code would then be zero.
+
+\item{Line files (.lin files)} Xgremlin creates a backup of a .lin file
+when the first lines are written to it after opening the file. There
+are no backups in gremlin. The {\em .lin} files are always written in
+little endian (PC) format, regardless of the machine on which they
+were created. This is so that they can be easiy transferred from gremlin
+to Xgremlin and between different machines.
+
+\item{System commands} Dos commands can be executed from within gremlin by
+the {\em sys}\/ command, which spawns a secondary Dos shell from
+within gremlin. Because Xgremlin is designed to run on a multi-tasking
+operating system, a {\em sys}\/  command is not needed. It has been
+replaced by commands to change, to print and to list the contents of
+the working directory --
+{\em cd}, {\em pwd} and {\em ls}, which have the same usage as the
+corresponding Unix commands. 
+
+\item{Command recall} Previously-executed gremlin commands can be recall
+in gremlin by using the DOS {\em ced} command editor. To record commands,
+type {\em ced on} at the start of your session. Commands can be
+recalled and edited using the arrow keys. In Xgremlin no action is needed
+to record commands. Commands can also be recalled with the arrow keys and
+by typing {\em $<$ctrl+a$>$ $<$ctrl+e$>$ and $<$ctrl+k$>$}, you can go to the
+beginning of the line, to the end of the line, and delete text from
+the current cursor position to the end of the line respectively.
+
+\item{Using printers} In gremlin the usual way to obtain a hard copy of
+the plot is to use the {\em Print Screen}\/ key together with some
+appropriate software for the printer being used. In Xgremlin this is
+acheived by selecting the command {\em Print plot window}\/ under the 
+{\em Gremlins}\/ menu. See the installation guide on how to configure
+printers for use with Xgremlin.
+
+\end{description}
+
+\subsection{Commands that do not yet work in Xgremlin}
+
+The following commands have not yet been implemented in Xgremlin in the
+interests of developing a stable and useable version for people to
+work with. They will hopefully be implemented sometime later this
+year, depending on how much time we get for writing software!
+
+\begin{itemize}
+\item Interactive phase correction will hopefully be written soon.
+\item Atlas. This will probably be re-written from scratch to produce
+postscript files that can be plotted on any printer using the GNU
+`ghostscript' interpreter.
+\end{itemize}
+
+A few others probably don't work and if you find these, let us know.
+
+\subsection{Plotting in Xgremlin }
+
+Figure \ref{fig:main} shows the main Xgremlin window, with most of the
+function buttons labelled. 
+\begin{figure}\label{fig:main}
+\caption{The main Xgremlin window}
+\epsfxsize=17cm
+\epsfbox{Xgremlin-preview.eps}
+\end{figure}
+Both edit and plot windows are visible at the same
+time. Keyboard input is usually sent to the edit window and mouse
+clicks are sent to the plot window. However it is possible to send
+keyboard input to the plot window as well by either pressing the
+$<$tab$>$ key or by clicking on the button $<$PlotMode$>$ with the left mouse
+button. The {\em Plotmode}\/ button changes colour from grey to red when the 
+plot window is accepting keyboard input. It is however possible to send
+mouse input to the plot window even when the plot window is not
+accepting keyboard input -- this is the most common way to use Xgremlin
+and provided that you have bound your most common commands to the
+configurable buttons (see next paragraph) you should never need to
+worry about the {\em Plotmode}\/ button. Commands in the edit window can be
+recalled using the keyboard arrow keys and it is also possible to type
+the first few letters of a command and recall a previous occurrence
+with the arrow keys (somewhat like the 4dos command editor). 
+
+Function buttons are activated by clicking with the left
+mouse button. The buttons between the plot window and the edit window
+are configurable with the {\em button}\/ command. It is convenient to place
+several {\em button}\/ commands in the {\em .xgremlinrc}\/ file which
+lives in your home directory. See the help topic {\em button}\/ for
+more details of how to use this. To configure the buttons as
+shown in figure 1, the {\em .xgremlinrc} was as follows:
+
+\begin{verbatim}
+
+# local XGremlin initialization file
+set noecho
+button 1 "plot" "mark all" "o" 
+button 2 "plot" "add line" "C+a" 
+button 3 "plot" "del line" "C+d" 
+button 4 "plot" "toggle line" "C+t" 
+button 5 "edit" "dispar" "dispar"
+button 6 "plot" "c. of g." "C+g" 
+button 7 "plot" "connect" "M+c" 
+button 8 "plot" "area" "M+a"
+
+break
+
+\end{verbatim}
+
+gremlin has two cursors - one bound to the keyboard which can be moved
+with the arrow keys, and one bound to the mouse which can be used to
+move the other cursor around quickly. Xgremlin only has a mouse cursor,
+and a running display of the position of it is given whenever it is in
+the plot region. To save positions of the cursor for use in commands,
+it is possible to place markers on the plot. 
+
+Markers in the plot are of two types: red and blue. Red markers are
+placed by clicking the left mouse button at the position required in
+the plot. Blue markers are placed by clicking the middle mouse button
+at the required position. To remove the last marker, click the right
+mouse button. At present, the blue marker is unused,
+but future versions of Xgremlin may enable different actions
+to be performed with the two different types of marker. 
+
+When a marker is placed the position of it is displayed in
+wavenumbers and wavelengths below the main plot. Up to 30 markers may
+be placed at one time, and many of the plot commands will work on
+several markers at once. For example, to add three lines to the line
+list, place three markers and either click on the 'add line' button,
+or press $<$Ctrl+A$>$. If the command is entered from the keyboard, make
+sure that it is sent to the plot window by pressing the $<$tab$>$ key
+first or by clicking on the {\em Plotmode}\/ button.
+
+The following is a list of all the cursor commands available in Xgremlin:
+
+\begin{verbatim}
+
+	.	  move to the right, do not rescale y axis
+	>	  move  to the right and rescale y axis to fill plotter window
+	,	  move to the left, do not rescale y axis
+	<	  move to the left and rescale y axis to fill plotter window
+	
+	z	  move zero line to the centre of the plot
+	e	  move zero line to bottom edge of the plot
+
+	x	  zoom in horizontally around centre of window or marker
+		  zoom factor is 0.5, zoom in
+	<shft>x   zoom factor 0.25, zoom in
+	<ctrl>x   zoom factor 0.1, zoom in
+	<meta>x   zoom out horizontally around centre of window or marker
+    <shft><meta>x zoom out horizontally by factor 4
+    <ctrl><meta>x zoom out horizontally by factor 10
+
+	
+	y	  zoom in vertically around zero line or marker, zoom
+		  factor 0.5 (i.e. half the previous number of points
+                  are displayed) 
+	<shft>y   zoom factor 0.25, zoom in
+	<ctrl>y   zoom factor 0.1, zoom in
+	<meta>y   zoom out vertically around zero line (zoom factor 0.5)
+    <shft><meta>y zoom out vertically by factor 4
+    <ctrl><meta>y zoom out vertically by factor 10
+
+	^	  full scale in y direction, data fill window in y direction
+
+	p         (lower case 'p') overplot the current content of the r
+		  array onto the current plot.
+
+	<ctrl>r   exchange r and tr arrays, then overplot the contents of 
+                  the r array.	
+
+	P	  (upper case 'p') replot. Optionally  put zeroline 
+                  where the cursor marker is set.
+	
+
+	plot modes:     
+	-----------
+	n	  normal plot. r array contains real data
+	r	  r array contains complex data, plot real part only
+	i	  r array contains complex data, plot imaginary part only
+	c	  r array contains complex data, plot real and imag part	
+
+
+	line position related commands:
+	-------------------------------
+	<shft>a   make all lines in the current line buffer 'active'
+	<ctrl>a   add the (cursor-)marked line(s) to the line list
+	<ctrl>d   delete a marked line from the linelist.
+	<ctrl>s   use last marked line for width, damping etc. 
+                  of future added lines
+	<ctrl>t   toggle a line active or inactive
+	<shft>v   toggle all lines visible or invisible on the screen
+	<ctrl>g   calculate the center of gravity between two markers
+                  on the screen and insert the result into the linelist         
+	m         print information about the line marked with a blue
+                  cursor marker (middle mouse button).
+	a,o       mark all lines in the current plotter window with
+                  line markers.
+	
+	<meta><ctrl>g  do a 'getlines inactive'. This will overwrite all 
+                  data in the linelist buffer (hence the inconvenient key
+                  combination).
+
+	miscellaneous:
+	--------------
+	<meta>a	  execute an 'area' command to determine the area between
+                  two cursor markers.
+	N	  put polynomial through 1-3 (cursor-)marked point(s)
+                  and normalize to 1.0 .
+	B         put ploynomial through 1-3 (curosr-)marked point(s)
+	          and subtract from data.
+	#         print 11 points around each cursor marker in the
+                  text window.
+
+	NOTE: <shft>x means: hold down the shift key while pressing key 'x'
+              <ctrl>x means: hold down the control key while pressing 'x'
+	      <meta>  stands for a modifier key that is usually identical
+                      with the <alt> key on PC type machines. The location of 
+                      the meta key may however vary.
+
+\end{verbatim}
+
+
+\subsection{Plotting in gremlin}
+
+Plot commands in gremlin are mainly entered from the keyboard.  It
+is also possible to click on one of the commands bound to 'function
+keys' at the bottom of the plot, but many people will probably find it
+quicker to use the keyboard once the basic commands have been learnt.
+The mouse is however invaluable in moving the cursor around the plot,
+and in marking lines to be added, deleted or toggled between active
+and inactive. To move the cursor to a particular mouse position, click
+the left mouse button. To place the cursor on the line immediately to
+the right of the mouse, click the right mouse button. 
+
+These are the basic plotting commands as listed in the {\em cursor.hlp}
+file.
+
+\begin{verbatim}
+
+ Exiting plot mode:  q  or  ESC
+
+ Controlling the cursor:
+    Arrow keys: move cursor in the indicated direction
+                (diagonals also work)
+    1-9   move the cursor to the indicated x-octant
+    Alt 1-9  move the cursor to the indicated y-octant
+    Alt 0    move the y-cursor to the zero line
+   ^F1-4     save up to 4 cursor positions (both x and y)
+    Alt F1-4   show the saved cursor position
+    c     change cursor size (default is 4x6)
+    G     increase cursor gain (acceleration)
+    g     decrease cursor gain (acceleration)
+
+ Plot modes:
+    P     clear the screen and replot
+    p     overplot without erasing
+   ^l     replot with original parameters (restore plot to what it was
+          on typing `plot'
+    M     Multiple overplot using plotrecall (see 'set')
+    r     plot real part of complex data
+    i     plot imaginary part of complex data
+    n     non-complex; plot all points (default)
+ 
+
+ Expanding the plot:
+    x     expand in x about current cursor position
+    y     expand in y about current cursor position
+    z     expand in y, moving zeroline to center
+    e     expand in y, moving zeroline to bottom   
+
+ Moving around in expanded plots:
+    < (or ,)     move 3/4 screen to the left   
+    > (or .)     move 3/4 screen to the right     
+
+ Accessing other data:
+    Control right and left arrow:
+                read new data 7/8 to right or left
+    @     center a new read on cursor
+   ^r     recall a record (0-19) previously saved using `save n'
+
+ Labels and printing
+    ?,F10 print this list  
+    *     print the x-cursor value (in current units) on the plot
+    (     print the y-cursor value on the plot
+    x mode: s =wavenumber, w =wavelength,
+            f,F =frequency (Hz,GHz), t =pt. index
+    D,AltD change the number of decimal points in the
+           (current x),(y) mode
+   ^x     toggle x mode between s, w, f and t
+    #     print 100 (or more) points centered on cursor
+
+ Marking and manipulating lines:
+    m     mark the first line to the right of the cursor;
+          print at bottom
+    k     mark the next line to the right of the current line
+    j     mark the next line to the left of the current line
+    l,L   center on the next line to the right, replot and mark
+    o,a   mark all lines displayed
+    Tab   expand plot by factor of 4
+Shift+Tab compress plot by factor of 4
+   ^a     add a line at the x-cursor position,
+          with amplitude set by y-cursor
+   ^d     delete the last marked line           
+   ^g     find C.G. of range marked by ^F1 and ^F2;
+          enter in linelist
+   ^s     use the last marked line for width,
+          damping of future added lines
+   ^t     Toggle status of last marked line between inactive
+          or drop and active
+   ^v     moVe last marked line to current cursor position
+   ^F5-8       save up to 4 tag characters        
+    Alt F5-8   put the corresponding tag in the last marked line
+   ^m     manual control of the parameters of the last line marked:
+         F7-10 selects (wavenumber, amp., width, damp.)
+         + to increase,
+         - to decrease.  0 replots residuals.
+         Up/down arrows change step size
+ Functions:
+    Alt-C   connect ^F1 to current cursor,
+            save current cursor in F1
+    N     Put polynomial through 1-3 points in ^F1-3;
+          normalize to 1.0
+    B     Put polynomial through 1-3 points in ^F1-3;
+          subtract from data
+    K     show scan code and ascii code of next character  
+    V     change color of plot area
+    U     re-map a color in the palette
+
+\end{verbatim}
+
+
+\section{Using gremlin to Transform an Interferogram and for Phase
+Correction }
+
+\subsection{Why?}
+
+After recording an interferogram on your interferometer, the first
+thing you will want to do is perform a Fourier transform to get the
+spectrum. Assuming that you have recorded an interferogram on both
+sides of the zero path difference, the transform will be a complex FT,
+with a non-zero imaginary part. This imaginary part comes from several
+causes:
+\begin{itemize}
+\item You do not have a point exactly at the centre of the
+interferogram.
+\item You have not sampled the interferogram symmetrically --
+e.g. Kitt Peak interferograms often have up to five times as many
+points on one side of the zero path difference as the other. This
+gives an antisymmetric imaginary part after phase correction, and it
+is particularly important that the phase correction is as good as
+possible to avoid distorting the line profiles. 
+\item The interferogram will probably still be slightly asymmetric due
+to small imperfections in the alignment or the optics, meaning that
+the signal you recorded at a path difference of {\em -x} is not the
+same as that recorded at {\em +x}. 
+\end{itemize}
+
+The principle of phase correction is to make the imaginary part as
+close to zero as possible. Although this is often done without
+intervention by the user, this is likely to be unsuccessful
+\footnote{A paper by Learner et al. will soon appear in J.O.S.A A,
+which describes some of the problems that have been encountered with
+non-interactive phase correction}. The solution is to do the phase
+correction interactively.
+
+The following two subsections have been contributed by Anne Thorne, and
+describe how to both transform and phase correct a typical
+interferogram, illustrating some of the things that can go wrong.
+
+\subsection{Principles}
+
+Interactive phase correction requires a moderately intelligent user
+prepared to work hard at it until he/she understands what is going on.
+The moderately intelligent and moderately lazy user will then find a
+number of short-cuts appropriate to the instrument and spectral
+parameters that he/she is using.  This guide explains the whole
+procedure in what we hope is sufficient detail to allow the aforesaid
+moderately lazy user to make the shortcuts intelligently.
+
+There are 5 main steps:
+
+\begin{itemize}
+\item[1.] Find the position of the central fringe.
+
+\item[2.] Transform the central section of the interferogram to give a raw
+phase plot, using points of amplitude above some plausible fraction
+of the maximum in the spectrum.  The length of interferogram transformed
+is 256K points, or the whole interferogram if this is shorter. (For
+unequal-sided interferograms the length is the largest power of 2 that
+fits in the symmetric portion.)  The interferogram is carefully apodized
+before transforming to kill the ringing from strong lines.  
+Up to 512 spectral points, distributed as
+uniformly as possible across the alias, are used for the raw phase plot,
+and the discriminator may need to be reset to get a reasonable number.
+Each point is represented by a dot for the phase (between -$\pi$ and +$\pi$)
+and a vertical line proportional to the log of the amplitude.
+The plot can be expanded in both x and y directions as in DECOMP.
+
+\item[3.] Two operations may be necessary at this stage:
+correct for any 2$\pi$ phase flips; and 
+remove obvious bad points arising from alias foldover, ghosts, etc.
+Replot the raw phase to see that it is satisfactory before proceeding.
+As an optional refinement, before plotting the phase, plot the amplitude
+spectrum to determine the noise level (relative to the maximum signal).
+This will enable the programme to calculate chi-square for the phase-fit 
+applied in step 4.
+
+\item[4.] Decide on the number of terms required for the phase-fit
+polynomial, perform the phase correction on the same central section
+and inspect the result.  The continuous line gives the phase curve
+that has been used, and the dots now give the difference between
+observed and calculated phase for the points used.  Repeat with more
+terms in the polynomial if this seems desirable (maximum is 8).
+
+\item[5.] Transform the full spectrum; this will be phase-corrected with 
+the above polynomial.  You have the option to set wavenumber 
+limits for the part of the spectrum to be written to disc and to
+specify real or complex or both.
+\end{itemize}
+
+\subsection{Practical implementation}
+
+\vspace*{.1in}
+We start with header and interferogram files, say `gnome.hdr' and `gnome.int'.
+Copy the template phscds to `gnomcds' and edit lines 1 and 2 to give the 
+filename `gnome'.  Line numbers refer to command lines, not including 
+comment lines.
+
+\subsubsection{Find the central point}
+
+Enter gremlin, open datain to `gnome int', and execute `read' - gremlin will
+read in the whole interferogram at once,  and `plot' will display it; x and y
+expansions work as in Decomp.  Note the point number of the expanded
+central fringe.
+
+{\bf N.B.}  For data taken on machines with floating-point words are
+byte reversed with respect to to the PC, and which also have old-style headers 
+you must execute `info bocode 1' before you can read the interferogram
+or open rawin in step (d) below.  It is best to do this as soon as
+you get into gremlin.
+
+\subsubsection{Find the raw phase}
+
+\begin{description}
+
+\item[(a)] Edit line 4 to give the center point number.  (You can edit 
+files without exiting gremlin by using `sys ``$<$editorname$>$ 
+$<$filename$>$" ') 
+
+\item[(b)] If the interferogram is NOT twosided, change line 3 to `onesided'.
+  
+\item[(c)] The three parameters in line 5 have the following meanings:\\
+`nterms' is the number of terms in the polynomial (initally 0);
+    `cutfrac' is the discriminator above which lines are selected
+    for the phase fitting, expressed as a fraction of the maximum 
+    in the spectrum (initially 0.05);
+    `fracnoise' is the noise relative to a spectral maximum of 1.0 
+(initially 0.001).
+
+\item[(d)]  Quit your editor (return to GREMLIN is automatic), close datain, 
+and run the file to give the raw phase (with `run gnomcds')
+
+\item[(e)]  Before the phase is plotted, you get the statistics for the 
+     points used.  The alias is divided into 8 sections, each of which
+     is intially allotted 64 (=512/8) points.  If any section is
+     unfilled (because there are not enough points above the 
+discriminator in that region) the extra points are allocated in order
+     of amplitude to the other sections.  If the total number of 
+     points used is significantly below 512 you should probably
+     lower the discriminator (by editing `gnomcds') and start again. 
+
+\item[(f)]  `plot' will now show you the amplitude spectrum (this is the only time it
+is available) and then `plot phase' gives you the raw phase spectrum.
+
+\end{description} 
+
+\subsubsection{Make any necessary corrections}
+
+\begin{description}
+
+\item[(a)] There may be a 2$\pi$ discontinuity, shown by the phase plot moving 
+    off the plot at +$\pi$ and reappearing at -$\pi$, or the other way round.
+    If so, quit the plot and\\
+ {\em either} add $\pi$ to the phase by typing
+    `input inverted' (if the phase plot is fairly horizontal)\\ 
+{\em or} 
+change the slope by moving the center one point with `movecenter 1' (rotates
+clockwise) or `movecenter -1' (rotates anticlockwise).\\  Follow this with
+    `input center' and  `plot phase'
+to see if you have cured the problem.
+
+\item[(b)]  There may be points at either end of the alias that obviously have
+     the wrong phase because they have been folded over from the next
+     alias.  These should be deleted from the file.  Use \^\negthinspace F1 
+and \^\negthinspace F2
+to mark the diagonal corners of a box containing such a group of points,
+followed by \^\negthinspace d, which will draw the box on the screen and put 
+the bad
+points in a file called `gnome.bpt'.  There may also be other points 
+that have the wrong phase because they are ghosts of stronger lines 
+elsewhere - for example, the laser ghosts at $\pm$ 15798 cm$^{-1}$.  These
+should be added to the bad-points file in the same way.\\
+  Again, type `input center' and `plot phase' to check that the 
+exorcism is satisfactory.
+
+\item[(c)]  This is an optional step. If you want to know how good the final
+phase fit is you must find the noise level in the amplitude spectrum
+mentioned in 2(f).
+  The easiest way to do this is to choose a section 
+free of strong lines (using the plot expand as
+necessary), mark its ends with \^\negthinspace F1 and \^\negthinspace F2 and hit
+Alt-a (the `area' command); this gives, amongst other things, the mean, 
+which can be taken as a rough measure of the noise since this is an
+amplitude spectrum.
+
+\end{description}
+
+\subsubsection{Determine the phase-fit polynomial}
+
+The number of terms needed in the polynomial is likely to be
+mainly a characteristic of the interferometer - i.e., 3 or 4
+are usually enough for IC, whereas NSO needs 6 to 8.
+Reset the parameters in the `phcorr fit' line by typing in this number,
+and also reset the noise level if you have found the correct value - e.g.\\
+`phcorr fit 3 [new value] 0.025 [unchanged] 0.0004 [new value]'\\
+followed by `input center' and `plot phase' as before.
+
+The continuous curve now shows the polynomial that has
+been applied and the dots show the observed-minus-calculated phase.
+The information on the screen before you plot the phase tells you
+the polynomial coefficients and the chi-square for the fit.
+If the latter is significantly greater than one, you may want to
+try more terms in the polynomial (by simply repeating the above with
+a new value for `nterms') or go back to look for more
+bad points.  BUT a high value for chi-square can have a different cause: 
+the discriminator has probably picked several points from each very strong
+line, and if the central section of the interferogram is not fully 
+symmetric (due to, e.g., source intensity variation during the scan)
+the imaginary part of the line profile may have a dispersive
+shape so that the phase actually varies across the line (detectable by
+expanding a cluster of points of large scatter).  If this is the case, an
+unflattering value for chi-square should not lead to significant errors
+if the interferogram is two-sided [Ref: a paper on phase correction by Learner
+{\em et al.} to be published in JOSA A in 1995].
+
+
+\subsubsection{ The full transform and phase correction}
+
+You {\em can}, but we recommend that you don't, do this by typing in
+the remaining commands in the cards file from the keyboard.  These
+commands have the following meanings:\\
+`input' reads in the whole interferogram, removes any DC term and 
+checks for glitches;\\
+`apodize' performs a cosine bell apodization of 5\% of the longest
+side of the interferogram;\\
+`transform' performs the FFT and applies the chosen polynomial phase
+correction;\\
+`wavelimits' allows you to set the stop and start wavenumbers for the
+part of the spectrum that you want written to disc (saves space if the
+alias is wider than the useful part of the spectrum);\\
+`real $<$filename$>$' or 'complex  $<$filename$>$' allows you to write either
+or both of the real and complex spectra to disc;\\
+`close rawin' does what you would expect it to.
+
+The strongly recommended alternative to typing in these commands is to
+edit `gnomcds' to give it the information you have so painstakingly
+discovered and run it through from the beginning.  The advantage of
+this is that the logfile will be a record of what you actually {\em did}.
+Just to remind you, the commands to be edited are: \\
+remove the `remark' from `input inverted' if you used this;\\
+change `ncenter' if you used `movecenter';\\
+put the correct parameters in the `phcorr fit' line;\\
+put in the wavelimits and the name of the spectrum file;\\
+comment out the `keyboard' commands if you want it to run straight through
+without sitting over it to type in `run' each time it meets one of these.
+{\bf IMPORTANT: always `close rawin' before you `run gnomcds' from the
+beginning --- otherwise you will get rubbish!}
+
+\vspace*{.1in}
+\subsubsection{ Notes}
+
+\noindent
+(i)  The bad points you found in step 3 are kept in the gnome.bpt file
+and accessed by `input' when you run the final transform.  You may want
+to append this file to your header as a useful list of interlopers for
+subsequent work on the spectrum. 
+
+\noindent
+(ii)  A visibility plot is created by `input' and is stored in 18 
+     in the scratch file.  It is sometimes a useful diagnostic.
+
+\noindent
+(iii) It is recommended that the log file be archived with the data
+     as a permanent record of phase fit, etc.
+
+\subsection{Phase correcting continuum spectra}
+
+Phase correcting a continuum spectrum (an intensity calibration or
+absorption spectrum) is a much simpler process because phase
+information is available all through the spectrum. It is therefore not
+necessary to play around with discriminator settings and
+polynomials. Replace the line {\em phcorr fit \dots} with the line
+{\tt phcorr smooth} {\em n}. gremlin then determines the phase from the
+transform of n interferogram points around the centre and draws a
+smooth curve through these points (which can be inspected using {\tt
+plot phase}, as before. The value of {\em n} should be a factor of 2
+-- typically 256--1024 points.
+
+\subsubsection{ The cards file `phscds'}
+
+\begin{verbatim}
+open logfile gnome.log
+open rawin gnome
+twosided
+ncenter 123456
+phcorr fit      0     0.050   0.0010
+#phcorr `fit' nterms cutfrac fracnoise
+#input inverted
+#movecenter [n]
+input center
+keyboard
+
+input
+apodize
+transform
+wavelimits
+real gnomer
+#complex gnomec
+\end{verbatim}
+
+\section{Using gremlin to Analyse a Spectrum}
+
+\subsection{General Procedure}
+
+This section describes the processes involved in converting a spectrum
+from the FTS into a linelist. Most of the commands will only work on a
+spectrum containing only the real part, but it may be advisable to
+check the file containing the complex spectrum as well, just to ensure
+the phase correction has been performed correctly.
+
+The general procedure is as follows:
+\begin{description}
+
+        \item[Subtact Continuum] If you have a continuum, the next thing
+        to do is subtract it from the spectrum. If you do not, you will
+        get the wrong intensities for the lines, as the routines attempt
+        to make the residual intensity zero across the line profile.
+
+        \item[Search for lines]  \De can automatically searches for
+        lines, but often has a slightly different idea about what
+        constitutes a line to your idea. So it is then necessary to go
+        through the spectrum and check what it has done, correcting it
+        where necessary.
+
+        \item[Fitting of lines] For most purposes, this can also be done
+        automatically, but if there is an area of the spectrum that you
+        are particularly interested in that has many blended lines, it
+        might be worth doing this by hand.
+
+        \item[Wavenumber and Intensity  calibration] The final linelist output from gremlin
+        can be wavenumber corrected and can also be corrected for the
+	refractive index of air if you have had to run your spectrometer in
+	air (NOT recommended !). Intensity calibration can also be
+	performed using a low-resolution response function extracted
+	from e.g. a tungsten or deuterium lamp spectrum.
+
+        \item[Output linelist]
+
+\end{description}
+
+\subsection{Initial Preparation}\label{sec:prep}
+
+
+
+The first thing to do with the spectrum, if it has not been done
+already, is to check the phase and and subtract any continuum. To check the
+phase, first open the complex spectrum and read in a section with
+\begin{quote}
+{\tt read}\/ {\em waveno}
+\end{quote}
+and plot it. With the larger versions of gremlin, you can probably read in
+the whole file at once. The buffer will be displayed as alternate real and
+imaginary parts. To check the imaginary part is near zero, press
+\begin{quote}
+{\tt i}
+\end{quote}
+to display it alone. If the phase correction is poor in certain
+sections, you can either try re-transforming it again, or can correct
+it on a line-by-line basis as described in section \ref{sec:quick}
+If you are satisfied, close the complex file using
+\begin{quote}
+{\tt close datain}
+\end{quote}
+and open the real file. 
+
+The next thing to do is to subtract any continuum that might be
+present. There does not seem to be a satisfactory way of doing this
+automatically, but one way of doing it is to use the following
+procedure:
+\begin{enumerate}
+\item First type
+\begin{quote}
+{\em extended bin}
+\end{quote}
+This goes through the whole file, averaging sets of
+points into equal width `bins' so that the whole file will fit into
+4096 points. You can then plot this and find out how much of the
+result is pure continuum and how much lines. 
+
+\item Subtract out the lines. You can do this whilst you are in the plot by
+connecting two marked points together with a straight line. This
+differs in gremlin and Xgremlin -- in gremlin you place the cursor on one side of
+the line and press {\em $<$ctrl+f1$>$}  and then do the same on the
+other side of the line, pressing {\em $<$ctrl+f2$>$}. Then type 
+{\em $<$alt+c$>$} and the two marked points will be connected. In
+Xgremlin, either side of the line is marked with the mouse, and then {\em
+$<$alt+c$>$} is pressed. The idea is to work your way through the
+buffer in this way to get something that matches the true continuum as
+closely as possible -- in most cases it is possible to describe the
+continuum in this way at least to the level of the noise. Then exit
+the plot,  multiply the result by -1  (so you can subtract the
+continuum by adding it to the file) and save it in a record:
+\begin{quote}
+{\em multiply -1.}
+{\em save $<$n$>$}
+\end{quote}
+
+\item Subtract the continuum from the file. First, create
+a file for the result, and then use the {\em extended add} function:
+\begin{quote}
+{\em create $<$filename$>$} \hspace{2cm}(without extension)
+{\em extended add $<$n$>$}
+\end{quote}
+where $<$n$>$ is the record where you saved the continuum. Then close
+{\em datain} and {\em dataout}, and re-open {\em datain} to examine
+the result. You may find that you have to multiply the continuum by
+something other than -1 (such as -1.2 or -0.8) to get a decent result. 
+\end{enumerate}
+
+\subsection{Finding and Fitting Lines}
+
+Now you have a real spectrum file with all of the continuum subtracted
+away. The next thing you will probably want to do is to find out where
+the lines are over a certain discriminator. Which discriminator to
+used depends on what you want to do and on what the spectrum looks
+like. If you want to pick up as many lines as possible without getting
+too many noise spikes, a good place to set the discriminator is at 5
+times the noise level. 
+
+The best thing to do is to scale the whole
+spectrum such that the noise level is equal to 1, so that the peak
+intensities will give the signal-to-noise ratio. First, find the noise
+level, by plotting the spectrum and placing two markers to deliminate
+a section that contains noise and no lines. In gremlin, do this by
+clicking the left mouse button on one side and then press
+$<$Ctrl+F1$>$, and then click the left mouse button on the other side
+and press $<$Ctrl+F2$>$. In Xgremlin, just click the left mouse button on
+either side of the section. Then press $<$Alt+a$>$. The noise level is
+given by the rms deviation from the mean. To scale subsequent reads
+such that the noise level is 1, type
+\begin{quote}
+{\tt read nonorm} {em 1/noise}
+\end{quote}
+You can enter this value into the appropriate space in the header
+file, but you will need to type {\tt read nonorm} (without a value)
+each time you open the spectrum to make it take effect. 
+
+To find all the lines, type
+\begin{quote}
+{\tt linelist}\/ {\em discrim scale wstart wstop}
+\end{quote}
+This command needs all its parameters -- just typing {\em linelist}
+will not get you very far.
+{\em linelist} finds all lines between {\em wstart} and {\em wstop} with peak
+intensity greater than {\em discrim} and scales the intensities by
+factor {\em scale}. This scale factor is the factor {\em 1/noise} that
+you have determined with the area command. The lines are listed on the
+file {\em filename.lin} in binary, so you can't list them directly. To
+get an ASCII listing, type
+\begin{quote}
+{\tt writelines con}\/ {\em wstart wstop}
+\end{quote}
+An example of the {\em writelines} output is given in
+figure \ref{fig:writelines}. The most important columns are:
+\begin{figure}\label{fig:writelines}
+\caption{An example writelines output}
+\begin{tiny}
+\begin{verbatim}
+  line  wavenumber    peak ht   width  damping    E.W.    itn  H tags  epstot  epsevn  epsodd  epsran     identification
+
+     1 33032.359303  430.6916   162.92   .1000 7.779E+04    0  0    F   .0000   .0000   .0000   .0000                                 3026.4532
+     2 33039.120638 3080.5051   209.79   .1000 7.165E+05    0  0    F   .0000   .0000   .0000   .0000                                 3025.8339
+     3 33041.371223  867.7939   168.96   .1000 1.626E+05    0  0    F   .0000   .0000   .0000   .0000                                 3025.6277
+     4 33058.893219 2782.5439   169.78   .1000 5.237E+05    0  0    F   .0000   .0000   .0000   .0000                                 3024.0240
+     5 33091.209319 1905.5762   108.99   .1000 2.302E+05    0  0    F   .0000   .0000   .0000   .0000                                 3021.0707
+     6 33091.353892 1859.5248   107.83   .1000 2.223E+05    0  0    F   .0000   .0000   .0000   .0000                                 3021.0575
+     7 33095.927819 3852.0510   112.62   .1000 4.810E+05    0  0    F   .0000   .0000   .0000   .0000                                 3020.6400
+     8 33096.137395 3690.0068   108.22   .1000 4.427E+05    0  0    F   .0000   .0000   .0000   .0000                                 3020.6209
+     9 33097.657616 3393.5515   211.57   .1000 7.960E+05    0  0    F   .0000   .0000   .0000   .0000                                 3020.4821
+    10 33114.185190  832.1089   168.15   .1000 1.551E+05    0  0    F   .0000   .0000   .0000   .0000                                 3018.9745
+    11 33129.064180  768.6240   165.40   .1000 1.409E+05    0  0    F   .0000   .0000   .0000   .0000                                 3017.6185
+    12 33144.901801  164.6548   158.83   .1000 2.899E+04    0  0    F   .0000   .0000   .0000   .0000                                 3016.1766
+    13 33196.672881  280.2426   159.15   .1000 4.945E+04    0  0    F   .0000   .0000   .0000   .0000                                 3011.4726
+    14 33217.758903 1706.3300   177.24   .1000 3.353E+05    0  0    F   .0000   .0000   .0000   .0000                                 3009.5609
+    15 33233.562357 2808.0352   220.62   .1000 6.868E+05    0  0    F   .0000   .0000   .0000   .0000                                 3008.1297
+    16 33243.018951 1554.5828   164.49   .1000 2.835E+05    0  0    F   .0000   .0000   .0000   .0000                                 3007.2739
+    17 33244.535585  371.3441   163.71   .1000 6.740E+04    0  0    F   .0000   .0000   .0000   .0000                                 3007.1367
+    18 33290.082446  302.0632   159.50   .1000 5.341E+04    0  0    F   .0000   .0000   .0000   .0000                                 3003.0222
+    19 33294.369286  204.3189   171.02   .1000 3.874E+04    0  0    F   .0000   .0000   .0000   .0000                                 3002.6356
+    20 33313.178087 4340.5903   259.49   .1000 1.249E+06    0  0    F   .0000   .0000   .0000   .0000                                 3000.9402
+    21 33318.701326  789.8692   161.71   .1000 1.416E+05    0  0    F   .0000   .0000   .0000   .0000                                 3000.4427
+    22 33329.135718 3934.0403   198.27   .1000 8.647E+05    0  0    F   .0000   .0000   .0000   .0000                                 2999.5033
+    23 33384.891788  732.9648   159.65   .1000 1.297E+05    0  0    F   .0000   .0000   .0000   .0000                                 2994.4936
+    24 33385.665779 1136.6866   110.16   .1000 1.388E+05    0  0    F   .0000   .0000   .0000   .0000                                 2994.4242
+    25 33385.785747 1102.9287   107.40   .1000 1.313E+05    0  0    F   .0000   .0000   .0000   .0000                                 2994.4135
+    26 33430.781697  217.3091   161.70   .1000 3.896E+04    0  0    F   .0000   .0000   .0000   .0000                                 2990.3830
+    27 33465.482214  378.5864   161.48   .1000 6.777E+04    0  0    F   .0000   .0000   .0000   .0000                                 2987.2821
+    28 33474.833634  107.6418   158.42   .1000 1.890E+04    0  0    F   .0000   .0000   .0000   .0000                                 2986.4475
+    29 33485.040026  144.5339   172.80   .1000 2.769E+04    0  0    F   .0000   .0000   .0000   .0000                                 2985.5372
+    30 33493.119844  394.4878   167.85   .1000 7.341E+04    0  0    F   .0000   .0000   .0000   .0000                                 2984.8170
+\end{verbatim}
+\end{tiny}
+\end{figure}
+\begin{description}
+\item[2] The wavenumber (or wavelength if that is your primary unit)
+\item[3] The intensity (peak). This is the signal-to-noise if you have
+scaled the spectrum so that the noise is 1. 
+\item[4] The full width at half maximum, in mK (or m\AA\ if you are
+using \AA ngstr\"o ms).
+\item[5] The damping paramter. This is the ratio of the Lorentzian
+width to the total width of the line, and thus runs from 0 (for a pure
+Gaussian) to 1 (for a pure Lorentzian).
+\item[6] The integrated intensity of the line (equivalent width in mK).
+\item[7] itn: The number of times the line has been fitted with lsqfit
+\item[8] H: A code indicating whether any parameters have been fixed
+during the fit.
+\item[9] tags: A code indicating the origin and history of the line. `F'
+means the line has been found with {\em linelist}\/ or {\em
+findlines}; `I' means it has been added from the plot; `L' means it
+has been fitted with lsqfit; and `G' means it is a centre of gravity.
+\item[10--13] The residuals left from the fit.
+\item[15] (unlabelled) The wavelength in \AA\ (or wavenumber in if your
+primary units are wavelengths)
+\end{description}
+
+To list the lines on a file, replace
+\begin{quote}
+{\tt con}
+\end{quote}
+by a filename.
+\begin{quote}
+{\tt writelines}\/ {\em wstart wstop int}
+\end{quote}
+only lists the lines between {\em wstart} and {\em wstop} over an
+intensity {\em int}. If you lose or corrupt a .lin file, it is now
+possible to read a file produced using writelines and use it to
+produce another .lin file. The command is
+\begin{quote}
+{\tt readlines}\/ {\em filename}
+\end{quote}
+
+Having found as many lines as possible, you should now go through the
+spectrum and see what gremlin has found. It does not
+always have the same idea as you as to what constitutes a line. To do
+this, read in each buffer using
+\begin{quote}
+{\tt read}\/ {\em wstart}
+\end{quote}
+You probably have only 3-4 points per line width, and you may wish to
+interpolate a few more to give you a better idea of what the line
+looks like. To do this, type 
+\begin{quote}
+{\em stretch $<$n$>$}
+\end{quote}
+where $<$n$>$ is some power of 2 (2 is usually sufficient). 
+This does a Fourier interpolation, and is equivalent to doing an
+original FT of n-times the length, padding beyond the ends with
+zeros. Then get the lines from the .lin file using
+\begin{quote}
+{\tt getlines}
+\end{quote}
+and
+\begin{quote}
+{\tt plot}
+\end{quote}
+them. If you wish to add lines, you must first set the width. You can
+either set the width outside the plot routine with the command
+\begin{quote}
+{\tt set width}\/ {\em width}
+\end{quote}
+or inside the plot routine by telling gremlin to use the
+width of the last line marked for all future lines. First display the
+lines by pressing
+\begin{quote}
+{\tt o}
+\end{quote}
+and click with the left mouse button on a line with a suitable
+width. The parameters of each line are listed at the bottom of the
+screen. Then press
+\begin{quote}
+\verb&^S&
+\end{quote}
+to set the width (ensure that you are in $<$plotmode$>$ in Xgremlin!). To
+add a line, move the cursor until it is at the correct position, and press
+\begin{quote}
+\verb&^a&
+\end{quote}
+To delete a line, click on it with the left mouse button and press
+\begin{quote}
+\verb&^d&
+\end{quote}
+
+If you have un-resolved hyperfine or isotope structure it may be
+better to save the centres of gravity of the lines. These should
+correspond well to the unshifted energy levels, and experience has
+shown that they can be reproducible to within a few mK. To save the
+centre of gravity, first set markers on either side of the line (see
+section on continuum correction), and then press \verb&^G&. This finds
+the centre of gravity, saves the parameters in the internal linelist,
+and displays the parameters on the screen. You may either delete the
+lines gremlin found (the individual hfs components), or keep them if
+you wish to try and fit the structure of the line.
+
+Once you have selected all the lines, remember to put them back on to the
+.lin file with
+\begin{quote}
+{\tt putlines}
+\end{quote}
+It is often a good idea to set up an alias, such as
+\begin{quote}
+{\tt alias fitl "getlines;plot;putlines"}
+\end{quote}
+so lines are automatically put back once you have found them. In Xgremlin,
+an even better way is to bind the {\em putlines} command to one of the
+buttons, between the plot and edit screens. This encourages you to save the
+lines frequently (say every screenfull). 
+
+{\tt linelist} just produces a first approximation for the line
+positions, intensities and widths; to get accurate values you
+should perform a further least squares fit of the lines.
+There is now a global method of fitting lines once you are happy you
+have all the correct ones in the list. First you must set the
+number of iterations using
+\begin{quote}
+{\tt set lsq}\/ {\em itnum}
+\end{quote}
+and the number of points read in using
+\begin{quote}
+{\tt set readlength}\/ {\em n}
+\end{quote}
+Then type
+\begin{quote}
+{\tt fitlines}\/ {\em wstart wstop}
+\end{quote}
+How long it takes depends on the speed of your computer and the number
+of lines and iterations you have chosen. For a few thousand lines it is
+probably best run overnight\footnote{ 1995 revision:
+For a few thousand lines it is probably best run over coffee!}.
+
+gremlin usually does a fairly good job of fitting lines, but it is always
+a good idea to check what it has done afterwards. To do this, read in
+a section of the spectrum with {\tt read}\/{\em wstart}, and get the
+lines from the {\em .lin}\/ file using {\tt getlines}. You then need
+to subtract the fit from the data by typing {\tt active}. This may
+take some time if many lines are in the buffer. Then plot the result
+and see what the residuals look like. If gremlin has done a good job, the
+residuals will look like noise. 
+
+Large residuals may
+have several causes. The most likely reason is that the actual
+lineshape is not a Voigt profile, which is the only profile that gremlin
+fits. This is often the case for the strongest lines, which may be
+self-absorbed in typical laboratory sources. The residuals are large
+and symmetric, and an example is shown in figure \ref{fig:absorb}. 
+\begin{figure}\label{fig:absorb}
+\caption{Residuals from a self-absorbed line. Note that although the
+          line does not appear to be absorbed, the residuals show that
+	  it is clearly not a pure Voigt profile}
+\epsfxsize=17cm
+\epsfbox{absorb_resid.xpm.eps}
+\end{figure}
+In extreme cases, the line may actually self-reverse, giving a
+double-humped structure. It is important to recognize these as a
+single self-reversed line, and not treat them as two separate lines. 
+
+Another possibility is that the line is weak and/or blended. {\em
+lsqfit} fits lines out to 5 half-widths, and any lines that fall
+within that region may affect the fit of the line.  To fit weak and blended
+lines accurately it is usually necessary to specify that the width and
+damping parameter should not be revised by the fitting procedure. To 
+do this type
+\begin{quote}
+{\tt holdwidth}\/ {\em width linenumber} 
+{\tt holddamping}\/ {\em damping linenumber}
+\end{quote}
+where {\em width}\/ and {\em damping}\/ are the widths and damping
+parameters you think the lines should have (check a few adjacent lines
+belonging to the same multiplet to find this), and {\em linenumber}\/
+is a list of lines to be fitted. Make sure the lines are active, and
+then try fitting the lines again by typing
+\begin{quote}
+{\tt lsqfit }\/ {\em itnum }
+\end{quote}
+(see subsection \ref{sec:first} for details). To return the lines to
+the {\em .lin}\/ file, type
+\begin{quote}
+{\tt putlines}
+\end{quote}
+
+A third possibility for large residuals is that the lines are
+under-resolved, and are `ringing'. This is described in 
+section\ref{sec:ring}.
+
+\subsection{Wavenumber Calibration}
+
+Lines from a Fourier transform spectrometer are on a linear wavenumber
+scale determined by the control laser. However since the laser and the
+source follow different paths in a spectrometer the output needs to be
+corrected by a geometric factor. This factor is stored in the
+variable {\em wavcorr}\/  and uses the formula:
+\begin{equation}
+\sigma _{corrected} = \sigma _{original} (1 + wavcorr)
+\end{equation}
+to put all the wavenumbers on an absolute scale.
+To use it, calculate the required correction factor by finding the
+fractional difference $\delta \sigma / \sigma$ where $\delta \sigma$ is
+the difference between the wavenumber of a standard line in your
+uncalibrated spectrum and the known wavenumber of that
+line\footnote{In principle, you only need one standard line, but we
+recommend that you use more!}. Then type
+\begin{quote}
+{\tt info wavcorr}\/ {\em wavcorr}
+\end{quote}
+Subsequent linelists will then have the correct wavenumbers. To keep
+this value permanently, it should be entered into the appropriate space
+in the header.
+
+\subsection{Intensity Calibration}\label{sec:inten}
+
+Applying an intensity calibration to the output file is easily done by
+typing:
+\begin{quote}
+{\tt writelines intcorr}
+\end{quote}
+You should first have the response function of your spectrometer in
+the {\em r } array. This corrects the equivalent width but leaves the
+peak intensity unchanged, giving you a record of the signal-to-noise.
+
+It is generating the response function that is the tricky
+problem. The usual procedure is to take a separate calibration
+spectrum using some standard lamp (tungsten and deuterium lamps are
+commonly used). This will be a relatively low-resolution spectrum
+which can be combined with the known spectral output of your
+calibrated lamp to determine the response function of the
+spectrometer, which should vary fairly slowly with wavenumber. 
+The response of the FT spectrometer is:
+\begin{equation}\label{eqn:response}
+Response = (Observed spectrum) / (Actual Spectrum)
+\end{equation}
+
+If you are not too fussy about the accuracy of the calibration, it is
+possible to use the gremlin function {\tt planck}{\em wstart wstop delsig
+T} to calculate the approximate intensity output of the tungsten lamp.
+{\em delsig} is the dispersion you want the calculated function to
+have and T is the temperature. 
+
+Normally you will use the calibration supplied with your standard
+lamp. Note that these intensity calibrations often need converting to
+units used by gremlin -- they are usually listed in wavelengths, with the
+radiance given in $W cm^{-3}sr^{-1}$.
+%start of footnote
+\footnote{the spectral {\em radiance} is normally the quantity you use
+for your calibration. It is given in $W cm^{-3}sr^{-1}$, where
+$cm^{-1}$ referring to the wavelength interval and the other
+$cm^{-2}$ refers to the area of the lamp that is being observed. To
+convert this into an absolute intensity, one would multiply the
+radiance by the area of the lamp that you are actually using, by the
+wavelength interval that you are observing, and then by the solid
+angle subtended by your detector. Spectroscopists usually don't need
+absolute intensities, but can get very confused by the fact that
+radiometry people measure wavelengths in cm!
+
+The quantity that is usually measured in calibrating a lamp is not the
+radiance, but the {\em irradiance}. This is given in $W cm^{-3}$, where 
+$cm^{-1}$ is again the wavelength interval, but the other $cm^{-2}$ is
+the area of the detector. The irradiance is a lot easier to measure
+than the radiance, but the radiance is the more useful quantity, as it
+characterises the actual lamp and does not involve details of the
+setup.
+}
+%end of footnote
+These need to be multiplied by $\lambda$ to convert them to photons
+and a further $\lambda^2$ to put them on a wavenumber scale. This can
+be done with the gremlin command {\tt photons/cm-1}. 
+
+A further complication in using supplied intensity calibrations is
+that the deuterium lamp in particular has structure in certain
+sections of the spectrum. Whilst it is of course desirable to avoid
+these regions, in some cases they have to be used as no other
+calibrated lamp is available in the region of interest. You need to
+match the effective resolution of your observation of the lamp to the
+resolution of the spectrometer used for the intensity calibration,
+which should be given in the details of the calibration. This can be
+done by filtering your observation with a boxcar function of the same
+width as the resolution of the spectrometer that did the
+calibration. If you do this twice, you effectively convolve your
+observed spectrum with a triangle function which has the same
+resolution as the original spectrometer. You can then divide this by
+the published intensity calibration which you have interpolated to the
+same scale as your observation, to obtain the response of your
+spectrometer, as given by equation \ref{eqn:response}. 
+
+There are various ways of getting a supplied intensity calibration
+into gremlin. One method is to make a file outside gremlin containing the
+supplied calibration. This file should be equally spaced in either
+wavelength or wavenumber, and should be of the following form:
+\begin{verbatim}
+{\tt wref = } {\em starting wavenumber}
+{\tt delw = } {\em dispersion }
+{\tt nop = }  {\em no. of points in file}
+{\tt readcards} {\em format}  where {\em format} is a valid {\sc FORTRAN}
+                              format -- e.g. '(f8.4)'
+{\em Put here your spectrum in the format specified in the previous
+     line}
+{\tt keyboard}
+\end{verbatim}
+After giving this a suitable filename, you can read it into the {\em
+r} array by simply typing:
+\begin{quote}
+{\tt run} {\em filename}
+\end{quote}
+
+The exact procedure is:
+\begin{description}
+    \item[{\tt open datain}\/ {\em intcal}].
+         Open the intensity calibration spectrum.
+    \item[{\tt extended bin}\/ {\em wstart wstop}]
+         This creates a 4096 point copy of the calibration in the r
+	 array.
+    \item[{\tt filter boxcar}{\em nrise ncut width}] Convolve your spectrum
+	 with a boxcar function of width (in {\em wavenumbers}) equal
+	 to the resolution of
+	 the spectrometer that performed the original intensity
+	 calibration of the lamp. {\em ncut} should be set to half the
+	 cutoff point of the interferogram, and {\em nrise} to about
+	 10\% of the number of points. See section \ref{sec:ring}
+	 for determining these. The {\tt filter} command should be
+	 executed twice, to convolve your spectrum with a triangle function.
+    \item[{\tt save}\/ {\em n}]  Save the observed calibration
+	 function on the scratch file.
+    \item[{\tt run}\/ {\em filename} \\
+          {\tt interpolate}\/ {\em wstart wstop delw}\/ ]
+         Run the file containing the supplied intensity output and
+         interpolate to the correct dispersion. Note that if {\em
+	 delw} is negative it converts wavelengths to
+	 wavenumbers. It should be set to the required dispersion
+	 in wavenumbers.
+    \item[{\tt save}\/ {\em m}]   Save the supplied intensity spectrum.
+    \item[{\tt exchange}]        Put the supplied intensity spectrum into tr.
+    \item[{\tt recall}\/ {\em n}] Recall the observed spectrum
+    \item[{\tt ratio}]           Calculate the response of the spectrometer,
+                                 which is the ratio of the two functions.
+    \item[{\tt save}\/ {\em p}]   Save the response in p.
+\end{description}
+
+To calibrate your linelist, you need then simply type {\tt recall}
+{\em p} to recall your response function into the {\em r} array and
+then execute {\tt writelines intcorr}. You can also save this response
+function as a permanant ASCII file using:
+\begin{quote}
+{\tt writefile} {\em filename}
+\end{quote}
+which saves it together with the gremlin commands needed for reading it
+back in. This has the advantage that you subsequently have it to refer
+to, so you can both check your calibration later and also re-do the
+calibration if you decide to add or delete lines from your spectrum.
+
+\subsection{Dealing with Ringing}\label{sec:ring}
+
+gremlin is able to make allowances for lines that are ringing due to
+under-resolution of the lines. However, since the commands that enable
+this to be done change the data significantly, they need careful study 
+to understand how they work, and why they apparantly fit the line
+rather badly!
+
+To prevent findlines or linelist picking up the ringing on lines, a
+filtered version exists which convolves the lines with a 2 or 4 point
+Gaussian filter before finding the lines. To use this in linelist, type
+\begin{quote}
+{\tt linelist}\/ {\em smin scale wstart wstop}\/ {\tt 10}
+\end{quote}
+for a 2 point filter. 20 should be used instead of 10 for a 4 point
+filter. 
+
+After making the lines active, they can be fitted with a
+filtered version of lsqfit. This works best if you have the ringing
+lines in the centre of the r array. First, set the filter using
+\begin{quote}
+{\tt lsqfit filter}\/ {\em nrise ncut}
+\end{quote}
+{\em ncut}\/  should be set to correspond to half the cutoff point
+of the interferogram. The best way of determining this is to do a low
+resolution transform of the data, using
+\begin{quote}
+{\tt fourtran}
+\end{quote}
+plot it, and find the point number where the transform drops to near
+zero. {\em nrise}, also in points, is included to drop the data
+gradually to zero without sharp edges.
+A value of $nop/10$ is suggested for a first attempt. {\tt
+lsqfit} will then only fit the line over the range {\em ncut}, and hence
+the data should be a closer representation of the actual line profile.
+However it may not match so well the data you see on the plot.
+
+An common  way of dealing with ringing is to filter the actual data
+before doing any fitting. This has the disadvantage of broadening the
+profile with the smoothing function applied. The effect of this can be
+seen from figure\ref{fig:filter}. 
+\begin{figure}\label{fig:filter}
+\caption{Effect of filtering a line and then running {\tt lsqfit} compared
+to using {\tt lsqfit filter}. The top panel shows a pure Gaussian line
+with its Fourier transform. The second panel shows the same line with
+the transform curtailed at 20 points (an under-resolved line). The
+third panel shows the effect of a filter on the line and the lower
+panel the fit to this filtered, unresolved line compared to the
+original Gaussian.}
+\epsfxsize=17cm
+\epsfbox{filtering.eps}
+\end{figure}
+The first frame of this shows a
+Gaussian line with a width of 3 points (fairly typical for FT
+spectra), together with its Fourier transform. In the second panel,
+the Fourier transform has been abruptly cut at 20 points, as if that
+is the range that the interferogram was scanned. The effect of this is
+seen in the spectrum -- the line has been convolved with a sinc
+function, and this gives ringing around the line. Now a filter is
+applied -- in this case using the command {\em filter 4 20 4}. This
+brings the transform down more quickly, and has eliminated much of the
+ringing. However it can be seen that the peak intensity has been
+reduced to 59\% and the line width has increased to 5.1 points.
+The residuals are also large, as it is no longer possible to describe
+the profile using the Voigt function. The final panel in the figure
+shows the difference between using lsqfit filter and by fitting the
+line after using filter. The profile fitted with lsqfit filter is
+almost indistinguishable from the original Gaussian, although it
+appears a poor match to the unresolved Gaussian -- what we would have
+observed in an actual spectrum in which the line was
+under-resolved. However the profile fitted to the unresolved filtered
+Gaussian is an even poorer match to the original profile. 
+
+\section{Absorption spectra}
+
+\section{Other Commands and Procedures in gremlin}
+
+\subsection{Masking data before transforming}
+
+Sometimes you may want to do a Fourier transform of data in the {\em
+r} array even if the number of data points is not a power of two. The
+solution is to padd the interferogram up to a power of two with zeros,
+but this has the disadvantage of leaving a large jump in the
+interferogram, which gives bad ringing in the resulting spectrum. The
+solution is to multiply the ends of the data with a cosine bell before
+padding with zeros, thus bringing the data smoothly down to zero. This
+is done with the command 
+\begin{quote}
+{\tt mask} {\em nrise} {\em mean}
+\end{quote}
+where {\em nrise} is the width in points of the cosine bell. A
+suitable value is 5-10 \%. If you specify the {\em mean} as 0., the
+mask command will set the mean of the interferogram equal to zero
+before masking it (otherwise you might still get an ugly jump if your
+data is not centred around zero). 
+
+You can then padd the interferogram to a power of two. First write
+down the number of points {\em nop} that you have in the {\em r}
+array. Then extend this to the next higher power of two, nop2 with:
+\begin{quote}
+{\tt length} {\em nop2}
+\end{quote}
+You may have to zero the data between {\em nop} and {\em nop2} using:
+\begin{quote}
+{\tt data r} {\em nop nop2} {\tt 0.}
+\end{quote}
+Then shift the interferogram to the centre of the {\em r} array using:
+\begin{quote}
+{\tt shift} {\em nop2 / 2}
+\end{quote}
+and transform it using {\tt fourtran}.
+
+\subsection{Filtering}
+
+Some aspects of filtering have already been dealt with in the section
+describing intensity calibration and ringing. There are three basic
+types of filter in gremlin: the Gaussian filter, the Voigt filter and the
+boxcar filter. The form of these is:
+\begin{description}
+\item[{\tt filter  nrise  ncut}]   
+	A sharp cut-off filter at ncut
+\item[{\tt filter  nrise  ncut  igw}]  
+	(obsolete) A gaussian filter, gaussian width igw
+\item[{\tt filter  nrise  ncut  'gaussian' gw}] 
+	A gaussian filter, gaussian width gw
+\item[{\tt filter  nrise  ncut  'boxcar' bxw}]  
+	A boxcar filter, width bxw
+\item[{\tt filter  nrise  nsen  voigt  ampnoise}] 
+	A voigt  approx. to optimum filter
+        nsen = freq. where signal=noise.  ampnoise = amp. of white noise
+\end{description}
+ 
+In each case, they multiply the ends of the spectrum in
+the {\em r} array with a mask of width {\em nrise}. This is a cosine
+bell and is used to bring the spectrum smoothly down to zero at the
+ends. The data is then Fourier transformed,  multiplied by the
+specified filter, and transformed back. The variable {\em ncut}
+specifies that the transform should be set to zero at all points
+greater than {\em ncut}/2. By applying the boxcar filter twice, it is
+possible to filter the data with a triangle function, which is what is
+used in e.g. matching the resolution of the your spectrum to a
+previously-recorded one, as in the example of intensity calibration.
+
+\subsection{Synthetic Spectra}
+
+gremlin has various commands for creating synthetic spectra. This can be
+useful if you wish to match a known spectrum with one you have
+recorded, and has been used successfully by Jon Murray to match the
+hyperfine structure of the Hg 253.6 nm line to his observations and
+provide a wavenumber calibration of his spectra. 
+
+The basic command is the {\tt voigt} command, which has the form:
+\begin{quote}
+{\tt voigt} {\em wl wg nop}
+{\tt voigt} {\em w nop ncenter}
+{\tt voigt} {\em w nop}
+\end{quote}
+The first creates a Voigt profile of Gaussian width {\em wg} and Lorentzian
+width {\em wl}, setting the number of points to {\em nop}. The second
+form creates a Lorentzian in {\em nop} points, centred around {\em
+ncenter}. The third form does the same as the second, but centres the
+Lorentzian at {\em nop}/2. 
+
+You can investigate the effect of noise on your spectra with the
+command {\tt noise} {\em nop}. This creates a noise record in {\em
+nop} points, which can be added to a synthetic spectra placed in {\em
+tr} using {\tt combine}. There are various other options in the {\tt
+noise} command, mainly concerned with the method of generating the
+noise record -- see the help file for further details.
+
+\subsection{Manual Fitting of Line Profiles}
+
+If you have many blended lines in a part of a spectrum, and need to make
+a good job of the fit, it may be necessary to manually control the fit.
+This is a rather tricky job, and can take some time, so it is only worth
+doing it if you really do need to.
+The first thing to do is to stretch the line until there are 6-10 points
+per line profile
+\begin{quote}
+{\tt stretch}\/ {\em n}
+\end{quote}
+Then try an initial {\tt lsqfit} of the data, perhaps holding the width
+and damping of all the lines with the commands
+\begin{quote}
+{\tt holdwidth}   \\
+{\tt holddamping}
+\end{quote}
+Then plot the residuals and see what they look like. It is possible to
+alter the fitted wavenumber, amplitude, width and damping of each line
+within the plot. Put the cursor onto the line you want to alter with the
+j and k keys. Then press
+\begin{quote}
+\verb&^m&
+\end{quote}
+The first thing to do is make the intensity in the centre of the line
+zero, by pressing the appropriate function key. These are listed at the
+bottom of the screen. The amplitude residual is a symmetric hump, and
+should be increased or decreased until it looks roughly zero. Then
+correct the wavenumber of the line. This is the only antisymmetric
+residual, and for this reason is normally quite well defined by {\tt
+linelist}. After that, fine tune the width and damping. Their residuals
+look fairly similar: a double symmetric hump, but the damping residual
+is broader. Then return to the next line by pressing \\
+\verb&<Esc>& \\
+twice. It may be worth doing a single lsqfit after fine tuning, to see
+if it improves further.
+
+\subsection{Finding noise in interferogram}
+
+The problem with finding noise in an interferogram is finding a
+portion of the interferogram that is really noise and no signal. Even
+at the ends of an interferogram, there is some modulation left which
+will give a false estimate of the noise level. The solution is to read
+in a section at the end of the interferogram where the noise dominates
+and to take the Fourier transform. You will then get a rather noisy
+spectrum. Plot this spectrum, and manually take out all the lines
+using the {\em connect} command, $<$Alt+c$>$, as described in section
+\ref{sec:prep}. Then transform the result back again and you will be
+left with only the noise in the interferogram.
+
+\section{Using gremlin with non-FT spectra}
+
+We have recently been using gremlin successfully with spectra obtained on
+grating instruments. Even from high resolution instruments there are
+normally many fewer points for a typical run than from an FTS, so the
+easiest way of getting the data into gremlin is usually by making an ASCII
+file, similar to the one described in section \ref{sec:inten}, which
+you can read into gremlin with the {\tt run } command. After that, all the
+commands used in single buffers, such as {\tt findlines}, {\tt lsqfit},
+{\tt writeparams} etc.  will work successfully (see section
+\ref{sec:quick}). 
+
+One problem we have discovered in using gremlin with non-FT spectra is
+that the lineshape from a grating instrument is often not a pure Voigt
+profile. Since this is the only profile fitted by {\tt lsqfit}, it may
+be the case that you get the best wavelengths by either taking the
+peak of the profile or the centre of gravity. We have found the best
+wavelengths from  noticeably asymmetric lines from the 10.7 m normal
+incidence grating spectrometer at N.I.S.T. are obtained by taking the
+peak of the profile rather than the centre of gravity.
+
+\section{Example runs}
+
+\section{Modifying and Re-compiling gremlin}\label{sec:compile}
+
+The best place to put your own routines for use in gremlin is in either the
+{\em other.for} or the {\tt option.for} subroutines. The layout of these is
+fairly straightforward - You just pick a spare set of line numbers,
+include your code, and put a
+\begin{quote}
+{\tt if (....) goto (...)}
+\end{quote}
+line near the top with all the others to point to it. It is a good idea
+to include some documentation in the routine, so others know that you
+have included your own code.
+
+\subsection{gremlin}
+gremlin should be re-compiled with the Microsoft Fortran Power station
+compiler version 1.0 or above. Several quirks have been noticed with 
+this compiler. Some routines definitely need to be compiled without
+optimization -- in particular plotr.f and lineio.f. If you observe
+strange behaviour, this is the first thing to try. We have also had
+problems with the {\em getstrqq} command in the compiler, although Jim
+seems to have no problems with this! The solution is to replace it
+with a read, but this means it is no longer possible to use command
+line editing. To compile gremlin, just compile all the separate routines
+and link them together -- Jim Brault distributes several batch files
+that make this easier. 
+
+\subsection{Xgremlin}
+
+The source code for Xgremlin can be obtained from 
+{\tt groundhog.phy.nist.gov} in the directory {\tt /pub/xgremlin/src} and is
+contained in files like
+
+\noindent
+{\tt xgremlin-0.45.tar.gz}.
+
+\noindent
+These files are Unix ``tape archives'' which are compressed with
+the GNU {\tt gzip} program. {\tt gzip} and {\tt tar} are required for
+uncompressing and unpacking the file as follows:
+
+\noindent
+{\tt gzip -d xgremlin-0.45.tar.gz | tar xvf -}
+
+\noindent
+which will unpack the contents of the archive into the directory {\tt
+xgremlin-0.45}. Go to this directory and follow the instructions in
+the file named {\tt HOWTO-INSTALL}. The whole compilation and installation
+procedure is almost completely automated and requires little
+intervention. However, if you install Xgremlin for the first time on your
+machine you will likely have to install the tools that are required
+to build Xgremlin. Xgremlin does not require any proprietary software for
+compilation or to run but you have to get and install the following
+tools or software packages on your computer:
+
+\begin{description}
+
+\item[f2c] {\tt f2c} is a freely available Fortran--to--C converter
+that is distributed by the AT\&T Research Labs. {\tt f2c} is a
+portable, ``industrial strength'' Fortran--77 compiler that runs on
+practically any computer. It is available via anonymous ftp from {\tt
+netlib.att.com:/pub/f2c} or at the same place where you found
+Xgremlin. The Free Software Foundation has recently published their GNU
+Fortran--77 compiler ({\tt g77}) which we will use at some point in
+the future when it has acquired some of the Fortran--77 extension that
+are needed for Xgremlin (such as {\tt integer*2}). {\tt f2c} is used to
+compile the part of the source code of Xgremlin that was inherited from
+gremlin.
+
+\item[ANSI C] An ANSI C compiler is required to compile the parts of
+Xgremlin that make up the user interface. This means that the emasciated C
+compiler that comes bundled with Sun workstations will not work. If you
+do not have an ANSI compiler you must get and install the Free
+Software Foundation's C compiler {\tt gcc}. (In fact, {\tt gcc} is so
+outstanding that it is well worth the trouble of installing it
+anyway.)
+
+\item[libXaw3d] This is a library that contains buttons, scrollbars
+and other elements of graphical user interfaces. It is not normally
+included with X11 installations.
+
+\end{description}
+
+\noindent
+Once all the tools and libraries are in place you can proceed to
+compiling Xgremlin itself. The installation procedure is described in the
+file {\tt INSTALL} that comes with Xgremlin.
+
+\appendix
+\section{Appendix}
+
+\subsection{Hyperfine structure}
+
+\subsection{Advantages of an X11 gremlin}\label{sec:X11}
+Xgremlin requires a machine running the X Window System. The X Window
+System, broadly speaking, consists of two parts. One is called the
+{\em X client libraries} which are linked to whatever program (Xgremlin in
+our case) that is designed to run under X. The X client libraries
+contain all the various functions that are required to make a graphics
+program work such as drawing lines, text strings and much, much
+more. Programs linked to the X client libraries are usually called
+{\em X clients}.  The other part of the X Window System is the X
+server program which is a seperate program with the task of actually
+displaying on a computers screen whatever graphics output some X
+client is producing. 
+
+This division of labour has important advantages. It allows to write
+graphics programs that are entirely independent of hardware on which
+the graphics output is displayed. An X client may e.g. tell the X
+server to display a line starting at point (1,1) and ending at point
+(100,100) in some virtual coordinate system.  It is then the X servers
+task to realize this command on that particular piece of display
+hardware it has been given to run on.  Another, even more important,
+advantage is that X client and X server do not necessarily have to run
+on the same computer but may run on different computers accross a
+network. In practice this means that you can sit down at your PC,
+start Xgremlin on some other (maybe more powerful) computer and have your
+PC run and feel as if you were sitting directly at the other
+computer's terminal. This is not just very nifty but enables a more
+economical use of computing resources. A simple example may serve to
+illustrate this.  A Pentium based PC e.g. is powerful enough to
+accomodate several users simultaneously. However if this PC runs
+MS--DOS and gremlin (or any other program for that matter) it is
+completely tied up by a single user and program. Even a single user
+can benefit, as it is possible to run other programs while Xgremlin is
+running (even other Xgremlin programs, which can be very useful in
+comparing spectra). If on the other hand the X Window
+System is used, a very cheap ``386'' with good graphics hardware and
+an X server can tap the power of the Pentium PC at a cost much lower
+than the cost of a  second high powered computer.
+
+</body>

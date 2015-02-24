@@ -1,0 +1,65 @@
+<head>
+<title> Subtract continuum </title>
+<!-- Changed by: Gillian Nave, 25-Mar-1996 -->
+</head>
+
+<body bgcolor="#ffffff">
+<B> Next:</B> <A HREF="analyse_find.html"> Finding and fitting lines</A>
+<B>Up:</B> <A HREF="analyse.html"> Using Xgremlin to Analyse </A>
+<B> Previous:</B> <A HREF="analyse_real.html">Check phase and create a
+real spectrum</A>
+<HR> <P>
+<H2> Subtract continuum</H2>
+<P>
+The next thing to do is to subtract any continuum that might be
+present. There is not currently a satisfactory way of doing this
+automatically, but one way of doing it is to use
+the following procedure:
+<OL><LI> First type
+<A HREF="file:../commands/extended.html">
+<b>extended bin</b></a>
+This goes through the whole file, averaging sets of
+points into equal width `bins' so that the whole file will fit into
+4096 points. You can then plot this and find out how much of the
+result is pure continuum and how much lines.
+<P>
+<LI> Subtract out the lines. You can do this whilst you are in the plot by
+connecting two marked points together with a straight line. This is
+done by putting markers each side of the line, and
+then pressing <em>&lt;alt+c&gt;</em> (This is bound to the button
+<B>connect</B> if you have the default button mappings). The idea is
+to work your way through the
+buffer in this way to get something that matches the true continuum as
+closely as possible - in most cases it is possible to describe the
+continuum in this way at least to the level of the noise. Then exit
+the plot,  multiply the result by -1  (so you can subtract the
+continuum by adding it to the file) and save it in record &lt;n&gt; using:
+<A HREF="file:../commands/multiply.html">
+<b>multiply -1.</b></A> 
+<A HREF="file:../commands/save.html">
+<b>save &lt;n&gt;</b></a>
+<P>
+<LI> Subtract the continuum from the file. First, create
+a file for the result using
+<A HREF="file:../commands/create.html">
+<b>create &lt;filename&gt;</b></a> (without extension) and then
+add the inverted continuum you have just manufactured to the original
+file using
+<A HREF="file:../commands/extended.html">
+<b>extended add &lt;n&gt;</b> </a>
+where &lt;n&gt; is the record where you saved the continuum. Then 
+<A HREF="file:../commands/close.html">
+<b>close </b>datain</b></a> and <b>dataout</b>, and re-open
+<b>datain</b> to examine
+the result. You may find that you have to multiply the continuum by
+something other than -1 (such as -1.2 or -0.8) to get a decent result. 
+Look here for  <A HREF="analyse_contin.html">an example</A>. 
+</OL>
+
+<b> Would it be better to do this with fitpoly ??? </b>
+<P>
+
+</body>
+
+
+

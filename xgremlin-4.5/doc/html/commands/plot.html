@@ -1,0 +1,43 @@
+<head>
+<title> plot </title>
+<!-- Changed by: LION, 12-May-1996 -->
+</head>
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>plot</h2>
+<h3>Syntax:</h3>
+<ul>
+<li> plot all
+<li> plot data
+<li> plot [ &lt;nstrt&gt; &lt;nstop&gt; ] [ &lt;ymin&gt; &lt;ymax&gt; ]
+<li> plot phase
+</ul>
+Plot the data in 'r' within the window nstrt, nstop, ymin and ymax.
+Defaults are:
+<br>
+ymin,ymax = 0.0,1.0 <br>
+nstrt,nstop = 1,nop 
+<p>
+plot 'all' plots all points in the r array
+<p>
+plot 'data' turns off phase plotting
+<p>
+'plot phase' specifies a special format used to display phase
+points. See 'phcorr' for a discussion on how to use the phase
+plot to check that the phase correction has been correctly
+performed.
+
+<H3>Examples</h3>
+<pre>
+sinc 10. 1024       #Sinc function, normalized to 1.
+plot 400 600 -0.2 0.2 # Expands the central lobes a bit
+</pre>
+<h3>Related topics</h3>
+<ul>
+<li><A HREF="../tutorial/plotting.html">plotting in Xgremlin</A>
+</ul>
+

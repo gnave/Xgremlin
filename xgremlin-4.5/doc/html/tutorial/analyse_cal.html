@@ -1,0 +1,33 @@
+<HEAD>
+<TITLE> Wavenumber Calibration</TITLE>
+<!-- Changed by: Gillian Nave, 25-Mar-1996 -->
+</HEAD>
+<BODY bgcolor="#ffffff"><P>
+<B> Next:</B> <A HREF="analyse_inten.html"> Intensity Calibration</A>
+<B>Up:</B> <A HREF="analyse.html"> Using Xgremlin to Analyse </A>
+<B> Previous:</B> <A HREF="analyse_find.html"> Finding and Fitting </A>
+<HR> <P>
+<H2> Wavenumber Calibration</H2>
+<P>
+Lines from a Fourier transform spectrometer are on a linear wavenumber
+scale determined by the control laser. However since the laser and the
+source follow different paths in a spectrometer the output needs to be
+corrected by a geometric factor. This factor is stored in the
+variable <em>wavcorr</em> and uses the formula:
+<IMG align=bottom height=15 SRC="wavcorr_form.gif">
+to put all the wavenumbers on an absolute scale. To use it, calculate
+the required correction factor by finding the fractional difference 
+<IMG ALIGN=BOTTOM height=15 alt="" SRC="delta_sigma.gif"> where 
+<IMG ALIGN=BOTTOM height= 13 ALT="" SRC="delsig.gif"> is
+the difference between the wavenumber of a standard line in your
+uncalibrated spectrum and the known wavenumber of that line (In
+principle you only need one standard line but we recommend that you
+use more). Then type
+<A HREF="../commands/info.html"> <b>info wavcorr</b></A> <em>wavcorr</em>
+Subsequent linelists will then have the correct wavenumbers. To keep
+this value permanently, it should be entered into the appropriate space
+in the header.
+<P>
+<HR>
+
+</BODY>

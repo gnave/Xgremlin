@@ -1,0 +1,128 @@
+<head>
+<title> PHASE </title>
+</head>
+<body>
+PHASE
+Phase correction of FT spectra
+
+	Phase correction of a spectrum is a somewhat iterative procedure
+	which involves the following steps:
+
+	1) click on 'Phase / Transform' in the 'Gremlins' menu
+	   to bring up the phase correction window if it is not open
+	   already.
+
+	2) The first step is to determine the central point of the 
+	   interferogram which is to be transformed. This is done by 
+	   reading the interferogram into the 'r' array with the 
+	   following sequence of commands:
+
+		open datain <filename> int
+		read nnn
+		plot
+
+	   The file name must be the file name of the interferogram 
+	   without file name extension. If the interferogram has many 
+	   data points the 'r' array can only a small part of the 
+	   interferogram. In that case it is best to estimate the
+	   location of the center and read only the central section
+	   of the interferogram after an 'set centerread' command.
+	   The interferogram is then plotted and the exact position of 
+           the central fringe can be determined. 
+	   Set a red mouse marker (left) button in the plot at the
+	   position of the interferogram center.
+
+	3) Now click on the 'Fill in' button in the phase correction window
+	   which will fill in file names and center point into the phase
+	   correction form. All entries can be edited after clicking with
+	   the mouse cursor on the entry field. The entry fields for 
+	   center point and number of terms in the phase polynomial can
+	   be varied by clicking on the arrow up and arrow down buttons
+	   to the right of the entry fields.
+
+	4) If the spectrum is not twosided click on the 'Symmetry' button
+	   to change the symmetry to 'unbalanced'. Inversion of the 
+	   interferogram is not required at that stage
+
+	5) If the spectrum is not a line spectrum then click on the 
+	   'Spectrum type' button to change the spectrum type to 
+	   'continuous spectrum' (e.g. one from a standard lamp).
+
+	5) click on the button 'Phase correct' which will calculate the
+           phase function from the central part of the interferogram,
+           plot the phase function or phase points and a low resolution
+	   amplitude spectrum. At this stage it is possible to use the 
+	   top row of buttons to move around in the low resolution spectrum. 
+	   If the 'Phase' button is pressed the top row of buttons affects 
+	   the phase plot instead of the spectrum. Therefore, to get a closer 
+	   look at some phase points with the zomm buttons the 'Phase' 
+	   button must be pressed first.
+
+	   If the interferogram was from a continuum spectrum the following
+	   item (6) does not apply. Go straight to (7).
+
+	6) The low resolution spectrum should be used to determine a better
+	   value for the signal / noise ratio in the spectrum and the 
+	   discriminator level should be checked. If too few phase points
+	   were picked up the discriminator level should be lowered. Both
+	   discriminator level and signal / noise ratio are relative to
+           the strongest line which has intensity 1 e.g. a discriminator
+	   level of 0.2 means that the phase is calculated for lines 
+	   which have 20% or more of the intensity of the strongest line
+	   in the spectrum. All phase points must have valid phase - 
+	   i.e. there must be no ghosts or points folded back from other 
+	   aliases. If such points are present, they should be placed in a 
+           box by marking the upper left and lower right corners with a 
+	   red mouse marker, and then deleted from the fit using the plot
+	   mode command <ctrl>+d. It is recommended to re-calculate the
+           phase (press the 'Phase correction button) to check that these 
+	   points have been successfully deleted and good phase points
+	   are distributed evenly.
+
+	   Marking bad phase points:
+
+                |
+	      --+--
+                |   *
+                  *    *                  <-- bad phase points
+                          *
+                                |
+                              --+--       <-- mouse markers (left button)
+                                |
+
+	   The two mouse markers mark two diagonal corners of a box. All
+	   phase points within the box will be marked as bad phase points
+	   and written to the bad points file.
+                              
+	7) Check that the centre is correct. If the centre is wrong 
+ 	   (may be off by a couple of points) the phase will go through 
+	   a 2 pi phase jump somewhere in the plot. Correct the center and
+	   re-calculate the phase (alternatively the interferogram may
+	   be inverted).
+
+        8) When you are satisfied with the points to be used in
+           determining the phase, specify a number of terms for the
+           fitted polynomial and then check that all the points have
+           been correctly fitted and that the observed-calculated phase
+           is close to zero across the spectrum. Do this by typing
+           'plot phase' again. The phase correction polynomial will now
+	   be plotted together with the phase points and the 66% 
+	   confidence interval for the phase fit. For a continuum spectrum
+	   the phase function will be used for phase correction as
+	   it is, without fitting a polynomial to it.
+
+	9) Once the phase correction polynomial is calculated the
+	   final spectrum may be calculated. Fill in the 'blue' parts
+	   of the form specifiying how many points of the interferogram
+	   should be skipped (if any), the number of points to be used
+	   in the transform, the point range for apodization
+	   (if not the 5% default will be used), the wavenumber range
+	   in wavenumbers in the output spectrum and a file name for
+	   the output file. It is advisable to calculate a complex
+	   spectrum first and then inspect the imaginary part to see if
+	   the phase correction was successful. Ghosts are also very
+	   easily discovered in the complex spectrum because they will
+	   often have large imaginary parts after phase correction.
+
+
+

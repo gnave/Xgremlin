@@ -1,0 +1,49 @@
+<head>
+<title> input </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>input</h2><p>
+<b>Syntax:</b><br>
+<dl>
+<dt> <kbd>input [ m ]</kbd>
+<dd> only reads <kbd>m</kbd> points from the data file into the ffta
+array. If <kbd>m</kbd> is omitted, all points in the data file are
+read in.<p>
+<dt> <kbd>input  center</kbd>
+<dd> only process the center points needed for phase.<p>
+<dt> <kbd>input  inverted</kbd>
+<dd> multiply raw interferogram by -1.0
+</dl>
+
+The <b>input</b> command is used to read an interferogram into the
+<b>ffta</b> array for transforming. If a <a href="skip.html">skip
+n</a> command preceeded the <b>input</b> command then the first
+<b>n</b> points of the interferogram will be skipped (i.e. not read
+into ffta). If the number of points <b>m</b> is specified with the
+input command only <b>m</b> points will be read from the interferogram
+(after skipping). The interferogram is checked for glitches and the
+mean is computed.  Use <b>input center</b> to read in the central 32k
+points and perform a medium resolution Fourier transform in order to
+find the phase. Use <b>input inverted</b> if the phase is close to
++-pi.
+<p><br>
+
+<h3>Example:</h3>
+<pre>
+skip 10000           ( skip the first 10000 points )
+input 131072         ( read the following 128k points )
+</pre>
+<p><br>
+
+<h3>Related commands:</h3>
+<UL>
+<LI> <A HREF="skip.html">skip</A>
+</UL>
+
+</body>

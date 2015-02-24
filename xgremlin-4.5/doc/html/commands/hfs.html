@@ -1,0 +1,292 @@
+
+<head>
+<title> hfs </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>hfs</h2><p>
+
+<h3>Syntax:</h3> 
+<menu>
+<li><kbd>hfs close hfslev </kbd> <i> &lt file name &gt </i>
+<li><kbd>hfs close hfsline </kbd> <i> &lt file name &gt </i>
+<li><kbd>hfs delete </kbd> <i> &lt line number &gt </i>
+<li><kbd>hfs disp </kbd> <i> &lt line 1 &gt [ &lt line2 &gt ...] </i>
+<li><kbd>hfs fit </kbd> <i> &lt line 1 &gt [ &lt line2 &gt ...]</i>
+<li><kbd>hfs get </kbd> 
+<li><kbd>hfs hold  </kbd>  <i> &lt line &gt &lt parameter &gt </i>
+<li><kbd>hfs insert </kbd> <i> &lt wavenumber &gt &lt intensity &gt </i>
+<li><kbd>hfs level </kbd> <i> &lt level name &gt </i>
+<li><kbd>hfs open hfslev </kbd> <i> &lt level filename &gt </i>
+<li><kbd>hfs open hfsline </kbd> <i> &lt line filename &gt </i>
+<li><kbd>hfs plot </kbd> <i> &lt line1 &gt  [ &lt line2 &gt ...] </i>
+<li><kbd>hfs release </kbd> <i> &lt line &gt  &lt parameter &gt  </i>
+<li><kbd>hfs save </kbd> 
+<li><kbd>hfs set </kbd> <i> &lt line &gt  &lt parameter &gt  &lt value &gt </i>
+<li><kbd>hfs write </kbd> <i> &lt file name &gt    </i>
+</menu>
+<p>
+
+<h3> Introduction</h3>
+      This command is used to fit hyperfine structure patterns to lines. The
+      program currently fits up to three hyperfine structure patterns
+      at once, and most of the commands are available in the hyperfine 
+      structure window under the <b> gremlins </b> button, which is
+      just a front-end for all the commands described here. <p>
+
+      In fitting a hyperfine structure pattern, the first thing needed
+      (apart from the spectrum) is a file containing the energy level
+      information. The first line contains only the nuclear angular
+      momentum <b>I</b>. Subsequent lines have 7 columns: 
+      <ol>
+	<li> Energy level name (containing no spaces)
+	<li> J value of energy level
+	<li> Energy level value in cm-1
+	<li> Parity - 0 for odd, 1 for even
+	<li> lifetime of level - use a '-' if none available
+	<li> A value - use 0 if not measured
+	<li> B value - use 0 if not measured
+      </ol>
+      The exact format of the columns does not matter, but there
+      must not be any spaces in the energy level name, and all
+      columns must contain something.
+<p>
+Here is an example (for Ho I): 
+<pre>
+3.5
+     0______7   7.5         0.0000         0    -    26.7 -55.6 
+     5419___6   6.5      5419.7000         0    -    31.4 -41.0
+     8605___5   5.5      8605.1600         0    -    0 0
+
+     16735__6   6.5     16735.9500         1    -    29.48 6.4
+     16882__7   7.5     16882.2800         1  2720.  15.97 -13.5
+</pre>
+
+
+<h3>The hfs window</h3>
+
+    The level file is opened by opening the <a href="hfs_win.gif"> hfs
+    window</a> (under the <b>gremlins</b> button), filling in the
+    filename in the <i>Level file</i> field, and clicking on the
+    <b>read</b> button next to the </i>level file</i> field. If you
+    have a previously saved hfs line file (see below), you can read it
+    in by filling its nane in the <i>Line file</i> field and clicking
+    on the <b>read</b> button next to that field.<p>
+      
+      After reading in the energy level information, you can start to
+      fit the lines. First, read in the spectrum, plot it, and expand
+      the plot so that the line you want to fit is roughly in the center
+      of the plot. Insert the <b>Ritz</b> wavenumber of the line in the
+      <i> Wavenumber</i> field. The <b>Ritz</b> wavenumber <b>must</b>
+      be the difference of two energy levels in the levels file. Then
+      insert an approximate peak intensity for the stongest hyperfine
+      component in the <i>Intensity</i> field, and click on the
+      <b>insert</b> button. Provided the wavenumber is indeed the
+      difference between two energy levels in the level file, the
+      program will fill in all the other fields.<p>
+      
+      Next, you can fill in or change any of the information about the
+      level, such as the A or B values, the width (full width at half
+      maximum for each component), damping (Kielkopf's eta parameter -
+      not the one used elsewhere in Xgremlin), wavenumber, intensity,
+      etc. Click on the <b>update</b> button to make these changes
+      take effect ( this is also done by the <b>plot</b> and
+      <b>fit</b> buttons). <a href="hfs_plot.gif">Plot</a> the result
+      by clicking on the <b>plot</b> button. The <a
+      href="hfs_comp.gif"><b>components</b></a> button plots the
+      individual hyperfine components.<p>
+
+      Before fitting the line, you may want to fix the value of
+      certain parameters (such as the lower A and B value, if they
+      were previously measured). Do this by clicking on the
+      <b>hold</b> button next to the parameter you want fixed. The
+      button will change color, to signify that the quantity will not
+      be changed during fitting. Fit the line by clicking on the
+      <b>fit</b> button. The program writes out some fit information
+      in the main edit window of Xgremlin, and also saves it in a file
+      <i>Phits_FitData </i>. <p>
+
+      The program can store the line in both binary and ASCII formats.
+      The binary format can be read back in by the program, and is
+      similar to the .lin file for the fitting of Voigt profiles. You
+      can save the lines to this file by filling in the name on the
+      <i>Line file</i> field at the bottom of the window, and clicking 
+      on the <b>save</b> button. Do the same with the <a href="hfs_asc.txt"><i>ASCII
+	file</i></a> field to get a file readable by humans.<p>
+
+<h3> The hfs commands</h3>
+
+Almost all of the commands can be accessed through the hfs
+    window, which is simply a front-end for the following
+    commands. However they can also be typed into the main Xgremlin
+    edit window. Usually, the only ones you are likely to want to type
+    in are <kbd> hfs disp</kbd>, and <kbd>hfs level</kbd>. However here
+    is a list of all the commands, together with what they do. 
+
+<dl>
+
+<dt> <kbd>hfs close hfslev <i>&lt;filename&gt;</i></kbd> 
+<dd>Closes levels file called <i>&lt;filename&gt;</i>
+
+<dt> <kbd>hfs close hfsline  <i>&lt;filename&gt;</i> </kbd>
+<dd>Closes lines file called <i>&lt;filename&gt;</i>
+
+<dt> <kbd> hfs delete &lt;linnum&gt; </kbd>
+<dd>     Deletes a line from linelist
+
+<dt><kbd> hfs disp &lt;line1&gt [&lt;line2&gt; ]  </kbd>
+<dd> prints out parameters of lines between line1 and line2
+
+<dt><kbd>hfs fit &lt;line1&gt [&lt;line2&gt; &lt;line3&gt;] [&lt;fit_window&gt;]</kbd>
+<dd> Fits the line listed. Currently up to three overlapping hyperfine 
+	patterns can be fitted. The lines are fitted up to 5 half
+	widths each side of the shortest and longest wavenumber
+	component of the line. This can be changed by appending the
+	<i>fit_window</i>, which is a floating point number
+	corresponding to how far away in cm-1 from each component the
+	fit should extend (e.g. a fit window of 0.5 will fit the
+	lines from 0.5 cm-1 before the first component to 0.5 cm-1
+	beyond the last component.<p> 
+
+	The <i>fit_window</i> is not available in the hfs window.<p>
+	  
+	  Make sure that the lines are close together in wavenumber
+	  before you fit them. The program will fit
+	  the whole region between the lines, and hence it may take a
+	  very long time if the lines are widely separated.
+
+<dt><kbd> hfs get </kbd>
+<dd> Reads the linelist from the binary file previously opened with
+	<kbd>hfs open hfsline <i>&lt;filename&gt;</i> </kbd> into memory.
+
+<dt><kbd>  hfs hold <line> <parameter>    </kbd>  
+<dd>  Holds the parameter for the line at current value, so they will
+	not be changed in the fit. Valid parameters are:
+<ul>
+<li> al - the lower energy level A value
+<li> au - the upper energy level A value
+<li> bl - the lower energy level B value
+<li> bu - the upper energy level B value
+<li> waveno - the line wavenumber
+<li> snr - the signal-to-noise ratio of the strongest component of the 
+	    line.
+<li> damp - the Kielkopf damping parameter of the line
+<li> fwhm - the full width at half maximum of the line.
+</ul>
+To allow these parameters to be fitted, use <kbd>hfs release</kbd>
+
+<dt><kbd> hfs insert &lt;wavenumber&gt; &lt;inten&gt;      </kbd>  
+<dd>  Inserts a line at wavenumber into linelist. If the line
+	wavenumber corresponds <b>exactly</b> to a difference between
+	two energy levels in a previously read energy level file, the
+	J-value, A-value and B-value of the two energy levels is also
+	filled in. 
+
+<dt><kbd>  hfs level &lt;lev_value&gt; </kbd>  
+<dd>  lists all predicted lines involving one level.
+
+<dt><kbd>  hfs open hfslev &lt;fname&gt;
+ </kbd>  
+<dd>   Opens the ASCII level file &lt;fname&gt; and read in levels. 
+            
+       The format of levels file is:
+<ul>
+<li>          1st line : nuclear spin
+<li>          subsequent lines:
+          up to 32 chars of level id, with no spaces ; j value; energy
+          level value ; parity - 0 for odd and 1 for even ; lifetime;
+	  A-coeff; B-coeff.
+</ul>
+
+<dt><kbd> hfs open hfsline &lt;fname&gt;   </kbd>  
+<dd>  Opens the binary hfs line file &lt;fname&gt;.
+
+<dt><kbd> hfs plot &lt;line1&gt; [&lt;line2&gt; &lt;line3&gt; ....]
+	</kbd><br>
+<kbd> hfs plot &lt;line1&gt; [&lt;line2&gt; &lt;line3&gt; ....] comp </kbd><br>
+<kbd> hfs plot &lt;line1&gt; [&lt;line2&gt; &lt;line3&gt; ....] save &lt;datafile&gt; </kbd>
+<dd> Plot the line or lines listed. Currently up to three lines can be 
+	plotted simultaneously. <p>
+
+	Make sure that all the lines are
+	visible in the plot, as the program will attempt to plot the
+	lines regardless of whether you can see them. This may take a
+	long time if the lines are widely separated in wavenumber.<p>
+	  
+     The second version plots all the components of the line as well
+	  as the total fit. This takes some time, so is not
+	  recommended for general use.<p>
+
+     The third version saves the fit to the file &lt;datafile&gt;
+
+<dt><kbd> hfs release &lt;line&gt; &lt;parameter&gt;    </kbd>
+<dd> This is the opposite of <kbd>hfs hold</kbd> - it releases
+	parameters so they can be fitted. Valid parameter values are
+	the same as <kbd>hfs hold</kbd>.
+
+<dt><kbd> hfs save  </kbd>
+<dd>  Saves the whole linelist to the file previously opened with
+	<kbd> hfs open hfsline &lt;filename&gt;</kbd>.
+
+<dt><kbd> hfs set &lt;linnum&gt; &lt;parameter&gt; &lt;value&gt; </kbd>
+<dt><kbd> hfs set interp &lt;integer&gt; </kbd>
+<dd>  Sets &lt;parameter&gt; to &lt;value&gt; for the specified line,
+	and releases it so it can be fitted. 
+
+<ul>
+<li>el  The lower energy level. This also sets the J value of the level
+<li>eu  The upper energy level. This also sets the J value of the level
+<li>al  The lower A value
+<li>bl  The lower B value
+<li>au  The upper A value
+<li>bu  The upper B value
+<li>waveno The wavenumber of the line
+<li>snr  The signal-to-noise ratio of the strongest component of the line.
+<li>damp The Kielkopf damping parameter.
+<li>fwhm The full width at half maximum.
+<li>comment A comment on the fit - up to 40 characters long.
+<li>interp An interpolation parameter for the fit (only). This
+	    interpolates points in the fit to give a smoother
+	    profile. The original data is not changed. A value of 4
+	    will give smooth Voigt profiles with data that are
+	    minimally sampled.
+</ul>
+
+<dt><kbd> hfs write &lt;fname&gt;  </kbd>
+<dd>  Writes the whole hfs linelist to the ascii file
+	&lt;fname&gt;. The file must not exist beforehand. 
+
+
+</dl>
+
+<h3>Examples</h3>
+
+The following example opens a spectrum file "ho0903.002_c", reads in
+    levels from the file "ho_i.lev", reads in some lines from the
+    binary file "ho.hfslin", and displays the first 3 lines. It then
+    inserts a line at the wavenumber 16554.55, with intensity 230. The 
+    line is inserted in position 140, and the example then
+    fits this line, and plots the result. 
+
+<pre>
+  open datain ho0903.002_c
+  hfs open hfslev ho_i.lev
+  hfs open hfsline ho.hfslin
+  hfs get
+  hfs close hfsline
+  hfs disp 1 3
+  hfs set interp 4
+  read
+  cmplx real
+  plot
+  hfs insert 16554.55 230.  
+  hfs fit 140 
+  hfs plot 140
+</pre>
+
+</body>

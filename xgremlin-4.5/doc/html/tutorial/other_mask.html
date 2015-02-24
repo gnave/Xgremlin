@@ -1,0 +1,33 @@
+<HEAD>
+<TITLE> Masking data before transforming</TITLE>
+<!-- Changed by: Gillian Nave, 26-Mar-1996 -->
+</HEAD>
+<BODY bgcolor="#ffffff"><P>
+<B> Next:</B> <A  HREF="other_filter.html"> Filtering</A>
+<B>Up:</B> <A  HREF="other.html"> Other Commands and </A>
+<HR> <P>
+<H2> Masking data before transforming</A></H2>
+<P>
+Sometimes you may want to do a Fourier transform of data in the
+<em>r</em> array even if the number of data points is not a power of
+two. The solution is to padd the interferogram up to a power of two
+with zeros, but this has the disadvantage of leaving a large jump in the
+interferogram, which gives bad ringing in the resulting spectrum. The
+solution is to multiply the ends of the data with a cosine bell before
+padding with zeros, thus bringing the data smoothly down to zero. This
+is done with the command 
+<A HREF="../commands/mask.html">
+<b>mask</b></A> <em>nrise</em> <em>mean</em>
+where <em>nrise</em> is the width in points of the cosine bell. A
+suitable value is 5-10 %. If you specify the <em>mean</em> as 0., the
+mask command will set the mean of the interferogram equal to zero
+before masking it (otherwise you might still get an ugly jump if your
+data is not centred around zero).
+<P>
+You can then pad  the interferogram with zero to a power of two
+with the <a href="../commands/zeropad.html"><b>zeropad</b></a> command before
+transforming it with
+<A HREF="../commands/fourtran.html">
+<b>fourtran</b></A>.
+
+</BODY>

@@ -1,0 +1,54 @@
+<head>
+<title> readlines </title>
+<!-- Changed by: LION,  2-May-1996 -->
+</head>
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>readlines</h2>
+<h3>Syntax:</h3>
+readlines <em> &lt;filename&gt; &lt;'old' or 'syn'&gt; [&lt;dw&gt; &lt;smul&gt;]</em>
+<p>
+where:
+<ul>
+<li> "filename" - the name of a writelines ("old") or standard 
+synthetic spectrum ("syn") line list (without any ASCII lines 
+at top or bottom)
+<li>	dw	- a fractional wavenumber(length) shift
+<li>	smul	- a  line intensity scaling constant
+</ul>
+
+read line parameters from a file, put in new .lin file. Any old
+.lin file will be saved to the file &lt;filename&gt;.lin.bak
+<p>
+
+The 'syn' form of the command is the most useful for turning a list of
+spectral lines into a .lin file. For each spectral line the linelist must
+contain the following information:<br><br>
+
+<b>identifier, wavenumber, intensity, width, damping</b><br><br>
+
+in the following format:<br><br>
+
+<b>A15, 2X, F12.5, F10.4, F9.2, F8.4</b>
+<p>
+
+<h3>Examples:</h3>
+<pre>
+read 
+linelist 
+writelines x.x
+...
+...
+readlines x.x 'old'
+</pre>
+will read the file x.x and produce a new .lin file containing those lines.
+
+<h3>Related commands</h3>
+<ul>
+<li><A HREF="linelist.html">linelist</A>
+<li><A HREF="writelines.html">writelines</A>
+</ul>

@@ -1,0 +1,97 @@
+<head>
+<title> set </title>
+<!-- Changed by: , 29-Mar-1996 -->
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>set</h2>
+<h3>Syntax:</h3>
+<UL>
+<LI> set <em>&lt;parameter&gt;</em>
+<LI> set <em>&lt;parameter&gt; &lt;optional values&gt;</em>
+<LI> set <em>xreg(i) [ &lt;modifier&gt; ] &lt;floating number&gt;</em>
+<LI> set <em>ireg(i) [ &lt;modifier&gt; ] &lt;integer&gt;</em>
+</UL>
+
+	There are ten integer and ten floating point registers - ireg(i) and xreg(i),
+	i=0-9.  These registers can be used anywhere in a command  (even "set")
+	as if they were numbers. They are initialized by using the command
+	without modifiers; by using the modifiers "up", "down", "times" and
+	"over" the registers can be modified at will.  For example:
+          set xreg(2) 30000.   will set register 2 to 30000.0, and
+          set xreg(2) up 100.  will increase it by 100 to 30100.  Then
+          read xreg(2)   will read a record starting at 30100.  
+	If used without a subscript (i.e., just xreg or ireg), the default is
+	0 (= 10).
+<p>
+	The program currently understands the following parameters:
+ <UL>
+<LI><b> all:</b> Lists current values of all parameters available to set.
+<LI><b>	active:</b> Makes all lines entered interactively (with ^a) active		
+<LI><b>	inactive</b>
+<LI><b>	batch:</b> Can not be undone.  It should only be used for batch runs.
+	This is used as a flag for some of the error handling
+	logic in the program.
+<LI><b>	complex:</b> sets nwpp = 2	
+<LI><b>	real:</b>
+<LI><b> echo:</b>	(default) Turns on command line echo, so you see the 
+                      command echoed immediately before it is executed.
+<LI><b>	noecho:</b>	Turns off the echo feature.
+<LI><b>	holds:	</b>	set the hold pattern to be used for inserted lines	
+<LI><b>	tags:</b>
+<LI><b>	intregs:	</b>
+<LI><b>	realregs:</b>
+<LI><b>	lsqcontinuum: </b>           (may be abreviated to 4 letters)
+<LI><b>	lsqitnum:</b>
+<LI><b>	lsqrange:</b>
+<LI><b>	lsqtolerance:</b>
+<LI><b>	menumode:</b>
+<LI><b>	phaseapod:</b>
+<LI><b>	plot:</b>
+<LI><b>	"plot reset":</b>
+<LI><b>	plotrecall:</b>
+<LI><b>	"read ref center"	or centerread:</b>Makes the sigma/lambda
+ you specify in the read command the central point in the retrieved data.
+<LI><b>	"read ref first"	or firstread:</b> (default) the sigma/lambda 
+you specify in the read command is the first point in the retrieved data.
+<LI><b> "read normalize"        or norm:</b>	Normalize maximum data value to 1.0 after the read.<b>NORMALIZATION OVERRIDES ANY SCALING FACTORS. </b>
+<LI><b>	"read no normalize"	or nonorm:</b>	(DEFAULT)  The data which is read is not normalized
+<LI><b>	"read scale"            or scale:</b> multiply the data in the
+ <b>r</b> array with the factor 'rdsclfct' from the header file. 
+<b>THIS IS THE DEFAULT</b>. <br> An <b>optional</b> floating point <b>argument</b>
+ will allow the data to be scaled by a constant value.
+<LI><b>	"read noscale"          or noscale:</b>  turn off data scaling.	  
+<LI><b>	readlength:</b>	Set the default read length to the specified value.
+			DEFAULT is 2048
+<LI><b>	stretch:</b>
+<LI><b>	verbose:</b>
+<LI><b>	noverbose		or quiet:</b>
+<LI><b> glitch:</b>     (DEFAULT) interferogram glitch checking enabled.
+<LI><b> noglitch:</b>   disable interferogram glitch checking.
+<LI><b>	warn:</b>	(DEFAULT) Turns on certain warning messages in 
+the program	
+<li><b>nowarn:</b>suppresses the warning messages
+<LI><b>	width			damping:</b>
+</UL>
+
+<h3>Examples:</h3>
+<pre>
+open datain <filename>
+set xreg(1) 24000.
+alias newrd 'putlines;set xreg(1) up 200.;read xreg(1) 8192;getlines;plot'
+</pre>
+When the alias <b>newrd</b> is typed, Xgremlin will read in data from 
+filename, get the lines, and allow you to alter the linelist in the plot,
+Subsequent execution of newrd will put back your changes, increment xreg(1) to
+read in the next buffer and read it in.
+
+<h3>Related commands</h3>
+<UL>
+<LI> <A HREF="info.html">info</A>
+<LI> <A HREF="whats.html">whats</A>
+</UL>

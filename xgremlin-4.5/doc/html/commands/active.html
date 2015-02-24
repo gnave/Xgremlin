@@ -1,0 +1,67 @@
+<head>
+<title> active </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+
+<h2>active</h2><p>
+<b>Syntax:</b>
+<key>active</key><em> [ &lt list of line numbers &gt ]</em><p>
+
+Where the optional list of line numbers is
+<ul>
+<li> a list of line numbers separated by blanks
+<li> a range of line numbers written as <key>l - m</key>
+<li> no list implies all lines
+</ul>
+
+<b>Activating</b> a line means subtracting the calculated line profile
+(based on the parameters in the line list) from the actual data in the 
+<b>r-array</b> leaving the residuum in the <b>r-array</b>.<p>
+
+Lines in the internal linelist (from a
+<a href="getlines.html"> getlines </a> or
+<a href="findlines.html"> findlines </a> command) 
+<b>must</b> be activated before a 
+<a href="lsqfit.html"> lsqfit </a>
+command can be used to fit line profiles to data. All parameters are optimized 
+in the fit unless some of
+the paramteres of the lines have been fixed by
+one of the <b>hold...</b> commands. However if <b>all</b> parameteres are held
+using just 
+<a href="/usr/local/xgremlin/html/hold.html"> hold </a>, 
+<b>active</b> undoes the hold and the lines can be refined
+using <b>lsqfit</b>. To de-activate a line use the 
+<a href="drop.html"> drop </a> command.
+<p><br>
+
+<h3>Examples:</h3>
+<dl>
+<dt> <b>active 1 3 5 7</b>
+<dd> activate lines 1, 3, 5 and 7
+<dt> <b>active 1 -100</b>
+<dd> activate the first 100 lines in an internal line list (2nd number is -ve)
+<dt> <b>active</b>
+<dd> activate all lines in the internal line list
+</dl>
+<p>
+<br>
+
+<h3>Related commands:</h3>
+<menu>
+<li><a href="change.html"> change </a>
+<li><a href="drop.html"> drop </a>
+<li><a href="getlines.html"> getlines </a>
+<li><a href="findlines.html"> findlines </a>
+<li><a href="lsqfit.html"> lsqfit </a>
+<li><a href="hold.html"> hold </a>
+<li><a href="holdx.html"> holdamp </a>
+<li><a href="holdx.html"> holddamping </a>
+<li><a href="holdx.html"> holdwidth </a>
+<li><a href="holdx.html"> holdsigma </a>
+</menu>
+</body>

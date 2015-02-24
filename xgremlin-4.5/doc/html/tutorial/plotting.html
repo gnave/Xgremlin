@@ -1,0 +1,83 @@
+<head>
+<title> Plotting in Xgremlin </title>
+<!-- Changed by: Gillian Nave, 26-Mar-1996 -->
+</head>
+<body bgcolor="#ffffff">
+<B> Next:</B> <A HREF="transform.html"> Transforming and phase correction</A>
+<B>Up:</B> <A HREF="contents.html"> Table of contents </A>
+<B> Previous:</B> <A HREF="quick_look.html"> 
+                  A quick look at your spectrum </A>
+<hr><P>
+<h1> Plotting in Xgremlin </h1>
+
+The <a href="../tutorial/gremlin_figure.html">main Xgremlin window</a>, 
+<a name="window"> consists </a> of an
+<a href="../glossary.html">edit</a> window and a 
+<a href="../glossary.html">plot</a> 
+window. Keyboard input is usually sent to the edit window and
+mouse clicks are sent to the plot window. However it is possible to
+send keyboard input to the plot window as well by either pressing the
+<em>tab</em> key or by clicking on the button <em>PlotMode</em> with the
+left mouse button. The 
+<a href="../tutorial/plotmode.html"><em>Plotmode</em></a> 
+<a name="plotmode">button</a> changes colour from
+grey to red when the plot window is accepting keyboard input. It is
+however possible to send mouse input to the plot window even when the
+plot window is not accepting keyboard input -- this is the most common
+way to use Xgremlin and if you have bound your most common
+commands to the configurable buttons (see next paragraph) you will
+rarely use the <em>Plotmode</em> button. Commands in the
+edit window can be recalled using the keyboard arrow keys and it is
+also possible to type the first few letters of a command and recall a
+previous occurrence with the arrow keys (somewhat like the 4dos
+command editor).
+
+<p>
+Function buttons are activated by clicking with the left
+mouse button. The buttons between the plot window and the edit window
+are configurable with the 
+<b><a href="../commands/button.html">button</a></b> 
+command. It is convenient to place
+several <b>button</b> commands in the 
+<a href="../tutorial/startup_xgr.html"><em>.xgremlinrc</em></a> 
+file which lives in your home directory. 
+
+<p>
+The cursor in Xgremlin always follows the mouse, 
+and a running display of the position of it is given whenever it is in
+the plot region. To save positions of the cursor for use in commands,
+it is possible to place 
+<a href="../glossary.html">markers</a> 
+on the plot. When the mouse is near a marked line in the
+<a href="../glossary.html">internal linelist</a>, 
+the parameters of that line are displayed
+instead of the mouse position. If a marker is placed when these
+parameters are displayed, the marker will select that line for the 
+next command issued to the plot window (e.g. placing a marker on a
+line and selecting &lt;Ctrl+d&gt; to delete it).
+
+<p>
+Markers in the plot are of two types: red and blue. Red markers are
+placed by clicking the left mouse button at the position required in
+the plot. Blue markers are placed by clicking the middle mouse button
+at the required position. To remove the last marker, click the right
+mouse button (if your mouse only has one or two buttons, 
+check your X server manual to see how to emulate a three button mouse).
+Most of the time red markers are used, and this is what
+is referred to any time the color of the marker is not specifically
+mentioned. 
+
+When a marker is placed the position of it is displayed in
+wavenumbers and wavelengths below the main plot. Up to 30 markers may
+be placed at one time, and many of the plot commands will work on
+several markers at once. For example, to add three lines to the line
+list, place three markers and either click on the 'add line' button,
+or press &lt;Ctrl+A&gt;. If the command is entered from the keyboard, make
+sure that it is sent to the plot window by clicking on the 
+<em>Plotmode</em> button.
+
+<p>
+<a href="../plotmode.html"><b>Full list of plot mode commands</b></a>
+
+</body>  
+

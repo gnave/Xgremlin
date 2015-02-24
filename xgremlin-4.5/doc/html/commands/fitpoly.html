@@ -1,0 +1,45 @@
+<head>
+<title> fitpoly </title>
+</head>
+
+<body bgcolor="#ffffff">
+<a href="../xgremlin.html"> <b>Top level</b> </a><b>.....</b>
+<a href="alphalist.html"> <b>Alphabetical list</b> </a><b>.....</b>
+<a href="categorylist.html"> <b>Command categories</b> </a>
+<hr>
+  
+<h2>fitpoly</h2><p>
+
+<b>Syntax:</b> <kbd>fitpoly</kbd> <i> [ &lt order of polynomial &gt ] </i><p>
+
+A straight line (default) or polynomial of higher order can be fitted
+to a part of the <b>r</b> array e.g. the background continuum of a
+single line.  2, 4, 6, 8, ... mouse markers must be set before
+entering the command. Each pair of markers selects a section of
+spectrum that is to be included in the fit. The maximum total number
+of points that can be included is 4096.  The fitted polynomial is then
+plotted on the screen. Two blue mouse markers (set with the middle
+mouse button) may be set to delimit the range of the plot which is
+useful for extrapolations.<p>
+
+<h3>Example:</h3>
+<kbd>fitpoly 3</kbd><br>
+fit a 3rd order polynomial to the data and plot the fit.<p>
+
+<b>Note:</b><br> This command is similar to <a
+href="subpoly.html">subpoly</a> but it does not subtract the result of
+the fit from the <b>r</b> array.  
+<p><br>
+
+<h3>Related commands:</h3>
+<menu>
+<li><a href="integrate.html">integrate </a>
+<li><a href="subpoly.html"> subpoly </a>
+<li><a href="profile.html"> profile </a>
+<li><a href="stom.html"> stom </a>
+<li><a href="recm.html"> recm </a>
+</menu>
+ 
+</body>
+
+
