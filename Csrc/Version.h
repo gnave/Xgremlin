@@ -24,7 +24,7 @@
 #ifndef _Version_h
 #define _Version_h
 
-#define VERSION "4.5"        /* edit these two lines only */
-#define DATE    "2/2015"
+#define VERSION "4.6"        /* edit these two lines only */
+#define DATE    "3/2015"
  
 #endif /* _Version_h */

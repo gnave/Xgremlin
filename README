@@ -1,0 +1,88 @@
+Xgremlin is a hardware and operating system independent version of the
+data analysis program Gremlin for Fourier transform spectrometry.
+Xgremlin runs on PCs and workstations that use the X11 window
+system, including cygwin in Windows.  In Xgremlin few things have 
+changed from Gremlin and someone familiar with Gremlin should 
+immediately be able to work with Xgremlin.
+
+Gremlin has two main input modes, an edit mode where commands
+are entered at a command prompt and a graphical plot mode with
+a different set of commands.  Xgremlin emulates these two input modes
+by splitting the application main window into an upper pane which is
+used for plotting and a lower pane used for command editing and
+program output. Both windows remain visible all the time. After
+startup Xgremlin is in edit mode and commands may be typed in at the
+command prompt. To change over to plot mode either the button labeled
+Plotmode or the Tab key must be pressed. Pressing either
+of these again returns Xgremlin to 'edit' mode. The Xgremlin commands
+in plot and edit mode are identical to those of Gremlin ( with a few
+exceptions - the use of the Tab key being one of them ).
+
+Xgremlin startup
+----------------
+One area where Xgremlin differs from Gremlin significantly is
+initialization.  When Xgremlin is started it first reads a system wide
+initialization file xgremlin.conf. The system wide initialization
+file is used to establish defaults that are applicable to any user on
+a system such as the printer that is to be used for screen
+dumps. Xgremlin then processes the personal initialization file
+.xgremlinrc in the home directory.  The personal initialization file
+can be used to taylor Xgremlin to the liking of each individual user
+e.g. to associate certain commands with buttons or to modify the colors
+used in the plotting window.
+
+GUI elements 
+------------
+In Xgremlin, frequently used commands can be accessed conveniently
+through simple mouse clicks on buttons. All important plot mode
+commands for moving around in a plot are accessible through the row of
+buttons on top of the plotting window. Whereas the functions of the
+top row of buttons are fixed, Xgremlin has also a row of buttons
+between the plot and the edit window which may be programmed by the
+user with the button command. This provides a convenient
+shortcut for frequently used plot or edit commands. A online help
+system can be called up by selecting the menu entry Help in the
+Gremlins menu. The menu entry Phase/Tranform pops up an
+interface to phase correction and Fourier transforms. This is
+explained in greater detail in the Xgremlin tutorial.
+
+
+Command line editing
+--------------------
+Xgremlin has a simple command line editor for the text window. 
+The editor commands are reminiscent of those used in the much loved and
+hated Unix editor Emacs:
+
+ Left arrow key
+ Move cursor to the left
+ Right arrow key
+ Move cursor to the right
+ Page Up key
+ Scroll text in edit window back by one page
+ Page down key
+ Scroll text in edit window forward by one page
+ Up arrow key
+ Recall previous command or commands
+ Conrol key + 'a' key
+ Move cursor to beginning of the command line (Anfang)
+ Control key + 'e' key
+ Move cursor to end of the command line (Ende)
+ Control key + 'k' key
+ Delete everything from cursor position to end of line
+ Backspace key
+ Remove character to left of cursor
+
+Line lists
+----------
+Binary line list (.lin) files are supported by Xgremlin independent of
+the computer type Xgremlin is running on. A line list file written on
+a PC with an Intel processor is readable on a Sun workstation and vice 
+versa. In more technical terms: the byte order of data in .lin files
+is always identical to the byte order of data in .lin files produced
+by the original Gremlin program (i.e. little endian byte order).
+
+Documentation
+-------------
+
+All of the documentation is available in html format in the file
+README.html.

@@ -1,5 +1,16 @@
+2015-03-03 Gill
+       * version 4.6
+
+       * Now using GitHub
+       * Print out more digits on A constants for hfs write
+       * Made sure hfs fitting routines don't wipe out holds
+       * Fix hfs delete so that it doesn't delete lines that are not there.
+       * Fix hfs disp so it only displays up to max. no. lines
+       * hfs disp without params now displays whole hfs linelist.
+
+
 2015-02-23 Gill
-       *  version 4.5
+       * version 4.5
 
        * Phase correction fixed so it only picks up one point per line (set by swid variable).
        * Change command fixed so commands actually match documentation

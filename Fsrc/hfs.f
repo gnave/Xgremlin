@@ -153,11 +153,22 @@ C     &            hfslev=40,hfsline=41,hfswrtline=42,tmpline=43, scratch=44)   
          if(ifx .ne. 1) then
             call wrtstr(' Usage: hfs delete <linnum>')
          endif
-         do j=inum(1),no_lines-1
-            line(j) = line(j+1)
-         enddo
-         no_lines = no_lines-1
-         
+!
+! Bug fix - make sure it doesn't delete any lines that aren't there
+!           and gets the number of lines correct
+! (GN, March 2015)
+!
+         if(inum(1)>no_lines) then
+              write(wrtbuf, 2005) no_lines
+2005          format('Last line is', i6)
+              call wrtstr(wrtbuf)
+         else
+            do j=inum(1),no_lines-1
+               line(j) = line(j+1)
+            enddo
+            line(no_lines)=line(no_lines+1)
+            no_lines = no_lines-1
+         endif
          return
 
 !
@@ -166,21 +177,29 @@ C     &            hfslev=40,hfsline=41,hfswrtline=42,tmpline=43, scratch=44)   
 !
 
       case ('disp')
+
+!
+! Bug fix - make sure it doesn't write out more lines than there are in linelist
+!           also use 'hfs disp' to print out whole list
+! (GN, March 2015)
+!
          if(ifx .lt. 1) then
-            call wrtstr(' Usage: hfs disp <line1> [<line2>]')
-            return
+            minlin = 1
+            maxlin = no_lines
+         else
+            minlin = inum(1)
+            if(ifx .ge. 2) maxlin = inum(2)
          endif
-         call wrtstr('no.  Wavenumber    SNR    FWHM  Eta Lower level  
-     &J_l    A_l    B_l Upper level  J_u    A_u    B_u')
+         if(maxlin .gt. no_lines) maxlin = no_lines
          if(ifx .eq. 1) then
-            i = inum(1)
+            i = minlin
             write(wrtbuf,2010) i,line(i)%waveno, line(i)%snr, 
      1            line(i)%fwhm, line(i)%damp,line(i)%el, line(i)%jl, 
      1            line(i)%al, line(i)%bl, line(i)%eu, line(i)%ju,
      1            line(i)%au, line(i)%bu 
             call wrtstr(wrtbuf)
          else 
-            do i=inum(1), inum(2)
+            do i=minlin,maxlin
                write(wrtbuf,2010) i,line(i)%waveno, line(i)%snr, 
      1               line(i)%fwhm, line(i)%damp, line(i)%el,line(i)%jl, 
      1               line(i)%al, line(i)%bl, line(i)%eu, line(i)%ju, 
@@ -1079,8 +1098,8 @@ C     &            hfslev=40,hfsline=41,hfswrtline=42,tmpline=43, scratch=44)   
          endif
 
 
-         write(hfswrtline,'(a)') 'no.  Wavenumber    SNR    FWHM  Eta 
-     1 Intensity Lower level  J_l    A_l    B_l Upper level  J_u    A_u   
+         write(hfswrtline,'(a)') 'no.  Wavenumber    SNR    FWHM  Eta  I
+     1ntensity Lower level  J_l   A_l     B_l Upper level  J_u   A_u  
      1 B_u   Comment'
          do i=1, no_lines
             write(hfswrtline,8010,err=8030) i,line(i)%waveno, 
@@ -1093,11 +1112,13 @@ C     &            hfslev=40,hfsline=41,hfswrtline=42,tmpline=43, scratch=44)   
      1            line(i)%delinten,line(i)%delal, line(i)%delbl, 
      1            line(i)%delau, line(i)%delbu
          enddo
-
+!
+! Add another digit onto A constants (GN, March 2015)
+!
 8010     format(i4,1xf10.4,1x,f7.1,1x,f6.1,1x,f4.2,1x,e10.3,1x,
-     1          2(a10,1x,f5.1,2f7.1,1x),a40)
+     1          2(a10,1x,f5.1,f7.2,f7.1,1x),a40)
 8020     format(5x,f10.4,1x,f7.1,1x,f6.1,1x,f4.2,1x,e10.3,1x,
-     1          2(16x,2f7.1,1x))
+     1          2(16x,f7.2,f7.1,1x))
          close (hfswrtline)
          return
  8030    call wrtstr('Error on write - full disk?')

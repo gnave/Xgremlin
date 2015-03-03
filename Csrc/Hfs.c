@@ -808,7 +808,10 @@ getinfo ( int thisline)
 {
   double lowj, uppj, lowA, uppA, lowB, uppB, wave, snr, damp, fwhm;
   char lowlev[NUM_LEN], upplev[NUM_LEN], comment[OTHER_LEN];
-  long int alh, blh, auh, buh, waveh, intenh, damph, fwhmh; /* held params */
+/*
+ *  Change to normal int (GN, March 2015)
+ *  long int alh, blh, auh, buh, waveh, intenh, damph, fwhmh; /* held params */ 
+   int alh, blh, auh, buh, waveh, intenh, damph, fwhmh; /* held params */
   int thisstruct;
 
   Arg args[1];
