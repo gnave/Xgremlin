@@ -59,7 +59,7 @@
 	integer ncentre, nump, n, reftmp, nl, nr
 	real factor, wcentre, wrange, wpeak, apeak, w, wt, wb
 	double precision wnum, rsum, rmean, rdiff, rpeak
-	real ax1, ay1, ax2, ay2
+	real ax1, ay1, ax2, ay2, lowlim
 	integer ipoint1, ipoint2, iclick, iclick1, iclick2, lidx, idx
 	integer ln, kx(4), insrt, kflag, idxpk
 	real yk(4)
@@ -700,33 +700,41 @@
            alpha(1)(1:8) = 'inactive'
            call getlin(r,point,amp,wd,dmp,eps1,eps2,eps3,
      &                 eps4,eps5,nit,nhold,ctag,dent)
-           nstrng = 0
-           if (nol .gt. 0) then
-	      call linevis(1)
-	      call plotr(1,r,r,tr,phz)
-	   end if
-	   goto 1000
-        end if
+		   nstrng = 0
+		   if (nol .gt. 0) then
+		      call linevis(1)
+		      call plotr(1,r,r,tr,phz)
+		   end if
+		   goto 1000
+		end if
 
 * g : calculate the C.G. of lines, print result but do not insert into line list
 * <ctrl>g : insert C.G. of line(s) at cursor(s), save range
-        if (ch.eq.'g') then
-	   if ( iclick .eq. 2 ) then
-	      insrt = 0
-	      if (ctrl.eq.1) then
-		 insrt = 1
-	      end if
-	      call dmouse( button1, 0, ax1, ay1, ipoint1 )
-	      call dmouse( button1, 1, ax2, ay2, ipoint2 )
-	      kx(1) = ipoint1
-	      yk(1) = ay1
-	      kx(2) = ipoint2
-	      yk(2) = ay2
-	      call cgline(r,kx,yk,wx,ln,insrt, ! insert in line list
+		if (ch.eq.'g') then
+		   if ( iclick .eq. 2 ) then
+		      insrt = 0
+		      if (ctrl.eq.1) then
+			 insrt = 1
+		      end if
+		      call dmouse( button1, 0, ax1, ay1, ipoint1 )
+		      call dmouse( button1, 1, ax2, ay2, ipoint2 )
+		      kx(1) = ipoint1
+		      yk(1) = ay1
+		      kx(2) = ipoint2
+		      yk(2) = ay2
+		      call cgline(r,kx,yk,wx,ln,insrt, ! insert in line list
      &                    point, amp, wd, dmp,
      &                    eps1,eps2,eps3,eps4,eps5,
      &                    nit, nhold, ctag, dent)
  	      if (insrt.eq.1) then
+* (GN, March 2015, Save the limits of the integration in ident)
+                 xparb=ipoint1
+                 call ptow
+                 lowlim = xparb
+                 xparb = ipoint2
+                 call ptow
+                 write(dent(ln),490) lowlim, xparb
+ 490             format(f9.3,'-',f9.3,' cm-1')
 		 call mline(ln, dble(wx), 1,point,amp,wd,dmp,
      &                      nit, nhold, ctag, dent)
 		 call dlabels	               ! renumber and display
@@ -744,8 +752,14 @@
 	   if ( iclick .eq. 2 ) then
 	      call dmouse( button1, 0, ax1, ay1, ipoint1 )
 	      call dmouse( button1, 1, ax2, ay2, ipoint2 )
-	      inum(1) = nump(ax1)
-	      inum(2) = nump(ax2)
+C (GN, March 2015, Check that first limit is less than second)
+	      if(nump(ax1) < nump(ax2)) then
+                  inum(1) = nump(ax1)
+	          inum(2) = nump(ax2)
+              else
+                  inum(1)=nump(ax2)
+                  inum(2)=nump(ax1)
+              endif
 	      ifx = 2
 	      call area(r)
 	   end if

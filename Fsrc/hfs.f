@@ -208,7 +208,7 @@ C     &            hfslev=40,hfsline=41,hfswrtline=42,tmpline=43, scratch=44)   
             enddo
          endif
 2010     format(i4,1xf10.4,1x,f7.1,1x,f6.1,1x,f4.2,1x,2(a10,1x,f5.1,
-     1          2f7.1,1x))
+     1          2f7.2,1x))
          return
 
 

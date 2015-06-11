@@ -1,4 +1,11 @@
 2015-03-03 Gill
+       * version 4.7
+      
+       * Response command fixed  - declare rindex double precision
+       * Area command checks 1st limit less than second
+       * Adding C of G to linelist saves limits in the identification.
+
+2015-03-03 Gill
        * version 4.6
 
        * Now using GitHub

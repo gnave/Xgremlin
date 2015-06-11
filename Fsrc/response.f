@@ -26,12 +26,13 @@
       include 'integrate.h'        ! use arrays declared therein
 
       real r(*), tr(*)
+      double precision rindex
 
       logical lsigmul, lex, lper, luni, lextra, lnocal
       integer i, n, len, nf, npts, niter, ierr, nump, kflag
       integer getenv
       real sm, smtol, w, rmin, rmax, hval, tensfac
-      real wlen, ri, s, t, wb, we
+      real wlen, ri, s, t, wb, we 
       character*256 rdfnam, string, path
       character line*80, ch*1, fields(2)*32
       double precision wnum
@@ -107,6 +108,9 @@
       npts = npts+1
       read(fields(1),*,err=91) xint(npts)
       read(fields(2),*,err=91) t
+*
+*   (GN May 2015) Trial fix to see if it improves interpolation
+*      yint(npts) = t
       yint(npts) = log(t)
       goto 10
 
