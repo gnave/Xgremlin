@@ -1,1 +1,3 @@
 *.ps linguist-detectable=false
+*.c linguist-detectable=true
+*.f linguist-detectable=true
