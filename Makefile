@@ -122,6 +122,7 @@ all-versions:
 	@echo "Done it all !"
 	@echo
 	@echo "Install the program with:           sudo make install"
+        @echo "Install the documentation with:     sudo make install-doc"
 	@echo "Create a binary distribution with:  make distribution"
 	@echo
 
@@ -154,6 +155,7 @@ install-doc:
 #	install -m 644 ./doc/xgremlin.help /usr/local/xgremlin
 #	install -m 644 ./doc/xgremlin.help.index /usr/local/xgremlin
 	install -m 644 ./xgremlin.conf /usr/local/xgremlin
+	if [ ! -d /usr/local/xgremlin/html ]; then mkdir /usr/local/xgremlin/html ; fi
 	cp -r -p  ./doc/html/*  /usr/local/xgremlin/html
 
 clean:
