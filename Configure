@@ -73,8 +73,8 @@ echo "   during compilation the C compiler must be able to locate the include"
 echo "   files for the X11 libraries and the loader must be able to find the"
 echo "   libraries themselves. The following directories are searched by default:"
 echo
-echo "   X11 include path :  /usr/X11R6/include"
-echo "   X11 library path :  /usr/X11R6/lib"
+echo "   X11 include path :  /usr/include/X11"
+echo "   X11 library path :  /usr/lib/X11"
 echo
 echo -n "   Change X11 paths ? [y/N] :  "
 read yesno
@@ -88,8 +88,8 @@ then
    echo "XINCLOC = $xincloc" >>config.user
    echo "XLIBLOC = $xlibloc" >>config.user
 else
-   echo "XINCLOC = /usr/X11R6/include" >>config.user
-   echo "XLIBLOC = /usr/X11R6/lib" >>config.user
+   echo "XINCLOC = /usr/include/X11" >>config.user
+   echo "XLIBLOC = /usr/lib/X11" >>config.user
 fi
 
 # Extra libraries
