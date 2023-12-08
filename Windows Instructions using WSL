@@ -1,0 +1,48 @@
+Instructions for compiling and installing Xgremlin on Windows 10 or 11 using WSL
+--------------------------------------------------------------------------------
+
+1) Install and update the wsl system. Details can be found at:
+https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps.
+ -- Go to the Power Shell:
+    wsl --install       if you have not previously installed wsl or
+    wsl --update        if you have
+    wsl --shutdown      to restart wsl and implement the changes
+    wsl                 to start it up again.
+
+2) Find and install an X server to use with the program. I had good luck with MovaXterm, at
+https://mobaxterm.mobatek.net
+
+3) Install the libraries and programs needed to compile and run Xgremlin, while in wsl:
+   sudo apt install gfortran
+   sudo apt install make
+   sudo apt install unzip
+   sudo apt install libx11-dev
+   sudo apt install libxt-dev
+   sudo apt install libxaw7-dev
+
+You may also need to find the find StringDefs.h and copy it to the X11 include file directory
+at /usr/include/X11. I found the file at:
+code.woboq.org/kde/include/X11/StringDefs.h.html
+
+4) You should now be able to configure and make Xgremlin using the instructions in the README:
+./Configure
+make linux-i386
+make install
+make install-doc
+
+I have modified the configuration and makefiles to make the default libraries and include
+files work with Ubuntu and Windows WSL, so you shouldn't need to change anything. The Makefile
+also now makes the directories in /usr/local/xgremlin if they are not there, so the documentation
+should install correctly as well.
+
+5) If you want to use your default Windows browser, set the browser in the xgremlin.conf
+file to wslview before typing install-doc. The one installed on the system may not work, and if
+this is the case, try updating it from the wsl utilities repository:
+sudo add-apt-repository ppa:wslutilities/wslu
+sudo apt update
+sudo apt upgrade.
+
+Let me know how you get on and if you encounter any problems
+
+Gillian Nave
+December 2023.
