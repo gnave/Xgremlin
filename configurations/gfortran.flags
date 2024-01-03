@@ -4,4 +4,4 @@
 FF = gfortran 
 # F77FLAGS = -O3 -fomit-frame-pointer -malign-natural -fno-automatic
 #F77FLAGS = -g  -fno-automatic -m32
-F77FLAGS = -g  -fno-automatic 
+F77FLAGS = -g  -fno-automatic -fallow-invalid-boz
