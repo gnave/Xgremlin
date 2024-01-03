@@ -1,0 +1,21 @@
+Instructions for compiling on MacOSX
+------------------------------------
+
+The recent version of Apple's C compiler, installed using the command line utilities, no longer
+compile Xgremlin correctly. The solution is to use gcc - the same compiler as used on Ubuntu
+and Windows/WSL. This can be installed using Homebrew using
+'brew install gcc'.
+The compiler is installed in /usr/local/bin and you should look at the version installed
+and modify the file 'macosx' in the configurations directory if necessary.
+
+On Ventura (13.6.3), the X11 libraries are in /usr/X11R6/lib and the include files are in
+/usr/X11R6/include. The app-defaults file is in
+/opt/X11/share/X11/app-defaults/
+and the Makefile should be modified as follows:
+APPDEF = /usr/X11R6/lib/X11/app-defaults
+before running 'make install' to ensure that the 'Xgremlin' file is copied to the right place.
+If you run Xgremlin and get a window with lots of lines, no labeled menus, and no colors,
+you should copy the file 'Xgremlin' to the correct place.
+
+Gillian Nave
+3rd January, 2024
