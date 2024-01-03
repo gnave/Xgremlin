@@ -1,10 +1,10 @@
 #
 # g77 and gcc compiler flags for Macintosh running OS X
 #
-CC = gcc
+CC = gcc-13
 #CFLAGS = -O3 -malign-natural  -fomit-frame-pointer -DHAVE_BSD_TIME -DHAVE_ANSI_SIGNALS
 #CFLAGS = -g -DHAVE_BSD_TIME -DHAVE_ANSI_SIGNALS -m32
-CFLAGS = -g -DHAVE_BSD_TIME -DHAVE_ANSI_SIGNALS -Wundefined-inline
+CFLAGS = -g -DHAVE_BSD_TIME -DHAVE_ANSI_SIGNALS 
 
 #
 # linker flags
